@@ -1,16 +1,5 @@
 matrix:
   include:
-    - language: csharp 
-      solution: CodeSanook.Examples.CSharp.sln 
-      mono: none
-      dist: trusty
-      dotnet: 1.1.7
-      install: 
-        - dotnet restore
-      script:
-        - dotnet build
-        - dotnet test CodeSanook.Examples.CSharp.Tests/CodeSanook.Examples.CSharp.Tests.csproj
-      
     - language: java
       before_cache:
         - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -21,5 +10,6 @@ matrix:
           - $HOME/.gradle/wrapper/
       before_script:
         - cd codesanook-examples-java
+        - chmod +x gradlew
       script:
        - ./gradlew check
