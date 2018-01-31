@@ -3,9 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSanook.Examples.CSharp", "CodeSanook.Examples.CSharp\CodeSanook.Examples.CSharp.csproj", "{48722D1B-4EC0-4924-9C57-4ED333A81769}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSanook.Examples.CSharp", "CodeSanook.Examples.CSharp\CodeSanook.Examples.CSharp.csproj", "{48722D1B-4EC0-4924-9C57-4ED333A81769}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSanook.Examples.CSharp.Tests", "CodeSanook.Examples.CSharp.Tests\CodeSanook.Examples.CSharp.Tests.csproj", "{548590FC-A10F-42B2-BC77-3D5206247AD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeSanook.Examples.CSharp.Tests", "CodeSanook.Examples.CSharp.Tests\CodeSanook.Examples.CSharp.Tests.csproj", "{548590FC-A10F-42B2-BC77-3D5206247AD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A7F45D8F-CF24-4557-AA43-5BF2E39D66FD}"
+	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

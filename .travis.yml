@@ -1,0 +1,8 @@
+matrix: 
+    include: 
+        language: csharp 
+        solution: CodeSanook.Examples.CSharp.sln 
+        mono: none
+        dotnet: 1.1
+        script: 
+             - dotnet restore
