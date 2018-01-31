@@ -4,5 +4,8 @@ matrix:
         solution: CodeSanook.Examples.CSharp.sln 
         mono: none
         dotnet: 1.1.7
+        install: 
+            - dotnet restore
         script: 
-             - dotnet restore
+             - dotnet build
+             - dotnet test CodeSanook.Examples.CSharp.Tests/CodeSanook.Examples.CSharp.Tests.csproj
