@@ -3,6 +3,6 @@ matrix:
         language: csharp 
         solution: CodeSanook.Examples.CSharp.sln 
         mono: none
-        dotnet: 1.1
+        dotnet: 1.1.7
         script: 
              - dotnet restore
