@@ -13,3 +13,14 @@ matrix:
         - chmod +x gradlew
       script:
        - ./gradlew check
+
+    - language: csharp 
+      solution: CodeSanook.Examples.CSharp.sln 
+      mono: none
+      dist: trusty
+      dotnet: 1.1.7
+      install: 
+        - dotnet restore
+      script:
+        - dotnet build
+        - dotnet test CodeSanook.Examples.CSharp.Tests/CodeSanook.Examples.CSharp.Tests.csproj
