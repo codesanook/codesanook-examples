@@ -1,11 +1,25 @@
-matrix: 
-    include: 
-        language: csharp 
-        solution: CodeSanook.Examples.CSharp.sln 
-        mono: none
-        dotnet: 1.1.7
-        install: 
-            - dotnet restore
-        script: 
-             - dotnet build
-             - dotnet test CodeSanook.Examples.CSharp.Tests/CodeSanook.Examples.CSharp.Tests.csproj
+matrix:
+  include:
+    - language: csharp 
+      solution: CodeSanook.Examples.CSharp.sln 
+      mono: none
+      dist: trusty
+      dotnet: 1.1.7
+      install: 
+        - dotnet restore
+      script:
+        - dotnet build
+        - dotnet test CodeSanook.Examples.CSharp.Tests/CodeSanook.Examples.CSharp.Tests.csproj
+      
+    - language: java
+      before_cache:
+        - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+        - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+      cache:
+        directories:
+          - $HOME/.gradle/caches/
+          - $HOME/.gradle/wrapper/
+      before_script:
+        - cd codesanook-examples-java
+      script:
+       - ./gradlew check
