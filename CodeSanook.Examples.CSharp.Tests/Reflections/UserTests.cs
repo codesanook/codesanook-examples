@@ -1,8 +1,5 @@
 ﻿using CodeSanook.Examples.CSharp.Reflections;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 using Xunit;
 
 namespace CodeSanook.Examples.CSharp.Tests.Reflections
@@ -13,21 +10,27 @@ namespace CodeSanook.Examples.CSharp.Tests.Reflections
         public void GetFullName_ValidPropertyValues_ReturnCorrectFullName()
         {
             var user = new User();
-            user.FirstName = "Ariel";
-            user.LastName = "Schmidt";
+            user.FirstName = "Anthony";
+            user.LastName = "CodeSanook";
             var fulllName = user.GetFullName();
 
-            Assert.Equal("Ariel Schmidt", fulllName);
+            Assert.Equal("Anthony CodeSanook", fulllName);
+        }
 
+        [Fact]
+        public void GetFullNameWithReflection_ValidPropertyValues_ReturnCorrectFullName()
+        {
+            var user = new User();
             var userType = user.GetType();
             var firstNameProperty = userType.GetProperty("FirstName");
             var lastNameProperty = userType.GetProperty("LastName");
 
-            firstNameProperty.SetValue(user, "Emma");
-            lastNameProperty.SetValue(user, "Jacobson");
+            firstNameProperty.SetValue(user, "Anthony");
+            lastNameProperty.SetValue(user, "CodeSanook");
 
             var getfullNameMethod = userType.GetMethod("GetFullName");
-            var fullNameValue = getfullNameMethod.Invoke(user, null);
+            var fullName = getfullNameMethod.Invoke(user, null);
+            Assert.Equal("Anthony CodeSanook", fullName);
         }
     }
 }

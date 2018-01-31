@@ -1,5 +1,7 @@
 matrix:
   include:
+
+    # setting for Java project 
     - language: java
       before_cache:
         - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -14,6 +16,8 @@ matrix:
       script:
        - ./gradlew check
 
+
+    # setting for .NET Core project 
     - language: csharp 
       solution: CodeSanook.Examples.CSharp.sln 
       mono: none

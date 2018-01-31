@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CodeSanook.Examples.CSharp.Reflections
+﻿namespace CodeSanook.Examples.CSharp.Reflections
 {
     public class User
     {

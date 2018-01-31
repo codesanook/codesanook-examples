@@ -2,7 +2,7 @@ package com.codesanook.examples.reflection;
 
 public class User {
 
-   private String firstName;
+    private String firstName;
     private String lastName;
 
     public String getFirstName() {
