@@ -13,7 +13,6 @@ namespace CodeSanook.Examples.CSharp.Tests.Reflections
         public void GetFullName_ValidPropertyValues_ReturnCorrectFullName()
         {
             var user = new User();
-
             user.FirstName = "Ariel";
             user.LastName = "Schmidt";
             var fulllName = user.GetFullName();
