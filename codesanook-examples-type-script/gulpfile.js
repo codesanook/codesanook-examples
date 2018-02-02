@@ -8,7 +8,10 @@
 const gulp = require("gulp");
 const ts = require("gulp-typescript");
 const jasmine = require('gulp-jasmine');
-var tsProject = ts.createProject("tsconfig.json");
+const tsProject = ts.createProject("tsconfig.json");
+const clean = require('gulp-clean');
+const runSequence = require('run-sequence');
+
 
 var paths = {
     src: 'src/**/*.ts',
@@ -16,19 +19,29 @@ var paths = {
     dest: 'dist'
 }
 
+gulp.task('clean', () => {
+    return gulp.src(paths.dest, {
+            read: false
+        })
+        .pipe(clean());
+});
+
 gulp.task('compile', () => {
-    gulp.src(paths.src)
+    return gulp.src(paths.src)
         .pipe(tsProject())
         .pipe(gulp.dest(paths.dest));
 });
 
-//test depends on compile task
-gulp.task('test', ['compile'], () =>
-    gulp.src(paths.spec)
-    .pipe(jasmine({
-        verbose: true
-    }))
-);
+//test depends on clean and compile tasks 
+gulp.task('test', (done) => {
+    runSequence('clean', 'compile', function () {
+        gulp.src(paths.spec)
+            .pipe(jasmine({
+                verbose: true
+            }));
+        done();
+    });
+});
 
 gulp.task('watch', () => {
     gulp.watch(paths.src, ['compile']);
