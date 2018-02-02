@@ -285,3 +285,6 @@ node_modules
 .sass-cache
 .sass-cache/*
 out
+
+#TypeScript output directory 
+dist
