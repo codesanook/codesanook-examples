@@ -16,7 +16,6 @@ matrix:
       script:
        - ./gradlew check
 
-
     # setting for .NET Core project 
     - language: csharp 
       solution: CodeSanook.Examples.CSharp.sln 
@@ -28,3 +27,14 @@ matrix:
       script:
         - dotnet build
         - dotnet test CodeSanook.Examples.CSharp.Tests/CodeSanook.Examples.CSharp.Tests.csproj
+
+    # setting for TypeScript/JavaScript project 
+    - language: node_js 
+      node_js: 
+        - node
+      before_script:
+        - npm install -g gulp-cli
+      script: gulp test
+      cache:
+        directories:
+          - node_modules

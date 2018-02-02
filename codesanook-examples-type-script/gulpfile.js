@@ -22,7 +22,8 @@ gulp.task('compile', () => {
         .pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('test', () =>
+//test depends on compile task
+gulp.task('test',['compile'], () =>
     gulp.src(paths.spec)
         .pipe(jasmine())
 );
