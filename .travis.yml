@@ -33,6 +33,7 @@ matrix:
       node_js: 
         - node
       before_script:
+        - cd codesanook-examples-type-script
         - npm install -g gulp-cli
       script: gulp test
       cache:
