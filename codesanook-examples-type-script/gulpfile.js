@@ -23,9 +23,11 @@ gulp.task('compile', () => {
 });
 
 //test depends on compile task
-gulp.task('test',['compile'], () =>
+gulp.task('test', ['compile'], () =>
     gulp.src(paths.spec)
-        .pipe(jasmine())
+    .pipe(jasmine({
+        verbose: true
+    }))
 );
 
 gulp.task('watch', () => {
