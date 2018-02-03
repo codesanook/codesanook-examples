@@ -43,7 +43,6 @@ gulp.task('test', (done) => {
     });
 });
 
-gulp.task('watch', () => {
-    gulp.watch(paths.src, ['compile']);
-    gulp.watch(paths.spec, ['test']);
+gulp.task('watch',['test'], () => {
+    gulp.watch(paths.src, ['test']);
 });
