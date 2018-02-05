@@ -3,9 +3,9 @@ import User from '../../dynamic/User';
 //https://jasmine.github.io/tutorials/your_first_suite
 
 //create a nested describe block which make a group of specs and shared context  
-describe('call user object', () => {
-    describe('getFullName method ', function () {
-        it('return correct full name', () => {
+describe('call user object\'s members', () => {
+    describe('with normal style', () => {
+        it('should return a correct full name', () => {
             //given
             let user = new User();
             user.firstName = 'Anthony';
@@ -17,9 +17,10 @@ describe('call user object', () => {
             //then
             expect(fullName).toBe('Anthony CodeSanook');
         });
+    });
 
-        it('with dynamic string name should return correct full name', () => {
-
+    describe('with dynamic style', () => {
+        it('should return a correct full name', () => {
             //given
             let user = new User();
             user['firstName'] = 'Anthony';
@@ -30,11 +31,11 @@ describe('call user object', () => {
 
             //then
             expect(fullName).toBe('Anthony CodeSanook');
-
         });
+    });//end describe
 
-        it('with apply should return correct full name', () => {
-
+    describe('with apply function ', () => {
+        it('should return a correct full name', () => {
             //given
             let userA = new User();
 
@@ -43,14 +44,14 @@ describe('call user object', () => {
             userB['lastName'] = 'CodeSanook';
 
             //when
+            //use apply we pass arguments as array 
             let fullName = userA.getFullName.apply(userB);
+
             //then
             expect(fullName).toBe('Anthony CodeSanook');
         });
-    });//end describe
 
-    describe('saySomething method ', () => {
-        it('with apply function should return correct total message count', () => {
+        it('should return correct total message count', () => {
             //given
             let userA = new User();
 
@@ -63,10 +64,27 @@ describe('call user object', () => {
             let messages = userA.saySomething.apply(userB, ['Hello World with apply', 5]);
             //then
             expect(messages.length).toBe(5);
-            console.log(messages.join('\n'));
+        });
+    });//end describe
+
+    describe('with call function', () => {
+        it('should return a correct full name', () => {
+            //given
+            let userA = new User();
+
+            let userB = new User();
+            userB['firstName'] = 'Anthony';
+            userB['lastName'] = 'CodeSanook';
+
+            //when
+            //use apply we pass arguments as array 
+            let fullName = userA.getFullName.call(userB);
+
+            //then
+            expect(fullName).toBe('Anthony CodeSanook');
         });
 
-        it('with call function should return correct total message count', () => {
+        it('should return correct total message count', () => {
             //given
             let userA = new User();
             let userB = new User();
@@ -79,7 +97,6 @@ describe('call user object', () => {
 
             //then
             expect(messages.length).toBe(10);
-            console.log(messages.join('\n'));
         });
     });//end describe
 
@@ -98,7 +115,8 @@ describe('call user object', () => {
             [
                 'firstName',
                 'lastName',
-                'getFullName'
+                'getFullName',
+                'saySomething'
             ]));
     });
 
@@ -115,6 +133,6 @@ describe('call user object', () => {
     });
 
     //like test fixture set up  in junit
-    afterAll(function () {
+    afterAll(() => {
     });
 });//end of parent describe 
