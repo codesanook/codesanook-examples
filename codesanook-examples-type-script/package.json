@@ -19,5 +19,7 @@
     "run-sequence": "^2.2.1",
     "typescript": "^2.7.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "moment": "^2.20.1"
+  }
 }
