@@ -5,7 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Orm\Disposable.cs" />
+    <Compile Remove="Orm\EFDbCotext.cs" />
+    <Compile Remove="Orm\EFDbFactory.cs" />
+    <Compile Remove="Orm\EFUnitOfWork.cs" />
+    <Compile Remove="Orm\IDbFactory.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logging\" />
+    <Folder Include="Orm\" />
   </ItemGroup>
 
 </Project>

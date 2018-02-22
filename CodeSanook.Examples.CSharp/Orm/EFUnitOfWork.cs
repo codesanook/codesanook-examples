@@ -9,14 +9,14 @@ namespace CodeSanook.Examples.CSharp.Orm
     public class EFUnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly IDbFactory _dbFactory;
-        private static DbContextTransaction _transaction;
+        private static IDbContextTransaction   _transaction;
         private static System.Transactions.TransactionScope _transactionScope;
         public EFUnitOfWork(IDbFactory dbFactory)
         {
             _dbFactory = dbFactory;
         }
 
-        public DbEntities dataContext
+        public EFDbCotext dataContext
         {
             get { return _dbFactory.GetCurrentDataContext; }
         }

@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -14,7 +15,7 @@ namespace CodeSanook.Examples.CSharp.Orm
 {
     public class EFDbFactory : Disposable, IDbFactory
     {
-        private HttpContext _httpContext;
+        private HttpContent _httpContext;
         private const string _contextKey = "OceanDBContext";
 
         public EFDbFactory()
@@ -28,7 +29,7 @@ namespace CodeSanook.Examples.CSharp.Orm
             }
         }
 
-        public OceanEntities GetCurrentDataContext
+        public DbEntities GetCurrentDataContext
         {
             get
             {
@@ -48,7 +49,7 @@ namespace CodeSanook.Examples.CSharp.Orm
                         _httpContext.Items[_contextKey] = db;
                     }
 
-                    return (OceanEntities)_httpContext.Items[_contextKey];
+                    return (DbEntities)_httpContext.Items[_contextKey];
                 }
                 else
                 {
@@ -59,16 +60,16 @@ namespace CodeSanook.Examples.CSharp.Orm
                         _httpContext.Session[_contextKey] = db;
                     }
 
-                    return (OceanEntities)_httpContext.Session[_contextKey];
+                    return (DbEntities)_httpContext.Session[_contextKey];
                 }
             }
         }
 
-        public OceanEntities GetNewDataContext
+        public DbEntities GetNewDataContext
         {
             get
             {
-                return new OceanEntities();
+                return new DbEntities();
             }
         }
 
