@@ -17,11 +17,12 @@ matrix:
        - ./gradlew check
 
     # setting for .NET Core project 
+    # .NET Core SDK version can be found at https://www.microsoft.com/net/download/all
     - language: csharp 
       solution: CodeSanook.Examples.CSharp.sln 
       mono: none
       dist: trusty
-      dotnet: 1.1.7
+      dotnet: 2.1.4
       install: 
         - dotnet restore
       script:
