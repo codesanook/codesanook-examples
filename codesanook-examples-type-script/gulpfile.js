@@ -11,12 +11,15 @@ const jasmine = require('gulp-jasmine');
 const tsProject = ts.createProject("tsconfig.json");
 const clean = require('gulp-clean');
 const runSequence = require('run-sequence');
+const YAML = require('yamljs');
+const fs = require('fs');
 
 
 var paths = {
     src: 'src/**/*.ts',
     spec: 'dist/spec/**/*.js',
-    dest: 'dist'
+    dest: 'dist',
+    travis: "src/travis.json"
 }
 
 gulp.task('clean', () => {
@@ -32,9 +35,10 @@ gulp.task('compile', () => {
         .pipe(gulp.dest(paths.dest));
 });
 
-//test depends on clean and compile tasks 
-gulp.task('test', (done) => {
-    runSequence('clean', 'compile', function () {
+//test task depends on clean and compile tasks 
+gulp.task('test', done => {
+    //start with clean, compile and test respectively 
+    runSequence('clean', 'compile', () => {
         gulp.src(paths.spec)
             .pipe(jasmine({
                 verbose: true
@@ -43,6 +47,22 @@ gulp.task('test', (done) => {
     });
 });
 
-gulp.task('watch',['test'], () => {
+gulp.task('watch', ['test'], () => {
     gulp.watch(paths.src, ['test']);
+});
+
+gulp.task('js2Yaml', () => {
+    try {
+        var content = fs.readFileSync(paths.travis).toString();
+        var jsonObject = JSON.parse(content);
+        yamlString = YAML.stringify(jsonObject, 8, 2); //indent 2 space
+        console.log(`\n${yamlString}\n`);
+    } catch (ex) {
+        console.log(ex);
+    }
+});
+
+//gulp watchJS2Yaml
+gulp.task('watchJS2Yaml', ['js2Yaml'], () => {
+    gulp.watch(paths.travis, ["js2Yaml"]);
 });
