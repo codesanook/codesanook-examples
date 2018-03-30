@@ -1,5 +1,5 @@
 import User from '../../dynamic/User';
-//userful links
+//useful links
 //https://jasmine.github.io/tutorials/your_first_suite
 
 //create a nested describe block which make a group of specs and shared context  

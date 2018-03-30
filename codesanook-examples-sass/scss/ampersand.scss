@@ -1,0 +1,34 @@
+
+
+
+.level-1 {
+    padding-left: 10px;
+    .radio-button {
+        padding-left: 5px;
+    }
+}
+
+.level-2 {
+    padding-left: 20px;
+    .radio-button {
+        padding-left: 5px;
+    }
+}
+
+.base-check-box{
+    padding-left: 5px;
+}
+
+//https://css-tricks.com/the-sass-ampersand/
+//https://stackoverflow.com/questions/9560170/including-another-class-in-scss
+//https://www.sassmeister.com/gist/361c2c28bd465bedb11d45fbaf8081a3
+.check-box {
+    @extend .base-check-box;
+    .level-1 & {
+            padding-left:10px;
+    }
+
+    .level-2 & {
+            padding-left:20px;
+    }
+}
