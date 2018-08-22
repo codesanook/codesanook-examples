@@ -20,7 +20,7 @@
 * In terminal, use `gulp test --phone 0812345678` command and change to you phone number.
 * Chrome will get launched, navigate to a website, fill and submit a form.
 
-# Credit && Thank you
+
 # TO DO
 - [x] Make a correct answer and submit a form 
 - [x] TypeScript, Selenium JavaScript driver
@@ -30,6 +30,9 @@
 - [ ] more comment how thing works 
 - [ ] blog post
 - [ ] Review vulnerable dependencies
+
+
+# Credit && Thank you
 
 
 # PRs are welcome.

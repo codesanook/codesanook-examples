@@ -16,7 +16,6 @@ describe("open starbucksthcampaign.com", () => {
                 new chrome.Options()
                     //.setMobileEmulation({ deviceName: "iPhone X" })
                     .addArguments("--incognito")
-
             )
             .build();
     });
@@ -64,8 +63,6 @@ async function getQuestionAnswerPairs(driver: WebDriver): Promise<any> {
         let answer = question.choices.find((choice: Choice) => choice.acquire_score == 1);
         questionAnswerPairs[question.id] = answer.id;
     }
-    ;
-    console.log(`questions ${JSON.stringify(questionAnswerPairs, null, 2)}`);
     return questionAnswerPairs;
 }
 
@@ -74,7 +71,6 @@ async function answerTheQuestion(driver: WebDriver, questionAnswerPairs: any, qu
     await driver.wait(until.elementIsVisible(title), 10000);
     await driver.executeScript("arguments[0].scrollIntoView(true);", title);
     let titleText = await title.getText();
-    console.log(`titleText ${titleText}`);
     let questionId = await getCurrentQuestionId(title);
     let choices = await driver.findElements(By.css(`#campaign-pages-${questionNumber} .choices-list .db-adman-x-font`));
     let choiceIdElementPairs: any = {};
@@ -85,7 +81,6 @@ async function answerTheQuestion(driver: WebDriver, questionAnswerPairs: any, qu
         choiceIdElementPairs[choiceId] = choice;
     }
     let answerId = questionAnswerPairs[questionId];
-    //console.log(`questions 2 ${JSON.stringify(choiceIdElementPairs, null, 2)}`);
     await choiceIdElementPairs[answerId].click();
 }
 
@@ -95,13 +90,11 @@ async function getCurrentQuestionId(title: WebElement): Promise<number> {
     let questionIdValue = await title.getAttribute("id");
     let matches = questionIdPattern.exec(questionIdValue);
     let questionId: number = Number.parseInt(matches[1]);
-    console.log(`questionId ${questionId}`);
     return questionId;
 }
 
 function getPhoneNumber(): string {
     let commandLine = process.argv.join(" ");
-    console.log(`commandLine ${commandLine}\n`);
     const regex = /--phone\s*(\d{10})/;
     let matches = regex.exec(commandLine);
 
