@@ -1,4 +1,9 @@
-# TypeScript Selenium JavaScript driver to automate a form
+# TypeScript Selenium JavaScript client to automate a form for education only.
+* Learning how to set up Selenium JavaScript client 
+* basic TypeScript
+* Jasmine test framework
+* async await in JavaScript
+* Gulp build tool 
 
 ## Requirements
 * Node.js
