@@ -7,6 +7,9 @@ describe("open starbucksthcampaign.com", () => {
 
     let driver: WebDriver = null;
     beforeEach(async () => {
+        //Override the default value which is 5000 milliseconds
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000;
+
         //create service
         let service = new chrome.ServiceBuilder(path);
         driver = await new Builder()
