@@ -11,13 +11,14 @@
 
 ## Install node packages
 * install nodejs [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
-* CD to root of the project
-* Open any your OS terminal
-* npm install -g gulp-cli
-* npm install
+* Download or clone project `git clone git@github.com:aaronamm/CodeSanook.Examples.git` 
+* Open any of your OS terminal
+* CD to root of the project ` cd CodeSanook.Examples/codesanook-examples-selenium` then run the following commands
+* `npm install -g gulp-cli`
+* `npm install`
 
 ## Run a test with gulp task command
-* In terminal, use `gulp test --phone 0812345678` command and change to you phone number.
+* In your terminal, use `gulp test --phone 0812345678` command and change to you phone number.
 * Chrome will get launched, navigate to a website, fill and submit a form.
 
 
@@ -30,10 +31,14 @@
 - [ ] more comment how thing works 
 - [ ] blog post
 - [ ] Review vulnerable dependencies
+- [ ] Page object model by exporting https://github.com/Bumblebee/Bumblebee to TypeScript version and NPM package 
 
 
 # Credit && Thank you
-
+* [ท่าน Earth มาหาเฉลย Starbucks Quiz ตามประสาโปรแกรมเมอร์กัน](http://bit.ly/2OYh3QO)
+* [น้องเฟิร์ส Starbucks Campaign Data Extraction (Part 1)](https://ascended.in.th/starbucks-campaign-data-extraction-part-1/) และ 
+[Starbucks Campaign Data Extraction (Part 2)](https://ascended.in.th/starbucks-campaign-data-extraction-part-2/)
+* [พี่ Chonlasith ที่ share ความรู้ Automated tests มาเสมอ](https://medium.com/@chonla)
 
 # PRs are welcome.
 
