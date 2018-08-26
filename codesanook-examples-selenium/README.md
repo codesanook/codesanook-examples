@@ -11,9 +11,9 @@
 
 ## Install node packages
 * install nodejs [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
-* Download or clone project `git clone git@github.com:aaronamm/CodeSanook.Examples.git` 
+* Download or clone project `git clone https://github.com/aaronamm/CodeSanook.Examples.git` 
 * Open any of your OS terminal
-* CD to root of the project ` cd CodeSanook.Examples/codesanook-examples-selenium` then run the following commands
+* CD to root of the project `cd CodeSanook.Examples/codesanook-examples-selenium` then run the following commands
 * `npm install -g gulp-cli`
 * `npm install`
 
