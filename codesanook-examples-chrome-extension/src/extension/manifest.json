@@ -8,6 +8,14 @@
          "scripts": ["background.js"],
          "persistent": false
      },
+     "content_scripts": [{
+         "matches": [
+             "https://trello.com/*"
+         ],
+         "js": [
+             "content.js"
+         ]
+     }],
      "page_action": {
          "default_popup": "popup.html",
          "default_icon": {

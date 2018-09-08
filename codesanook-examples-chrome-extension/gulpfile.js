@@ -3,13 +3,15 @@ const jasmine = require("gulp-jasmine");
 const clean = require("gulp-clean");
 const runSequence = require("run-sequence");
 const ts = require("gulp-typescript");
-const tsProject = ts.createProject("tsconfig.json");
+const source = require("vinyl-source-stream");
+const browserify = require("browserify");
+const tsify = require("tsify");
 
 let paths = {
     src: [
         "src/**/*.ts",
     ],
-    content:[
+    content: [
         "src/**/*.json",
         "src/**/*.html",
         "src/**/*.css",
@@ -33,9 +35,26 @@ gulp.task("copy", () => {
 
 
 gulp.task("compile", () => {
-    return gulp.src(paths.src)
-        .pipe(tsProject())
-        .pipe(gulp.dest(paths.dest));
+
+    let b = browserify({
+        basedir: ".",
+        debug: false, //turn on/off source map 
+        entries: [
+            "./src/extension/Content.ts"
+        ],
+        cache: {},
+        packageCache: {}
+    });
+
+    //b.ignore("jquery"); //and include it directly
+    //http://maximilianschmitt.me/posts/prevent-gulp-js-from-crashing-on-error/
+    b.plugin(tsify)
+        .bundle()
+        .on("error", error => {
+            console.log(error);
+        })
+        .pipe(source("Content.js"))
+        .pipe(gulp.dest("./dist/extension/"));
 });
 
 //test task depends on clean and compile tasks 
