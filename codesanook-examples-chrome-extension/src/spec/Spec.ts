@@ -1,13 +1,12 @@
 describe("", () => {
-    beforeEach( () => {
+    beforeEach(() => {
 
     });
 
-    afterEach( () => {
-
+    afterEach(() => {
+        expect(true).toBe(true);
     })
 
-    it("",  () => {
-
+    it("", () => {
     });
 });
