@@ -8,7 +8,7 @@ describe("open starbucksthcampaign.com", () => {
     let driver: WebDriver = null;
     beforeEach(async () => {
         //Override the default value which is 5000 milliseconds
-      jasmine.DEFAULT_TIMEOUT_INTERVAL = 15000;
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 
         //create service
         let service = new chrome.ServiceBuilder(path);
@@ -73,7 +73,6 @@ async function answerTheQuestion(driver: WebDriver, questionAnswerPairs: any, qu
     let title = await driver.findElement(By.css(`#campaign-pages-${questionNumber} .question-title`));
     await driver.wait(until.elementIsVisible(title), 10000);
     await driver.executeScript("arguments[0].scrollIntoView(true);", title);
-    let titleText = await title.getText();
     let questionId = await getCurrentQuestionId(title);
     let choices = await driver.findElements(By.css(`#campaign-pages-${questionNumber} .choices-list .db-adman-x-font`));
     let choiceIdElementPairs: any = {};
@@ -84,6 +83,8 @@ async function answerTheQuestion(driver: WebDriver, questionAnswerPairs: any, qu
         choiceIdElementPairs[choiceId] = choice;
     }
     let answerId = questionAnswerPairs[questionId];
+
+    await driver.sleep(3000);
     await choiceIdElementPairs[answerId].click();
 }
 
