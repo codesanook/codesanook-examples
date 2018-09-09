@@ -1,8 +1,8 @@
  {
-     "name": "Getting Started Example",
+     "name": "Trello Point",
      "version": "1.0",
-     "description": "Build an Extension!",
-     "permissions": ["activeTab", "declarativeContent", "storage", "tabs"],
+     "description": "Trello point extension",
+     "permissions": ["activeTab", "declarativeContent", "tabs"],
      "background": {
          "scripts": ["background.js"],
          "persistent": false
@@ -16,9 +16,7 @@
          ],
          "css": [
              "content.css"
-         ],
-         "run_at": "document_end",
-         "all_frames": true
+         ]
      }],
      "page_action": {
          "default_icon": {

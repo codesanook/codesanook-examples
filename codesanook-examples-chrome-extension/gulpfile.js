@@ -1,5 +1,4 @@
 const gulp = require("gulp");
-const jasmine = require("gulp-jasmine");
 const clean = require("gulp-clean");
 const runSequence = require("run-sequence");
 const source = require("vinyl-source-stream");
@@ -12,6 +11,10 @@ const rename = require("gulp-rename");
 let paths = {
     src: [
         "src/**/*.ts",
+    ],
+    mainFiles : [
+        "src/extension/content.ts",
+        "src/extension/background.ts",
     ],
     content: [
         "src/**/*.json",
@@ -36,13 +39,7 @@ gulp.task("copy", () => {
 });
 
 gulp.task("compile", () => {
-
-    let files = [
-        "./src/extension/content.ts",
-        "./src/extension/background.ts",
-    ];
-
-    let tasks = files.map(file => {
+    let tasks = paths.mainFiles.map(file => {
         return browserify({
                 entries: file,
                 debug: false //turn on/off source map 
@@ -65,18 +62,13 @@ gulp.task("compile", () => {
     return eventStream.merge.apply(null, tasks);
 });
 
-//test task depends on clean and compile tasks 
-gulp.task("test", done => {
+gulp.task("deploy", done => {
     //start with clean, compile and test respectively 
     runSequence("clean", "compile", "copy", () => {
-        gulp.src(paths.spec)
-            .pipe(jasmine({
-                verbose: true
-            }));
         done();
     });
 });
 
-gulp.task("watch", ["test"], () => {
-    gulp.watch(paths.src.concat(paths.content), ["test"]);
+gulp.task("watch", ["deploy"], () => {
+    gulp.watch(paths.src.concat(paths.content), ["deploy"]);
 });

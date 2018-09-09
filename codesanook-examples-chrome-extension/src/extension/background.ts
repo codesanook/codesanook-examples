@@ -1,18 +1,20 @@
-chrome.runtime.onInstalled.addListener(() => {
+declare let chrome: any;
 
+chrome.runtime.onInstalled.addListener(() => {
     chrome.pageAction.onClicked.addListener(() => {
-        console.log("page action clicked");
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-            chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" }, response => {
-                console.log(response.farewell);
-            });
+            chrome.tabs.sendMessage(tabs[0].id, {});
+            console.log("sent");
         });
     });
 
-    chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
+    chrome.declarativeContent.onPageChanged.removeRules(undefined, () => {
         chrome.declarativeContent.onPageChanged.addRules([{
             conditions: [new chrome.declarativeContent.PageStateMatcher({
-                pageUrl: { hostEquals: "trello.com" },
+                pageUrl: {
+                    //https://github.com/google/re2/blob/master/doc/syntax.txt
+                    urlMatches: "(?i)dev-current-development" //case insensitive
+                },
             })],
             actions: [new chrome.declarativeContent.ShowPageAction()]
         }]);
