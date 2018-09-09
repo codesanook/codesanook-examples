@@ -9,15 +9,18 @@
     "@types/jquery": "^2.0.46",
     "@types/node": "^9.4.0",
     "browserify": "^16.2.2",
+    "event-stream": "^3.3.5",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.4.0",
     "gulp-jasmine": "^3.0.0",
+    "gulp-rename": "^1.4.0",
     "gulp-typescript": "^3.2.4",
     "jasmine": "^2.9.0",
     "jquery": "^3.3.1",
     "run-sequence": "^2.2.1",
     "tsify": "^4.0.0",
     "typescript": "^2.8.0-rc",
+    "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {

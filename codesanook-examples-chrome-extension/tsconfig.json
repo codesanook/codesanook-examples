@@ -1,11 +1,11 @@
 {
     "compilerOptions": {
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "target": "es5",
         "module": "commonjs",
         // https://stackoverflow.com/a/43555510/1872200
         "lib": [
-            "es5",
+            "es6",
             "dom"
         ]
     }

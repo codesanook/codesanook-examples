@@ -2,10 +2,12 @@ const gulp = require("gulp");
 const jasmine = require("gulp-jasmine");
 const clean = require("gulp-clean");
 const runSequence = require("run-sequence");
-const ts = require("gulp-typescript");
 const source = require("vinyl-source-stream");
+const buffer = require("vinyl-buffer");
 const browserify = require("browserify");
 const tsify = require("tsify");
+const eventStream = require('event-stream');
+const rename = require("gulp-rename");
 
 let paths = {
     src: [
@@ -33,28 +35,34 @@ gulp.task("copy", () => {
         .pipe(gulp.dest(paths.dest));
 });
 
-
 gulp.task("compile", () => {
 
-    let b = browserify({
-        basedir: ".",
-        debug: false, //turn on/off source map 
-        entries: [
-            "./src/extension/Content.ts"
-        ],
-        cache: {},
-        packageCache: {}
+    let files = [
+        "./src/extension/content.ts",
+        "./src/extension/background.ts",
+    ];
+
+    let tasks = files.map(file => {
+        return browserify({
+                entries: file,
+                debug: false //turn on/off source map 
+            })
+            .plugin(tsify)
+            .bundle()
+            //http://maximilianschmitt.me/posts/prevent-gulp-js-from-crashing-on-error/
+            .on("error", error => {
+                console.log(error);
+            })
+            .pipe(source(file))
+            .pipe(rename({
+                dirname: ".",
+                extname: '.js'
+            }))
+            .pipe(buffer())
+            .pipe(gulp.dest("./dist/extension/"));
     });
 
-    //b.ignore("jquery"); //and include it directly
-    //http://maximilianschmitt.me/posts/prevent-gulp-js-from-crashing-on-error/
-    b.plugin(tsify)
-        .bundle()
-        .on("error", error => {
-            console.log(error);
-        })
-        .pipe(source("Content.js"))
-        .pipe(gulp.dest("./dist/extension/"));
+    return eventStream.merge.apply(null, tasks);
 });
 
 //test task depends on clean and compile tasks 
