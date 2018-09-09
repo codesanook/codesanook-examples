@@ -1,6 +1,7 @@
 import { CardList } from "../models/CardList";
 declare let chrome: any;
-
+//run at
+//https://developer.chrome.com/extensions/content_scripts#run_time
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     //update point to each list
     let cardLists = CardList.createCardLists();
@@ -15,3 +16,5 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     );
     console.log("point updated");
 });
+
+console.log("content script loaded");

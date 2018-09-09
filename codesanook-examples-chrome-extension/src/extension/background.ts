@@ -1,7 +1,7 @@
 declare let chrome: any;
 
 chrome.runtime.onInstalled.addListener(() => {
-
+    console.log("setting up for working with content script");
     //https://developer.chrome.com/apps/messaging
     chrome.pageAction.onClicked.addListener(() => {
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
@@ -24,3 +24,6 @@ chrome.runtime.onInstalled.addListener(() => {
         }]);
     });
 });
+
+
+console.log("background script loaded");
