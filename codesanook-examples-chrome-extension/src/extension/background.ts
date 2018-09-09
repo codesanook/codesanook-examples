@@ -1,10 +1,14 @@
 declare let chrome: any;
 
 chrome.runtime.onInstalled.addListener(() => {
+
+    //https://developer.chrome.com/apps/messaging
     chrome.pageAction.onClicked.addListener(() => {
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-            chrome.tabs.sendMessage(tabs[0].id, {});
-            console.log("sent");
+            chrome.tabs.sendMessage(tabs[0].id, {}, response => {
+
+            });
+            console.log("message sent");
         });
     });
 

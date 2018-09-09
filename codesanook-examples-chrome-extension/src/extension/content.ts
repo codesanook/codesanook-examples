@@ -13,4 +13,5 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         ".total-points",
         (_) => `(${cardLists.map(list => list.point).join(" + ")} = ${totalPoints})`
     );
+    console.log("point updated");
 });
