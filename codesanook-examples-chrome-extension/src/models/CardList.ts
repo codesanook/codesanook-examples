@@ -68,6 +68,7 @@ export class CardList {
         return cardListTitles.map(list => new CardList(list));
     }
 
+    //TODO extract the latest sprint committed to prevent order problem 
     static getSprintList(cardLists: CardList[]): CardList {
         let sprintTitlePattern = new RegExp(CardList.sprintTitle, "i");
         return cardLists.filter(list => sprintTitlePattern.test(list.title))[0];
