@@ -74,7 +74,6 @@ async function answerTheQuestion(driver: WebDriver, questionAnswerPairs: any, qu
     let title = await driver.findElement(By.css(`#campaign-pages-${questionNumber} .question-title`));
     await driver.wait(until.elementIsVisible(title), 10000);
     await driver.executeScript("arguments[0].scrollIntoView(true);", title);
-    let titleText = await title.getText();
     let questionId = await getCurrentQuestionId(title);
     let choices = await driver.findElements(By.css(`#campaign-pages-${questionNumber} .choices-list .db-adman-x-font`));
     let choiceIdElementPairs: any = {};
@@ -87,6 +86,8 @@ async function answerTheQuestion(driver: WebDriver, questionAnswerPairs: any, qu
     //await driver.sleep(5000);
 
     let answerId = questionAnswerPairs[questionId];
+
+    await driver.sleep(3000);
     await choiceIdElementPairs[answerId].click();
 }
 
