@@ -1,6 +1,5 @@
 ##Get-ScheduledJob
 #https://stackoverflow.com/a/37653546/1872200
-
 Get-ScheduledTask | ForEach-Object {
     $task = $_
     "TaskName: [$($task.TaskName)]"
