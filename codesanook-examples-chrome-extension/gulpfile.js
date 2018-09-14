@@ -12,7 +12,7 @@ let paths = {
     src: [
         "src/**/*.ts",
     ],
-    mainFiles : [
+    mainFiles: [
         "src/extension/content.ts",
         "src/extension/background.ts",
     ],
@@ -28,8 +28,8 @@ let paths = {
 
 gulp.task("clean", () => {
     return gulp.src(paths.dest, {
-            read: false
-        })
+        read: false
+    })
         .pipe(clean());
 });
 
@@ -41,34 +41,34 @@ gulp.task("copy", () => {
 gulp.task("compile", () => {
     let tasks = paths.mainFiles.map(file => {
         return browserify({
-                entries: file,
-                debug: false //turn on/off source map 
-            })
-            .plugin(tsify)
-            .bundle()
-            //http://maximilianschmitt.me/posts/prevent-gulp-js-from-crashing-on-error/
-            .on("error", error => {
-                console.log(error);
-            })
-            .pipe(source(file))
-            .pipe(rename({
-                dirname: ".",
-                extname: '.js'
-            }))
-            .pipe(buffer())
-            .pipe(gulp.dest("./dist/extension/"));
+            entries: file,
+            debug: false //turn on/off source map 
+        })
+        .plugin(tsify)
+        .bundle()
+        //http://maximilianschmitt.me/posts/prevent-gulp-js-from-crashing-on-error/
+        .on("error", error => {
+            console.log(error);
+        })
+        .pipe(source(file))
+        .pipe(rename({
+            dirname: ".",
+            extname: '.js'
+        }))
+        .pipe(buffer())
+        .pipe(gulp.dest("./dist/extension/"));
     });
 
     return eventStream.merge.apply(null, tasks);
 });
 
-gulp.task("deploy", done => {
+gulp.task("build", done => {
     //start with clean, compile and test respectively 
     runSequence("clean", "compile", "copy", () => {
         done();
     });
 });
 
-gulp.task("watch", ["deploy"], () => {
-    gulp.watch(paths.src.concat(paths.content), ["deploy"]);
+gulp.task("watch", ["build"], () => {
+    gulp.watch(paths.src.concat(paths.content), ["build"]);
 });

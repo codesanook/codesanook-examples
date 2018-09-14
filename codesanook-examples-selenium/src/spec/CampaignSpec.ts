@@ -8,7 +8,8 @@ describe("open starbucksthcampaign.com", () => {
     let driver: WebDriver = null;
     beforeEach(async () => {
         //Override the default value which is 5000 milliseconds
-      jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
+        //https://jasmine.github.io/2.1/introduction.html#section-Asynchronous_Support
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 30000;
 
         //create service
         let service = new chrome.ServiceBuilder(path);
@@ -82,6 +83,8 @@ async function answerTheQuestion(driver: WebDriver, questionAnswerPairs: any, qu
         const choiceId = await choice.findElement(By.css("input[type='radio']")).getAttribute("value");
         choiceIdElementPairs[choiceId] = choice;
     }
+    //await driver.sleep(5000);
+
     let answerId = questionAnswerPairs[questionId];
 
     await driver.sleep(3000);
