@@ -1,0 +1,22 @@
+{
+    "name": "codesanook-examples-chart.js",
+    "version": "1.0.0",
+    "description": "code examples for codesanook.com blog",
+    "main": "index.js",
+    "scripts": {},
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/chart.js": "^2.7.18",
+        "@types/node": "^10.10.0",
+        "gulp": "^3.9.1",
+        "gulp-clean": "^0.4.0",
+        "gulp-typescript": "^3.2.4",
+        "natives": "^1.1.5",
+        "run-sequence": "^2.2.1",
+        "typescript": "^2.7.1"
+    },
+    "dependencies": {
+        "chart.js": "^2.7.2"
+    }
+}

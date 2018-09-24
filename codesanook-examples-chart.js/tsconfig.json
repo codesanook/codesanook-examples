@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "es6",
+        "module": "commonjs",
+        // https://stackoverflow.com/a/43555510/1872200
+        "lib": [
+            "es6",
+            "dom"
+        ]
+    }
+}
