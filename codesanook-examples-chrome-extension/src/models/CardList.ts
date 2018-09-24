@@ -7,6 +7,8 @@ export class CardList {
     private static readonly cardListNames = [
         "qa \\+ code reviews",
         "in progress",
+        "Ready for UAT Deploy",
+        "Ready for Ops deploy",
         CardList.sprintTitle
     ].join("|");
 
