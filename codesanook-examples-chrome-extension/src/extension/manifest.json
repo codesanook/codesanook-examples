@@ -2,21 +2,21 @@
      "name": "Trello Point",
      "version": "1.0",
      "description": "Trello point extension",
-     "permissions": ["activeTab", "declarativeContent", "tabs"],
      "background": {
          "scripts": ["background.js"],
          "persistent": false
      },
+     "permissions": [
+        "*://trello.com/*",
+        "activeTab",
+        "declarativeContent",
+        "tabs",
+        "webNavigation"
+     ],
      "content_scripts": [{
-         "matches": [
-             "https://trello.com/*"
-         ],
-         "js": [
-             "content.js"
-         ],
-         "css": [
-             "content.css"
-         ],
+         "matches": ["*://trello.com/*"],
+         "js": ["content.js"],
+         "css": ["content.css"],
          "run_at": "document_end"
      }],
      "page_action": {
