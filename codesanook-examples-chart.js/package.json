@@ -9,14 +9,17 @@
     "devDependencies": {
         "@types/chart.js": "^2.7.18",
         "@types/node": "^10.10.0",
+        "browserify": "^14.5.0",
         "gulp": "^3.9.1",
         "gulp-clean": "^0.4.0",
-        "gulp-typescript": "^3.2.4",
         "natives": "^1.1.5",
         "run-sequence": "^2.2.1",
-        "typescript": "^2.7.1"
+        "tsify": "^3.0.4",
+        "typescript": "^3.1.1",
+        "vinyl-source-stream": "^2.0.0"
     },
     "dependencies": {
-        "chart.js": "^2.7.2"
+        "chart.js": "^2.7.2",
+        "chartjs-plugin-labels": "^1.1.0"
     }
 }
