@@ -47,4 +47,4 @@ var configuration: ChartConfiguration = {
 };
 
 let element = document.getElementById('myChart') as HTMLCanvasElement;
-new Chart(element, configuration);;
+new Chart(element, configuration);
