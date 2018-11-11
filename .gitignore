@@ -288,3 +288,6 @@ out
 
 #TypeScript output directory 
 dist
+
+#output of JScript.NET example
+program.exe
