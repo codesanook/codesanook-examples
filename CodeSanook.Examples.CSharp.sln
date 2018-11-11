@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSanook.Examples.CloudWa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSanook.Examples.Async", "CodeSanook.Examples.Async\CodeSanook.Examples.Async.csproj", "{2ABE99F4-7FBB-47E5-AA4D-7246598D5CF1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AWS.Logger.Core", "..\aws-logging-dotnet\src\AWS.Logger.Core\AWS.Logger.Core.csproj", "{6381AE8F-BCE4-43C6-97BC-10EF24639053}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AWS.Logger.Log4net", "..\aws-logging-dotnet\src\AWS.Logger.Log4net\AWS.Logger.Log4net.csproj", "{FEA199A8-F8CC-4BBC-81AC-50EAFABDA92C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{2ABE99F4-7FBB-47E5-AA4D-7246598D5CF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ABE99F4-7FBB-47E5-AA4D-7246598D5CF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ABE99F4-7FBB-47E5-AA4D-7246598D5CF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6381AE8F-BCE4-43C6-97BC-10EF24639053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6381AE8F-BCE4-43C6-97BC-10EF24639053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6381AE8F-BCE4-43C6-97BC-10EF24639053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6381AE8F-BCE4-43C6-97BC-10EF24639053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEA199A8-F8CC-4BBC-81AC-50EAFABDA92C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA199A8-F8CC-4BBC-81AC-50EAFABDA92C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA199A8-F8CC-4BBC-81AC-50EAFABDA92C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA199A8-F8CC-4BBC-81AC-50EAFABDA92C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
