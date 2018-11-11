@@ -1,67 +1,71 @@
-//import package ต่างๆ ที่จะใช้งาน
+//Import all required packages.
 import System;
 import System.Windows.Forms;
 import System.Drawing;
 import Accessibility;
 
+//Define package or namespace.
 package CodeSanook.Example.JScript.NET {
+    //Create a main class that extends from System.Windows.Forms.Form.
     class MainForm extends System.Windows.Forms.Form {
+
+        //Define Windows Forms controls.
         private var label: Label;
         private var textBox: TextBox;
         private var button: Button;
         private var panel: Panel;
 
+        //Construct controls in the class's constructor. 
         function MainForm() {
-            this.Text = "JScript.NET Window Form demo";
-            this.Width  = 300;
-            this.Height = 350;
-            this.ClientSize = new System.Drawing.Size(300, 350);
+            //Set name and size of the main form
+            this.Text = "JScript.NET WinForm";
+            this.ClientSize = new System.Drawing.Size(300, 180);
 
-            //ให้ตัว form แสดงผลที่กลางหน้าจอ
+            //Set the main form to show at the center of the screen
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 
+            //Create a label control
             label = new Label;
-            label.Location = new Point(10, 10);
-            label.Size = new System.Drawing.Size(80, 20);
-            label.Name = "lblName";
-            label.Text = "Your name";
-            label.Anchor = AnchorStyles.Left | AnchorStyles.Top;
+            label.Location = new Point(75, 30);
+            label.Size = new System.Drawing.Size(150, 20);
+            label.Text = "Please enter your name:";
 
+            //Create a text box control
             textBox = new TextBox;
-            textBox.Location = new Point(10, 30);
-            textBox.Size = new System.Drawing.Size(90, 20);
-            textBox.Name = "txtName";
-            textBox.Anchor = AnchorStyles.Left;
+            textBox.Location = new Point(75, 80);
+            textBox.Size = new System.Drawing.Size(150, 20);
 
+            //Create a button control
             button = new Button;
-            button.Location = new Point(200, 260);
-            button.Size = new System.Drawing.Size(90, 20);
-            button.Name = "Name button";
-            button.Text = "Your name";
-            button.Anchor = AnchorStyles.Right | AnchorStyles.Bottom;
+            button.Location = new Point(100, 130);
+            button.Size = new System.Drawing.Size(100, 20);
+            button.Text = "Say hello";
+
+            //Set event handle of button click event to buttonClicked function
             button.add_Click(this.buttonClicked);
 
+            //Create a panel control
             panel = new Panel;
             panel.Location= new Point(0,0);
-            panel.Size= new System.Drawing.Size(300,300);
-            panel.Name= "panel";
-            panel.Anchor= AnchorStyles.Top | AnchorStyles.Left;
+            panel.Size= new System.Drawing.Size(300, 180);
 
-            //add all child controls to panel
+            //Add all children controls to the panel
             panel.Controls.Add(label);
             panel.Controls.Add(textBox);
             panel.Controls.Add(button);
 
-            //add the panel to main form
+            //Add the panel to the main form
             this.Controls.Add(panel);
         }
 
+        //Event handler function of a button clicked
         function buttonClicked(sender : Object, e : System.EventArgs) {
-            Console.WriteLine("sender name {0}", sender.Name);
-            MessageBox.Show(String.Format("Hello {0}", textBox.Text));
+            //Output results to Console and MessageBox UI
+            Console.WriteLine("Sender type: {0}", sender.GetType().FullName);
+            MessageBox.Show(String.Format("Hello {0}!!!", textBox.Text));
         }
     }
 }
 
-//สร้าง mainForm object โดยชื่อ full name และ run ขึ้นมา
+//Create the mainForm object with full name and lauch it with Application.Run 
 Application.Run(new CodeSanook.Example.JScript.NET.MainForm());
