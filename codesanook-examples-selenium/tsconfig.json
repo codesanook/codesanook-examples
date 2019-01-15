@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
         "noImplicitAny": true,
-        "target": "es5",
+        "target": "es6",
         "module": "commonjs",
         // https://stackoverflow.com/a/43555510/1872200
-        "lib": ["es2015"]
+        "lib": ["es7"]
     }
 }

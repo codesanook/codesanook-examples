@@ -26,32 +26,35 @@ describe("open starbucksthcampaign.com", () => {
 
     it("should able to submit correct answers with a phone number", async () => {
         let phoneNumber = getPhoneNumber();
+        const url = "https://www.starbucksthcampaign.com/campaign/bogo";
 
-        await driver.get("https://starbucksthcampaign.com/c/quiz_2018_summer_3");
-        let startButtonSelector = ".the-game img[alt='Start Game']";
-
+        await driver.get(url);
+        let startButtonSelector = ".the-game a[onclick='playQuiz(event)']";
         let startButton = await driver.findElement(By.css(startButtonSelector));
         await driver.wait(until.elementIsVisible(startButton), 15000);
-
-        let questionAnswerPairs = await getQuestionAnswerPairs(driver);
         await driver.executeScript("arguments[0].scrollIntoView(true);", startButton);
         await startButton.click();
 
-        for (let questionNumber = 1; questionNumber <= 3; questionNumber++) {
-            await answerTheQuestion(driver, questionAnswerPairs, questionNumber);
+        let allQuestions = await getAllQuestions(driver);
+        let selectedQuestions = await getSelectedQuestions(driver, allQuestions);
+
+        for (let index = 0; index < selectedQuestions.length; index++) {
+            await answerTheQuestion(driver);
         }
 
-        let phoneNumberFields = await driver.findElements(By.css("#user-profile-field input[type='tel']"));
+        let phoneNumberFields = await driver.findElements(By.css("#register input[type='tel']"));
+        await driver.wait(until.elementIsVisible(phoneNumberFields[0]), 15000);
+
         for (const phoneNumberField of phoneNumberFields) {
             await driver.executeScript("arguments[0].scrollIntoView(true);", phoneNumberField);
             await phoneNumberField.sendKeys(phoneNumber);
         }
 
-        let submitButton = await driver.findElement(By.css("#user-profile-field a"));
+        let submitButton = await driver.findElement(By.css("#register a"));
         await driver.executeScript("arguments[0].scrollIntoView(true);", submitButton);
         await submitButton.click();
 
-        let sharePage = await driver.findElement(By.css("#share.the-game"));
+        let sharePage = await driver.findElement(By.css("#share.pages"));
         await driver.wait(until.elementIsVisible(sharePage), 15000);
     });
 
@@ -60,44 +63,30 @@ describe("open starbucksthcampaign.com", () => {
     })
 });
 
-async function getQuestionAnswerPairs(driver: WebDriver): Promise<any> {
-    let questions = await driver.executeScript("return window.questions;") as Question[];
-    let questionAnswerPairs: any = {};
+async function getAllQuestions(driver: WebDriver): Promise<any> {
+    let questions = await driver.executeScript("return window.campaign.questions;") as Question[];
     for (const question of questions) {
-        let answer = question.choices.find((choice: Choice) => choice.acquire_score == 1);
-        questionAnswerPairs[question.id] = answer.id;
+        let answer = question.choices.find((choice: Choice) => choice.acquire_score && choice.acquire_score == 1);
+        question.answerId = answer ? answer.id : null;
     }
-    return questionAnswerPairs;
+    return questions;
 }
 
-async function answerTheQuestion(driver: WebDriver, questionAnswerPairs: any, questionNumber: number): Promise<void> {
-    let title = await driver.findElement(By.css(`#campaign-pages-${questionNumber} .question-title`));
-    await driver.wait(until.elementIsVisible(title), 10000);
-    await driver.executeScript("arguments[0].scrollIntoView(true);", title);
-    let questionId = await getCurrentQuestionId(title);
-    let choices = await driver.findElements(By.css(`#campaign-pages-${questionNumber} .choices-list .db-adman-x-font`));
-    let choiceIdElementPairs: any = {};
-
-    //https://stackoverflow.com/a/37576787/1872200
-    for (const choice of choices) {
-        const choiceId = await choice.findElement(By.css("input[type='radio']")).getAttribute("value");
-        choiceIdElementPairs[choiceId] = choice;
-    }
-    //await driver.sleep(5000);
-
-    let answerId = questionAnswerPairs[questionId];
-
-    await driver.sleep(3000);
-    await choiceIdElementPairs[answerId].click();
+async function getSelectedQuestions(driver: WebDriver, allQuestions: Question[]): Promise<Question[]> {
+    let selectedQuestionIds = await driver.executeScript("return window.allQuestions;") as number[];
+    return allQuestions.filter(question => selectedQuestionIds.includes(question.id));
 }
 
-async function getCurrentQuestionId(title: WebElement): Promise<number> {
-    //match text ends with number and group capture number that will have index 1
-    const questionIdPattern: RegExp = /[^\d]*(\d+)$/i;
-    let questionIdValue = await title.getAttribute("id");
-    let matches = questionIdPattern.exec(questionIdValue);
-    let questionId: number = Number.parseInt(matches[1]);
-    return questionId;
+async function answerTheQuestion(driver: WebDriver): Promise<void> {
+    let questionWrappers = await driver.findElements(By.css(".question-pages"));
+    for (let index = 0; index < questionWrappers.length; index++) {
+        let result = await driver.executeScript("return window.getComputedStyle(arguments[0]).display === 'block';", questionWrappers[index]);
+        if (result) {
+            let choiceElements = await questionWrappers[index].findElements(By.css(".choices-list .db-adman-x-font"));
+            await choiceElements[0].click();
+            break;
+        }
+    }
 }
 
 function getPhoneNumber(): string {

@@ -1,7 +1,8 @@
 export default class Question {
     id: number;
-    name:string;
+    name: string;
     choices: Choice[];
+    answerId?: number;
 }
 
 export class Choice {
