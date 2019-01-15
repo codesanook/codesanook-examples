@@ -56,6 +56,7 @@ describe("open starbucksthcampaign.com", () => {
 
         let sharePage = await driver.findElement(By.css("#share.pages"));
         await driver.wait(until.elementIsVisible(sharePage), 15000);
+        await driver.sleep(5000);
     });
 
     afterEach(async () => {

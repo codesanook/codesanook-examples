@@ -33,7 +33,6 @@
 - [ ] Review vulnerable dependencies
 - [ ] Page object model by exporting https://github.com/Bumblebee/Bumblebee to TypeScript version and NPM package 
 
-
 # Credit && Thank you
 * [ท่าน Earth มาหาเฉลย Starbucks Quiz ตามประสาโปรแกรมเมอร์กัน](http://bit.ly/2OYh3QO)
 * [น้องเฟิร์ส Starbucks Campaign Data Extraction (Part 1)](https://ascended.in.th/starbucks-campaign-data-extraction-part-1/) และ 
@@ -41,7 +40,6 @@
 * [พี่ Chonlasith ที่ share ความรู้ Automated tests มาเสมอ](https://medium.com/@chonla)
 
 # PRs are welcome.
-
 
 ## Screenshot
 ![screenshot](https://github.com/aaronamm/CodeSanook.Examples/blob/master/codesanook-examples-selenium/screenshot.png)
