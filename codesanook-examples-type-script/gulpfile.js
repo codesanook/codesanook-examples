@@ -4,22 +4,22 @@
 //https://jasmine.github.io/setup/nodejs.html
 //https://www.npmjs.com/package/gulp-jasmine
 //https://github.com/gulpjs/gulp/blob/master/docs/API.md
-
-const gulp = require("gulp");
-const ts = require("gulp-typescript");
+const gulp = require('gulp');
+const ts = require('gulp-typescript');
 const jasmine = require('gulp-jasmine');
-const tsProject = ts.createProject("tsconfig.json");
+const tsProject = ts.createProject('tsconfig.json');
 const clean = require('gulp-clean');
 const runSequence = require('run-sequence');
 const YAML = require('yamljs');
 const fs = require('fs');
 
-
-var paths = {
+const paths = {
     src: 'src/**/*.ts',
     spec: 'dist/spec/**/*.js',
     dest: 'dist',
-    travis: "src/travis.json"
+    travisJson: 'src/travis.json',
+    travisYaml: 'src/travis.yaml',
+    profile: 'src/profile.yaml'
 }
 
 gulp.task('clean', () => {
@@ -51,18 +51,45 @@ gulp.task('watch', ['test'], () => {
     gulp.watch(paths.src, ['test']);
 });
 
-gulp.task('js2Yaml', () => {
+gulp.task('jsonToYaml', () => {
     try {
-        var content = fs.readFileSync(paths.travis).toString();
-        var jsonObject = JSON.parse(content);
-        yamlString = YAML.stringify(jsonObject, 8, 2); //indent 2 space
+        const content = fs.readFileSync(paths.travisJson).toString();
+        const jsonObject = JSON.parse(content);
+        const yamlString = YAML.stringify(jsonObject, 8, 2); //indent 2 space
         console.log(`\n${yamlString}\n`);
     } catch (ex) {
         console.log(ex);
     }
 });
 
+gulp.task('yamlToJson', () => {
+    try {
+        const content = fs.readFileSync(paths.travisYaml).toString();
+        const jsonObject = YAML.parse(content);
+        const jsonString = JSON.stringify(jsonObject, null, 2); //indent 2 space
+        console.log(`\n${jsonString}\n`);
+    } catch (ex) {
+        console.log(ex);
+    }
+});
+
+gulp.task('profile', () => {
+    try {
+        const content = fs.readFileSync(paths.profile).toString();
+        const jsonObject = YAML.parse(content);
+        const jsonString = JSON.stringify(jsonObject, null, 2); //indent 2 space
+        console.log(`\n${jsonString}\n`);
+    } catch (ex) {
+        console.log(ex);
+    }
+});
+
 //gulp watchJS2Yaml
-gulp.task('watchJS2Yaml', ['js2Yaml'], () => {
-    gulp.watch(paths.travis, ["js2Yaml"]);
+gulp.task('watchJsonToYaml', ['jsonToYaml'], () => {
+    gulp.watch(paths.travisJson, ['jsonToYaml']);
+});
+
+//gulp watchJS2Yaml
+gulp.task('watchYamlToJson', ['yamlToJson'], () => {
+    gulp.watch(paths.travisYaml, ['yamlToJson']);
 });

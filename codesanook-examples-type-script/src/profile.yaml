@@ -1,0 +1,28 @@
+# The profile of real man
+
+&item FirstName : Real
+LastName: Man
+DateOfBirth: 2000:01:01T0:0:0Z
+
+Experiences:
+  - Test on projection
+  - Never write unit test
+  - Drop production's database
+  - &shareExperience IoT
+
+Hobies:
+  - *shareExperience
+  - Machine learing
+  - Blockchain
+  - item: aa
+
+Philosophy: | 
+  You'll never create a test environment to the same as production.
+  Therefore, test on production.
+
+PersonalProject: >
+  Learing CRL which stands for Common Language Runtime.
+  It is the virtual machine component of Microsoft's .NET framework,
+  manages the execution of .NET programs. 
+  A process known as just-in-time compilation converts compiled code into machine instructions 
+  which the computer's CPU then executes
