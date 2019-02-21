@@ -16,11 +16,8 @@ const fs = require('fs');
 const paths = {
     src: 'src/**/*.ts',
     spec: 'dist/spec/**/*.js',
-    dest: 'dist',
-    travisJson: 'src/travis.json',
-    travisYaml: 'src/travis.yaml',
-    profile: 'src/profile.yaml'
-}
+    dest: 'dist'
+};
 
 gulp.task('clean', () => {
     return gulp.src(paths.dest, {
@@ -51,9 +48,9 @@ gulp.task('watch', ['test'], () => {
     gulp.watch(paths.src, ['test']);
 });
 
-gulp.task('jsonToYaml', () => {
+gulp.task('toYaml', () => {
     try {
-        const content = fs.readFileSync(paths.travisJson).toString();
+        const content = fs.readFileSync(getFilePath()).toString();
         const jsonObject = JSON.parse(content);
         const yamlString = YAML.stringify(jsonObject, 8, 2); //indent 2 space
         console.log(`\n${yamlString}\n`);
@@ -62,9 +59,9 @@ gulp.task('jsonToYaml', () => {
     }
 });
 
-gulp.task('yamlToJson', () => {
+gulp.task('toJson', () => {
     try {
-        const content = fs.readFileSync(paths.travisYaml).toString();
+        const content = fs.readFileSync(getFilePath()).toString();
         const jsonObject = YAML.parse(content);
         const jsonString = JSON.stringify(jsonObject, null, 2); //indent 2 space
         console.log(`\n${jsonString}\n`);
@@ -73,23 +70,12 @@ gulp.task('yamlToJson', () => {
     }
 });
 
-gulp.task('profile', () => {
-    try {
-        const content = fs.readFileSync(paths.profile).toString();
-        const jsonObject = YAML.parse(content);
-        const jsonString = JSON.stringify(jsonObject, null, 2); //indent 2 space
-        console.log(`\n${jsonString}\n`);
-    } catch (ex) {
-        console.log(ex);
+const getFilePath = () => {
+    const regex = /--file\s*=\s*([\w\.]+)/;
+    const matches = regex.exec(process.argv);
+    if (matches && matches.length > 1) {
+        return `./src/files/${matches[1]}`; //group capture environment name
+    } else {
+        throw 'please provide a file with --file=file-name argument'
     }
-});
-
-//gulp watchJS2Yaml
-gulp.task('watchJsonToYaml', ['jsonToYaml'], () => {
-    gulp.watch(paths.travisJson, ['jsonToYaml']);
-});
-
-//gulp watchJS2Yaml
-gulp.task('watchYamlToJson', ['yamlToJson'], () => {
-    gulp.watch(paths.travisYaml, ['yamlToJson']);
-});
+};

@@ -1,20 +1,28 @@
 # The profile of real man
 
-&item FirstName : Real
+FirstName : &name Real
 LastName: Man
-DateOfBirth: 2000:01:01T0:0:0Z
+DateOfBirth: 2000:12:01T00:00:00Z #Date UTC ISO8601
+Height: 170
+Weight:  60
+SavingMoney: 1000000
+
+SharedExperience: &sharedExperience 
+  Experiment: IoT 
+
+Test:
+  <<: *sharedExperience
 
 Experiences:
   - Test on projection
-  - Never write unit test
-  - Drop production's database
-  - &shareExperience IoT
+  - Never write a unit test
+  - Drop a production's database
+  - <<: *sharedExperience
 
 Hobies:
-  - *shareExperience
   - Machine learing
   - Blockchain
-  - item: aa
+  - IoT
 
 Philosophy: | 
   You'll never create a test environment to the same as production.
@@ -26,3 +34,5 @@ PersonalProject: >
   manages the execution of .NET programs. 
   A process known as just-in-time compilation converts compiled code into machine instructions 
   which the computer's CPU then executes
+
+id: *name 

@@ -16,9 +16,7 @@
                 "cd codesanook-examples-java",
                 "chmod +x gradlew"
             ],
-            "script": [
-                "./gradlew check"
-            ]
+            "script": "./gradlew check"
         }]
     }
 }
