@@ -74,6 +74,9 @@ Uncomment mysqli extension in C:\tools\php73\php.ini as following
 extension=mysqli
 ```
 
+Also set display_errors On which is useful for debugging
+display_errors = On
+
 
 
 
