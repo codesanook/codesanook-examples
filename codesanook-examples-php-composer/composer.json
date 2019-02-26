@@ -1,0 +1,12 @@
+{
+    "name": "codesanook/codesanook-examples-php-composer",
+    "description": "Example of using PHP Composer",
+    "type": "project",
+    "authors": [
+        {
+            "name": "aaronamm",
+            "email": "theeranitp@gmail.com"
+        }
+    ],
+    "require": {}
+}
