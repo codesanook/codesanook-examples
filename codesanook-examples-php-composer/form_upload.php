@@ -38,7 +38,7 @@ if (!isset($_SESSION)) {
                         <label>ไฟล์</label>
                         <input type="file" name="uploaded_file" class="form-control-file">
                     </div>
-                    <input name="Username" type="hidden" value="<?php echo $_SESSION['MM_Username']; ?>" />
+                    <input name="username" type="hidden" value="<?php echo $_SESSION['MM_Username']; ?>" />
                     <button type="submit" class="btn btn-primary">บันทึก</button>
                 </form>
             </div>

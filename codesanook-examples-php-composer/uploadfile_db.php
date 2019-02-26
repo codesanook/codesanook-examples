@@ -7,43 +7,30 @@ date_default_timezone_set('Asia/Bangkok');
 $title = $_POST['title'];
 $message = $_POST['message'];
 $username = $_POST['username'];
-
 echo "$title, $message, $username";
 
-$uploaded_file = isset($_REQUEST['uploaded_file']) ? $_REQUEST['uploaded_file'] : '';
-if (!$uploaded_file) {
+if (!file_exists($_FILES['uploaded_file']['tmp_name'])) {
     throw new Exception("no uploaded file");
 }
 
 //สร้างตัวแปรวันที่เพื่อเอาไปตั้งชื่อไฟล์ที่อัพโหลด
-$date1 = date("Ymd_his");
+$date = date("Ymd_his");
 //สร้างตัวแปรสุ่มตัวเลขเพื่อเอาไปตั้งชื่อไฟล์ที่อัพโหลดไม่ให้ชื่อไฟล์ซ้ำกัน
-$numrand = (mt_rand());
-
-/*
-
-$upload = $_FILES['img_file'];
-if ($upload != '') {
+$numRand = (mt_rand());
 
 //โฟลเดอร์ที่เก็บไฟล์
-$path = "img/";
+$fileFolder = "uploaded-files";
 //ตัวขื่อกับนามสกุลภาพออกจากกัน
-$type = strrchr($_FILES['img_file']['name'], ".");
+$type = strrchr($_FILES['uploaded_file']['name'], ".");
 //ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
-$newname = $numrand . $date1 . $type;
+$newName = $numRand . $date . $type;
+$filePath = $fileFolder . '/' . $newName;
+move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $filePath);
 
-$path_copy = $path . $newname;
-$path_link = "img/" . $newname;
-//คัดลอกไฟล์ไปยังโฟลเดอร์
-//$serverName="localhost";
-//$userName="root";
-//$userPassword="";
-//$dbName="UTWcollectwork";
-
+/*
 //$conn= mysqli_connect ($serverName,$userName,$userPassword,$dbName);
 //$sql = "INSERT INTO collectwork(title,txtMessage)
 //VALUES ('".$_POST["title"]."','".$_POST["txtMessage"]."')";
-move_uploaded_file($_FILES['img_file']['tmp_name'], $path_copy);
 $sql = "INSERT INTO collectwork
 
 ( file_path, title, message, username)

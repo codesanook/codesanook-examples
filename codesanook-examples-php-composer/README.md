@@ -76,6 +76,7 @@ extension=mysqli
 
 Also set display_errors On which is useful for debugging
 display_errors = On
+file_uploads = On
 
 
 
