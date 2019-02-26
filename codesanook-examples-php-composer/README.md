@@ -78,6 +78,9 @@ Also set display_errors On which is useful for debugging
 display_errors = On
 file_uploads = On
 
+## Useful links:
+Getting start with PHP
+https://www.codementor.io/jadjoubran/php-tutorial-getting-started-with-composer-8sbn6fb6t
 
 
 
