@@ -27,29 +27,28 @@ $newName = $numRand . $date . $type;
 $filePath = $fileFolder . '/' . $newName;
 move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $filePath);
 
-/*
-//$conn= mysqli_connect ($serverName,$userName,$userPassword,$dbName);
-//$sql = "INSERT INTO collectwork(title,txtMessage)
-//VALUES ('".$_POST["title"]."','".$_POST["txtMessage"]."')";
-$sql = "INSERT INTO collectwork
+$connection = mysqli_connect("localhost", "root", "root", "work_db");
+// Check connection
+if (mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+}
 
-( file_path, title, message, username)
+$sql = <<<SQL
+    INSERT INTO work(`username`, `title`, `message`, `file_path`)
+    VALUES ('$username','$title', '$message', '$filePath');
+SQL;
 
-VALUES
+$result = mysqli_query($connection, $sql) or die("Error in query: $sql " . mysqli_error());
+mysqli_close($connection);
 
-('$newname', '$path_link', '$title', '$txtMessage', '$Username')
-";
-$result = mysql_db_query($database_myconnect, $sql) or die("Error in query: $sql " . mysql_error());
-mysql_close();
 if ($result) {
-echo "<script type='text/javascript'>";
-echo "alert('อัพโหลดสำเร็จ!');";
-echo "window.location='form_upload.php';";
-echo "</script>";
+    echo "<script>";
+    echo "alert('อัพโหลดสำเร็จ!');";
+    echo "location='form_upload.php';";
+    echo "</script>";
 } else {
-echo "<script type='text/javascript'>";
-echo "window.location='form_upload.php';";
-echo "</script>";
+    echo "<script>";
+    echo "alert('Error!!! อัพโหลดไม่สำเร็จ กรุณาลองใหม่')";
+    echo "location='form_upload.php';";
+    echo "</script>";
 }
-}
- */
