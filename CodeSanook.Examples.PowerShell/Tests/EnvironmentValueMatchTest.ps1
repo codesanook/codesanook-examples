@@ -25,7 +25,7 @@ Describe "Pester test endpoint" {
     $webConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
     $apiConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
 
-    Context "Web, API, AutoTicket, CronJob" {
+    Context "Web, API" {
         $endpoints = @(
             @{ 
                 node = "/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString"
@@ -39,9 +39,7 @@ Describe "Pester test endpoint" {
             }
         )
 
-        @($webConfig, $apiConfig) | ForEach-Object {
-            Test-Endpoint -EndPoints $endpoints -Xml $_
-        }
+        @($webConfig, $apiConfig) | ForEach-Object { Test-Endpoint -EndPoints $endpoints -Xml $_ }
     }
 
     Context "Web, API" {
@@ -52,8 +50,7 @@ Describe "Pester test endpoint" {
                 test = ""
             }
         )
-        @($webConfig, $apiConfig) | ForEach-Object {
-            Test-Endpoint -EndPoints $endpoints -Xml $_
-        }
+
+        @($webConfig, $apiConfig) | ForEach-Object { Test-Endpoint -EndPoints $endpoints -Xml $_ }
     }
 }
