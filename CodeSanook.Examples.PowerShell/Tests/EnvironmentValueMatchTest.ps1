@@ -6,8 +6,32 @@ param([Parameter(Mandatory = $true)] [string] $EnvironmentName)
 
 $webConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
 $apiConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
-$autoTicketConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
-$cronJobConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
+
+function Get-NodeValue {
+    param(
+        [Parameter(Mandatory = $true)] [xml] $Xml, 
+        [Parameter(Mandatory = $true)] [string] $ConfigNode 
+    )
+    $node = Select-Xml -Xml $Xml -XPath $ConfigNode | Select-Object -First 1 -ExpandProperty Node
+    $node.value
+}
+
+function Test-Endpoint {
+    param(
+        $EndPoints,
+        $Xml
+    )
+
+    It "Validate `"<node>`" configuration in $EnvironmentName should be matched" -TestCases $EndPoints {
+        param ($node, $live, $test)
+
+        $expectedValue, $actutalValue = @(
+            $PSBoundParameters[$EnvironmentName]
+            Get-NodeValue -ConfigNode $node -Xml $Xml
+        )
+        $actutalValue | Should Be $expectedValue
+    }
+}
 
 Describe "Pester test endpoint" {
     Context "Web, API, AutoTicket, CronJob" {
@@ -24,47 +48,10 @@ Describe "Pester test endpoint" {
             }
         )
 
-        It "Validate `"<node>`" configuration for web project in $EnvironmentName should be matched" -TestCases $endpoints {
-            param ($node, $live, $test)
-
-            $expectedValue, $actutalValue = @(
-                $PSBoundParameters[$EnvironmentName]
-                Get-NodeValue -ConfigNode $node -Xml $webConfig
-            )
-            $actutalValue | Should Be $expectedValue
-        }
-
-        It "Validate `"<node>`" configuration for API project in $EnvironmentName should be matched" -TestCases $endpoints {
-            param ($node, $live, $test)
-
-            $expectedValue, $actutalValue = @(
-                $PSBoundParameters[$EnvironmentName]
-                Get-NodeValue -ConfigNode $node -Xml $apiConfig
-            )
-            $actutalValue | Should Be $expectedValue
-        }
-
-        It "Validate `"<node>`" configuration for auto ticket project in $EnvironmentName should be matched" -TestCases $endpoints {
-            param ($node, $live, $test)
-
-            $expectedValue, $actutalValue = @(
-                $PSBoundParameters[$EnvironmentName]
-                Get-NodeValue -ConfigNode $node -Xml $autoTicketConfig
-            )
-            $actutalValue | Should Be $expectedValue
-        }
-
-        It "Validate `"<node>`" configuration for cron project in $EnvironmentName should be matched" -TestCases $endpoints {
-            param ($node, $live, $test)
-
-            $expectedValue, $actutalValue = @(
-                $PSBoundParameters[$EnvironmentName]
-                Get-NodeValue -ConfigNode $node -Xml $cronJobConfig
-            )
-            $actutalValue | Should Be $expectedValue
+        @($webConfig, $apiConfig) | ForEach-Object {
+            Test-Endpoint -EndPoints $endpoints -Xml $_
         }
     }
-
 
     Context "Web, API" {
         $endpoints = @(
@@ -74,36 +61,8 @@ Describe "Pester test endpoint" {
                 test = ""
             }
         )
-
-        It "Validate `"<node>`" configuration for web project in $EnvironmentName should be matched" -TestCases $endpoints {
-            param ($node, $live, $test)
-
-            $expectedValue, $actutalValue = @(
-                $PSBoundParameters[$EnvironmentName]
-                Get-NodeValue -ConfigNode $node -Xml $webConfig
-            )
-            $actutalValue | Should Be $expectedValue
+        @($webConfig, $apiConfig) | ForEach-Object {
+            Test-Endpoint -EndPoints $endpoints -Xml $_
         }
-
-        It "Validate `"<node>`" configuration for API project in $EnvironmentName should be matched" -TestCases $endpoints {
-            param ($node, $live, $test)
-
-            $expectedValue, $actutalValue = @(
-                $PSBoundParameters[$EnvironmentName]
-                Get-NodeValue -ConfigNode $node -Xml $apiConfig
-            )
-            $actutalValue | Should Be $expectedValue
-        }
-
-
     }
-}
-
-function Get-NodeValue {
-    param(
-        [Parameter(Mandatory = $true)] [string]  $Xml, 
-        [Parameter(Mandatory = $true)] [string]  $ConfigPath 
-    )
-    $node = Select-Xml -Xml $Xml -XPath $ConfigNode | Select-Object -First 1 -ExpandProperty Node
-    $node.value
 }
