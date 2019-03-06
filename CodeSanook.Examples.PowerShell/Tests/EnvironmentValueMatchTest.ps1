@@ -1,85 +1,109 @@
+<#
+    usage
+    Invoke-Pester -Script @{ Path =  '.\EnvironmentValueMatchTest.ps1'; Parameters = @{ EnvironmentName = 'LIVE' } }
+#>
+param([Parameter(Mandatory = $true)] [string] $EnvironmentName)
+
+$webConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
+$apiConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
+$autoTicketConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
+$cronJobConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
+
+Describe "Pester test endpoint" {
+    Context "Web, API, AutoTicket, CronJob" {
+        $endpoints = @(
+            @{ 
+                node = "/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString"
+                live = "Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-WebApplication45-20140804053515.mdf;Initial Catalog=aspnet-WebApplication45-20140804053515;Integrated Security=True"
+                test = ""
+            }
+            @{ 
+                node = "/configuration/connectionStrings/add[@name='NHibernate']/@connectionString"
+                live = "Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-WebApplication45-20140804053515.mdf;Initial Catalog=aspnet-WebApplication45-20140804053515;Integrated Security=True"
+                test = ""
+            }
+        )
+
+        It "Validate `"<node>`" configuration for web project in $EnvironmentName should be matched" -TestCases $endpoints {
+            param ($node, $live, $test)
+
+            $expectedValue, $actutalValue = @(
+                $PSBoundParameters[$EnvironmentName]
+                Get-NodeValue -ConfigNode $node -Xml $webConfig
+            )
+            $actutalValue | Should Be $expectedValue
+        }
+
+        It "Validate `"<node>`" configuration for API project in $EnvironmentName should be matched" -TestCases $endpoints {
+            param ($node, $live, $test)
+
+            $expectedValue, $actutalValue = @(
+                $PSBoundParameters[$EnvironmentName]
+                Get-NodeValue -ConfigNode $node -Xml $apiConfig
+            )
+            $actutalValue | Should Be $expectedValue
+        }
+
+        It "Validate `"<node>`" configuration for auto ticket project in $EnvironmentName should be matched" -TestCases $endpoints {
+            param ($node, $live, $test)
+
+            $expectedValue, $actutalValue = @(
+                $PSBoundParameters[$EnvironmentName]
+                Get-NodeValue -ConfigNode $node -Xml $autoTicketConfig
+            )
+            $actutalValue | Should Be $expectedValue
+        }
+
+        It "Validate `"<node>`" configuration for cron project in $EnvironmentName should be matched" -TestCases $endpoints {
+            param ($node, $live, $test)
+
+            $expectedValue, $actutalValue = @(
+                $PSBoundParameters[$EnvironmentName]
+                Get-NodeValue -ConfigNode $node -Xml $cronJobConfig
+            )
+            $actutalValue | Should Be $expectedValue
+        }
+    }
 
 
+    Context "Web, API" {
+        $endpoints = @(
+            @{ 
+                node = "/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString"
+                live = "Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-WebApplication45-20140804053515.mdf;Initial Catalog=aspnet-WebApplication45-20140804053515;Integrated Security=True"
+                test = ""
+            }
+        )
 
-function Get-ActualValue {
+        It "Validate `"<node>`" configuration for web project in $EnvironmentName should be matched" -TestCases $endpoints {
+            param ($node, $live, $test)
 
-    $Xml = [xml]@"
-<?xml version="1.0" encoding="utf-8"?>
-<Book>
-  <projects>
-    <project name="Book1" date="2009-01-20">
-      <editions>
-        <edition name="a" language="English">En.Book1.com</edition>
-        <edition name="b" language="German">Ge.Book1.Com</edition>
-        <edition name="c" language="French">Fr.Book1.com</edition>
-        <edition name="d" language="Polish">Pl.Book1.com</edition>
-      </editions>
-    </project>
-  </projects>
-</Book>
-"@
+            $expectedValue, $actutalValue = @(
+                $PSBoundParameters[$EnvironmentName]
+                Get-NodeValue -ConfigNode $node -Xml $webConfig
+            )
+            $actutalValue | Should Be $expectedValue
+        }
+
+        It "Validate `"<node>`" configuration for API project in $EnvironmentName should be matched" -TestCases $endpoints {
+            param ($node, $live, $test)
+
+            $expectedValue, $actutalValue = @(
+                $PSBoundParameters[$EnvironmentName]
+                Get-NodeValue -ConfigNode $node -Xml $apiConfig
+            )
+            $actutalValue | Should Be $expectedValue
+        }
 
 
-    Select-Xml -xml $Xml -XPath "//edition[@name='a']/@language" | ForEach-Object { $_.node.Value }
-    Select-Xml -xml $Xml -XPath "//edition[@name='b']" | ForEach-Object { $_.node.InnerText }
-
-    return ""
+    }
 }
 
-Describe -Tag "LIVE" -Name "Pester basic command" -Fixture {
-    Context "Web and API" {
-        $endpoints = @(
-            @{ configNode = "connectionString"; expectedLive = "live"; expectedTest = "test"  }
-            @{ configNode = "connectionString"; expectedLive = "live"; expectedTest = "test" }
-        )
-
-        It "Validate Web configuration" -TestCases $endpoints {
-            param ($configNode, $expectedLive, $expectedTest)
-            $environmentName = "live"
-
-            $expectedValue, $actutalValue = @($PSBoundParameters["expected$environmentName"], (Get-ActualValue))
-
-
-            #$parameterList = (Get-Command -Name $CommandName).Parameters;
-            #$parameterList | ForEach-Object {
-            #    (Get-Variable -Name $_.Values.Name -ErrorAction SilentlyContinue)
-            #}
-
-            $expectedValue -eq $actutalValue | Should Be $true
-        }
-
-    }
-
-    Context "Web" {
-        $endpoints = @(
-            @{ configNode = "connectionString"; expectedLive = ""; expectedTest = ""  }
-            @{ configNode = "connectionString"; expectedLive = ""; expectedTest = "" }
-        )
-        It "Validate Web configuration" -TestCases $endpoints {
-            param ( $configNode, $expectedLive, $expectedTest)
-            $expectedLive -eq $expectedTest | Should Be $true
-        }
-    }
-
-    Context "API" {
-        $endpoints = @(
-            @{ configNode = "connectionString"; expectedLive = ""; expectedTest = ""  }
-            @{ configNode = "connectionString"; expectedLive = ""; expectedTest = "" }
-        )
-
-        It "Validate Web configuration" -TestCases $endpoints {
-            param ( $configNode, $expectedLive, $expectedTest)
-            $expectedLive -eq $expectedTest | Should Be $true
-        }
-    }
-}
-
-function GetExepctedValueForEnvironment {
+function Get-NodeValue {
     param(
-        [hashtable] $TestCaseData,
-        [string] $EnvironmentName
+        [Parameter(Mandatory = $true)] [string]  $Xml, 
+        [Parameter(Mandatory = $true)] [string]  $ConfigPath 
     )
-
-    $TestCaseData["expected$EnvironmentName"] #Case insensitive key
+    $node = Select-Xml -Xml $Xml -XPath $ConfigNode | Select-Object -First 1 -ExpandProperty Node
+    $node.value
 }
-#Example of useage Invoke-Pester -Tag LIVE
