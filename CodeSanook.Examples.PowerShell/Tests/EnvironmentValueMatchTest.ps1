@@ -4,18 +4,6 @@
 #>
 param([Parameter(Mandatory = $true)] [string] $EnvironmentName)
 
-$webConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
-$apiConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
-
-function Get-NodeValue {
-    param(
-        [Parameter(Mandatory = $true)] [xml] $Xml, 
-        [Parameter(Mandatory = $true)] [string] $ConfigNode 
-    )
-    $node = Select-Xml -Xml $Xml -XPath $ConfigNode | Select-Object -First 1 -ExpandProperty Node
-    $node.value
-}
-
 function Test-Endpoint {
     param(
         $EndPoints,
@@ -27,13 +15,17 @@ function Test-Endpoint {
 
         $expectedValue, $actutalValue = @(
             $PSBoundParameters[$EnvironmentName]
-            Get-NodeValue -ConfigNode $node -Xml $Xml
+            (Select-Xml -Xml $Xml -XPath $node | Select-Object -First 1 -ExpandProperty Node).value
         )
         $actutalValue | Should Be $expectedValue
     }
 }
 
 Describe "Pester test endpoint" {
+
+    $webConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
+    $apiConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
+
     Context "Web, API, AutoTicket, CronJob" {
         $endpoints = @(
             @{ 
