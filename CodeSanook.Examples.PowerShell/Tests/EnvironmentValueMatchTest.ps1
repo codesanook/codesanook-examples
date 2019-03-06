@@ -6,8 +6,8 @@ param([Parameter(Mandatory = $true)] [string] $EnvironmentName)
 
 function Test-Endpoint {
     param(
-        $EndPoints,
-        $Xml
+        [Parameter(Mandatory = $true)] [hashtable[]] $EndPoints,
+        [Parameter(Mandatory = $true)] [xml] $Xml
     )
 
     It "Validate `"<node>`" configuration in $EnvironmentName should be matched" -TestCases $EndPoints {
@@ -22,7 +22,6 @@ function Test-Endpoint {
 }
 
 Describe "Pester test endpoint" {
-
     $webConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
     $apiConfig = [xml](Get-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath "web.config"))
 
