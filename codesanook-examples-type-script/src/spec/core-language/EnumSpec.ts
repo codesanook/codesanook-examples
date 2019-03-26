@@ -1,20 +1,15 @@
-
-export enum DatePartType {
-    date,
-    month,
-    year,
-    hour,
-    minute,
-    second,
+enum DatePartType {
+    Date,
+    Month,
+    Year,
+    Hour,
+    Minute,
+    Second,
 }
 
-
-describe("enum", () => {
-    it("should return correct string value", () => {
-
-        var value = DatePartType.date
-
-        console.log(DatePartType[value]);
-
+describe('Enum', () => {
+    it('should return correct Enumeration string value', () => {
+        const value = DatePartType[DatePartType.Date];
+        expect(value).toBe('Date');
     });
 });
