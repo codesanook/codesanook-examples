@@ -9,8 +9,8 @@ namespace CodeSanook.Examples.EntityFramework.EntityConfigurations
         {
             this.ToTable($"{nameof(Comment)}s");
             this.HasKey<int>(x => x.Id);
-            this.Property(p => p.Content);
-            this.HasRequired(p => p.Post);
+            this.Property(c => c.Content);
+            this.HasRequired(c => c.Post).WithMany().HasForeignKey(c => c.PostId); ;
         }
     }
 }

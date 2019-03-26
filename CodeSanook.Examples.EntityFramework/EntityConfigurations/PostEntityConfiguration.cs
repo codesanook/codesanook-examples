@@ -11,8 +11,9 @@ namespace CodeSanook.Examples.EntityFramework.EntityConfigurations
             this.HasKey<int>(x => x.Id);
             this.Property(p => p.Title);
             this.Property(p => p.Details);
+            this.HasRequired(p => p.Blog).WithMany().HasForeignKey(p => p.BlogId);
             this.HasMany(p => p.Comments)
-                .WithRequired(c=>c.Post);
+                .WithRequired(c => c.Post);
         }
     }
 }

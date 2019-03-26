@@ -14,6 +14,8 @@ namespace CodeSanook.Examples.EntityFramework
         public BlogDbContext() : base("BlogConnectionString")
         {
             Database.SetInitializer(new CreateDatabaseIfNotExists<BlogDbContext>());
+            //disable lazy loading
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

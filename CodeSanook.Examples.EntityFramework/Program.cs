@@ -1,10 +1,7 @@
 ﻿using CodeSanook.Examples.EntityFramework.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeSanook.Examples.EntityFramework
 {
@@ -14,17 +11,25 @@ namespace CodeSanook.Examples.EntityFramework
         {
             using (var db = new BlogDbContext())
             {
-                var blog = new Blog() { Name = "EF", Description = "Blog about EF" };
-                var post = new Post() { Title = "EF Mapping", Details = "Learn EF Mapping" };
-                blog.Posts.Add(post);
+                //var blog = new Blog() { Name = "EF", Description = "Blog about EF" };
+                //var post = new Post() { Title = "EF Mapping", Details = "Learn EF Mapping" };
+                //blog.Posts.Add(post);
 
-                var comment = new Comment() { Content = "Good post" };
-                post.Comments.Add(comment);
+                //var comment = new Comment() { Content = "Good post" };
+                //post.Comments.Add(comment);
 
-                db.Blogs.Add(blog);
+                //db.Blogs.Add(blog);
+                //db.SaveChanges();
 
-                db.SaveChanges();
-                Console.WriteLine($"{db.Posts.Count()}");
+               // var result = from b in db.Blogs
+               //              join p in db.Posts
+               //              on b.Id equals p.BlogId
+               //              join c in db.Comments
+               //              on p.Id equals c.PostId into comments
+               //              from cc in comments.DefaultIfEmpty()
+               //              select new { BlogId = b.Id };
+
+               //var list = result.ToList();
             }
 
             IList<Blog> blogs;
@@ -34,7 +39,7 @@ namespace CodeSanook.Examples.EntityFramework
                      .Include(b => b.Posts.Select(p => p.Comments))
                      .ToList();
             }
-
+            var post = blogs.First().Posts;
         }
     }
 }
