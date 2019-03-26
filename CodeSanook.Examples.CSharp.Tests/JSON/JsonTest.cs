@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Xunit;
 
@@ -30,7 +29,7 @@ namespace CodeSanook.Examples.CSharp.Tests.JSON
     public class JsonTest
     {
         [Fact]
-        public void Test()
+        public void Serialize_OptInOption_ReturnOnlyJsonPropertyAttribute()
         {
             var student = new Student()
             {
@@ -46,7 +45,22 @@ namespace CodeSanook.Examples.CSharp.Tests.JSON
                 ContractResolver = contractResolver
             });
 
-            Assert.Equal("", json);
+            Assert.Equal("{\"id\":1,\"school\":\"Ammart\"}", json);
+        }
+
+        [Fact]
+        public void Serialize_NullObject_ReturnNullString()
+        {
+            var contractResolver = new DefaultContractResolver { NamingStrategy = new CamelCaseNamingStrategy() };
+
+            Student student = null;
+            var person = (Person)student;
+            var json = JsonConvert.SerializeObject(person?.Id, new JsonSerializerSettings
+            {
+                ContractResolver = contractResolver
+            });
+
+            Assert.Equal("null", json);
         }
     }
 }
