@@ -1,0 +1,1 @@
+cmd /s /c "C:\Users\theeranit.p\AppData\Roaming\npm\npm.cmd" --version
