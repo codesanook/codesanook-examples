@@ -41,4 +41,7 @@ $ npm start
 $ npx lerna run start --scope=codesanook
 
 ## Install new npm package
-$ npx lerna add package-name
+$ npx lerna add package-name --dev
+
+## Uninstall a package
+$ npx lerna exec -- npm uninstall package-name
