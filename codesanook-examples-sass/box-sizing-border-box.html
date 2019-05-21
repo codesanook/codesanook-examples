@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .parent-box {
+            width: 200px;
+            border: solid 1px #F00;
+        }
+
+        .parent-box:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .child-box {
+            box-sizing: border-box;
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            border: solid 1px #00F;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        box-sizing: border-box;
+    </h1>
+    <div class="parent-box">
+        <div class="child-box"></div>
+        <div class="child-box"></div>
+    </div>
+</body>
+
+</html>
