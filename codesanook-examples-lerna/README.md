@@ -41,9 +41,10 @@ $ cd packages/codesanook
 $ npm start
 
 ## Alternative way to run a React project at root folder
-$ npx lerna run start --scope=codesanook
-$ npx lerna run build --scope=codesanook-common
-$ npx lerna run start --scope=codesanook-common
+npx lerna run start --scope=codesanook
+npx lerna run build --scope=codesanook-common
+npx lerna run build --scope=codesanook-theme
+npx lerna run start --scope=codesanook-common
 
 ## Install new npm package
 $ npx lerna add package-name --dev
@@ -51,4 +52,6 @@ $ npx lerna add package-name --dev
 ## Uninstall a package
 This package is useful when you have mismatch module.
 You can uninstall that module and add it again.
-$ npx lerna exec -- npm uninstall package-name
+npx lerna exec -- npm uninstall package-name
+e.g.
+npx lerna exec -- npm uninstall node-sass
