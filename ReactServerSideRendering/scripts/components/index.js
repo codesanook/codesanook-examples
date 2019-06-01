@@ -1,1 +1,3 @@
-﻿export Counter from './Counter';
+﻿import Counter from './Counter';
+import Profile from './Profile';
+export { Counter, Profile };

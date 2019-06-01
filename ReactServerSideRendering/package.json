@@ -1,18 +1,21 @@
 {
-  "name": "ReactServerSideRendering",
+  "name": "codesanook",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "webpack": "./node_modules/.bin/webpack --mode=development"
+    "dev": "webpack --mode=development",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "expose-loader": "^0.7.5",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.2"
   },

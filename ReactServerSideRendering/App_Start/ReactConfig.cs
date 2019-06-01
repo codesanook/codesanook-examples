@@ -14,8 +14,8 @@ namespace ReactServerSideRendering
             // add all the necessary JavaScript files here. This includes 
             // your components as well as all of their dependencies.
             // See http://reactjs.net/ for more information. Example:
-            ReactSiteConfiguration.Configuration
-                .AddScript("~/Scripts/Sample.jsx");
+            //ReactSiteConfiguration.Configuration
+            //    .AddScript("~/Scripts/Sample.jsx");
 
             // If you use an external build too (for example, Babel, Webpack,
             // Browserify or Gulp), you can improve performance by disabling 
@@ -24,6 +24,12 @@ namespace ReactServerSideRendering
             //ReactSiteConfiguration.Configuration
             //	.SetLoadBabel(false)
             //	.AddScriptWithoutTransform("~/Scripts/bundle.server.js")
+
+
+            ReactSiteConfiguration.Configuration
+                .SetLoadBabel(false)
+                .AddScriptWithoutTransform("~/scripts/server.bundle.js");
+
             JsEngineSwitcher.Current.DefaultEngineName = V8JsEngine.EngineName;
             JsEngineSwitcher.Current.EngineFactories.AddV8();
         }

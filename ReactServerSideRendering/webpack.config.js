@@ -1,23 +1,29 @@
-﻿// This example still uses CommonJS syntax because Node hasn't yet shipped support for ES6 module syntax at the time of writing
-var path = require('path');
-
+﻿var path = require('path');
 module.exports = {
     entry: {
-        server: './scripts/server.js'
+        server: './scripts/server.js',
+        client:'./scripts/client.js'
+
     },
     output: {
-        filename: './scripts/[name].bundle.js'
+        path: path.resolve(__dirname, 'scripts'),
+        filename: '[name].bundle.js',
     },
     module: {
         rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                use: {
+                    loader: "babel-loader"
+                }
             }
         ]
     },
     resolve: {
         extensions: ['.js', '.jsx']
+    },
+    externals: {
+        react:'React'
     }
 };

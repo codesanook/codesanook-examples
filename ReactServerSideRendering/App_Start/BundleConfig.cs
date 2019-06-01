@@ -8,7 +8,6 @@ namespace ReactServerSideRendering
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            ReactSiteConfiguration.Configuration.AddScript("~/scripts/server.bundle.js"); 
         }
     }
 }

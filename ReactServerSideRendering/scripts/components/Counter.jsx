@@ -2,11 +2,9 @@
 
 const Counter = (props) => {
 
-    const [counter, setCounter] = React.useState(0);
-    setCounter(props.defaultCounter);
-
+    const [counter, setCounter] = React.useState(props.defaultCounterValue);
     const handleButtonClick = () => {
-        counter++;
+        setCounter(counter + 1);
     };
 
     return (
