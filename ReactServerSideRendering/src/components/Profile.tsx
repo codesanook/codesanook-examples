@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 
-const Profile = (props) => {
+const Profile = (props:any) => {
 
     return (
         <div>

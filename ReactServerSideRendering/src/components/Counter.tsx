@@ -1,6 +1,6 @@
 ﻿import * as React from 'react';
 
-const Counter = (props) => {
+const Counter = (props:any) => {
 
     const [counter, setCounter] = React.useState(props.defaultCounterValue);
     const handleButtonClick = () => {
