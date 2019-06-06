@@ -26,12 +26,12 @@ namespace ReactServerSideRendering
             //	.AddScriptWithoutTransform("~/Scripts/bundle.server.js")
 
 
-            ReactSiteConfiguration.Configuration
-                .SetLoadBabel(false)
-                .AddScriptWithoutTransform("~/scripts/server.bundle.js");
+            //ReactSiteConfiguration.Configuration
+            //    .SetLoadBabel(false)
+            //    .AddScriptWithoutTransform("~/scripts/server.bundle.js");
 
-            JsEngineSwitcher.Current.DefaultEngineName = V8JsEngine.EngineName;
-            JsEngineSwitcher.Current.EngineFactories.AddV8();
+            //JsEngineSwitcher.Current.DefaultEngineName = V8JsEngine.EngineName;
+            //JsEngineSwitcher.Current.EngineFactories.AddV8();
         }
     }
 }
