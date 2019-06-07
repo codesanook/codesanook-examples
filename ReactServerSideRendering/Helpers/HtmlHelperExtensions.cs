@@ -1,8 +1,6 @@
 using JavaScriptEngineSwitcher.Core;
 using JavaScriptEngineSwitcher.V8;
 using React;
-using React.Web;
-using React.Web.Mvc;
 using System;
 using System.IO;
 using System.Web;

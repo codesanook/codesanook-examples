@@ -68,12 +68,6 @@
     <Reference Include="React.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=9aed67b161f7db78, processorArchitecture=MSIL">
       <HintPath>..\packages\React.Core.4.1.1\lib\net45\React.Core.dll</HintPath>
     </Reference>
-    <Reference Include="React.Web, Version=4.1.0.0, Culture=neutral, PublicKeyToken=9aed67b161f7db78, processorArchitecture=MSIL">
-      <HintPath>..\packages\React.Web.4.1.1\lib\net40\React.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="React.Web.Mvc4, Version=4.1.0.0, Culture=neutral, PublicKeyToken=9aed67b161f7db78, processorArchitecture=MSIL">
-      <HintPath>..\packages\React.Web.Mvc4.4.1.1\lib\net40\React.Web.Mvc4.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -157,12 +151,14 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\ReactConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ActionHtmlString.cs" />
+    <Compile Include="Helpers\AspNetCache.cs" />
+    <Compile Include="Helpers\AspNetFileSystem.cs" />
     <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
