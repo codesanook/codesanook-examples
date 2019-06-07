@@ -34,12 +34,12 @@ namespace ReactServerSideRendering.Helpers
                 JsEngineSwitcher.Current.EngineFactories.AddV8();
 
                 // One instance shared for the whole app
-                var config = ReactSiteConfiguration.Configuration;//Can be singleton not sure because on configuration?
-                var switcher = JsEngineSwitcher.Current;//Can be singleton not sure because on configuration?
+                var switcher = JsEngineSwitcher.Current;//Resolve by return an instance
+                var config = ReactSiteConfiguration.Configuration;// Resolve by return an instance
+                var cache = new AspNetCache(HttpRuntime.Cache);//AsPerRequestSingleton();//safe to singleton
 
-                var fileCacheHash = new FileCacheHash();//AsPerRequestSingleton()
-                var fileSystem = new AspNetFileSystem(); //AsPerRequestSingleton();
-                var cache = new AspNetCache(HttpRuntime.Cache);//AsPerRequestSingleton();
+                var fileCacheHash = new FileCacheHash();//AsPerRequestSingleton()//
+                var fileSystem = new AspNetFileSystem(); //AsPerRequestSingleton(); //safe to singleton
 
                 var factor = new JavaScriptEngineFactory(switcher, config, cache, fileSystem); //AsSingleton();
                 var reactIdGenerator = new ReactIdGenerator();//AsSingleton()
@@ -146,7 +146,7 @@ namespace ReactServerSideRendering.Helpers
                 }
                 finally
                 {
-                //    Environment.ReturnEngineToPool();
+                    //    Environment.ReturnEngineToPool();
                 }
             });
         }

@@ -184,6 +184,7 @@
   <ItemGroup>
     <Content Include="package.json" />
     <Content Include=".babelrc" />
+    <Content Include=".gitignore" />
     <None Include="packages.config" />
     <Content Include="README.md" />
     <Content Include="tsconfig.json" />
