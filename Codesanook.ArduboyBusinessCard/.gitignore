@@ -1,0 +1,3 @@
+# ignore Variable.h because it contains our actual business card information
+Variable.h
+.vscode
