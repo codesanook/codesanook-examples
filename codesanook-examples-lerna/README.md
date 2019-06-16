@@ -1,16 +1,14 @@
 ## Credit
 https://michalzalecki.com/solve-code-sharing-and-setup-project-with-lerna-and-monorepo/
 
-
 ## Install Lerna at the root of a project
-$ npm install --save-dev lerna
+npm install --save-dev lerna
 
-## Init the project
-$npx lerna init
+## Init the Lerna project
+npx lerna init
 
 ## Update Lerna package folder
-Change value of packages in lerna.json
-
+Change value of packages in lerna.json to
 e.g.
 ```
 {
@@ -23,22 +21,22 @@ e.g.
 ```
 
 ## Create two sample react apps with TypeScript project type
-$ CD to the root of package folders that defined in lerna.json
-$ CD packages
-$ npx create-react-app codesanook --typescript
-$ npx create-react-app nullgadget --typescript
-$ npx create-react-app codesanook-slide-widget --typescript
-$ npx create-react-app codesanook-common --typescript
+CD to the root of package folders that defined in lerna.json
+CD packages
+npx create-react-app codesanook --typescript
+npx create-react-app nullgadget --typescript
+npx create-react-app codesanook-slide-widget --typescript
+npx create-react-app codesanook-common --typescript
 
 ## Clean node_modules in each project and install central nodes_modules in the root folder
 CD back to root of the Lerna project
-$ CD ..
-$ npx lerna clean -y
-$ npx lerna bootstrap --hoist
+CD ..
+npx lerna clean -y
+npx lerna bootstrap --hoist
 
-## Run a React project in a specific project folder
-$ cd packages/codesanook
-$ npm start
+## Run a React project in a module folder
+cd packages/codesanook
+npm start
 
 ## Alternative way to run a React project at root folder
 npx lerna run start --scope=codesanook
@@ -47,7 +45,7 @@ npx lerna run build --scope=codesanook-theme
 npx lerna run start --scope=codesanook-common
 
 ## Install new npm package
-$ npx lerna add package-name --dev
+npx lerna add package-name --dev
 
 ## Uninstall a package
 This package is useful when you have mismatch module.
@@ -55,3 +53,6 @@ You can uninstall that module and add it again.
 npx lerna exec -- npm uninstall package-name
 e.g.
 npx lerna exec -- npm uninstall node-sass
+
+## Interesting point, need to learn more
+- Add package with lerna not add a version to root package.json
