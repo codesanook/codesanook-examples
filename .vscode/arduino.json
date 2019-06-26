@@ -1,0 +1,5 @@
+{
+    "port": "COM8",
+    "board": "arduino:avr:leonardo",
+    "sketch": "Codesanook.ArduboyBusinessCard\\BusinessCard.ino"
+}
