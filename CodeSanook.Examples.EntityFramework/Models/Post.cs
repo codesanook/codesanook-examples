@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CodeSanook.Examples.EntityFramework.Models
+namespace Codesanook.Examples.EntityFramework.Models
 {
     public class Post
     {

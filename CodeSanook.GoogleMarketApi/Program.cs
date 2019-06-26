@@ -9,7 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeSanook.GoogleMarketApi
+namespace Codesanook.GoogleMarketApi
 {
     /// <summary>
     /// This example uses the discovery API to list all APIs in the discovery repository.

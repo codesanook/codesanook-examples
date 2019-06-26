@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using Xunit;
 
-namespace CodeSanook.Examples.CSharp.Tests.Linqs
+namespace Codesanook.Examples.CSharp.Tests.Linqs
 {
     public class Profile
     {

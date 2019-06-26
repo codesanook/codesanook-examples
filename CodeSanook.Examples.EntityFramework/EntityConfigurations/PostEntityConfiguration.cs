@@ -1,7 +1,7 @@
-﻿using CodeSanook.Examples.EntityFramework.Models;
+﻿using Codesanook.Examples.EntityFramework.Models;
 using System.Data.Entity.ModelConfiguration;
 
-namespace CodeSanook.Examples.EntityFramework.EntityConfigurations
+namespace Codesanook.Examples.EntityFramework.EntityConfigurations
 {
     public class PostEntityConfiguration : EntityTypeConfiguration<Post>
     {

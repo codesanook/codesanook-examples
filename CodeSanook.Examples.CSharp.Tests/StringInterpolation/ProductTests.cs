@@ -1,8 +1,8 @@
-﻿using CodeSanook.Examples.CSharp.StringInterpolation;
+﻿using Codesanook.Examples.CSharp.StringInterpolation;
 using System;
 using Xunit;
 
-namespace CodeSanook.Examples.CSharp.Tests.StringInterpolation
+namespace Codesanook.Examples.CSharp.Tests.StringInterpolation
 {
     public class ProductTests
     {

@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSanook.Examples.NodeFro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactServerSideRendering", "ReactServerSideRendering\ReactServerSideRendering.csproj", "{FA05C094-627A-4057-AA2E-5A72743B0CC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSanook.Examples.Sql", "CodeSanook.Examples.Sql\CodeSanook.Examples.Sql.csproj", "{F470B7EC-600D-4C79-9C75-E1B4176B4959}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codesanook.Examples.Sql", "CodeSanook.Examples.Sql\Codesanook.Examples.Sql.csproj", "{F470B7EC-600D-4C79-9C75-E1B4176B4959}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

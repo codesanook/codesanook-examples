@@ -1,4 +1,4 @@
-﻿namespace CodeSanook.Examples.EntityFramework.Models
+﻿namespace Codesanook.Examples.EntityFramework.Models
 {
     public class Comment
     {

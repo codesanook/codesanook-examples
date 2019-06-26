@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace CodeSanook.Examples.NodeFromCLR
+namespace Codesanook.Examples.NodeFromCLR
 {
     public class Program
     {

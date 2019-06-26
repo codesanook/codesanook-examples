@@ -1,9 +1,9 @@
-﻿using CodeSanook.Examples.EntityFramework.Models;
+﻿using Codesanook.Examples.EntityFramework.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
-namespace CodeSanook.Examples.EntityFramework
+namespace Codesanook.Examples.EntityFramework
 {
     class Program
     {

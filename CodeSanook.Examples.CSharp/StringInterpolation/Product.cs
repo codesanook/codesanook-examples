@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeSanook.Examples.CSharp.StringInterpolation
+namespace Codesanook.Examples.CSharp.StringInterpolation
 {
     public class Product
     {

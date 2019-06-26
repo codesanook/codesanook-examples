@@ -1,9 +1,9 @@
-﻿using CodeSanook.Ebamples.EntityFramework.EntityConfigurations;
-using CodeSanook.Examples.EntityFramework.EntityConfigurations;
-using CodeSanook.Examples.EntityFramework.Models;
+﻿using Codesanook.Ebamples.EntityFramework.EntityConfigurations;
+using Codesanook.Examples.EntityFramework.EntityConfigurations;
+using Codesanook.Examples.EntityFramework.Models;
 using System.Data.Entity;
 
-namespace CodeSanook.Examples.EntityFramework
+namespace Codesanook.Examples.EntityFramework
 {
     public class BlogDbContext : DbContext
     {

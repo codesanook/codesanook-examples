@@ -8,7 +8,7 @@ using NLog.Extensions.Logging;
 using NLog.Fluent;
 using System.Reflection.Metadata;
 
-namespace CodeSanook.Examples.CSharp.Tests.Logging
+namespace Codesanook.Examples.CSharp.Tests.Logging
 {
     class NLogTest
     {

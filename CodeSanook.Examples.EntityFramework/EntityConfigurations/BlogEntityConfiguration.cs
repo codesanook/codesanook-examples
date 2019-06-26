@@ -1,7 +1,7 @@
-﻿using CodeSanook.Examples.EntityFramework.Models;
+﻿using Codesanook.Examples.EntityFramework.Models;
 using System.Data.Entity.ModelConfiguration;
 
-namespace CodeSanook.Ebamples.EntityFramework.EntityConfigurations
+namespace Codesanook.Ebamples.EntityFramework.EntityConfigurations
 {
     public class BlogEntityConfiguration : EntityTypeConfiguration<Blog>
     {

@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Serialization;
 using Xunit;
 
-namespace CodeSanook.Examples.CSharp.Tests.JSON
+namespace Codesanook.Examples.CSharp.Tests.JSON
 {
 
     public class Person

@@ -4,7 +4,7 @@ using System.Data;
 using System.Text;
 using Xunit;
 
-namespace CodeSanook.Examples.CSharp.Tests.Nullable
+namespace Codesanook.Examples.CSharp.Tests.Nullable
 {
 
     public class NullableTest

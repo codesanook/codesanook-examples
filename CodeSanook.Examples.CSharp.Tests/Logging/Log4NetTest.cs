@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace CodeSanook.Examples.CSharp.Tests.Logging
+namespace Codesanook.Examples.CSharp.Tests.Logging
 {
     public class Log4NetTest
     {

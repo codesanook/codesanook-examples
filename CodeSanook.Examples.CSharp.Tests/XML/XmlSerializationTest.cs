@@ -7,7 +7,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Xunit;
 
-namespace CodeSanook.Examples.CSharp.Tests.XML
+namespace Codesanook.Examples.CSharp.Tests.XML
 {
     [Serializable]
     public class MyClass : Exception, ISerializable

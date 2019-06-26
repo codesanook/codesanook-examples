@@ -1,8 +1,8 @@
-﻿using CodeSanook.Examples.CSharp.Reflections;
+﻿using Codesanook.Examples.CSharp.Reflections;
 using System.Reflection;
 using Xunit;
 
-namespace CodeSanook.Examples.CSharp.Tests.Reflections
+namespace Codesanook.Examples.CSharp.Tests.Reflections
 {
     public class UserTests
     {

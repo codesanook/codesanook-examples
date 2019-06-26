@@ -1,4 +1,4 @@
-﻿namespace CodeSanook.Examples.CSharp.Reflections
+﻿namespace Codesanook.Examples.CSharp.Reflections
 {
     public class User
     {

@@ -4,7 +4,7 @@ using System.Net.Mail;
 using System.Net.Sockets;
 using System.Text;
 
-namespace CodeSanook.EmailValidation
+namespace Codesanook.EmailValidation
 {
     //https://www.labnol.org/software/verify-email-address/18220/
     //https://www.webdigi.co.uk/blog/2009/how-to-check-if-an-email-address-exists-without-sending-an-email/

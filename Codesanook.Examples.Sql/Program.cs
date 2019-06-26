@@ -1,7 +1,7 @@
 ﻿using System;
 using Oracle.ManagedDataAccess.Client;
 
-namespace CodeSanook.Examples.Sql
+namespace Codesanook.Examples.Sql
 {
     public class Program
     {

@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F470B7EC-600D-4C79-9C75-E1B4176B4959}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CodeSanook.Examples.Sql</RootNamespace>
-    <AssemblyName>CodeSanook.Examples.Sql</AssemblyName>
+    <RootNamespace>Codesanook.Examples.Sql</RootNamespace>
+    <AssemblyName>Codesanook.Examples.Sql</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
