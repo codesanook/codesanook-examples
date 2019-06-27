@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Optimization;
 
-namespace ReactServerSideRendering
+namespace Codesanook.Examples.ReactServerSideRendering
 {
     public class BundleConfig
     {

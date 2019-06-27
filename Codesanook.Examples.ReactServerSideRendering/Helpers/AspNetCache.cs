@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Caching;
 
-namespace ReactServerSideRendering.Helpers
+namespace Codesanook.Examples.ReactServerSideRendering.Helpers
 {
 	/// <summary>
 	/// Implementation of <see cref="ICache"/> using ASP.NET cache.

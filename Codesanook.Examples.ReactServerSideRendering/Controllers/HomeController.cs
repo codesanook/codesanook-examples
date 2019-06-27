@@ -4,14 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ReactServerSideRendering.Controllers
+namespace Codesanook.Examples.ReactServerSideRendering.Controllers
 {
     public class HomeController : Controller
     {
         // GET: React
         public ActionResult Index()
         {
-
             return View();
         }
     }

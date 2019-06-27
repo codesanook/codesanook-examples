@@ -1,7 +1,7 @@
 ﻿using React;
 using System.Web.Hosting;
 
-namespace ReactServerSideRendering.Helpers
+namespace Codesanook.Examples.ReactServerSideRendering.Helpers
 {
 	/// <summary>
 	/// Handles file system functionality, such as reading files. Maps all paths from 

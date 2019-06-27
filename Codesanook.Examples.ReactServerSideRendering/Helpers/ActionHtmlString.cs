@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Web;
 
-namespace ReactServerSideRendering.Helpers
+namespace Codesanook.Examples.ReactServerSideRendering.Helpers
 {
 	/// <summary>
 	/// IHtmlString or IHtmlString action wrapper implementation

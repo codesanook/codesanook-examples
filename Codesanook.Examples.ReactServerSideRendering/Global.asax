@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="ReactServerSideRendering.MvcApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Codesanook.Examples.ReactServerSideRendering.MvcApplication" Language="C#" %>

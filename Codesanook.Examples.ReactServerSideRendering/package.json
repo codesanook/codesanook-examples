@@ -1,5 +1,5 @@
 {
-  "name": " codesanook-react-server-side-rendering",
+  "name": "codesanook-examples-react-server-side-rendering",
   "version": "1.0.0",
   "description": "Server side rendering with ReactJS.NET",
   "scripts": {
@@ -7,7 +7,7 @@
     "build": "webpack --progress --colors --mode=production"
   },
   "author": {
-    "name": "Aaron Amm"
+    "name": "Codesanook team"
   },
   "license": "MIT",
   "devDependencies": {

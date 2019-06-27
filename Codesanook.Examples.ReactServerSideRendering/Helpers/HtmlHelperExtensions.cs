@@ -6,7 +6,7 @@ using System.IO;
 using System.Web;
 using IHtmlHelper = System.Web.Mvc.HtmlHelper;
 
-namespace ReactServerSideRendering.Helpers
+namespace Codesanook.Examples.ReactServerSideRendering.Helpers
 {
     /// <summary>
     /// HTML Helpers for utilising React from an ASP.NET MVC application.

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace ReactServerSideRendering
+namespace Codesanook.Examples.ReactServerSideRendering
 {
     public class FilterConfig
     {
