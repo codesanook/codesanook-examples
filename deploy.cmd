@@ -49,15 +49,6 @@ IF NOT DEFINED KUDU_SYNC_CMD (
 )
 
 
-:: Install Bower
-IF NOT DEFINED BOWER (
-    echo Installing Bower
-    call npm install bower -g --silent
-    IF !ERRORLEVEL! NEQ 0 goto error
-
-    SET BOWER=%appdata%\npm\bower.cmd
-)
-
 goto Deployment
 
 :: Utility Functions
@@ -108,7 +99,7 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 :: 2. Select node version
 call :SelectNodeVersion
 echo "current node version"
-call :ExecuteCmd %NODE_EXE% --version
+call :ExecuteCmd "%NODE_EXE%" --version
 
 :: 3. Install npm packages to a deployment target folder
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
@@ -118,9 +109,6 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 
     echo installing node packages
     call :ExecuteCmd !NPM_CMD! install
-
-    echo installing bower package
-    call :ExecuteCmd !BOWER! install
 
     IF !ERRORLEVEL! NEQ 0 goto error
     popd
