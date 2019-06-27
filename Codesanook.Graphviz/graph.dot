@@ -1,0 +1,37 @@
+
+digraph {
+    label="How airline carriers work together"
+
+    //style the nodes
+    start [shape="box", style=rounded];
+    end [shape="box", style=rounded];
+
+    make_booking [shape="box", label="User make a booking"];
+
+    validating_carrier [
+        shape="box",
+        label="A validating carrier \nissues a ticket"
+    ];
+
+    operating_carrier [
+        shape="box",
+        label="An operating carrier is an airline \nthat a passenger will fly with"
+    ];
+
+    marketing_carrier [
+        shape="box",
+        label="A marketing carrier is \nwhat shows on your ticket."
+    ];
+
+    plating_carrier [
+        shape="box",
+        label="Mostly a plating carrier is \nthe same as operating carrier"
+    ];
+
+    //make relationship
+    start -> make_booking
+    make_booking ->  validating_carrier [];
+    validating_carrier -> operating_carrier []
+    operating_carrier -> end
+
+}
