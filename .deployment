@@ -1,0 +1,3 @@
+[config]
+command = deploy.cmd
+project = Codesanook.Examples.ReactServerSideRendering/Codesanook.Examples.ReactServerSideRendering.csproj
