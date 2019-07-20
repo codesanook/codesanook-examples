@@ -41,14 +41,14 @@ npm start
 ## Alternative way to run a React project at root folder
 npx lerna run start --scope=codesanook
 npx lerna run build --scope=codesanook-common
-npx lerna run build --scope=codesanook-theme
+npx lerna run dev --scope=codesanook-theme
 npx lerna run dev --scope=codesanook-facebook-connect
 
 ## Install new npm package
 npx lerna add package-name --dev
 npx lerna add @types/es6-promise --dev --scope=codesanook-facebook-connect
 npx lerna add babel-polyfill --dev --scope=codesanook-facebook-connect
-
+npx lerna exec -- npm install --scope=codesanook-theme
 
 ## Uninstall a package
 This package is useful when you have mismatch module.

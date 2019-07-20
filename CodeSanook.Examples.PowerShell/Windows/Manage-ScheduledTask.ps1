@@ -1,12 +1,8 @@
 $taskNames = @(
-    "JA-InsuranceBooking"
-    "JA-CancelInsurancePurchases"
-    "ProcessQueue"
-    "UpdateLTD"
-    "Autoticket"
+    "ShutdownTheInstance"
 )
 
-function Format-UtcTime($dateTime){
+function Format-UtcTime($dateTime) {
     $dateTime.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
 }
 
@@ -34,13 +30,13 @@ $result = $taskNames | ForEach-Object {
     }
 }
 
-"Current UTC time $( Format-UtcTime([DateTime]::UtcNow))"
+"Current UTC time $( Format-UtcTime([System.DateTime]::UtcNow))"
 
 $result | `
     Sort-Object -Property "Next Run Time" -Descending | `
     Select-Object @(
-        "Task Name"
-        "State"
-        @{ Name="Next Run Time"; Expression = { Format-UtcTime($_."Next Run Time") } }
-        @{ Name="Last Run Time"; Expression = { Format-UtcTime($_."Last Run Time") } }
-    ) | Format-Table
+    "Task Name"
+    "State"
+    @{ Name = "Next Run Time"; Expression = { Format-UtcTime($_."Next Run Time") } }
+    @{ Name = "Last Run Time"; Expression = { Format-UtcTime($_."Last Run Time") } }
+) | Format-Table
