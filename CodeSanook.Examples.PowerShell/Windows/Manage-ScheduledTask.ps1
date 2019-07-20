@@ -29,7 +29,6 @@ $result = $taskNames | ForEach-Object {
         "Last Run Time" = $info.LastRunTime 
     }
 }
-
 "Current UTC time $( Format-UtcTime([System.DateTime]::UtcNow))"
 
 $result | `
