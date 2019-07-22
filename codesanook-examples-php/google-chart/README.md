@@ -1,4 +1,8 @@
 
+## Google Chart with PHP
+![](https://raw.githubusercontent.com/codesanook/Codesanook.Examples/master/codesanook-examples-php/google-chart/pie-chart-result.jpg)
+
+
 ### Install PHP with Chocolatey on Windows
 Install Chocolatey if you haven't install it.
 Launch PowerShell terminal with administration permission.
