@@ -60,8 +60,8 @@ while ($row = mysqli_fetch_array($query)) {
         // Set chart options
         const options = {
             'title': '% of Employees in each department',
-            'width': 500,
-            'height': 400
+            'width': 600,
+            'height': 500
         };
 
         // Instantiate and draw our chart, passing in some options.
