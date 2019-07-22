@@ -1,0 +1,9 @@
+{
+    "name": "codesanook/codesanook-examples-php-google-chart",
+    "description": "Example of using PHP Google chart",
+    "type": "project",
+    "authors": [{
+        "name": "aaronamm"
+    }],
+    "require": {}
+}
