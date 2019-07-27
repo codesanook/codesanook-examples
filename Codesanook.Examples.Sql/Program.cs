@@ -32,6 +32,7 @@ namespace Codesanook.Examples.Sql
                     Value = userId,
                     OracleDbType = OracleDbType.Int32
                 };
+
                 command.Parameters.Add(parameter);
 
                 try

@@ -1,8 +1,8 @@
 ﻿using Xunit;
 
-namespace Codesanook.Examples.CSharp.Tests.Logging
+namespace Codesanook.Examples.CSharp.Logging
 {
-    public class Log4NetTest
+    public class Log4NetProgrammaticallySetup
     {
 
         [Fact]

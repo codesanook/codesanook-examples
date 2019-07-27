@@ -1,10 +1,10 @@
-﻿using Codesanook.Examples.CSharp.StringInterpolation;
+﻿using Codesanook.Examples.CSharp.Models;
 using System;
 using Xunit;
 
-namespace Codesanook.Examples.CSharp.Tests.StringInterpolation
+namespace Codesanook.Examples.CSharp.StringInterpolation
 {
-    public class ProductTests
+    public class StringInterpolation
     {
         [Fact]
         public void GetFullNameWithReflection_ValidPropertyValues_ReturnCorrectFullName()

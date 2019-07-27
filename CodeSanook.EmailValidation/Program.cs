@@ -77,7 +77,6 @@ namespace Codesanook.EmailValidation
         /// Receives the data from the socket.
         /// </summary>
         /// <returns></returns>
-
         public static string Response(Stream stream)
         {
             ASCIIEncoding enc = new ASCIIEncoding();
@@ -89,6 +88,5 @@ namespace Codesanook.EmailValidation
             }
             return enc.GetString(serverbuff, 0, count);
         }
-
     }
 }

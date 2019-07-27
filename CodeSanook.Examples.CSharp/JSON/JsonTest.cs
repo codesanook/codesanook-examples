@@ -2,9 +2,8 @@
 using Newtonsoft.Json.Serialization;
 using Xunit;
 
-namespace Codesanook.Examples.CSharp.Tests.JSON
+namespace Codesanook.Examples.CSharp.JSON
 {
-
     public class Person
     {
         public virtual int Id { get; set; }

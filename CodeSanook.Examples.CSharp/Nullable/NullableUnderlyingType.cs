@@ -7,15 +7,14 @@ using Xunit;
 namespace Codesanook.Examples.CSharp.Tests.Nullable
 {
 
-    public class NullableTest
+    public class NullableUnderlyingType
     {
         [Fact]
         public void Test()
         {
             var type = GetUnderlyingType<DateTime?>();
-            System.Data.DbType dbType;
+            DbType dbType;
             Enum.TryParse(Type.GetTypeCode(type).ToString(), true, out dbType);
-
             Assert.Equal(DbType.DateTime, dbType);
 
         }
@@ -27,10 +26,8 @@ namespace Codesanook.Examples.CSharp.Tests.Nullable
             {
                 return System.Nullable.GetUnderlyingType(propertyType);
             }
-            else
-            {
-                return propertyType;
-            }
+
+            return propertyType;
         }
     }
 }

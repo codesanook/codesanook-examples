@@ -1,10 +1,9 @@
-﻿using Codesanook.Examples.CSharp.Reflections;
-using System.Reflection;
+﻿using Codesanook.Examples.CSharp.Models;
 using Xunit;
 
-namespace Codesanook.Examples.CSharp.Tests.Reflections
+namespace Codesanook.Examples.CSharp.Reflections
 {
-    public class UserTests
+    public class ReflectionMember
     {
         [Fact]
         public void GetFullName_ValidPropertyValues_ReturnCorrectFullName()

@@ -1,35 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Codesanook.Examples.CSharp.Models;
+using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 using Xunit;
 
-namespace Codesanook.Examples.CSharp.Tests.Linqs
+namespace Codesanook.Examples.CSharp.Linqs
 {
-    public class Profile
+    public class ExpressionTree
     {
-        public int Id { get; set; }
-    }
-
-    public class User
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public Profile Profile { get; set; }
-    }
-
-
-    public class Order
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public User User { get; set; }
-    }
-
-    public class ExpressionTreeTest
-    {
-
         [Fact]
         public void GetPropertyName_OneLevelNestedProperty_ReturnCorrectName()
         {
