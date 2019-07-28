@@ -5,9 +5,7 @@ VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A7F45D8F-CF24-4557-AA43-5BF2E39D66FD}"
 	ProjectSection(SolutionItems) = preProject
-		.deployment = .deployment
 		.travis.yml = .travis.yml
-		deploy.cmd = deploy.cmd
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -19,11 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codesanook.Examples.EntityF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codesanook.Examples.NodeFromCLR", "CodeSanook.Examples.NodeFromCLR\Codesanook.Examples.NodeFromCLR.csproj", "{13495863-05F1-43DA-89C9-125344A344BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codesanook.Examples.Sql", "CodeSanook.Examples.Sql\Codesanook.Examples.Sql.csproj", "{F470B7EC-600D-4C79-9C75-E1B4176B4959}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codesanook.Examples.NLogConfiguration", "Codesanook.Examples.NLogConfiguration\Codesanook.Examples.NLogConfiguration.csproj", "{FCFA77D7-B07F-4249-A1A7-7A4F76A71567}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codesanook.Examples.CSharp", "CodeSanook.Examples.CSharp\Codesanook.Examples.CSharp.csproj", "{863D6B99-481F-4584-97D5-7EC5ABE6DC8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codesanook.Examples.DotNetCore", "Codesanook.Examples.DotNetCore\Codesanook.Examples.DotNetCore.csproj", "{03A5EE64-22FA-47D6-94B1-B6E83768CF49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,18 +43,14 @@ Global
 		{13495863-05F1-43DA-89C9-125344A344BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13495863-05F1-43DA-89C9-125344A344BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13495863-05F1-43DA-89C9-125344A344BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F470B7EC-600D-4C79-9C75-E1B4176B4959}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F470B7EC-600D-4C79-9C75-E1B4176B4959}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F470B7EC-600D-4C79-9C75-E1B4176B4959}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F470B7EC-600D-4C79-9C75-E1B4176B4959}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FCFA77D7-B07F-4249-A1A7-7A4F76A71567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCFA77D7-B07F-4249-A1A7-7A4F76A71567}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCFA77D7-B07F-4249-A1A7-7A4F76A71567}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCFA77D7-B07F-4249-A1A7-7A4F76A71567}.Release|Any CPU.Build.0 = Release|Any CPU
-		{863D6B99-481F-4584-97D5-7EC5ABE6DC8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{863D6B99-481F-4584-97D5-7EC5ABE6DC8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{863D6B99-481F-4584-97D5-7EC5ABE6DC8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{863D6B99-481F-4584-97D5-7EC5ABE6DC8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03A5EE64-22FA-47D6-94B1-B6E83768CF49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03A5EE64-22FA-47D6-94B1-B6E83768CF49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A5EE64-22FA-47D6-94B1-B6E83768CF49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03A5EE64-22FA-47D6-94B1-B6E83768CF49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
