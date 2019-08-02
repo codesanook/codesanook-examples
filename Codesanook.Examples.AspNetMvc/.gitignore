@@ -1,0 +1,14 @@
+﻿node_modules
+Scripts/**/*.js
+Content/**/*.css
+src/**/*.js
+
+#Exclude font
+Content/**/*.eot
+Content/**/*.svg
+Content/**/*.ttf
+Content/**/*.woff
+Content/**/*.woff2
+
+bin
+debug
