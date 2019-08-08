@@ -7,7 +7,6 @@ namespace Codesanook.Examples.NLogConfiguration.Controllers
 {
     public class HomeController : Controller
     {
-
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
         public async Task<ActionResult> Index()
