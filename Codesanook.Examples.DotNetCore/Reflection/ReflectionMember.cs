@@ -1,16 +1,14 @@
 ﻿using Codesanook.Examples.CSharp.Models;
 using Xunit;
 
-namespace Codesanook.Examples.CSharp.Reflections
+namespace Codesanook.Examples.CSharp.Reflection
 {
     public class ReflectionMember
     {
         [Fact]
         public void GetFullName_ValidPropertyValues_ReturnCorrectFullName()
         {
-            var user = new User();
-            user.FirstName = "Anthony";
-            user.LastName = "CodeSanook";
+            var user = new User(1, "Anthony", "CodeSanook");
             var fulllName = user.GetFullName();
 
             Assert.Equal("Anthony CodeSanook", fulllName);
@@ -19,11 +17,11 @@ namespace Codesanook.Examples.CSharp.Reflections
         [Fact]
         public void GetFullNameWithReflection_ValidPropertyValues_ReturnCorrectFullName()
         {
-            var user = new User();
-            var userType = user.GetType();
+            var userType = typeof(User);
             var firstNameProperty = userType.GetProperty("FirstName");
             var lastNameProperty = userType.GetProperty("LastName");
 
+            var user = new User(0, string.Empty, string.Empty);
             firstNameProperty.SetValue(user, "Anthony");
             lastNameProperty.SetValue(user, "CodeSanook");
 
