@@ -1,44 +1,23 @@
-﻿setupConnection = (hubProxy) => {
-    hubProxy.client.receiveOrderUpdate = (updateObject) => {
-        const statusDiv = document.getElementById("status");
-        statusDiv.innerHTML = `Order: ${updateObject.OrderId}: ${updateObject.Update}`;
-    };
-    hubProxy.client.newOrder = (order) => {
-        const statusDiv = document.getElementById("status");
-        statusDiv.innerHTML = `Somebody ordered an ${order.Product}`;
-    };
-    hubProxy.client.finished = (order) => {
-        //stop? $.connection.hub.stop();
-        console.log(`Finished coffee order ${order}`);
-    };
-};
-
+﻿
 $(document).ready(() => {
-    var hubProxy = $.connection.coffeeHub;
-    setupConnection(hubProxy);
-    $.connection.hub.start();
+    var coffeeHub = $.connection.coffeeHub;
 
-    document.getElementById("submit").addEventListener("click",
-        e => {
-            e.preventDefault();
-            var statusDiv = document.getElementById("status");
-            statusDiv.innerHTML = "Submitting order..";
+    // Create a function that the hub can call back to display messages.
+    coffeeHub.client.receiveOrderUpdate = function (result) {
+        console.log(result);
+    };
 
-            const product = document.getElementById("product").value;
-            const size = document.getElementById("size").value;
+    $.connection.hub.start().done(function () {
+        console.log('connected');
+        coffeeHub.server.getUpdateForOrder({ id: 1, product: 'xxx', size: 'tall' });
+    });
 
-            fetch("api/Coffee",
-                    {
-                        method: "POST",
-                        body: JSON.stringify({ product, size }),
-                        headers: {
-                            'content-type': 'application/json'
-                        }
-                    })
-                .then(response => response.text())
-                .then(id => hubProxy.server.getUpdateForOrder({ id, product, size })
-                    .fail(error => console.log(error))
-                );
-
-        });
+    $.connection.hub.disconnected(function () {
+        console.log('disconnected');
+        //setTimeout(function () {
+        //    $.connection.hub.start().done(function () {
+        //        coffeeHub.server.getUpdateForOrder({ id: 1, product: 'xxx', size: 'tall' });
+        //    });
+        //}, 3000);
+    });
 });
