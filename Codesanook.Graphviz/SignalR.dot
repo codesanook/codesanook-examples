@@ -1,0 +1,77 @@
+digraph {
+    label="SignalR flow"
+
+    //style the nodes
+    start [
+        shape="box",
+        style=rounded
+    ];
+
+    end [
+        shape="box",
+        style=rounded
+    ];
+
+    setup [
+        shape="box",
+        label="SignalR hub in server side, client library in HTML page
+        ASP.NET MVC
+        https://docs.microsoft.com/en-us/aspnet/signalr/overview/getting-started/tutorial-getting-started-with-signalr-and-mvc
+
+        ASP.NET MVC Core
+        https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr
+
+        You can setup webpack and react for Client side
+
+        client libraries
+        ASP.NET MVC
+            https://github.com/SignalR/SignalR
+        ASP.NET MVC Core
+            https://www.npmjs.com/package/@aspnet/signalr
+        "
+    ];
+
+    render_html [
+        shape="box",
+        label="Action method renders HTML page."
+    ];
+
+    make_connection [
+        shape="box",
+        label="JavaScript in HTML page starts a connection to a server."
+    ];
+
+    client_push_to_server [
+        shape="box",
+        label="Client sends a message to a server."
+    ];
+
+    server_to_client [
+        shape="box",
+        label="A server push message to multiple clients, groups."
+    ];
+
+    client_receive_message [
+        shape="box",
+        label="A client receive a message in handled code block and render."
+    ];
+
+    push_to_client_from_controller [
+        shape="box",
+        label="Note, There is a case that you want to push message
+        from ASP.NET MVC controller
+        or web API controller but it is optional"
+    ];
+
+
+    //make relationship
+    start -> setup
+    setup -> render_html
+    render_html -> make_connection
+    make_connection -> client_push_to_server
+    client_push_to_server -> server_to_client
+    server_to_client -> client_receive_message
+    client_receive_message -> end
+
+    push_to_client_from_controller
+}

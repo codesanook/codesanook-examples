@@ -11,13 +11,5 @@
         "target": "es2015",
         "module": "es2015",
         "strict": true
-    },
-    "include": [
-      "src/**/*.ts",
-      "src/**/*.tsx", "../Codesanook.Examples.AspNetSignalR/Scripts/wiredbrain.js", "../Codesanook.Examples.AspNetSignalR/Hubs/VotingHubController.cs"
-    ],
-    "exclude": [
-        "node_modules"
-    ],
-    "compileOnSave": false
+    }
 }

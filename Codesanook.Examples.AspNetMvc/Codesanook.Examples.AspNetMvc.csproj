@@ -155,10 +155,12 @@
     <Content Include="package.json" />
     <Content Include=".babelrc" />
     <Content Include=".gitignore" />
+    <Content Include=".editorconfig" />
     <None Include="packages.config" />
     <Content Include="Views\Validation\Create.cshtml" />
     <Content Include="tsconfig.json" />
     <Content Include="src\sass\style.scss" />
+    <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\app.ts" />

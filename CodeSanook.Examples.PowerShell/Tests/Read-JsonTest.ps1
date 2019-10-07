@@ -6,6 +6,7 @@ Describe "Read JSON" {
     It "should read JSON and random pick name correctly" {
         $filePath = Join-Path -Path $PSScriptRoot -ChildPath "names.json"
         $names = [System.Collections.ArrayList](Get-Content $filePath | ConvertFrom-Json)
+        Write-Debug($names[0]);
         $randomNames = Get-Random -InputObject $names -Count 5
         Write-Debug ($randomNames -join ", ")
     }
