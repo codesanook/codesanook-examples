@@ -1,0 +1,60 @@
+//comment 
+/*
+comment
+*/
+/*
+https://spin.atomicobject.com/2017/11/15/table-rel-diagrams-graphviz/
+https://mamchenkov.net/wordpress/2015/08/20/graphviz-dot-erds-network-diagrams/
+
+HTML like style
+https://www.graphviz.org/doc/info/shapes.html
+*/
+digraph {
+    graph [pad="0.5", nodesep="0.5", ranksep="2"];
+    node [shape=plain]
+    rankdir=LR;
+    // One-to-many relation (from one, to many)
+    //Arrow https://www.graphviz.org/doc/info/arrows.html
+    edge [arrowhead=crow, arrowtail=crow]
+
+    Foo [label=<
+    <table border="0" cellborder="1" cellspacing="0">
+    <tr><td><i>Input Foo table</i></td></tr>
+    <tr><td port="1">🔑one int</td></tr>
+    <tr><td port="2">two</td></tr>
+    <tr><td port="3">three</td></tr>
+    <tr><td port="4">four</td></tr>
+    <tr><td port="5">five</td></tr>
+    <tr><td port="6">six</td></tr>
+    </table>>];
+
+
+    Bar [label=<
+    <table border="0" cellborder="1" cellspacing="0">
+    <tr><td><i>Input Bar</i></td></tr>
+    <tr><td port="7">seven</td></tr>
+    <tr><td port="8">eight</td></tr>
+    <tr><td port="9">nine</td></tr>
+    <tr><td port="10">ten</td></tr>
+    </table>>];
+
+
+    Baz [label=<
+    <table border="0" cellborder="1" cellspacing="0">
+    <tr><td><i>Output Baz</i></td></tr>
+    <tr><td port="a">alpha</td></tr>
+    <tr><td port="b">bravo</td></tr>
+    <tr><td port="c">charlie</td></tr>
+    <tr><td port="d">delta</td></tr>
+    <tr><td port="e">echo</td></tr>
+    <tr><td port="f">foxtrot</td></tr>
+    </table>>];
+
+    Foo:2 -> Baz:a;
+    Foo:3 -> Baz:e;
+    Foo:6 -> Baz:b;
+    Bar:7 -> Baz:d [label="[1-n]"];
+    // https://stackoverflow.com/a/17742184/1872200
+    Bar:9 -> Baz:f [dir="both"];
+
+}

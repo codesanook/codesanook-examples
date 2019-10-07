@@ -14,7 +14,7 @@
     },
     "include": [
       "src/**/*.ts",
-      "src/**/*.tsx"
+      "src/**/*.tsx", "../Codesanook.Examples.AspNetSignalR/Scripts/wiredbrain.js", "../Codesanook.Examples.AspNetSignalR/Hubs/VotingHubController.cs"
     ],
     "exclude": [
         "node_modules"
