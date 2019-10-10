@@ -3,7 +3,7 @@ using Xunit;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-namespace Codesanook.Examples.CSharp.Reflection
+namespace Codesanook.Examples.DotNetCore.JSON
 {
     public class SerializableTest
     {
