@@ -1,12 +1,8 @@
 ﻿using Google.Apis.Auth.OAuth2;
-using Google.Apis.Discovery.v1;
-using Google.Apis.Discovery.v1.Data;
 using Google.Apis.Services;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Codesanook.GoogleMarketApi
@@ -62,13 +58,13 @@ namespace Codesanook.GoogleMarketApi
             var packageName = "com.meddbtech.thailandflsapp";
             var appEdit = new Google.Apis.AndroidPublisher.v3.Data.AppEdit();
             var editRequest = edits.Insert(appEdit, packageName);
-            appEdit = editRequest.Execute();
+            appEdit = await editRequest.ExecuteAsync();
 
             // Run the request.
             Console.WriteLine("Executing a list request...");
             var response = edits.Apks.List(packageName, appEdit.Id).Execute();
             // Display the results.
-           var latestApk =  response.Apks.OrderByDescending(x => x.VersionCode).First();
+            var latestApk = response.Apks.OrderByDescending(x => x.VersionCode).First();
             Console.WriteLine($"latestVersion {latestApk.VersionCode}");
         }
     }

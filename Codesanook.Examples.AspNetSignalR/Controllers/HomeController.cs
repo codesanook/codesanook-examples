@@ -15,8 +15,8 @@ namespace Codesanook.Examples.AspNetSignalR.Controllers
             ViewBag.Title = "Home Page";
             //https://stackoverflow.com/a/11098832/1872200
             //https://docs.microsoft.com/en-us/aspnet/signalr/overview/guide-to-the-api/hubs-api-guide-server
-            var hubContext = GlobalHost.ConnectionManager.GetHubContext<CoffeeHub>();
-            hubContext.Clients.All.man("");
+            //var hubContext = GlobalHost.ConnectionManager.GetHubContext<CoffeeHub>();
+            //hubContext.Clients.All.man("");
             return View();
         }
     }

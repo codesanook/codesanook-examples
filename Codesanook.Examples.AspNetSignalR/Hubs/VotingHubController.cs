@@ -1,13 +1,9 @@
-﻿using Microsoft.AspNet.SignalR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Codesanook.Examples.AspNetSignalR.Hubs
 {
-    public class VotingHubController : Hub 
+    public class VotingHubController : Controller 
     {
         public static Dictionary<string, int> poll = new Dictionary<string, int>()
         {
