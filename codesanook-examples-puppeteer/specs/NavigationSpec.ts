@@ -1,5 +1,6 @@
 import { launch } from "puppeteer";
 
+declare let browser;
 describe("search", () => {
     const timeoutInSecond = 60;
 
@@ -13,6 +14,10 @@ describe("search", () => {
     });
 
     afterEach(async done => {
+        done();
+    });
+
+    afterAll(async done => {
         done();
     });
 

@@ -26,8 +26,17 @@
     },
     "jest": {
         "transform": {
-            "^.+\\.ts?$": "ts-jest"
+            "^.+\\.(js|ts)x?$": "ts-jest"
         },
-        "testRegex": "(/specs/.*)\\.ts$"
+        "testRegex": "(/specs/.*)\\.ts$",
+        "preset": "./jest-preset",
+        "globals": {
+            "ts-jest": {
+                "tsConfig": {
+                    "allowJs": true
+                }
+            },
+            "browser":{}
+        }
     }
 }
