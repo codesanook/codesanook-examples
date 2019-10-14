@@ -1,0 +1,27 @@
+{
+    "version": "0.0.1",
+    "name": "codesanook-examples-puppeteer-with-preset",
+    "description": "Code example for automated testing with Jest, Puppeteer and TypeScript",
+    "scripts": {
+        "test": "./node_modules/.bin/jest --detectOpenHandles"
+    },
+    "author": "Codesanook Team",
+    "license": "MIT",
+    "dependencies": {},
+    "devDependencies": {
+        "@types/jest": "^23.3.14",
+        "@types/puppeteer": "^1.20.2",
+        "jest": "^24.9.0",
+        "jest-puppeteer": "^4.3.0",
+        "puppeteer": "^1.20.0",
+        "ts-jest": "^24.1.0",
+        "typescript": "^3.6.4"
+    },
+    "jest": {
+        "transform": {
+            "^.+\\.tsx?$": "ts-jest"
+        },
+        "testRegex": "(/specs/.*)\\.ts$",
+        "preset": "jest-puppeteer"
+    }
+}

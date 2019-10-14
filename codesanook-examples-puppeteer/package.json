@@ -35,8 +35,7 @@
                 "tsConfig": {
                     "allowJs": true
                 }
-            },
-            "browser":{}
+            }
         }
     }
 }
