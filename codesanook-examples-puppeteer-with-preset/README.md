@@ -21,3 +21,9 @@ https://kulshekhar.github.io/ts-jest/user/config/
 ### Puppeteer API document
 
 https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md
+
+### How to run the test
+- CD to the root of the project where you have package.json
+- npm install
+- npm run test
+
