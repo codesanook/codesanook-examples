@@ -1,4 +1,5 @@
 import { Page } from 'puppeteer';
+import * as path from 'path';
 declare let page: Page;
 declare let jestPuppeteer;
 
@@ -35,5 +36,27 @@ describe('navigate to a website', () => {
         expect(pageTitle).toBe(
             'React – A JavaScript library for building user interfaces'
         );
+    });
+
+    it('should launch local index HTML file', async () => {
+        // Launch page
+        await page.goto(`file:${path.join(__dirname, 'index.html')}`);
+
+        // Wait for alert show up
+        const dialogPromise = new Promise<string>(resolve => {
+            page.on('dialog', async dialog => {
+                await page.waitFor(2000);
+                await dialog.accept('OK');
+                resolve(dialog.type());
+            });
+        });
+
+        // Click alert
+        const btnShowAlert = await page.$('#btnShowAlert');
+        btnShowAlert.click();
+
+        // Assert dialog type
+        const dialogType = await dialogPromise;
+        expect(dialogType).toEqual('alert');
     });
 });
