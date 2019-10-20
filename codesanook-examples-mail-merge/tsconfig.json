@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "noUnusedLocals": true,
+        "noImplicitAny": false,
+        "target": "es5",
+        "module": "es6",
+        "strict": true,
+        "strictPropertyInitialization": false
+    },
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}
