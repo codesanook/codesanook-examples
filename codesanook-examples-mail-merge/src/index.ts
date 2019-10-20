@@ -114,8 +114,8 @@ function sendEmails() {
         }
 
         MailApp.sendEmail(item.toAddress, item.subject, item.body, { cc: item.ccAddresses, htmlBody: item.body });
-        const cell = sheet.getRange(item.rowIndex as number + 2, 1); // range is start from 1 
-        //cell.setValue(EMAIL_SENT);
+        const cell = sheet.getRange(item.rowIndex as number + 2, 1); // range is start from 1
+        cell.setValue(EMAIL_SENT);
     });
 }
 
