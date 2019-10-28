@@ -14,3 +14,8 @@ npm run clasp push -- --watch
 
 
 ## Useful Google Sheet API tips
+
+## Credit
+- [มาเขียน Google Apps Script บน local กันเถอะ (ใช้ modern javascript ได้ด้วยนะ](https://peerasak.com/post/modern-javascript-on-google-apps-script/)
+
+- [Command Line Apps Script Projects (CLASP) - read me](https://github.com/google/clasp/blob/master/README.md)
