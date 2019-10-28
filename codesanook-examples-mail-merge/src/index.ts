@@ -3,6 +3,70 @@ declare let SpreadsheetApp: any;
 declare let MailApp: any;
 
 const EMAIL_SENT = 'EMAIL_SENT';
+const sheetName = 'Sponsor Contacts Test'; // Change to your sheet name
+const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
+
+/*
+ * main function
+ * Sends emails with data from the current spreadsheet.
+*/
+function sendEmails() {
+    // Returns the position of the last row that has content.
+    const lastRow = sheet.getLastRow();
+
+    const dataRange = sheet.getRange(
+        1, // The starting row index of the range; row indexing starts with 1.
+        2, // The starting column index of the range; column indexing starts with 1.
+        lastRow, // The number of rows to return.
+        5, // The number of columns to return.
+    );
+
+    // Fetch values for each row in the Range.
+    const data = dataRange.getValues() as any[];
+    const header = data.shift() as any[];
+
+    const mailItems: EmailRecord[] = data
+        .filter((values: any[]) => values.every(value => value))// Remove empty rows
+        .map((values, dataIndex) => {
+
+            const emailRecord = header.reduce((obj, key, headerIndex) => {
+                obj[key] = values[headerIndex];
+                return obj as EmailRecord;
+            }, {});
+
+            emailRecord.dataIndex = dataIndex;
+            emailRecord.subject = getSubject();
+            emailRecord.body = getBody(emailRecord, getSenderProfile());
+            emailRecord.toAddress = emailRecord.toAddress.trim();
+            return emailRecord;
+        });
+
+    mailItems.forEach(item => {
+        if (item.sentStatus === EMAIL_SENT) {
+            return;
+        }
+        MailApp.sendEmail(
+            item.toAddress,
+            item.subject,
+            item.body,
+            { cc: item.ccAddresses, htmlBody: item.body },
+        );
+        const cell = sheet.getRange(item.dataIndex as number + 2, 1); // index range starts from 1
+        cell.setValue(EMAIL_SENT);
+    });
+}
+
+function getSenderProfile(): SenderProfile {
+    const header = sheet.getRange(2, 8, 5, 1).getValues().map(value => value[0]);
+    const data = sheet.getRange(2, 9, 5, 1).getValues() as any[];
+
+    const senderProfile = header.reduce((obj, key, rowIndex) => {
+        obj[key] = data[rowIndex][0];
+        return obj as SenderProfile;
+    }, {});
+
+    return senderProfile;
+}
 
 function getSubject(): string {
     return 'Request for a list name of your staff who will attend .NET Conf 2019';
@@ -62,7 +126,7 @@ interface EmailRecord {
     packageType: string;
     subject?: string;
     body?: string;
-    rowIndex?: number;
+    dataIndex?: number;
 }
 
 interface SenderProfile {
@@ -71,69 +135,4 @@ interface SenderProfile {
     company: string;
     tel: string;
     email: string;
-}
-
-/**
- * Sends emails with data from the current spreadsheet.
- */
-function sendEmails() {
-    const sheet = SpreadsheetApp.getActiveSheet();
-
-    // Fetch the range of cells A2:B3
-    const dataRange = sheet.getRange('A2:F3');
-    // Fetch values for each row in the Range.
-    const data = dataRange.getValues() as any[];
-
-    const mailItems = data.map((row, index) => {
-        const emailRecord: EmailRecord = {
-            sentStatus: '',
-            toName: '',
-            toAddress: '',
-            ccAddresses: '', // CSV
-            companyName: '',
-            packageType: '',
-        };
-
-        emailRecord.rowIndex = index;
-
-        Object.keys(emailRecord).map((propertyName, propertyIndex) => {
-            const cellValue = row[propertyIndex];
-            if (cellValue) {
-                emailRecord[propertyName] = cellValue;
-            }
-        });
-
-        emailRecord.subject = getSubject();
-        emailRecord.body = getBody(emailRecord, getSenderProfile());
-        return emailRecord;
-    });
-
-    mailItems.forEach(item => {
-        if (item.sentStatus === EMAIL_SENT) {
-            return;
-        }
-
-        MailApp.sendEmail(item.toAddress, item.subject, item.body, { cc: item.ccAddresses, htmlBody: item.body });
-        const cell = sheet.getRange(item.rowIndex as number + 2, 1); // range is start from 1
-        cell.setValue(EMAIL_SENT);
-    });
-}
-
-function getSenderProfile(): SenderProfile {
-    const senderProfile: SenderProfile = {
-        name: '',
-        position: '',
-        company: '',
-        tel: '',
-        email: '',
-    };
-
-    const sheet = SpreadsheetApp.getActiveSheet();
-
-    const dataRange = sheet.getRange('I2:I6');
-    const data = dataRange.getValues() as any[];
-    Object.keys(senderProfile).forEach((propertyName, index) => {
-        senderProfile[propertyName] = data[index][0];
-    });
-    return senderProfile;
 }

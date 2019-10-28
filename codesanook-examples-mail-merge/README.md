@@ -9,5 +9,8 @@ npm run clasp create -- --type standalone --title "mail-merge" --rootDir "src" -
 ### Push new changes
 npm run clasp push
 
+### Push with watch
+npm run clasp push -- --watch
+
 
 ## Useful Google Sheet API tips
