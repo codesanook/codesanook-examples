@@ -24,20 +24,22 @@ function sendEmails() {
     // Fetch values for each row in the Range.
     const data = dataRange.getValues() as any[];
     const header = data.shift() as any[];
+    const subject = getSubject();
+    const senderProfile = getSenderProfile();
 
     const mailItems: EmailRecord[] = data
         .filter((values: any[]) => values.every(value => value))// Remove empty rows
         .map((values, dataIndex) => {
 
-            const emailRecord = header.reduce((obj, key, headerIndex) => {
+            const emailRecord: EmailRecord = header.reduce((obj, key, headerIndex) => {
                 obj[key] = values[headerIndex];
-                return obj as EmailRecord;
+                return obj;
             }, {});
 
             emailRecord.dataIndex = dataIndex;
-            emailRecord.subject = getSubject();
-            emailRecord.body = getBody(emailRecord, getSenderProfile());
             emailRecord.toAddress = emailRecord.toAddress.trim();
+            emailRecord.subject = subject;
+            emailRecord.body = getBody(emailRecord, senderProfile);
             return emailRecord;
         });
 
@@ -45,13 +47,16 @@ function sendEmails() {
         if (item.sentStatus === EMAIL_SENT) {
             return;
         }
+
         MailApp.sendEmail(
             item.toAddress,
             item.subject,
             item.body,
             { cc: item.ccAddresses, htmlBody: item.body },
         );
-        const cell = sheet.getRange(item.dataIndex as number + 2, 1); // index range starts from 1
+
+        // Update sent status to prevent sent email again
+        const cell = sheet.getRange(item.dataIndex + 2, 1); // index range starts from 1
         cell.setValue(EMAIL_SENT);
     });
 }
@@ -124,9 +129,9 @@ interface EmailRecord {
     ccAddresses: string; // CSV
     companyName: string;
     packageType: string;
-    subject?: string;
-    body?: string;
-    dataIndex?: number;
+    subject: string;
+    body: string;
+    dataIndex: number;
 }
 
 interface SenderProfile {
