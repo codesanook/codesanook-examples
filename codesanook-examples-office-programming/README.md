@@ -19,3 +19,5 @@ npm run clasp push -- --watch
 - [มาเขียน Google Apps Script บน local กันเถอะ (ใช้ modern javascript ได้ด้วยนะ](https://peerasak.com/post/modern-javascript-on-google-apps-script/)
 
 - [Command Line Apps Script Projects (CLASP) - read me](https://github.com/google/clasp/blob/master/README.md)
+
+https://github.com/google/clasp#setting
