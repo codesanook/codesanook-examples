@@ -1,9 +1,10 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: {
-        'codesanook-theme': './src/main',
+        'bundle': './src/main',
     },
     output: {
         path: path.resolve(__dirname, 'scripts'),
@@ -50,14 +51,14 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: '[name].[ext]',
-                    outputPath: './../styles',
+                    outputPath: './../content',
                 }
             }]
         }]
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: './../styles/codesanook-theme.css',
+            filename: './../content/style.css',
         }),
 
         //https://webpack.js.org/plugins/provide-plugin/ vs external
