@@ -1,5 +1,4 @@
 ### Trust access to the VBA project object model is required for auto import external VBA script.
-input-validation-errou
 ### Procedure
 - Start Microsoft Excel.
 - Open a workbook.
@@ -11,6 +10,10 @@ input-validation-errou
 - Click OK.
 
 
-## Load new script
+## Loading a new script
 After you have opened external-marco.xlsm, switch sheet to reload the external script.
 This can be improve by create reload button.
+
+## Useful links
+- [VBScript Tutorial]
+ https://www.tutorialspoint.com/vbscript/index.htm
