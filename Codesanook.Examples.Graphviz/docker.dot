@@ -1,0 +1,34 @@
+
+digraph {
+    label="Mininum docker workflow";
+    node [shape=box]
+
+    { rank=same docker_hub docker_pull }
+
+    //style the nodes
+    docker_pull [label="docker pull (pull image from Docker Hub)"];
+    docker_run [label="docker run (launch a container from an image"];
+    docker_start [label="docker start (start a container)"];
+    docker_restart [label="docker restart (restart a container)"];
+    docker_stop [label="docker stop (stop a contianer)"];
+    docker_rm [label="docker rm (remove a container)"];
+    docker_hub [l="Docker Hub (a repository of docker images"];
+
+    //make relationship
+    subgraph test{
+        label="test";
+        docker_pull -> docker_hub  [dir="back"]
+    }
+
+    subgraph aa{
+        label="test2";
+        docker_pull -> docker_run;
+        docker_run -> docker_restart;
+
+        docker_stop -> docker_start;
+        docker_stop -> docker_rm;
+    }
+
+}
+
+
