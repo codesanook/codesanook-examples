@@ -29,6 +29,5 @@ namespace Codesanook.Examples.CSharp.Reflection
             var fullName = getfullNameMethod.Invoke(user, null);
             Assert.Equal("Anthony CodeSanook", fullName);
         }
-
     }
 }
