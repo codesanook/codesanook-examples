@@ -1,13 +1,13 @@
-﻿@model Codesanook.Examples.AspNetMvc.Models.User
+@model Codesanook.Examples.AspNetMvc.Models.User
 
 @{
     ViewBag.Title = "Create";
 }
 <h2>Create</h2>
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>User</h4>
         <hr />
@@ -41,5 +41,28 @@
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
+        @*
+            https://stackoverflow.com/questions/53691154/why-does-the-same-code-using-getclientrects-produce-different-results
+            *https://jsfiddle.net/api/mdn/
+
+            What is the border box?
+            https://stackoverflow.com/a/53685066/1872200
+        *@
+
+        <a class="test">
+            This is a paragraph with
+            <span>Span Element having a looooooooooooooooooooooo nnnnnnnnnnnnnnnnnnnn ggggggggggggggggg text</span>
+            test
+        </a>
+        <style>
+
+            .test {
+                border: 1px solid green;
+            }
+
+            .test span {
+                border: 1px solid red;
+            }
+        </style>
     </div>
 }

@@ -133,6 +133,7 @@
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <None Include="jQueryValidation.md" />
     <Content Include="webpack.config.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
