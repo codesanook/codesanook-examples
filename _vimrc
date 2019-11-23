@@ -17,7 +17,7 @@ call plug#begin()
 
     Plug 'prettier/vim-prettier', {
       \ 'do': 'yarn install',
-      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] } 
+      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'vue', 'yaml', 'html'] } 
 
     " Themes
 	Plug 'morhetz/gruvbox'
@@ -28,6 +28,14 @@ call plug#begin()
     Plug 'maxmellon/vim-jsx-pretty'
 
     Plug 'dyng/ctrlsf.vim'
+    "https://github.com/OmniSharp/omnisharp-vim#configuration
+    Plug 'OmniSharp/omnisharp-vim'
+
+    "Markdown
+    Plug 'godlygeek/tabular'
+    Plug 'plasticboy/vim-markdown'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+
 call plug#end()
 " standard vim options
 set guifont=Consolas:h14:cANSI
@@ -66,7 +74,8 @@ runtime! macros/matchit.vim
 map <C-n> :NERDTreeToggle<CR>
 
 "https://vim.fandom.com/wiki/Omni_completion_popup_menu
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+let g:SuperTabDefaultCompletionType = "context"
+
 set omnifunc=syntaxcomplete#Complete
 let g:tsuquyomi_completion_detail = 1
 set ballooneval
@@ -78,11 +87,12 @@ set completeopt-=preview
 
 " Running before saving async (vim 8+):
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html PrettierAsync
 
 " use tabs over spaces
 " Prettier default: false
 let g:prettier#config#use_tabs = 'false'
+
 " number of spaces per indentation level
 " Prettier default: 2
 let g:prettier#config#tab_width = 4
@@ -100,3 +110,5 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 " Move up and down in autocomplete with <c-j> and <c-k>
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
+
+nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
