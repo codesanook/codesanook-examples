@@ -5,6 +5,7 @@ call plug#begin()
     Plug 'pprovost/vim-ps1'
 	Plug 'scrooloose/nerdtree'
 
+
     "choco install fzf
     "choco install ag
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
@@ -36,6 +37,9 @@ call plug#begin()
     Plug 'plasticboy/vim-markdown'
     Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
+    Plug 'wannesm/wmgraphviz.vim'
+
+    "Maximize vim when start
 call plug#end()
 " standard vim options
 set guifont=Consolas:h14:cANSI
@@ -53,7 +57,7 @@ set wildmenu
 set incsearch
 set lazyredraw
 set ttyfast
-set nowrap
+set wrap
 set t_Co=256
 set visualbell
 set visualbell t_vb=
@@ -100,10 +104,10 @@ syntax on
 
 colorscheme dracula
 highlight Comment guifg=#8692b7
-nmap <C-F> <Plug>CtrlSFPrompt
+nmap <s-f> <Plug>CtrlSFPrompt
 
 " https://github.com/junegunn/fzf.vim
-map <C-p> :Files<CR>
+map <c-p> :Files<CR>
 let $FZF_DEFAULT_OPTS='--bind ctrl-j:down,ctrl-k:up'
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
@@ -112,3 +116,17 @@ inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
 
 nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
+
+"Markdown
+"Disable Folding
+let g:vim_markdown_folding_disabled = 1
+
+" Set to 1, the MarkdownPreview command can be used for all files,
+" by default it can only be used in Markdown files.
+let g:mkdp_command_for_global = 1
+
+
+" disable swap file
+set noswapfile
+"https://vim.fandom.com/wiki/Maximize_or_set_initial_window_size
+autocmd GUIEnter * simalt ~x
