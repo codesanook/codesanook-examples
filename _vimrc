@@ -128,5 +128,15 @@ let g:mkdp_command_for_global = 1
 
 " disable swap file
 set noswapfile
+
+
+"Make Vim start as full screen
 "https://vim.fandom.com/wiki/Maximize_or_set_initial_window_size
 autocmd GUIEnter * simalt ~x
+
+"Permanent "very magic" modeEdit
+nnoremap / /\v
+vnoremap / /\v
+cnoremap s/ smagic/
+
+" shift+r to move clipboard registry to r
