@@ -104,7 +104,7 @@ syntax on
 
 colorscheme dracula
 highlight Comment guifg=#8692b7
-nmap <s-f> <Plug>CtrlSFPrompt
+nmap <leader>f <Plug>CtrlSFPrompt
 
 " https://github.com/junegunn/fzf.vim
 map <c-p> :Files<CR>
@@ -139,4 +139,5 @@ nnoremap / /\v
 vnoremap / /\v
 cnoremap s/ smagic/
 
-" shift+r to move clipboard registry to r
+" shift+r to move clipboard registry to registry r
+map <s-r> :let @r=@*<cr>
