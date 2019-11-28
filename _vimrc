@@ -141,3 +141,8 @@ cnoremap s/ smagic/
 
 " shift+r to move clipboard registry to registry r
 map <s-r> :let @r=@*<cr>
+
+" disable backspace in insert mode and no recusive, we want to use <c-h> <c-w> <c-u>
+" nop => no operation
+:inoremap <BS> <Nop>
+:inoremap <Del> <Nop>
