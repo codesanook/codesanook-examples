@@ -79,6 +79,8 @@ map <C-n> :NERDTreeToggle<CR>
 
 "https://vim.fandom.com/wiki/Omni_completion_popup_menu
 let g:SuperTabDefaultCompletionType = "context"
+"https://github.com/ervandew/supertab/issues/142#issuecomment-68664745
+let g:SuperTabCrMapping = 1
 
 set omnifunc=syntaxcomplete#Complete
 let g:tsuquyomi_completion_detail = 1
