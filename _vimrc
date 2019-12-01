@@ -4,7 +4,7 @@ call plug#begin()
     Plug 'mattn/emmet-vim'
     Plug 'pprovost/vim-ps1'
 	Plug 'scrooloose/nerdtree'
-
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
     "choco install fzf
     "choco install ag
@@ -12,8 +12,9 @@ call plug#begin()
     Plug 'junegunn/fzf.vim'
 
     " TypeScript
-    Plug 'leafgarland/typescript-vim'
-    Plug 'quramy/tsuquyomi'
+    "Plug 'leafgarland/typescript-vim'
+    "Plug 'quramy/tsuquyomi'
+
     Plug 'ervandew/supertab'
 
     Plug 'prettier/vim-prettier', {
@@ -29,8 +30,9 @@ call plug#begin()
     Plug 'maxmellon/vim-jsx-pretty'
 
     Plug 'dyng/ctrlsf.vim'
+    
     "https://github.com/OmniSharp/omnisharp-vim#configuration
-    Plug 'OmniSharp/omnisharp-vim'
+    "Plug 'OmniSharp/omnisharp-vim'
 
     "Markdown
     Plug 'godlygeek/tabular'
@@ -82,10 +84,10 @@ let g:SuperTabDefaultCompletionType = "context"
 "https://github.com/ervandew/supertab/issues/142#issuecomment-68664745
 let g:SuperTabCrMapping = 1
 
-set omnifunc=syntaxcomplete#Complete
-let g:tsuquyomi_completion_detail = 1
-set ballooneval
-autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
+" TypeScript configuration
+"set omnifunc=syntaxcomplete#Complete
+"let g:tsuquyomi_completion_detail = 1
+"autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
 
 " Turn off preview windows
 set completeopt-=preview
@@ -117,7 +119,7 @@ let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 inoremap <expr> <c-j> ("\<C-n>")
 inoremap <expr> <c-k> ("\<C-p>")
 
-nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
+"nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
 
 "Markdown
 "Disable Folding
@@ -148,3 +150,12 @@ map <s-r> :let @r=@*<cr>
 " nop => no operation
 :inoremap <BS> <Nop>
 :inoremap <Del> <Nop>
+
+" Disable auto comment insertion 
+"https://vim.fandom.com/wiki/Disable_automatic_comment_insertion
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" let coc install the extension if they are missing:
+" This requires Python 2
+" choco install python2
+let g:coc_global_extensions=[ 'coc-omnisharp', 'coc-tsserver' ]
