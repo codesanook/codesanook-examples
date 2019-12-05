@@ -16,6 +16,7 @@
     "gulp-jasmine": "^3.0.0",
     "gulp-typescript": "^3.2.4",
     "jasmine": "^2.9.0",
+    "jest": "^24.9.0",
     "run-sequence": "^2.2.1",
     "typescript": "^2.7.1",
     "yamljs": "^0.3.0"
