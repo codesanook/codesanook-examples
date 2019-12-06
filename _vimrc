@@ -158,4 +158,18 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " let coc install the extension if they are missing:
 " This requires Python 2
 " choco install python2
-let g:coc_global_extensions=[ 'coc-omnisharp', 'coc-tsserver' ]
+let g:coc_global_extensions=['coc-omnisharp', 'coc-tsserver', 'coc-powershell']
+
+" Enable vim-repeat
+" https://github.com/tpope/vim-repeat/issues/55
+" http://vimcasts.org/episodes/creating-repeatable-mappings-with-repeat-vim/
+" silent! call repeat#set("\<Plug>surround.vim", v:count)
+" nnoremap <silent> <Plug>SurroundWordWithApostrophe ysw'<esc> 
+"     \ :call repeat#set("\<Plug>SurroundWordWithApostrophe", v:count)<cr>
+" nmap <Leader>'  <Plug>SurroundWordWithApostrophe
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> <c-]> <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
