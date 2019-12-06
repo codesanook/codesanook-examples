@@ -104,8 +104,17 @@ let g:prettier#config#use_tabs = 'false'
 " number of spaces per indentation level
 " Prettier default: 2
 let g:prettier#config#tab_width = 4
-syntax on
 
+" Use vim-prettier settings as a default, but allows .editorconfig, .prettierrc, etc. to override them. 
+" https://github.com/prettier/vim-prettier/issues/146#issuecomment-427082716
+" cli-override|file-override|prefer-file
+let g:prettier#config#config_precedence = 'prefer-file'
+
+" single quotes over double quotes
+" Prettier default: false
+let g:prettier#config#single_quote = 'true'
+
+syntax on
 colorscheme dracula
 highlight Comment guifg=#8692b7
 nmap <leader>f <Plug>CtrlSFPrompt
@@ -173,3 +182,4 @@ nmap <silent> <c-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
