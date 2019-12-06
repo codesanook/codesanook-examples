@@ -1,18 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenTK;
+using System.Windows.Forms;
 
 namespace Codesanook.Examples.OpenGL
 {
     public class Program
     {
-        public static void Main(string[] args)
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
         {
-            var window = new GameWindow(500, 500);
-            var game =new Game(window);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+        }
+
+        static void GameLoop(double elapsedTime)
+        {
+            // GameCode goes here
+            // GetInput
+            // Process
+            // Render
+            Console.WriteLine("loop");
         }
     }
 }
