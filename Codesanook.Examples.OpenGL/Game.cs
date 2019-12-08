@@ -7,6 +7,7 @@ namespace Codesanook.Examples.OpenGL
     public class Game
     {
         private readonly GameWindow window;
+        private double theta;
 
         public Game(GameWindow window)
         {
@@ -27,25 +28,39 @@ namespace Codesanook.Examples.OpenGL
             GL.Viewport(0, 0, window.Width, window.Height);
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
-            GL.Ortho(0.0, 50.0, 0.0, 50.0, -1.0, 1.0);
+            GL.Ortho(-50.0, 50.0, -50.0, 50.0, -1.0, 1.0);
             GL.MatrixMode(MatrixMode.Modelview);
         }
 
         private void RenderFrame(object sender, FrameEventArgs e)
         {
+            GL.LoadIdentity();
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            GL.Begin(BeginMode.Triangles);
-            GL.Vertex2(1.0, 1.0);
-            GL.Vertex2(49.0, 1.0);
-            GL.Vertex2(25.0, 49.0);
+
+            GL.Rotate(theta, 0, 0, 1);
+            GL.Begin(BeginMode.Quads);
+
+            GL.Color3(1.0, 0, 0);
+            GL.Vertex2(30.0, 30.0);
+
+            GL.Color3(0, 1.0, 0);
+            GL.Vertex2(-30.0, 30.0);
+
+            GL.Color3(0, 0, 1.0);
+            GL.Vertex2(-30.0, -30.0);
+
+            GL.Color3(1.0, 1.0, 0);
+            GL.Vertex2(30.0, -30.0);
+
             GL.End();
             window.SwapBuffers();
+            theta += 1;
 
         }
 
         private void Load(object sender, EventArgs e)
         {
-            GL.ClearColor(1.0F, 0.0F, 0.0F, 0.0F);
+            GL.ClearColor(1.0F, 1.0F, 1.0F, 0.0F);
         }
     }
 }
