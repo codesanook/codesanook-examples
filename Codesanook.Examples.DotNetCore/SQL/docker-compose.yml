@@ -7,12 +7,11 @@ services:
     image: codesanook-example-db:latest
     # Map current data folder to data inside container instance  
     # https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-configure-docker?view=sql-server-ver15#mount-a-host-directory-as-data-volume
-    volumes:
-      - ./data:/data
+    # volumes:
+    #   - ./data:/data
     ports:
       - "1433:1433"
     environment:
       SA_PASSWORD: "${SA_PASSWORD:?err}"
       ACCEPT_EULA: "Y"
       MSSQL_AGENT_ENABLED: "true"
-
