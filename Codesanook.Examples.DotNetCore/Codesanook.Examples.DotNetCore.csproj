@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SQL\log\**" />
+    <Compile Remove="SQL\mssql\**" />
+    <EmbeddedResource Remove="SQL\log\**" />
+    <EmbeddedResource Remove="SQL\mssql\**" />
+    <None Remove="SQL\log\**" />
+    <None Remove="SQL\mssql\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Orm\Disposable.cs" />
     <Compile Remove="Orm\EFDbCotext.cs" />
     <Compile Remove="Orm\EFDbFactory.cs" />
@@ -37,6 +46,7 @@
 
   <ItemGroup>
     <Folder Include="Orm\" />
+    <Folder Include="SQL\data\" />
   </ItemGroup>
 
   <ItemGroup>
