@@ -1,6 +1,8 @@
-﻿-- http://hodentekhelp.blogspot.com/2017/05/how-do-you-create-full-text-catalog-to.html
--- https://www.sqlskills.com/blogs/joe/combining-multiple-contains-predicates-sql-server-2012/
+﻿https://www.sqlskills.com/blogs/joe/combining-multiple-contains-predicates-sql-server-2012/
 
+
+-- http://hodentekhelp.blogspot.com/2017/05/how-do-you-create-full-text-catalog-to.html
+-- https://www.sqlskills.com/blogs/joe/combining-multiple-contains-predicates-sql-server-2012/
 
 
 -- install full text search
@@ -25,7 +27,7 @@ https://gist.github.com/avernet/a8a79ba9835056d9456c55441a602184
 */
 
 
-Create FULLTEXT CATALOG AW2008FullTextCatalog
+CREATE FULLTEXT CATALOG AW2008FullTextCatalog
 DROP FULLTEXT CATALOG  AW2008FullTextCatalog  
 
 CREATE FULLTEXT INDEX ON [Production].[ProductDescription] 
@@ -35,4 +37,3 @@ GO
 
 -- check if full text install
 SELECT SERVERPROPERTY('IsFullTextInstalled')
-
