@@ -1,0 +1,41 @@
+{
+    "version": "0.0.1",
+    "name": "codesanook-examples-puppeteer-ie",
+    "description": "Code example for using automated with Puppeteer IE",
+    "scripts": {
+        "test": "./node_modules/.bin/jest --detectOpenHandles",
+        "build": "tsc"
+    },
+    "author": "Codesanook Team",
+    "license": "MIT",
+    "dependencies": {},
+    "devDependencies": {
+        "@types/jest": "^23.3.14",
+        "@types/lodash": "^4.14.118",
+        "@types/moment": "^2.13.0",
+        "@types/moment-timezone": "^0.5.9",
+        "@types/puppeteer": "^1.20.2",
+        "jest": "^24.9.0",
+        "lodash": "^4.17.11",
+        "moment": "^2.22.2",
+        "moment-timezone": "^0.5.23",
+        "path": "^0.12.7",
+        "puppeteer-ie": "^0.5.7",
+        "ts-jest": "^24.1.0",
+        "typescript": "^3.6.4"
+    },
+    "jest": {
+        "transform": {
+            "^.+\\.(js|ts)x?$": "ts-jest"
+        },
+        "testRegex": "(/specs/.*)\\.ts$",
+        "preset": "./jest-preset",
+        "globals": {
+            "ts-jest": {
+                "tsConfig": {
+                    "allowJs": true
+                }
+            }
+        }
+    }
+}
