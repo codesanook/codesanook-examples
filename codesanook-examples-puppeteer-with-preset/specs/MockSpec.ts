@@ -14,9 +14,25 @@ jest.mock('../src/Dependency', () => {
 
 describe('', () => {
     it('test', () => {
-        const moduleService = new ModuleService();
+        // const mockFn = jest.fn().mockImplementation((a) => {
+        //     return {
+        //         val: jest.fn()
+        //     };
+        // });
+        // const element = new mockFn();
+
+        const mockFn = jest.fn<JQuery<HTMLElement>, any[]>(() => {
+            const element: any = {
+                val: jest.fn()
+            };
+            return element as JQuery<HTMLElement>
+        })
+
+        const element = new mockFn();
+        const moduleService = new ModuleService(element);
         moduleService.init();
         expect(Dependency).toHaveBeenCalledTimes(1);
         expect(mockDoSomething).toHaveBeenCalledTimes(1);
+        expect(element.val).toHaveBeenCalledTimes(1);
     })
 });
