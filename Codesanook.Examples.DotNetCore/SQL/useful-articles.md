@@ -1,1 +1,0 @@
-﻿https://www.sqlskills.com/blogs/joe/combining-multiple-contains-predicates-sql-server-2012/
