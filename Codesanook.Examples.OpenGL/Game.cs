@@ -28,6 +28,8 @@ namespace Codesanook.Examples.OpenGL
             GL.Viewport(0, 0, window.Width, window.Height);
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
+            var matrix = Matrix4.CreatePerspectiveFieldOfView(45.0f, window.Width / window.Height, 1.0f, 100.0f);
+            GL.LoadMatrix(ref matrix);
             GL.Ortho(-50.0, 50.0, -50.0, 50.0, -1.0, 1.0);
             GL.MatrixMode(MatrixMode.Modelview);
         }

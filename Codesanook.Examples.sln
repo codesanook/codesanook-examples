@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.161
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A7F45D8F-CF24-4557-AA43-5BF2E39D66FD}"
+	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codesanook.EmailValidation", "CodeSanook.EmailValidation\Codesanook.EmailValidation.csproj", "{3F4F9412-FBA9-45FA-8E21-8232B43E0636}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeSanook.GoogleMarketApi", "CodeSanook.GoogleMarketApi\CodeSanook.GoogleMarketApi.csproj", "{66E8EE9F-1FEA-401E-90F3-722C0B8CB393}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codesanook.Examples.EntityFramework", "CodeSanook.Examples.EntityFramework\Codesanook.Examples.EntityFramework.csproj", "{0459D062-7651-4887-B799-ED3902016981}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codesanook.Examples.NodeFromCLR", "CodeSanook.Examples.NodeFromCLR\Codesanook.Examples.NodeFromCLR.csproj", "{13495863-05F1-43DA-89C9-125344A344BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codesanook.Examples.NLogConfiguration", "Codesanook.Examples.NLogConfiguration\Codesanook.Examples.NLogConfiguration.csproj", "{FCFA77D7-B07F-4249-A1A7-7A4F76A71567}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codesanook.Examples.DotNetCore", "Codesanook.Examples.DotNetCore\Codesanook.Examples.DotNetCore.csproj", "{03A5EE64-22FA-47D6-94B1-B6E83768CF49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codesanook.Examples.AspNetMvc", "Codesanook.Examples.AspNetMvc\Codesanook.Examples.AspNetMvc.csproj", "{E93459A8-4549-40DD-9376-681CEB24AA0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codesanook.Examples.AspNetSignalR", "Codesanook.Examples.AspNetSignalR\Codesanook.Examples.AspNetSignalR.csproj", "{B6270A8F-D2B7-4395-8D54-533D40C4AD65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codesanook.Examples.OpenGL", "Codesanook.Examples.OpenGL\Codesanook.Examples.OpenGL.csproj", "{E32258C7-F934-473A-AC35-ACA46893C463}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F4F9412-FBA9-45FA-8E21-8232B43E0636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F4F9412-FBA9-45FA-8E21-8232B43E0636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F4F9412-FBA9-45FA-8E21-8232B43E0636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F4F9412-FBA9-45FA-8E21-8232B43E0636}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66E8EE9F-1FEA-401E-90F3-722C0B8CB393}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66E8EE9F-1FEA-401E-90F3-722C0B8CB393}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66E8EE9F-1FEA-401E-90F3-722C0B8CB393}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66E8EE9F-1FEA-401E-90F3-722C0B8CB393}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0459D062-7651-4887-B799-ED3902016981}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0459D062-7651-4887-B799-ED3902016981}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0459D062-7651-4887-B799-ED3902016981}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0459D062-7651-4887-B799-ED3902016981}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13495863-05F1-43DA-89C9-125344A344BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13495863-05F1-43DA-89C9-125344A344BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13495863-05F1-43DA-89C9-125344A344BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13495863-05F1-43DA-89C9-125344A344BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCFA77D7-B07F-4249-A1A7-7A4F76A71567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCFA77D7-B07F-4249-A1A7-7A4F76A71567}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCFA77D7-B07F-4249-A1A7-7A4F76A71567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCFA77D7-B07F-4249-A1A7-7A4F76A71567}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03A5EE64-22FA-47D6-94B1-B6E83768CF49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03A5EE64-22FA-47D6-94B1-B6E83768CF49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A5EE64-22FA-47D6-94B1-B6E83768CF49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03A5EE64-22FA-47D6-94B1-B6E83768CF49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E93459A8-4549-40DD-9376-681CEB24AA0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E93459A8-4549-40DD-9376-681CEB24AA0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E93459A8-4549-40DD-9376-681CEB24AA0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E93459A8-4549-40DD-9376-681CEB24AA0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6270A8F-D2B7-4395-8D54-533D40C4AD65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6270A8F-D2B7-4395-8D54-533D40C4AD65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6270A8F-D2B7-4395-8D54-533D40C4AD65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6270A8F-D2B7-4395-8D54-533D40C4AD65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E32258C7-F934-473A-AC35-ACA46893C463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E32258C7-F934-473A-AC35-ACA46893C463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E32258C7-F934-473A-AC35-ACA46893C463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E32258C7-F934-473A-AC35-ACA46893C463}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4CE537B8-7BF9-4C44-B058-C68AF964D2D0}
+	EndGlobalSection
+EndGlobal
