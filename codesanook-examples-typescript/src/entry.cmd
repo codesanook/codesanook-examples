@@ -1,0 +1,1 @@
+PowerShell -Command "& "$(Join-Path -Path $(Get-Location) -ChildPath main.ps1)" 2>&1 | Write-Output"

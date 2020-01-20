@@ -1,0 +1,1 @@
+process.stderr.write('Warning message but wrote to standard error\n');

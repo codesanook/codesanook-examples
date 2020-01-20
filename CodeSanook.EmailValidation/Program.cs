@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Codesanook.EmailValidation
 {
-    //https://www.labnol.org/software/verify-email-address/18220/
-    //https://www.webdigi.co.uk/blog/2009/how-to-check-if-an-email-address-exists-without-sending-an-email/
-    class Program
+    // https://www.labnol.org/software/verify-email-address/18220/
+    // https://www.webdigi.co.uk/blog/2009/how-to-check-if-an-email-address-exists-without-sending-an-email/
+    public class Program
     {
         static void Main(string[] args)
         {
