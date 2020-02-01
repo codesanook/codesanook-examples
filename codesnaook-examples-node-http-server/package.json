@@ -1,0 +1,15 @@
+{
+  "name": "codesnaook-examples-node-http-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start" : "./node_modules/.bin/http-server --port 8080"
+  },
+  "keywords": [],
+  "author": "aaronamm",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^0.12.1"
+  }
+}

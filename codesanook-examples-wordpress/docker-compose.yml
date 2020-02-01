@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - 8080:80
+    links:
+      - mysql
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_NAME: wp-db
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: 12345
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    command:
+      [
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+      ]
+    environment:
+      MYSQL_DATABASE: wp-db
+      MYSQL_ROOT_PASSWORD: 12345
