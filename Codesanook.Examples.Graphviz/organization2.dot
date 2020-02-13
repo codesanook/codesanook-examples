@@ -1,0 +1,19 @@
+
+digraph x {
+  graph [autosize=true]
+  graph [bb="0,0,54,108"];
+
+  node [shape="box", penwidth = 2];
+  
+  dummy[label="", fixedsize="false", width=0, height=0, shape=none];
+  edge [color="#142b30", arrowhead="none", penwidth = 2];
+
+  e -> dummy
+  a -> b 
+  b -> dummy;
+  dummy -> c;
+  c -> d
+
+  {rank=same; a; dummy; b};
+}
+plantuml

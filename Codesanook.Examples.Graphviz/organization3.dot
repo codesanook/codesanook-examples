@@ -1,0 +1,34 @@
+// Inspired by
+//    https://stackoverflow.com/a/7374543/180275
+// https://renenyffenegger.ch/notes/tools/Graphviz/examples/organization-chart 
+
+digraph ORG {
+
+  ranksep=0.2;
+
+  node[shape=box width=2.3 height=0.6 fontname="Arial"];
+
+  CEO     [ label = "Important CEO"      ]
+  CFO     [ label = "Less important CFO" ]
+  HR      [ label = "Human Resources"    ]
+  CxO     [ label = "An unknown CxO"     ]
+
+  staff_1 [ label = "Staff 1"]
+  staff_2 [ label = "Staff 2"]
+  staff_3 [ label = "Staff 3"]
+  staff_4 [ label = "Staff 4"]
+
+  node[shape=none, width=0, height=0, label=""];
+
+  edge[dir=none];
+
+  CEO -> hierarchy_1 -> hierarchy_2 -> hierarchy_3;
+  hierarchy_3 -> hierarchy_4
+
+  {rank=same; CFO -> hierarchy_1 -> HR;}
+  {rank=same; CxO -> hierarchy_2;}
+  {rank=same; staff_1 -> staff_2 -> hierarchy_4 -> staff_3 -> staff_4 }
+
+
+
+}

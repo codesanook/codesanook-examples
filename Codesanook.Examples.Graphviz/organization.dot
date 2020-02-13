@@ -1,0 +1,34 @@
+digraph G {
+  splines = ortho;
+  concentrate = true;
+
+  node [shape="box", penwidth = 2];
+  edge [color="#142b30", arrowhead="vee", penwidth = 2];
+
+  {
+    rank = same
+    "1";
+    "2";
+    "3";
+    "4";
+  }
+
+  "Main Node" -> "1";
+  "Main Node" -> "2";
+  "Main Node" -> "3";
+  "Main Node" -> "4";
+
+  {
+    rank = same
+    "5";
+    "6";
+    "7";
+  }
+
+  "1" -> "5";
+  "1" -> "6";
+  "1" -> "7";
+}
+
+ 
+  

@@ -20,7 +20,7 @@ digraph {
     Foo [label=<
     <table border="0" cellborder="1" cellspacing="0">
     <tr><td><i>Input Foo table</i></td></tr>
-    <tr><td port="1">🔑one int</td></tr>
+    <tr><td port="1">one int</td></tr>
     <tr><td port="2">two</td></tr>
     <tr><td port="3">three</td></tr>
     <tr><td port="4">four</td></tr>
