@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Book Category="web">
+  <Title Lang="en">XQuery Kick Start</Title>
+  <Author>James McGovern</Author>
+  <Year>2003</Year>
+  <Price>49.99</Price>
+</Book>

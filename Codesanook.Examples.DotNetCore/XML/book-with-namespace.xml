@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<cs:Book xmlns:cs="https://www.codesanook.com" xmlns:c="https://www.codesanook.com/common" Category="web" >
+  <c:Title Lang="en">XQuery Kick Start</c:Title>
+  <c:Author>James McGovern</c:Author>
+  <c:Year>2003</c:Year>
+  <c:Price>49.99</c:Price>
+</cs:Book>
