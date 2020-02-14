@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  jekyll:
+    image: jekyll/jekyll
+    container_name: static-site
+    environment:
+      - JEKYLL_VERSION=4.0.0
+    # force_polling makes the linux box watch for any changes to files, then it will regenerate static files
+    # live reload gets the browser to automatically refresh when changes happen to files
+    command: jekyll serve --force_polling --livereload
+    ports:
+      - 4000:4000
+      - 35729:35729 # port for live reload
+    volumes:
+      - ./:/srv/jekyll
