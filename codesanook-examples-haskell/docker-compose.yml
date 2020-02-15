@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  haskell:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: haskell-cocker
+    image: haskell-ubuntu:latest
+    container_name: haskell
+    volumes: 
+      - .:/code
