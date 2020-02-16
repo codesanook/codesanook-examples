@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Codesanook.Examples.AspNetMvc</RootNamespace>
     <AssemblyName>Codesanook.Examples.AspNetMvc</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,19 +46,371 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ant-launcher-1.7.1">
+      <HintPath>..\ikvm\ant-launcher-1.7.1.dll</HintPath>
+    </Reference>
+    <Reference Include="antlr-2.7.5">
+      <HintPath>..\ikvm\antlr-2.7.5.dll</HintPath>
+    </Reference>
+    <Reference Include="aopalliance-1.0">
+      <HintPath>..\ikvm\aopalliance-1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="apache-ant-1.7.0">
+      <HintPath>..\ikvm\apache-ant-1.7.0.dll</HintPath>
+    </Reference>
+    <Reference Include="avalon-framework-impl-4.2.0">
+      <HintPath>..\ikvm\avalon-framework-impl-4.2.0.dll</HintPath>
+    </Reference>
+    <Reference Include="barbecue-1.5-beta1">
+      <HintPath>..\ikvm\barbecue-1.5-beta1.dll</HintPath>
+    </Reference>
+    <Reference Include="barcode4j-2.1">
+      <HintPath>..\ikvm\barcode4j-2.1.dll</HintPath>
+    </Reference>
+    <Reference Include="batik-anim-1.8">
+      <HintPath>..\ikvm\batik-anim-1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="batik-awt-util-1.8">
+      <HintPath>..\ikvm\batik-awt-util-1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="batik-bridge-1.8">
+      <HintPath>..\ikvm\batik-bridge-1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="batik-css-1.8">
+      <HintPath>..\ikvm\batik-css-1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="batik-dom-1.8">
+      <HintPath>..\ikvm\batik-dom-1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="batik-ext-1.8">
+      <HintPath>..\ikvm\batik-ext-1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="batik-gvt-1.8">
+      <HintPath>..\ikvm\batik-gvt-1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="batik-parser-1.8">
+      <HintPath>..\ikvm\batik-parser-1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="batik-script-1.8">
+      <HintPath>..\ikvm\batik-script-1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="batik-svg-dom-1.8">
+      <HintPath>..\ikvm\batik-svg-dom-1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="batik-svggen-1.8">
+      <HintPath>..\ikvm\batik-svggen-1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="batik-util-1.8">
+      <HintPath>..\ikvm\batik-util-1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="batik-xml-1.8">
+      <HintPath>..\ikvm\batik-xml-1.8.dll</HintPath>
+    </Reference>
+    <Reference Include="bcmail-jdk14-1.38">
+      <HintPath>..\ikvm\bcmail-jdk14-1.38.dll</HintPath>
+    </Reference>
+    <Reference Include="bcprov-jdk14-1.38">
+      <HintPath>..\ikvm\bcprov-jdk14-1.38.dll</HintPath>
+    </Reference>
+    <Reference Include="bctsp-jdk14-1.38">
+      <HintPath>..\ikvm\bctsp-jdk14-1.38.dll</HintPath>
+    </Reference>
+    <Reference Include="bsh-2.0b4">
+      <HintPath>..\ikvm\bsh-2.0b4.dll</HintPath>
+    </Reference>
+    <Reference Include="castor-core-1.3.3">
+      <HintPath>..\ikvm\castor-core-1.3.3.dll</HintPath>
+    </Reference>
+    <Reference Include="castor-xml-1.3.3">
+      <HintPath>..\ikvm\castor-xml-1.3.3.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-beanutils-1.9.0">
+      <HintPath>..\ikvm\commons-beanutils-1.9.0.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-cli-1.0">
+      <HintPath>..\ikvm\commons-cli-1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-codec-1.5">
+      <HintPath>..\ikvm\commons-codec-1.5.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-collections-3.2.2">
+      <HintPath>..\ikvm\commons-collections-3.2.2.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-dbcp-1.2">
+      <HintPath>..\ikvm\commons-dbcp-1.2.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-digester-2.1">
+      <HintPath>..\ikvm\commons-digester-2.1.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-discovery-0.2">
+      <HintPath>..\ikvm\commons-discovery-0.2.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-javaflow-1209105">
+      <HintPath>..\ikvm\commons-javaflow-1209105.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-lang-2.6">
+      <HintPath>..\ikvm\commons-lang-2.6.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-logging-1.1.1">
+      <HintPath>..\ikvm\commons-logging-1.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-math-1.0">
+      <HintPath>..\ikvm\commons-math-1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-pool-1.3">
+      <HintPath>..\ikvm\commons-pool-1.3.dll</HintPath>
+    </Reference>
+    <Reference Include="commons-vfs-1.0">
+      <HintPath>..\ikvm\commons-vfs-1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="core-2.3.0">
+      <HintPath>..\ikvm\core-2.3.0.dll</HintPath>
+    </Reference>
+    <Reference Include="dom4j-1.6.1">
+      <HintPath>..\ikvm\dom4j-1.6.1.dll</HintPath>
+    </Reference>
+    <Reference Include="ecj-4.3.1">
+      <HintPath>..\ikvm\ecj-4.3.1.dll</HintPath>
+    </Reference>
+    <Reference Include="eigenbase-properties-1.1.0.10924">
+      <HintPath>..\ikvm\eigenbase-properties-1.1.0.10924.dll</HintPath>
+    </Reference>
+    <Reference Include="eigenbase-resgen-1.3.0.11873">
+      <HintPath>..\ikvm\eigenbase-resgen-1.3.0.11873.dll</HintPath>
+    </Reference>
+    <Reference Include="eigenbase-xom-1.3.0.11999">
+      <HintPath>..\ikvm\eigenbase-xom-1.3.0.11999.dll</HintPath>
+    </Reference>
+    <Reference Include="groovy-all-2.4.5">
+      <HintPath>..\ikvm\groovy-all-2.4.5.dll</HintPath>
+    </Reference>
+    <Reference Include="hibernate-core-3.3.1.GA">
+      <HintPath>..\ikvm\hibernate-core-3.3.1.GA.dll</HintPath>
+    </Reference>
+    <Reference Include="httpclient-4.3.4">
+      <HintPath>..\ikvm\httpclient-4.3.4.dll</HintPath>
+    </Reference>
+    <Reference Include="httpcore-4.3.2">
+      <HintPath>..\ikvm\httpcore-4.3.2.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\ikvm\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="icu4j-57.1">
+      <HintPath>..\ikvm\icu4j-57.1.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.AWT.WinForms">
+      <HintPath>..\ikvm\IKVM.AWT.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Beans">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Beans.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Charsets">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Charsets.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Cldrdata">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Cldrdata.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Corba">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Corba.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Core">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Jdbc">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Jdbc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Localedata">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Localedata.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Management">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Media">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Media.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Misc">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Misc.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Naming">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Naming.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Nashorn">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Nashorn.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Remoting">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Remoting.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Security">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.SwingAWT">
+      <HintPath>..\ikvm\IKVM.OpenJDK.SwingAWT.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Text">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Tools">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.Util">
+      <HintPath>..\ikvm\IKVM.OpenJDK.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.API">
+      <HintPath>..\ikvm\IKVM.OpenJDK.XML.API.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Bind">
+      <HintPath>..\ikvm\IKVM.OpenJDK.XML.Bind.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Crypto">
+      <HintPath>..\ikvm\IKVM.OpenJDK.XML.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Parse">
+      <HintPath>..\ikvm\IKVM.OpenJDK.XML.Parse.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.Transform">
+      <HintPath>..\ikvm\IKVM.OpenJDK.XML.Transform.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.WebServices">
+      <HintPath>..\ikvm\IKVM.OpenJDK.XML.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.OpenJDK.XML.XPath">
+      <HintPath>..\ikvm\IKVM.OpenJDK.XML.XPath.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Reflection">
+      <HintPath>..\ikvm\IKVM.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime">
+      <HintPath>..\ikvm\IKVM.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="IKVM.Runtime.JNI">
+      <HintPath>..\ikvm\IKVM.Runtime.JNI.dll</HintPath>
+    </Reference>
+    <Reference Include="itext-2.1.7.js5">
+      <HintPath>..\ikvm\itext-2.1.7.js5.dll</HintPath>
+    </Reference>
+    <Reference Include="jackson-annotations-2.1.4">
+      <HintPath>..\ikvm\jackson-annotations-2.1.4.dll</HintPath>
+    </Reference>
+    <Reference Include="jackson-core-2.1.4">
+      <HintPath>..\ikvm\jackson-core-2.1.4.dll</HintPath>
+    </Reference>
+    <Reference Include="jackson-databind-2.1.4">
+      <HintPath>..\ikvm\jackson-databind-2.1.4.dll</HintPath>
+    </Reference>
+    <Reference Include="jakarta-regexp-1.4">
+      <HintPath>..\ikvm\jakarta-regexp-1.4.dll</HintPath>
+    </Reference>
+    <Reference Include="jasperreports-6.3.0">
+      <HintPath>..\ikvm\jasperreports-6.3.0.dll</HintPath>
+    </Reference>
+    <Reference Include="jasperreports-fonts-6.3.0">
+      <HintPath>..\ikvm\jasperreports-fonts-6.3.0.dll</HintPath>
+    </Reference>
+    <Reference Include="javacup-0.10k">
+      <HintPath>..\ikvm\javacup-0.10k.dll</HintPath>
+    </Reference>
+    <Reference Include="javax.inject-1">
+      <HintPath>..\ikvm\javax.inject-1.dll</HintPath>
+    </Reference>
+    <Reference Include="javax.persistence_2.0.0">
+      <HintPath>..\ikvm\javax.persistence_2.0.0.dll</HintPath>
+    </Reference>
+    <Reference Include="jaxen-1.1.4">
+      <HintPath>..\ikvm\jaxen-1.1.4.dll</HintPath>
+    </Reference>
+    <Reference Include="jcharts-0.6.0">
+      <HintPath>..\ikvm\jcharts-0.6.0.dll</HintPath>
+    </Reference>
+    <Reference Include="jcommon-1.0.23">
+      <HintPath>..\ikvm\jcommon-1.0.23.dll</HintPath>
+    </Reference>
+    <Reference Include="jdom-1.0">
+      <HintPath>..\ikvm\jdom-1.0.dll</HintPath>
+    </Reference>
+    <Reference Include="jfreechart-1.0.19">
+      <HintPath>..\ikvm\jfreechart-1.0.19.dll</HintPath>
+    </Reference>
+    <Reference Include="jtds-1.2.7">
+      <HintPath>..\ikvm\jtds-1.2.7.dll</HintPath>
+    </Reference>
+    <Reference Include="jxl-2.6.12">
+      <HintPath>..\ikvm\jxl-2.6.12.dll</HintPath>
+    </Reference>
+    <Reference Include="log4j-1.2.17">
+      <HintPath>..\ikvm\log4j-1.2.17.dll</HintPath>
+    </Reference>
+    <Reference Include="lucene-analyzers-common-4.5.1">
+      <HintPath>..\ikvm\lucene-analyzers-common-4.5.1.dll</HintPath>
+    </Reference>
+    <Reference Include="lucene-core-4.5.1">
+      <HintPath>..\ikvm\lucene-core-4.5.1.dll</HintPath>
+    </Reference>
+    <Reference Include="lucene-queries-4.5.1">
+      <HintPath>..\ikvm\lucene-queries-4.5.1.dll</HintPath>
+    </Reference>
+    <Reference Include="lucene-queryparser-4.5.1">
+      <HintPath>..\ikvm\lucene-queryparser-4.5.1.dll</HintPath>
+    </Reference>
+    <Reference Include="lucene-sandbox-4.5.1">
+      <HintPath>..\ikvm\lucene-sandbox-4.5.1.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="mondrian-3.1.1.12687-Jaspersoft">
+      <HintPath>..\ikvm\mondrian-3.1.1.12687-Jaspersoft.dll</HintPath>
+    </Reference>
+    <Reference Include="ojdbc14">
+      <HintPath>..\ikvm\ojdbc14.dll</HintPath>
+    </Reference>
+    <Reference Include="olap4j-0.9.7.309-JS-3">
+      <HintPath>..\ikvm\olap4j-0.9.7.309-JS-3.dll</HintPath>
+    </Reference>
+    <Reference Include="olap4j-1.2.0">
+      <HintPath>..\ikvm\olap4j-1.2.0.dll</HintPath>
+    </Reference>
+    <Reference Include="poi-3.10-FINAL-20140208">
+      <HintPath>..\ikvm\poi-3.10-FINAL-20140208.dll</HintPath>
+    </Reference>
+    <Reference Include="poi-ooxml-3.10-FINAL-20140208">
+      <HintPath>..\ikvm\poi-ooxml-3.10-FINAL-20140208.dll</HintPath>
+    </Reference>
+    <Reference Include="poi-ooxml-schemas-3.10-FINAL-20140208">
+      <HintPath>..\ikvm\poi-ooxml-schemas-3.10-FINAL-20140208.dll</HintPath>
+    </Reference>
+    <Reference Include="rhino-1.7.6">
+      <HintPath>..\ikvm\rhino-1.7.6.dll</HintPath>
+    </Reference>
+    <Reference Include="serializer-2.7.2">
+      <HintPath>..\ikvm\serializer-2.7.2.dll</HintPath>
+    </Reference>
+    <Reference Include="servlet-api">
+      <HintPath>..\ikvm\servlet-api.dll</HintPath>
+    </Reference>
+    <Reference Include="slf4j-api-1.5.8">
+      <HintPath>..\ikvm\slf4j-api-1.5.8.dll</HintPath>
+    </Reference>
+    <Reference Include="spring-beans-2.5">
+      <HintPath>..\ikvm\spring-beans-2.5.dll</HintPath>
+    </Reference>
+    <Reference Include="spring-core-2.5">
+      <HintPath>..\ikvm\spring-core-2.5.dll</HintPath>
+    </Reference>
+    <Reference Include="stax-1.2.0">
+      <HintPath>..\ikvm\stax-1.2.0.dll</HintPath>
+    </Reference>
+    <Reference Include="stax-api-1.0-2">
+      <HintPath>..\ikvm\stax-api-1.0-2.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -102,6 +455,10 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="velocity-1.7">
+      <HintPath>..\ikvm\velocity-1.7.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -109,6 +466,33 @@
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="xalan-2.7.2">
+      <HintPath>..\ikvm\xalan-2.7.2.dll</HintPath>
+    </Reference>
+    <Reference Include="xercesImpl-2.6.2">
+      <HintPath>..\ikvm\xercesImpl-2.6.2.dll</HintPath>
+    </Reference>
+    <Reference Include="xml-apis-1.3.02">
+      <HintPath>..\ikvm\xml-apis-1.3.02.dll</HintPath>
+    </Reference>
+    <Reference Include="xml-apis-ext-1.3.04">
+      <HintPath>..\ikvm\xml-apis-ext-1.3.04.dll</HintPath>
+    </Reference>
+    <Reference Include="xmlbeans-2.6.0">
+      <HintPath>..\ikvm\xmlbeans-2.6.0.dll</HintPath>
+    </Reference>
+    <Reference Include="xmlgraphics-commons-2.0">
+      <HintPath>..\ikvm\xmlgraphics-commons-2.0.dll</HintPath>
+    </Reference>
+    <Reference Include="xmlParserAPIs-2.6.2">
+      <HintPath>..\ikvm\xmlParserAPIs-2.6.2.dll</HintPath>
+    </Reference>
+    <Reference Include="xmpcore-5.1.1">
+      <HintPath>..\ikvm\xmpcore-5.1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="xom-1.0">
+      <HintPath>..\ikvm\xom-1.0.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -121,10 +505,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\ValidationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Reports\JtdsConnection.cs" />
+    <Compile Include="Reports\SqlConnectionJtds.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -134,23 +521,22 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="jQueryValidation.md" />
+    <Content Include="Reports\northwind-db.sql" />
     <Content Include="webpack.config.js" />
     <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Reports\JasperReports\NOW_01.jasper" />
+    <Content Include="Reports\JasperReports\NOW_01.jrxml" />
+    <Content Include="Reports\README.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />
     <Folder Include="src\sass\" />
+    <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="package.json" />

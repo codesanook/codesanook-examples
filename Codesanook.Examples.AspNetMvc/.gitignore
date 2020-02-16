@@ -1,4 +1,4 @@
-﻿node_modules
+node_modules
 Scripts/**/*.js
 Content/**/*.css
 src/**/*.js
@@ -12,3 +12,6 @@ Content/**/*.woff2
 
 bin
 debug
+
+# Exclude exported PDF reports
+*.pdf
