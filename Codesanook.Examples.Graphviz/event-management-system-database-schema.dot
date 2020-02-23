@@ -1,0 +1,111 @@
+//comment 
+/*
+comment
+*/
+/*
+https://spin.atomicobject.com/2017/11/15/table-rel-diagrams-graphviz/
+https://mamchenkov.net/wordpress/2015/08/20/graphviz-dot-erds-network-diagrams/
+
+HTML like style
+https://www.graphviz.org/doc/info/shapes.html
+*/
+digraph {
+    label="Event management system database schema";
+    labelloc=top;
+    graph [pad="0.5", nodesep="0.5", ranksep="2"];
+    node [shape=plain]
+    rankdir=LR;
+    // One-to-many relation (from one, to many)
+    //Arrow https://www.graphviz.org/doc/info/arrows.html
+    edge [arrowhead=crow, arrowtail=crow]
+
+    Event [
+        shape=plaintext
+        label=<
+            <table border='0' cellborder='1' cellspacing='0'>
+                <tr><td>Event</td></tr>
+                <tr>
+                    <td>
+                        <table cellspacing='0' cellborder='0' border='0'>
+                            <tr><td align='left' port='Id'>Id</td></tr>
+                            <tr><td align='left' port=''>Name</td></tr>
+                            <tr><td align='left'>Description</td></tr>
+                            <tr><td align='left'>Location</td></tr>
+                            <tr><td align='left'>StartDateTime</td></tr>
+                            <tr><td align='left'>EndDateTime</td></tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        >];
+
+    EventBooking [
+        shape=plaintext
+        label=<
+            <table border='0' cellborder='1' cellspacing='0'>
+                <tr><td>EventBooking</td></tr>
+                <tr>
+                    <td>
+                        <table cellspacing='0' cellborder='0' border='0'>
+                            <tr><td align='left' port='z'>Id</td></tr>
+                            <tr><td align='left' port='EventId'>EventId</td></tr>
+                            <tr><td align='left' port='z'>BookingNumber</td></tr>
+                            <tr><td align='left' port='z'>User</td></tr>
+                            <tr><td align='left'>BookingDateTime</td></tr>
+                            <tr><td align='left'>TicketCount</td></tr>
+                            <tr><td align='left'>EventStatus</td></tr>
+                            <tr><td align='left'>PaidDateTime</td></tr>
+                            <tr><td align='left'>PaymentConfirmationAttachement</td></tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        >];
+
+    EventAttendee [
+        shape=plaintext
+        label=<
+            <table border='0' cellborder='1' cellspacing='0'>
+                <tr><td>EventAttendee</td></tr>
+                <tr>
+                    <td>
+                        <table cellspacing='0' cellborder='0' border='0'>
+                            <tr><td align='left'>Id</td></tr>
+                            <tr><td align='left' port='EventBookingId'>EventBookingId</td></tr>
+                            <tr><td align='left'>First name</td></tr>
+                            <tr><td align='left'>Last name</td></tr>
+                            <tr><td align='left'>Email</td></tr>
+                            <tr><td align='left'>Mobile phone number</td></tr>
+                            <tr><td align='left'>Organization name</td></tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        >];
+
+    User [
+        shape=plaintext
+        label=<
+            <table border='0' cellborder='1' cellspacing='0'>
+                <tr><td>User</td></tr>
+                <tr>
+                    <td>
+                        <table cellspacing='0' cellborder='0' border='0'>
+                            <tr><td align='left' port='Id'>Id</td></tr>
+                            <tr><td align='left'>Username</td></tr>
+                            <tr><td align='left'>Email</td></tr>
+                            <tr><td align='left'>Mobile phone number</td></tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        >];
+
+    // https://stackoverflow.com/a/17742184/1872200
+    // https://www.graphviz.org/doc/info/attrs.html#k:dirType
+
+    // child -> parent
+    EventBooking:EventId -> Event:Id [dir="back"]
+    EventBooking:UserId -> User:Id [dir="back"]
+    EventAttendee:EventBookingId -> EventBooking:Id [dir="back"]
+}
