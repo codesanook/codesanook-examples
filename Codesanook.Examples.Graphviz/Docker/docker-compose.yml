@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  db:
+    build:
+      context: .
+      dockerfile: db.Dockerfile
+    # If you specify image as well as build,
+    # then Compose names the built image with the webapp
+    # and optional tag specified in image:
+    # This results in an image named webapp and tagged tag, built from ./dir.
+    image: event-db:latest
+    # https://docs.docker.com/compose/compose-file/#container_name
+    container_name: event-db
+    ports:
+      - "1444:1433"
+    environment:
+      SA_PASSWORD: "${SA_PASSWORD:?err}"
+      ACCEPT_EULA: "Y"
