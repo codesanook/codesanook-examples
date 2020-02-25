@@ -29,31 +29,26 @@ namespace Codesanook.Examples.Sql.DatabaseConnections
         {
             // User Windows Authentication log in as a recommended log in
             const string connectionString = "Server=localhost;Database=codesanook;Trusted_Connection=True;";
-            using (var connection = new SqlConnection(connectionString))
+            using var connection = new SqlConnection(connectionString);
+            var command = connection.CreateCommand();
+            command.CommandText = "SELECT * FROM Users WHERE Id = @userId";
+
+            const int userIdParameterValue = 1;
+            var parameter = new SqlParameter()
             {
-                var command = connection.CreateCommand();
-                command.CommandText = "SELECT * FROM Users WHERE Id = @userId";
-
-                const int userIdParameterValue = 1;
-                var parameter = new SqlParameter()
-                {
-                    ParameterName = "userId",
-                    Value = userIdParameterValue,
-                    DbType = DbType.Int32
-                };
-                command.Parameters.Add(parameter);
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        var userId = reader.GetInt32(reader.GetOrdinal("Id"));
-                        var userFirstName = reader.GetString(reader.GetOrdinal("FirstName"));
-                        output.WriteLine("\t{0}\t{1}", userId, userFirstName);
-
-                        Assert.Equal(1, userId);
-                    }
-                }
+                ParameterName = "userId",
+                Value = userIdParameterValue,
+                DbType = DbType.Int32
+            };
+            command.Parameters.Add(parameter);
+            connection.Open();
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                var userId = reader.GetInt32(reader.GetOrdinal("Id"));
+                var userFirstName = reader.GetString(reader.GetOrdinal("FirstName"));
+                output.WriteLine("\t{0}\t{1}", userId, userFirstName);
+                Assert.Equal(1, userId);
             }
         }
     }

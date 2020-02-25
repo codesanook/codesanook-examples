@@ -5,10 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SQL\data\**" />
     <Compile Remove="SQL\log\**" />
     <Compile Remove="SQL\mssql\**" />
+    <EmbeddedResource Remove="SQL\data\**" />
     <EmbeddedResource Remove="SQL\log\**" />
     <EmbeddedResource Remove="SQL\mssql\**" />
+    <None Remove="SQL\data\**" />
     <None Remove="SQL\log\**" />
     <None Remove="SQL\mssql\**" />
   </ItemGroup>
@@ -23,6 +26,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
@@ -55,7 +60,6 @@
 
   <ItemGroup>
     <Folder Include="Orm\" />
-    <Folder Include="SQL\data\" />
   </ItemGroup>
 
   <ItemGroup>
