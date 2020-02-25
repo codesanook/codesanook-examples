@@ -33,6 +33,7 @@ digraph {
                             <tr><td align='left'>Location</td></tr>
                             <tr><td align='left'>StartDateTime</td></tr>
                             <tr><td align='left'>EndDateTime</td></tr>
+                            <tr><td align='left'>MaximumNumberOfAttendees</td></tr>
                         </table>
                     </td>
                 </tr>
@@ -49,10 +50,9 @@ digraph {
                         <table cellspacing='0' cellborder='0' border='0'>
                             <tr><td align='left' port='z'>Id</td></tr>
                             <tr><td align='left' port='EventId'>EventId</td></tr>
-                            <tr><td align='left' port='z'>BookingNumber</td></tr>
-                            <tr><td align='left' port='z'>User</td></tr>
+                            <tr><td align='left' port='z'>UserId</td></tr>
                             <tr><td align='left'>BookingDateTime</td></tr>
-                            <tr><td align='left'>TicketCount</td></tr>
+                            <tr><td align='left'>NumberOfTicket</td></tr>
                             <tr><td align='left'>EventStatus</td></tr>
                             <tr><td align='left'>PaidDateTime</td></tr>
                             <tr><td align='left'>PaymentConfirmationAttachement</td></tr>
@@ -72,11 +72,11 @@ digraph {
                         <table cellspacing='0' cellborder='0' border='0'>
                             <tr><td align='left'>Id</td></tr>
                             <tr><td align='left' port='EventBookingId'>EventBookingId</td></tr>
-                            <tr><td align='left'>First name</td></tr>
-                            <tr><td align='left'>Last name</td></tr>
+                            <tr><td align='left'>FirstName</td></tr>
+                            <tr><td align='left'>LastName</td></tr>
                             <tr><td align='left'>Email</td></tr>
-                            <tr><td align='left'>Mobile phone number</td></tr>
-                            <tr><td align='left'>Organization name</td></tr>
+                            <tr><td align='left'>MobilePhoneNumber</td></tr>
+                            <tr><td align='left'>OrganizationName</td></tr>
                         </table>
                     </td>
                 </tr>
@@ -94,7 +94,7 @@ digraph {
                             <tr><td align='left' port='Id'>Id</td></tr>
                             <tr><td align='left'>Username</td></tr>
                             <tr><td align='left'>Email</td></tr>
-                            <tr><td align='left'>Mobile phone number</td></tr>
+                            <tr><td align='left'>MobilePhoneNumber</td></tr>
                         </table>
                     </td>
                 </tr>
