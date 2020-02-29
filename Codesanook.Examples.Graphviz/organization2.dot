@@ -16,4 +16,3 @@ digraph x {
 
   {rank=same; a; dummy; b};
 }
-plantuml

@@ -1,0 +1,91 @@
+﻿<html>
+
+    <head>
+        <title>Wallchart Validation Suite</title>
+        <meta name="version" content="1.0"/>
+        <meta content="text/html; charset=ISO-8859-1" http-equiv="Content-type" />
+        <meta name="projectHome" content="http://cleancode.sourceforge.net/" />
+        <meta name="copyright" content="(c) 2011 Michael Sorens" />
+    </head>
+    <body>
+    <p lang="en2-th"/>
+    <div class=" test xx yy"/>
+        <div>
+            <table id="TestTable" border="1">
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Simple row</td>
+                    <td>Simple value</td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>
+                            <b>Complex </b>
+                            <i>row</i>
+                        </span>
+                    </td>
+                    <td>
+                        <span>
+                            <a href="some-url">my link</a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <h3>
+                <a name="sectionA">Section A</a>
+            </h3>
+            <div id="content_123k412349123jf3">
+                <div id="textSection">Div containing spans and paragaphs:
+                    <span customAttr='one two'>span before first</span>
+                    <b>bold text</b>
+                    <p class="sales first">First paragraph on sales.</p>
+                    <p class="sales">Second paragraph on sales.</p>
+                    <p name="mypara">Third Paragraph: non-sales.</p>
+                    <p class="sales">Fourth paragraph: sales.</p>
+                    <span>span between 4th and 5th</span>
+                    <p class="sales last">Fifth and last paragraph on sales.</p>
+                </div>
+                <div id="stuff">
+                    <font color="green">Green</font>
+                    <span>-and-</span>
+                    <font color='blue'>Blue</font>
+                </div>
+            </div>
+        </div>
+
+        <h3>
+            <a name="sectionB" lang="fr-ch">Section B</a>
+        </h3>
+        <form>
+            <input name="username" type="text" />
+            <input name="password" type="password" />
+            <br />
+            <input name="continue" type="submit" value="Login" />
+            <input id='disabledItem' name="continue" type="button" value="Clear" />
+            <input name="verbose" type="checkbox" checked="checked" />
+Verbose
+        </form>
+
+        <ul>
+            <li class="bird">petrel</li>
+            <li class="mammal">platypus</li>
+            <li class="bird">albatross</li>
+            <li id="123" class="bird">shearwater</li>
+        </ul>
+
+        <img src="previous.gif" alt="previous page" />
+        <img src="next.gif" alt="next page" />
+        <a href="stuff.htm">Next page</a>
+        <script language='javascript'>
+        document.getElementById('disabledItem').disabled = true;
+        </script>
+    </body>
+
+</html>
