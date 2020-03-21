@@ -1,0 +1,26 @@
+digraph {
+    label="Orchard menu flow";
+    labelloc=top;
+    node [shape=box]
+
+    // Create and style nodes
+    menu_widget_part_driver [label="MenuWidgetPartDriver"];
+    part_menu_widget [label="Part.MenuWidget.cshtml"];
+    menu_cshtml [label="Menu.cshtml"];
+    menu_item [label="MenuItem.cshtml"];
+
+    display_children [label="@DisplayChildren()"];
+    menu_item_link [label="MenuItemLink.cshtml"];
+    has_children[shape="diamond" label="Has children?"];
+
+
+    subgraph aa{
+        menu_widget_part_driver ->  part_menu_widget [label="Model.Menu as MenuShape"];
+        part_menu_widget ->  menu_cshtml [label="Model as MenuShape"];
+        menu_cshtml -> display_children [label="Model as MenuShape"];
+        display_children -> menu_item [label="Each menu item"];
+        menu_item -> has_children; 
+        menu_item -> menu_item_link [label="Menu item to display"]; 
+        has_children -> display_children;
+    }
+}
