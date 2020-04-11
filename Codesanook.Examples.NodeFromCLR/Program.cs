@@ -1,8 +1,8 @@
-﻿using EdgeJs;
+using EdgeJs;
 using System;
 using System.Threading.Tasks;
 
-namespace Codesanook.Examples.NodeFromCLR
+namespace Codesanook.Examples.NodeFromClr
 {
     public class Program
     {

@@ -291,3 +291,5 @@ dist
 
 #output of JScript.NET example
 program.exe
+
+email-config.yml
