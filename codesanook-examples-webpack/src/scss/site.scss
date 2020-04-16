@@ -1,7 +1,2 @@
-@import "~bootstrap/scss/bootstrap";
-@import "~font-awesome/scss/font-awesome";
-
-// Custom style sheet here
-.my-custom-header{
-    color:#F00
-}
+@import './external';
+@import './custom';

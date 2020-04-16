@@ -13,7 +13,7 @@ module.exports = {
     },
     resolve: {
         // https://github.com/webpack/webpack-dev-server/issues/720#issuecomment-268470989
-        extensions: ['.scss']
+        extensions: ['.scss'],
     },
     devtool: 'source-map',
     module: {
@@ -27,8 +27,8 @@ module.exports = {
                     {
                         loader: 'css-loader', // Translates CSS into CommonJS modules
                         options: {
-                            sourceMap: true
-                        }
+                            sourceMap: true,
+                        },
                     },
                     {
                         loader: 'postcss-loader', // Run post css actions
@@ -37,11 +37,11 @@ module.exports = {
                                 // post css plugins, can be exported to postcss.config.js
                                 return [
                                     require('precss'),
-                                    require('autoprefixer')
+                                    require('autoprefixer'),
                                 ];
                             },
-                            sourceMap: true
-                        }
+                            sourceMap: true,
+                        },
                     },
                     {
                         loader: 'resolve-url-loader',
@@ -49,11 +49,11 @@ module.exports = {
                     {
                         loader: 'sass-loader', // Compiles Sass to CSS, using node-sass by default
                         options: {
-                            sourceMap: true
-                        }
-                    }
+                            sourceMap: true,
+                        },
+                    },
                 ],
-                exclude: /node_modules/
+                exclude: /node_modules/,
             },
             {
                 test: /\.(png|jpe?g|gif|svg|eot|ttf|woff2?)$/,
@@ -62,16 +62,16 @@ module.exports = {
                         loader: 'file-loader',
                         options: {
                             name: '[name].[ext]',
-                            outputPath: '.' //relative to output
-                        }
-                    }
-                ]
-            }
-        ]
+                            outputPath: '.', //relative to output
+                        },
+                    },
+                ],
+            },
+        ],
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: './[name].css' // relative to output
+            filename: './[name].css', // relative to output
         }),
     ],
 
@@ -79,5 +79,5 @@ module.exports = {
         contentBase: path.join(__dirname, 'public'),
         compress: false,
         port: 8080,
-    }
+    },
 };
