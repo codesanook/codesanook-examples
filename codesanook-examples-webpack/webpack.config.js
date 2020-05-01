@@ -1,8 +1,9 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const siteFile = [__dirname, 'src', 'scss', 'site'];
-const outputPath = [__dirname, 'public', 'css'];
+const siteFile = [__dirname, 'src', 'site'];
+const outputPath = [__dirname, 'dist'];
 
 module.exports = {
     entry: {
@@ -13,7 +14,8 @@ module.exports = {
     },
     resolve: {
         // https://github.com/webpack/webpack-dev-server/issues/720#issuecomment-268470989
-        extensions: ['.scss'],
+        // https://github.com/webpack/webpack-dev-server/issues/2393
+        extensions: ['.js', '.scss'],
     },
     devtool: 'source-map',
     module: {
@@ -23,6 +25,10 @@ module.exports = {
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            // https://github.com/webpack-contrib/mini-css-extract-plugin#hot-module-reloading-hmr
+                            hmr: true,
+                        },
                     },
                     {
                         loader: 'css-loader', // Translates CSS into CommonJS modules
@@ -73,11 +79,13 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: './[name].css', // relative to output
         }),
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+        }),
     ],
 
     devServer: {
-        contentBase: path.join(__dirname, 'public'),
-        compress: false,
+        contentBase: path.join(__dirname, 'dist'),
         port: 8080,
     },
 };
