@@ -2,8 +2,10 @@
     "name": "codesanook-examples-react",
     "version": "1.0.0",
     "scripts": {
-        "build": "webpack --mode=development --target=node",
-        "start": "node ./dist/counter-bundle.js"
+        "build": "webpack --mode=development",
+        "build-node": "webpack --mode=development --target=node",
+        "start": "node ./dist/counter-bundle.js",
+        "serve": "webpack-dev-server"
     },
     "keywords": [],
     "author": "Codesanook team",
@@ -16,6 +18,9 @@
         "@types/react": "^16.9.34",
         "@types/react-dom": "^16.9.7",
         "babel-loader": "^8.1.0",
+        "css-loader": "^3.5.3",
+        "html-webpack-plugin": "^4.3.0",
+        "style-loader": "^1.2.1",
         "typescript": "^3.8.3",
         "webpack": "^4.43.0",
         "webpack-cli": "^3.3.11",

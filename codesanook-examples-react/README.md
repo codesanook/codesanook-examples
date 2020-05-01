@@ -1,3 +1,3 @@
 ### To start the example code
 
-> yarn run build; yarn run start
+> yarn run build-node; yarn run start
