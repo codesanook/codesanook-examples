@@ -1,10 +1,10 @@
-﻿using Codesanook.Examples.CSharp.Models;
+using Codesanook.Examples.CSharp.Models;
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
 using Xunit;
 
-namespace Codesanook.Examples.CSharp.Linqs
+namespace Codesanook.Examples.CSharp.Linq
 {
     public class ExpressionTree
     {
@@ -22,14 +22,12 @@ namespace Codesanook.Examples.CSharp.Linqs
             Assert.Equal("User.Profile.Id", referenceKey);
         }
 
-
         [Fact]
         public void GetPropertyName_DirectProperty_ReturnCorrectName()
         {
             var referenceKey = GetPropertyName<Order, int>(model => model.Id);
             Assert.Equal("Id", referenceKey);
         }
-
 
         public static string GetPropertyName<P, T>(Expression<Func<P, T>> expression)
         {
@@ -45,8 +43,6 @@ namespace Codesanook.Examples.CSharp.Linqs
             }
 
             return path + memberExpressionOrg.Member.Name;
-
         }
     }
-
 }
