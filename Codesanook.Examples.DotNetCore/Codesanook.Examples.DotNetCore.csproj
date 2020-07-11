@@ -29,6 +29,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AWSSDK.SimpleEmail" Version="3.3.101.164" />
+    <PackageReference Include="Google.Apis.AndroidPublisher.v3" Version="1.38.0.1496" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.38.0" />
+    <PackageReference Include="Google.Apis.Gmail.v1" Version="1.38.0.1495" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="3.1.2" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="3.1.2" />
@@ -39,6 +43,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="NLog" Version="4.6.5" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.0.0-rtm-rc6" />
+    <PackageReference Include="NPOI" Version="2.5.1" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.19.31" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.1" />
     <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />

@@ -45,7 +45,6 @@ namespace Codesanook.Examples.DotNetCore.Mail
         private static void Send(EmailConfig emailConfig)
         {
             var client = new TcpClient(emailConfig.SmtpServer, emailConfig.SmtpPort);
-
             using (var stream = client.GetStream())
             {
                 var response = Response(stream);
