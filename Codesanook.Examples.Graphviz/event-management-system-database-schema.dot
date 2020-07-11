@@ -9,7 +9,8 @@ https://mamchenkov.net/wordpress/2015/08/20/graphviz-dot-erds-network-diagrams/
 HTML like style
 https://www.graphviz.org/doc/info/shapes.html
 */
-digraph {
+``` dot
+digraph G {
     label="Event management system database schema";
     labelloc=top;
     graph [pad="0.5", nodesep="0.5", ranksep="2"];
@@ -109,3 +110,5 @@ digraph {
     EventBooking:UserId -> User:Id [dir="back"]
     EventAttendee:EventBookingId -> EventBooking:Id [dir="back"]
 }
+
+```
