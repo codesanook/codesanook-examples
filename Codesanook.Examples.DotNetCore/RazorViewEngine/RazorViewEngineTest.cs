@@ -1,5 +1,11 @@
-﻿using Razor.Templating.Core;
+using Codesanook.Examples.DotNetCore.Models;
+using CsvHelper;
+using Razor.Templating.Core;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -21,8 +27,27 @@ namespace Codesanook.Examples.DotNetCore.RazorViewEngine
             viewData["Value1"] = "1";
             viewData["Value2"] = "2";
             var html = await RazorTemplateEngine.RenderAsync("/Views/ExampleView.cshtml", new { }, viewData);
+
+            File.WriteAllText("output.html", html);
             // Assert
             Assert.NotNull(html);
+        }
+
+        public async Task Render()
+        {
+
+            const string csvFilePath = "";
+            using var reader = new StreamReader(csvFilePath);
+            using var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
+
+            var airlineCountries =
+                from r in csvReader.GetRecordsAsync<CustomerAddress>()
+                select new
+                {
+                };
+
+            var a = await airlineCountries.ToListAsync();
+
         }
     }
 }
