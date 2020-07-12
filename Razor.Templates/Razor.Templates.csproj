@@ -13,4 +13,7 @@
   <ItemGroup>
     <Folder Include="Views\Shared\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Codesanook.Examples.Core\Codesanook.Examples.Core.csproj" />
+  </ItemGroup>
 </Project>

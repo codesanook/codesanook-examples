@@ -8,12 +8,15 @@
     <Compile Remove="SQL\data\**" />
     <Compile Remove="SQL\log\**" />
     <Compile Remove="SQL\mssql\**" />
+    <Compile Remove="WinForm\**" />
     <EmbeddedResource Remove="SQL\data\**" />
     <EmbeddedResource Remove="SQL\log\**" />
     <EmbeddedResource Remove="SQL\mssql\**" />
+    <EmbeddedResource Remove="WinForm\**" />
     <None Remove="SQL\data\**" />
     <None Remove="SQL\log\**" />
     <None Remove="SQL\mssql\**" />
+    <None Remove="WinForm\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,6 +68,15 @@
     <None Update="nlog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="RazorViewEngine\ReceiverAddresses.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="RazorViewEngine\RecieverAddresses.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="RazorViewEngine\SenderAddress.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="XML\book-with-namespace.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -74,11 +86,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="WinForm\" />
     <Folder Include="Orm\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Codesanook.Examples.Core\Codesanook.Examples.Core.csproj" />
     <ProjectReference Include="..\Razor.Templates\Razor.Templates.csproj" />
   </ItemGroup>
 

@@ -1,0 +1,67 @@
+@using Codesanook.Examples.Core.Models
+@model ShippingAdress
+@{
+}
+<html>
+<head>
+    <style type="text/css">
+
+            @@page {
+                size: A4;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            body {
+                border: 1px solid #000;
+            }
+
+            table, tr, td, ul {
+                margin: 0;
+                padding: 0;
+            }
+
+            table {
+                border-spacing: 0px;
+            }
+
+            td {
+                border: 1px solid #000;
+                padding: 5px;
+            }
+
+            ul {
+                list-style: none
+            }
+    </style>
+</head>
+<body>
+    <table>
+        @foreach (var address in Model.RecieverAddresses)
+        {
+            <tr>
+                <td>
+                    <h4>ชื่อแและที่อยู่ผู้ส่ง</h4>
+                    <p>
+                        @Model.SenderAddress
+                    </p>
+                </td>
+                <td>
+                    <h4>ชื่อแและที่อยู่ผู้รับ</h4>
+                    <ul>
+                        <li>
+                            @address.FullName (จำนวนสินค้า @address.NumberOfOrderedItems ชิ้น)
+                        </li>
+                        <li>
+                            โทร @address.MobilePhoneNumber
+                        </li>
+                        <li>
+                            @address.Address
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

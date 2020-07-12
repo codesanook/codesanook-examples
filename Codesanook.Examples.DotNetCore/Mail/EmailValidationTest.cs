@@ -17,6 +17,8 @@ namespace Codesanook.Examples.DotNetCore.Mail
         [Fact]
         public void Test()
         {
+            var a = Directory.GetCurrentDirectory();
+
             var executedPath = new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath;
             var executedDirectory = Path.GetDirectoryName(executedPath);
             var directoryInfo = new DirectoryInfo(executedDirectory);

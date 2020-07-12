@@ -293,3 +293,6 @@ dist
 program.exe
 
 email-config.yml
+
+ReceiverAddresses.csv
+SenderAddress.txt

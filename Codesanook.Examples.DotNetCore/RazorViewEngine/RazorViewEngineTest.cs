@@ -1,7 +1,6 @@
-using Codesanook.Examples.DotNetCore.Models;
+using Codesanook.Examples.Core.Models;
 using CsvHelper;
 using Razor.Templating.Core;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -33,21 +32,35 @@ namespace Codesanook.Examples.DotNetCore.RazorViewEngine
             Assert.NotNull(html);
         }
 
-        public async Task Render()
+        [Fact]
+        public async Task RenderShippingAddressTemplate_ValidInput_RenderCorrectly()
         {
+            // Copy a file to output directory
+            // https://stackoverflow.com/a/15851689/1872200
+            const string receiverAddressFilePath = "RazorViewEngine/ReceiverAddresses.csv";
 
-            const string csvFilePath = "";
-            using var reader = new StreamReader(csvFilePath);
+            using var reader = new StreamReader(receiverAddressFilePath);
             using var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
+            csvReader.Configuration.HasHeaderRecord = true;
+            csvReader.Configuration.RegisterClassMap<ShippingAddressItemMap>();
 
-            var airlineCountries =
-                from r in csvReader.GetRecordsAsync<CustomerAddress>()
-                select new
-                {
-                };
+            var receiverAddresses = await csvReader.GetRecordsAsync<ShippingAddressItem>()
+                .ToArrayAsync();
 
-            var a = await airlineCountries.ToListAsync();
+            const string senderAddressFilePath = "RazorViewEngine/SenderAddress.txt";
+            var senderAddress = File.ReadAllText(senderAddressFilePath);
+            var shippingAddress = new ShippingAdress()
+            {
+                SenderAddress = senderAddress,
+                RecieverAddresses = receiverAddresses
+            };
 
+            var html = await RazorTemplateEngine.RenderAsync(
+                "/Views/ShippingAddressTemplate.cshtml", 
+                shippingAddress
+            );
+
+            File.WriteAllText("ShippingAddresses.html", html);
         }
     }
 }
