@@ -6,5 +6,6 @@ namespace Codesanook.Examples.Core.Models
         public string MobilePhoneNumber { get; set; } 
         public string Address { get; set; } 
         public string NumberOfOrderedItems { get; set; } 
+        public string ZipCode { get; set; }
     }
 }

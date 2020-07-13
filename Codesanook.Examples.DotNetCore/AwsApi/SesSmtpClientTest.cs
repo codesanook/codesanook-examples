@@ -10,12 +10,15 @@ namespace Codesanook.Examples.DotNetCore.AwsApi
 {
     public class SesSmtpClientTest
     {
-
         [Fact]
         public async Task Test()
         {
             var fromAddress = "contact@topf2002.com";
             var fromName = "Thai Osteoporosis Foundation (TOPF)";
+            // Replace USWest2 with the AWS Region you're using for Amazon SES.
+            // Acceptable values are EUWest1, USEast1, and USWest2.
+            const string apiKey = "";
+            const string apiSecret = "";
 
             // Replace recipient@example.com with a "To" address. If your account 
             // is still in the sandbox, this address must be verified.
@@ -33,11 +36,6 @@ namespace Codesanook.Examples.DotNetCore.AwsApi
       AWS SDK for .NET</a>.</p>
 </body>
 </html>";
-
-            // Replace USWest2 with the AWS Region you're using for Amazon SES.
-            // Acceptable values are EUWest1, USEast1, and USWest2.
-            const string apiKey = "AKIA6MSZFPD4PG3DX4GJ";
-            const string apiSecret = "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";
 
             using var client = new AmazonSimpleEmailServiceClient(
                 apiKey,

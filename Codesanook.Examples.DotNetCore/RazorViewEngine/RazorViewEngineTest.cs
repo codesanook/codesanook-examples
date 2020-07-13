@@ -1,10 +1,13 @@
 using Codesanook.Examples.Core.Models;
 using CsvHelper;
+using ICSharpCode.SharpZipLib.Zip;
 using Razor.Templating.Core;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -14,6 +17,11 @@ namespace Codesanook.Examples.DotNetCore.RazorViewEngine
     // https://medium.com/@soundaranbu/render-razor-view-cshtml-to-string-in-net-core-7d125f32c79
     public class RazorViewEngineTest
     {
+        private static readonly Regex pattern = new Regex(
+            @".+(?<zipCode>\d{5})",
+            RegexOptions.Compiled | RegexOptions.Singleline
+        ); 
+
         public RazorViewEngineTest()
         {
             RazorTemplateEngine.Initialize();
@@ -44,23 +52,46 @@ namespace Codesanook.Examples.DotNetCore.RazorViewEngine
             csvReader.Configuration.HasHeaderRecord = true;
             csvReader.Configuration.RegisterClassMap<ShippingAddressItemMap>();
 
-            var receiverAddresses = await csvReader.GetRecordsAsync<ShippingAddressItem>()
-                .ToArrayAsync();
+            var receiverAddresses =
+                from a in
+                csvReader.GetRecordsAsync<ShippingAddressItem>()
+                let zipCode =GetZipCode(a.Address)
+                select new ShippingAddressItem()
+                {
+                    FullName = a.FullName,
+                    MobilePhoneNumber = a.MobilePhoneNumber,
+                    Address = a.Address.Replace(zipCode, string.Empty),
+                    ZipCode = zipCode,
+                    NumberOfOrderedItems = a.NumberOfOrderedItems,
+                };
 
             const string senderAddressFilePath = "RazorViewEngine/SenderAddress.txt";
             var senderAddress = File.ReadAllText(senderAddressFilePath);
             var shippingAddress = new ShippingAdress()
             {
                 SenderAddress = senderAddress,
-                RecieverAddresses = receiverAddresses
+                RecieverAddresses = await receiverAddresses.ToArrayAsync()
             };
 
             var html = await RazorTemplateEngine.RenderAsync(
-                "/Views/ShippingAddressTemplate.cshtml", 
+                "/Views/ShippingAddressTemplate.cshtml",
                 shippingAddress
             );
 
             File.WriteAllText("ShippingAddresses.html", html);
+        }
+
+        private string GetZipCode(string address)
+        {
+            var match = pattern.Match(address);
+            if (match.Success)
+            {
+                return match.Groups["zipCode"].Value;
+            }
+
+            throw new InvalidOperationException(
+                $"Cannot get zip code from an address with value {address}"
+            );
         }
     }
 }

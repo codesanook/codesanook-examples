@@ -5,34 +5,45 @@
 <html>
 <head>
     <style type="text/css">
+        @@page {
+            size: A4;
+            margin-left: 0;
+            margin-right: 0;
+        }
 
-            @@page {
-                size: A4;
-                margin-left: 0;
-                margin-right: 0;
-            }
+        body {
+            border: 1px solid #000;
+        }
 
-            body {
-                border: 1px solid #000;
-            }
+        table, tr, td, ul {
+            margin: 0;
+            padding: 0;
+        }
 
-            table, tr, td, ul {
-                margin: 0;
-                padding: 0;
-            }
+        table {
+            border-spacing: 0px;
+        }
 
-            table {
-                border-spacing: 0px;
-            }
+        tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+        }
 
-            td {
-                border: 1px solid #000;
-                padding: 5px;
-            }
+        td {
+            vertical-align: top;
+            border: 1px solid #000;
+            padding: 5px;
+        }
 
-            ul {
-                list-style: none
-            }
+        ul {
+            list-style: none;
+        }
+
+        strong{
+            display:inline-block;
+            margin-top: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -41,24 +52,29 @@
         {
             <tr>
                 <td>
-                    <h4>ชื่อแและที่อยู่ผู้ส่ง</h4>
-                    <p>
-                        @Model.SenderAddress
-                    </p>
+                        <h4>ชื่อและที่อยู่ผู้ส่ง</h4>
+                        <p>
+                            @Model.SenderAddress
+                        </p>
                 </td>
                 <td>
-                    <h4>ชื่อแและที่อยู่ผู้รับ</h4>
-                    <ul>
-                        <li>
-                            @address.FullName (จำนวนสินค้า @address.NumberOfOrderedItems ชิ้น)
-                        </li>
-                        <li>
-                            โทร @address.MobilePhoneNumber
-                        </li>
-                        <li>
-                            @address.Address
-                        </li>
-                    </ul>
+                    <div class="cell-content">
+                        <h4>ชื่อและที่อยู่ผู้รับ</h4>
+                        <ul>
+                            <li>
+                                @address.FullName (จำนวนสินค้า @address.NumberOfOrderedItems ชิ้น)
+                            </li>
+                            <li>
+                                โทร @address.MobilePhoneNumber
+                            </li>
+                            <li>
+                                @address.Address
+                            </li>
+                            <li>
+                                <strong> @address.ZipCode </strong>
+                            </li>
+                        </ul>
+                    </div>
                 </td>
             </tr>
         }
