@@ -6,11 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Lambda.fsx" />
     <None Include="ConditionalFilter.fsx" />
     <Compile Include="BallModel.fs" />
     <Compile Include="TestScript.fsx" />
   </ItemGroup>
-
-  <ItemGroup />
 
 </Project>

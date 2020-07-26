@@ -13,17 +13,19 @@ namespace Codesanook.Examples.DotNetCore.AwsApi
         [Fact]
         public async Task Test()
         {
-            var fromAddress = "contact@topf2002.com";
-            var fromName = "Thai Osteoporosis Foundation (TOPF)";
             // Replace USWest2 with the AWS Region you're using for Amazon SES.
             // Acceptable values are EUWest1, USEast1, and USWest2.
             const string apiKey = "";
             const string apiSecret = "";
 
+            var fromAddress = "xxx@your-domain.com";
+            var fromName = "Name of sender";
+
             // Replace recipient@example.com with a "To" address. If your account 
             // is still in the sandbox, this address must be verified.
-            var toAddress = "xxxx@gmail.com";
+            var toAddress = "yyy@gmail.com";
             var subject = "Hello world";
+
             // The HTML body of the email.
             string htmlBody =
 @"<html>

@@ -45,6 +45,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0" />
     <PackageReference Include="MySql.Data" Version="8.0.17" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="NHibernate" Version="5.3.0" />
     <PackageReference Include="NLog" Version="4.6.5" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.0.0-rtm-rc6" />
     <PackageReference Include="NSubstitute" Version="4.2.1" />
@@ -86,7 +87,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Orm\" />
+    <Folder Include="NewFolder\" />
+    <Folder Include="Orm\EFExamples\" />
   </ItemGroup>
 
   <ItemGroup>
