@@ -6,27 +6,13 @@ using System.Threading.Tasks;
 
 namespace Codesanook.Examples.DotNetCore.Orm.NHExamples
 {
-    public interface IAuditable
-    {
-        public DateTime CreatedUtc { get; set; }
-        public DateTime? UpdatedUtc { get; set; }
-    }
-
-    // Entity class
-    public class User : IAuditable
-    {
-        public string Email { get; set; }
-        public DateTime CreatedUtc { get; set; }
-        public DateTime? UpdatedUtc { get; set; }
-    }
-
     // https://ayende.com/blog/3987/nhibernate-ipreupdateeventlistener-ipreinserteventlistener
     // http://fgheysels.blogspot.com/2008/07/nhibernate-iinterceptor.html
     // http://gnomealone.co.uk/2019/02/16/nhibernate-auditing/
     // NHibernate: difference between Interceptor and Listener https://stackoverflow.com/a/867356/1872200
     // Register as 
-    //  config.EventListeners.PreInsertEventListeners = new IPreInsertEventListener[] { new AuditEventListener() }; 
-    //  config.EventListeners.PreUpdateEventListeners = new IPreUpateEventListener[] { new AuditEventListener() }; 
+    // config.EventListeners.PreInsertEventListeners = new IPreInsertEventListener[] { new AuditEventListener() }; 
+    // config.EventListeners.PreUpdateEventListeners = new IPreUpateEventListener[] { new AuditEventListener() }; 
     // EF similar example https://www.ryansouthgate.com/2019/03/18/ef-core-databse-auditing/
     public class AuditEventListener : IPreInsertEventListener, IPreUpdateEventListener
     {
@@ -60,7 +46,11 @@ namespace Codesanook.Examples.DotNetCore.Orm.NHExamples
                 return false;
 
             var utcNow = DateTime.UtcNow;
+            // Update entity state which is an array that contains the parameters that we will push into the ADO.Net Command.
             SetState(@event.Persister, @event.State, nameof(IAuditable.UpdatedUtc), utcNow);
+
+            // Any change that we make to the entity state would not be reflected in the entity itself.
+            // This makes a database row and the entity instance to get in sync
             audit.UpdatedUtc = utcNow;
             return false;
         }

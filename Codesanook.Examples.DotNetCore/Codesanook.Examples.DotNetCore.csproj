@@ -90,19 +90,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
     <Folder Include="Orm\EFExamples\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Codesanook.Examples.Core\Codesanook.Examples.Core.csproj" />
     <ProjectReference Include="..\Razor.Templates\Razor.Templates.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.Data">
-      <HintPath>..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
