@@ -59,10 +59,13 @@
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
     <PackageReference Include="xunit.runners" Version="2.0.0" />
-    <PackageReference Include="YamlDotNet" Version="8.1.0" />
+    <PackageReference Include="YamlDotNet" Version="8.1.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="AwsApi\smtp-setting.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="JSON\app-service-runtime.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

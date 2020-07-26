@@ -8,7 +8,7 @@ using Xunit;
 
 namespace Codesanook.Examples.DotNetCore.AwsApi
 {
-    public class SesSmtpClientTest
+    public class SesClientTest
     {
         [Fact]
         public async Task Test()
