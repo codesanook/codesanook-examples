@@ -1,2 +1,6 @@
 # Ignore settings file
 smtp-setting.yml
+
+# Ignore address data file for Razor example
+ReceiverAddresses.csv
+SenderAddress.txt
