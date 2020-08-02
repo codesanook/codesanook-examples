@@ -1,6 +1,5 @@
 using Codesanook.Examples.Core.Models;
 using CsvHelper;
-using ICSharpCode.SharpZipLib.Zip;
 using Razor.Templating.Core;
 using System;
 using System.Collections.Generic;
@@ -20,51 +19,27 @@ namespace Codesanook.Examples.DotNetCore.RazorViewEngine
         private static readonly Regex pattern = new Regex(
             @".+(?<zipCode>\d{5})",
             RegexOptions.Compiled | RegexOptions.Singleline
-        ); 
+        );
 
-        public RazorViewEngineTest()
-        {
-            RazorTemplateEngine.Initialize();
-        }
-
-        [Fact]
-        public async Task RenderAsync_ValidView_ReturnRenderedHtmlContent()
-        {
-            var viewData = new Dictionary<string, object>();
-            viewData["Value1"] = "1";
-            viewData["Value2"] = "2";
-            var html = await RazorTemplateEngine.RenderAsync("/Views/ExampleView.cshtml", new { }, viewData);
-
-            File.WriteAllText("output.html", html);
-            // Assert
-            Assert.NotNull(html);
-        }
+        public RazorViewEngineTest() => RazorTemplateEngine.Initialize();
 
         [Fact]
         public async Task RenderShippingAddressTemplate_ValidInput_RenderCorrectly()
         {
             // Copy a file to output directory
             // https://stackoverflow.com/a/15851689/1872200
-            const string receiverAddressFilePath = "RazorViewEngine/ReceiverAddresses.csv";
 
+            // Example of CSV content 
+            // Time, Image ,Full name, Mobile phone number, Address, Number of ordered items,
+            // 7/8/2020 19:37:02,abc.jpg,first name last name,0812345678,"9999 Address 102400", 2 
+            const string receiverAddressFilePath = "RazorViewEngine/ReceiverAddresses.csv";
             using var reader = new StreamReader(receiverAddressFilePath);
             using var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
+
             csvReader.Configuration.HasHeaderRecord = true;
             csvReader.Configuration.RegisterClassMap<ShippingAddressItemMap>();
 
-            var receiverAddresses =
-                from a in
-                csvReader.GetRecordsAsync<ShippingAddressItem>()
-                let zipCode =GetZipCode(a.Address)
-                select new ShippingAddressItem()
-                {
-                    FullName = a.FullName,
-                    MobilePhoneNumber = a.MobilePhoneNumber,
-                    Address = a.Address.Replace(zipCode, string.Empty),
-                    ZipCode = zipCode,
-                    NumberOfOrderedItems = a.NumberOfOrderedItems,
-                };
-
+            var receiverAddresses = CreateShippingAddressItems(csvReader);
             const string senderAddressFilePath = "RazorViewEngine/SenderAddress.txt";
             var senderAddress = File.ReadAllText(senderAddressFilePath);
             var shippingAddress = new ShippingAdress()
@@ -78,20 +53,35 @@ namespace Codesanook.Examples.DotNetCore.RazorViewEngine
                 shippingAddress
             );
 
+            // The output file is in Codesanook.Examples.DotNetCore/bin/Debug/netcoreapp3.1/ShippingAddresses.html
             File.WriteAllText("ShippingAddresses.html", html);
+            Assert.NotEmpty(html);
+        }
+
+        private IAsyncEnumerable<ShippingAddressItem> CreateShippingAddressItems(CsvReader csvReader)
+        {
+            return 
+                from a in csvReader.GetRecordsAsync<ShippingAddressItem>()
+                let zipCode = GetZipCode(a.Address)
+                select new ShippingAddressItem()
+                {
+                    FullName = a.FullName,
+                    MobilePhoneNumber = a.MobilePhoneNumber,
+                    Address = a.Address.Replace(zipCode, string.Empty),
+                    ZipCode = zipCode,
+                    NumberOfOrderedItems = a.NumberOfOrderedItems
+                };
         }
 
         private string GetZipCode(string address)
         {
             var match = pattern.Match(address);
-            if (match.Success)
-            {
-                return match.Groups["zipCode"].Value;
-            }
 
-            throw new InvalidOperationException(
-                $"Cannot get zip code from an address with value {address}"
-            );
+            return match.Success
+                ? match.Groups["zipCode"].Value
+                : throw new InvalidOperationException(
+                    $"Cannot get zip code from an address with value {address}"
+                );
         }
     }
 }

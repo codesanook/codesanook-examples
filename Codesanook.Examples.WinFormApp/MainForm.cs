@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -14,7 +14,8 @@ namespace Codesanook.Examples.WinFormApp
         private async void PingButtonClick(object sender, EventArgs e)
         {
             using var ping = new Ping();
-            var reply = await ping.SendPingAsync(addressTextBox.Text, 1000);
+            const int timeoutInMilliseconds = 1000;
+            var reply = await ping.SendPingAsync(addressTextBox.Text, timeoutInMilliseconds);
 
             var result = new Dictionary<string, string>
             {
