@@ -4,10 +4,10 @@ GO
 SELECT @@VERSION
 GO
 
-IF DB_ID('codesanook') IS NULL
+IF DB_ID('Codesanook') IS NULL
 BEGIN
     PRINT 'DB does not exist, create new'
-    CREATE DATABASE codesanook
+    CREATE DATABASE Codesanook
 END
 ELSE
 BEGIN
