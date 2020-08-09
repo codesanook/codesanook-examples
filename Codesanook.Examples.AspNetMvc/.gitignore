@@ -1,5 +1,6 @@
 node_modules
 Scripts/**/*.js
+!Scripts/jquery.js
 Content/**/*.css
 src/**/*.js
 

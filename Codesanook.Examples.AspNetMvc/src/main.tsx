@@ -1,7 +1,28 @@
-import './sass/style.scss'
+import './sass/style.scss';
+import {PushMessageFrontend, PushMessageBackend, ConnectionProvider} from  './components';
+// https://stackoverflow.com/a/63151271/1872200
+import React from 'react';
+import { render } from 'react-dom';
+
+const App = () => {
+    return (
+        <ConnectionProvider>
+            <PushMessageFrontend/>
+            <hr/>
+            <PushMessageBackend/>
+        </ConnectionProvider>
+    );
+};
+
+render(
+    <App/>,
+    document.getElementById('pushMessage')
+);
+
+/*
 import 'jquery-validation';
 import 'jquery-validation-unobtrusive';
-
+TODO move to a new file
 declare namespace JQueryValidation {
     interface Validator {
         invalid: any;
@@ -9,7 +30,6 @@ declare namespace JQueryValidation {
 }
 
 const form = $('form');
-
 $.validator.setDefaults({
 
     onsubmit: false,
@@ -38,3 +58,5 @@ form.submit(e => {
     //    form.get(0).submit();
     //}
 });
+ */
+

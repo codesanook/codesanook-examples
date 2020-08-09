@@ -1,4 +1,4 @@
-namespace Reports
+namespace Codesanook.Examples.AspNetMvc.Reports
 {
     public abstract class JtdsConnection
     {

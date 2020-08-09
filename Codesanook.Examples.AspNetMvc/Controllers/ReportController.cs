@@ -1,4 +1,4 @@
-using Reports;
+using Codesanook.Examples.AspNetMvc.Reports;
 using System.Web.Mvc;
 
 namespace Codesanook.Examples.AspNetMvc.Controllers

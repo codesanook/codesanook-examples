@@ -8,7 +8,7 @@ using net.sf.jasperreports.engine.util;
 using net.sf.jasperreports.engine.export.ooxml;
 using System.Configuration;
 
-namespace Reports
+namespace Codesanook.Examples.AspNetMvc.Reports
 {
     public class SqlConnectionJtds : JtdsConnection
     {

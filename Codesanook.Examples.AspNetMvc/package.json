@@ -15,10 +15,13 @@
         "@babel/core": "7.4.4",
         "@babel/plugin-proposal-class-properties": "7.4.4",
         "@babel/plugin-proposal-object-rest-spread": "7.4.4",
+        "@babel/plugin-transform-runtime": "^7.11.0",
         "@babel/preset-env": "7.4.4",
+        "@babel/preset-react": "^7.10.4",
         "@babel/preset-typescript": "7.3.3",
         "@types/jquery": "^3.3.30",
         "@types/jquery.validation": "^1.16.6",
+        "@types/signalr": "^2.2.36",
         "autoprefixer": "^9.6.0",
         "babel-loader": "8.0.6",
         "css-loader": "^2.1.1",
@@ -38,8 +41,11 @@
         "bootstrap": "^4.3.1",
         "font-awesome": "^4.7.0",
         "jquery": "^3.4.1",
-        "moment": "^2.24.0",
         "jquery-validation": "^1.19.1",
-        "jquery-validation-unobtrusive": "^3.2.11"
+        "jquery-validation-unobtrusive": "^3.2.11",
+        "moment": "^2.24.0",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "signalr-no-jquery": "^0.1.10"
     }
 }

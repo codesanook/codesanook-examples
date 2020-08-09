@@ -58,11 +58,10 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: './../content/style.css',
+            filename: './../Content/style.css',
         }),
     ],
     externals: {
-        react: 'React', //module => Variable in external file
         jquery: '$',
     },
     //https://webpack.js.org/configuration/devtool/
