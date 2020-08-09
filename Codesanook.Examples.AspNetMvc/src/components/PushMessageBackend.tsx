@@ -4,9 +4,14 @@ import PushMessageInputField from './PushMessageInputField';
 import { ConnectionContext } from './ConnectionContext'
 
 const PushMessageBackend = () => {
-    const [message, setMessage] = useState('');
     const [connection, setConnection] = useContext(ConnectionContext); 
-    const hub = connection.createHubProxy('pushMessageHub');
+    const [hub, setHub] = useState();
+    const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        setHub(connection.createHubProxy('pushMessageHub'));
+    }, []); // Run only one time
+
     const sendMessage = (e: MouseEvent<HTMLButtonElement>) => {
         hub.invoke('sendMessage', message);
         setMessage('');

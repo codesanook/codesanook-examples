@@ -15,7 +15,7 @@ const PushMessageFrontend = () => {
                 previousMessage => [previousMessage, message].join('\n')
             );
         });
-    }, []);
+    }, []); // Run only one time
 
     return (
         <>
