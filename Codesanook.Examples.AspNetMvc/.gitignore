@@ -15,3 +15,6 @@ debug
 
 # Exclude exported PDF reports
 *.pdf
+
+# Exclude all files in App_Data folder
+App_Data

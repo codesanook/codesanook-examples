@@ -1,4 +1,4 @@
-﻿using Codesanook.Examples.AspNetSignalR.Hubs;
+using Codesanook.Examples.AspNetSignalR.Hubs;
 using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace Codesanook.Examples.AspNetSignalR.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
-            //https://stackoverflow.com/a/11098832/1872200
+            // https://stackoverflow.com/a/11098832/1872200
             //https://docs.microsoft.com/en-us/aspnet/signalr/overview/guide-to-the-api/hubs-api-guide-server
             //var hubContext = GlobalHost.ConnectionManager.GetHubContext<CoffeeHub>();
             //hubContext.Clients.All.man("");
