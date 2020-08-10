@@ -12,7 +12,7 @@ const PushMessageFrontend = () => {
         hub.on('addNewMessage', message => {
             console.log(message);
             setExistingMessage( previousMessage => 
-                [previousMessage, message]
+                [previousMessage, message.trim()]
                 .filter(m => m) 
                 .join('\n')
             );
