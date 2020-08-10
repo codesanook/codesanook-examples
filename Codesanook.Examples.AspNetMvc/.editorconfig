@@ -1,4 +1,4 @@
-﻿# EditorConfig is awesome: https://EditorConfig.org
+# EditorConfig is awesome: https://EditorConfig.org
 # top-most EditorConfig file
 root = true
 
@@ -6,7 +6,9 @@ root = true
 [*]
 end_of_line = lf
 insert_final_newline = true
-
 charset = utf-8
 indent_style = space
 indent_size = 4
+
+[*.cs]
+end_of_line = crlf
