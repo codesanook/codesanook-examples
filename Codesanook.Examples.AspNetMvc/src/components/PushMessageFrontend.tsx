@@ -4,15 +4,17 @@ import { ConnectionContext } from './ConnectionContext'
 
 const PushMessageFrontend = () => {
     const [existingMessage, setExistingMessage] = useState('');
-    const [connection, setConnection] = useContext(ConnectionContext);
+    const connection = useContext(ConnectionContext);
 
     useEffect(() => {
         const hub = connection.createHubProxy('pushMessageHub');
         // set up event listeners i.e. for incoming "message" event
         hub.on('addNewMessage', message => {
             console.log(message);
-            setExistingMessage(
-                previousMessage => [previousMessage, message].join('\n')
+            setExistingMessage( previousMessage => 
+                [previousMessage, message]
+                .filter(m => m) 
+                .join('\n')
             );
         });
     }, []); // Run only one time

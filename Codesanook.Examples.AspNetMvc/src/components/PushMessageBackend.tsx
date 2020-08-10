@@ -4,7 +4,7 @@ import PushMessageInputField from './PushMessageInputField';
 import { ConnectionContext } from './ConnectionContext'
 
 const PushMessageBackend = () => {
-    const [connection, setConnection] = useContext(ConnectionContext); 
+    const connection = useContext(ConnectionContext); 
     const [hub, setHub] = useState();
     const [message, setMessage] = useState('');
 

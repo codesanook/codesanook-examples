@@ -2,9 +2,7 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { hubConnection } from 'signalr-no-jquery';
 
-export const ConnectionContext = createContext(
-    [{}, () => { }] // init value
-);
+export const ConnectionContext = createContext({});
 
 export const ConnectionProvider = props => {
     const signalConnection = hubConnection();
@@ -16,7 +14,7 @@ export const ConnectionProvider = props => {
     }, []); // Run only one time
 
     return (
-        <ConnectionContext.Provider value={[connection, setConnection]}>
+        <ConnectionContext.Provider value={connection}>
             {props.children}
         </ConnectionContext.Provider>
     );
