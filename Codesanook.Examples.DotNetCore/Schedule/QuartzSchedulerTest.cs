@@ -5,6 +5,7 @@ using Quartz.Spi;
 using System;
 using System.Collections.Specialized;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -46,7 +47,7 @@ namespace Codesanook.Examples.DotNetCore.Schedule
         public Task DisposeAsync() => Task.CompletedTask;
 
         [Fact]
-        public async Task ScheduleJob_RunJobEveryFiveSecondsThreeTime_JobRunsThreeTimes()
+        public async Task ScheduleJob_RunJobEveryFiveSecondsThreeTimes_JobRunsThreeTimes()
         {
             // Arrange
             // Define the job and tie it to our HelloJob class
@@ -70,8 +71,7 @@ namespace Codesanook.Examples.DotNetCore.Schedule
             For example
             0s, 5s, 10s, 15s, ...  
             We start by getting the start time end with 0 or 5  
-            Then we add 10 seconds which means we will endup having 
-            this Cron run 3 times 
+            Then we add 10 seconds which means we will end up having this Cron run 3 times 
             */
             // Remove not divided by five seconds and add 5 seconds
             startTime = startTime.AddSeconds(-(startTime.Second % 5) + 5);
@@ -107,10 +107,11 @@ namespace Codesanook.Examples.DotNetCore.Schedule
             );
             Assert.Equal(3, fireTimes.Count);
 
-            for (var index = 0; index < fireTimes.Count; index++)
-            {
-                Assert.Equal(startTime.AddSeconds(5 * index), fireTimes[index].UtcDateTime);
-            }
+            fireTimes.Select((fireTime, index) =>
+                new { ExpectedFireTime = startTime.AddSeconds(5 * index), ActualFireTime = fireTime.UtcDateTime }
+            ).ToList().ForEach(assertion =>
+                Assert.Equal(assertion.ExpectedFireTime, assertion.ExpectedFireTime)
+            );
 
             Assert.Equal(3, HelloJob.CounterValue);
         }
