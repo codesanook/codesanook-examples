@@ -34,6 +34,7 @@
   <ItemGroup>
     <PackageReference Include="AWSSDK.SimpleEmail" Version="3.3.101.164" />
     <PackageReference Include="CsvHelper" Version="15.0.5" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Google.Apis.AndroidPublisher.v3" Version="1.38.0.1496" />
     <PackageReference Include="Google.Apis.Auth" Version="1.38.0" />
     <PackageReference Include="Google.Apis.Gmail.v1" Version="1.38.0.1495" />
@@ -54,7 +55,9 @@
     <PackageReference Include="Quartz" Version="3.1.0" />
     <PackageReference Include="Quartz.Serialization.Json" Version="3.1.0" />
     <PackageReference Include="Razor.Templating.Core" Version="1.2.0" />
-    <PackageReference Include="System.Data.SqlClient" Version="4.6.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.113.1" />
+    <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.113" />
     <PackageReference Include="system.linq.async" Version="4.1.1" />
     <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
@@ -72,6 +75,9 @@
     </None>
     <None Update="nlog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Orm\create-blog-tables.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="RazorViewEngine\ReceiverAddresses.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -91,10 +97,6 @@
     <None Update="XML\book-without-namespace.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Orm\EFExamples\" />
   </ItemGroup>
 
   <ItemGroup>

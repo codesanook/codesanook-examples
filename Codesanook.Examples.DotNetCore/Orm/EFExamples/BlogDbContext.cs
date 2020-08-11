@@ -1,21 +1,20 @@
-﻿using Codesanook.Ebamples.EntityFramework.EntityConfigurations;
-using Codesanook.Examples.EntityFramework.EntityConfigurations;
-using Codesanook.Examples.EntityFramework.Models;
+using Codesanook.Examples.Core.Models;
+using Codesanook.Examples.DotNetCore.Orm.EFExamples.EntityConfigurations;
 using System.Data.Entity;
 
-namespace Codesanook.Examples.EntityFramework
+namespace Codesanook.Examples.DotNetCore.Orm.EFExamples
 {
+    [DbConfigurationType(typeof(EFCodeConfig))]
     public class BlogDbContext : DbContext
     {
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
-        public BlogDbContext() : base("BlogConnectionString")
+        public BlogDbContext(string connectionString) : base(connectionString) // in memory connection string
         {
             Database.SetInitializer(new CreateDatabaseIfNotExists<BlogDbContext>());
-            //disable lazy loading
-            this.Configuration.LazyLoadingEnabled = false;
+            Configuration.LazyLoadingEnabled = false;// Disable lazy loading
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -23,6 +22,7 @@ namespace Codesanook.Examples.EntityFramework
             modelBuilder.Configurations.Add(new BlogEntityConfiguration());
             modelBuilder.Configurations.Add(new PostEntityConfiguration());
             modelBuilder.Configurations.Add(new CommentEntityConfiguration());
+            // modelBuilder.Conventions.Add<MyModelBasedConvention>();  
         }
     }
 }
