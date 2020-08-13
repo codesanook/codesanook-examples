@@ -8,7 +8,6 @@
         "serve": "webpack-dev-server",
         "test": "jest --detectOpenHandles"
     },
-    "keywords": [],
     "author": "Codesanook team",
     "license": "MIT",
     "devDependencies": {
@@ -30,6 +29,7 @@
         "webpack-dev-server": "^3.10.3"
     },
     "dependencies": {
+        "gitignore-parser": "^0.0.2",
         "ink": "^2.7.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1"

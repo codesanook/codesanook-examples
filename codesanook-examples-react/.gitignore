@@ -1,0 +1,8 @@
+# Match a file, directory, link, anything named dir
+# /dir 
+
+# Match only a directory named dir
+# /dir/ 
+
+# Match all files, directories and anything else inside a directory named dir (but not the dir directory itself).
+/dir/* 
