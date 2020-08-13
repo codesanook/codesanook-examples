@@ -1,7 +1,12 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <!-- https://stackoverflow.com/a/55775370/1872200 -->
+    <GenerateProgramFile>false</GenerateProgramFile>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishSingleFile>true</PublishSingleFile>
+    <UseAppHost>true</UseAppHost> 
   </PropertyGroup>
 
   <ItemGroup>
