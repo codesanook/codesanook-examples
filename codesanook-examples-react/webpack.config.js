@@ -7,7 +7,7 @@ module.exports = {
         counter: './src/counter',
     },
     output: {
-        filename: '[name]-bundle.js', //name reference to entry name
+        filename: '[name]-bundle.js', // name reference to entry name
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
     },

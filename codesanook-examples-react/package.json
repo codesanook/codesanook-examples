@@ -5,7 +5,8 @@
         "build": "webpack --mode=development",
         "build-node": "webpack --mode=development --target=node",
         "start": "node ./dist/counter-bundle.js",
-        "serve": "webpack-dev-server"
+        "serve": "webpack-dev-server",
+        "test": "jest --detectOpenHandles"
     },
     "keywords": [],
     "author": "Codesanook team",
@@ -15,11 +16,13 @@
         "@babel/preset-env": "^7.9.6",
         "@babel/preset-react": "^7.9.4",
         "@babel/preset-typescript": "^7.9.0",
+        "@types/jest": "^26.0.9",
         "@types/react": "^16.9.34",
         "@types/react-dom": "^16.9.7",
         "babel-loader": "^8.1.0",
         "css-loader": "^3.5.3",
         "html-webpack-plugin": "^4.3.0",
+        "jest": "^26.4.0",
         "style-loader": "^1.2.1",
         "typescript": "^3.8.3",
         "webpack": "^4.43.0",
@@ -30,5 +33,12 @@
         "ink": "^2.7.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1"
+    },
+    "jest": {
+        "testRegex": "(/spec/.*)\\.ts$",
+        "transform": {
+            "^.+\\.(js|ts)x?$": "babel-jest"
+        },
+        "preset": "./jest-preset"
     }
 }
