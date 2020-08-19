@@ -2,7 +2,7 @@
 -- https://dba.stackexchange.com/questions/31383/what-is-the-difference-between-norecovery-and-recovery-when-restoring-database/31384
 -- https://www.sqlservercentral.com/blogs/difference-between-restore-with-recovery-restore-with-norecovery
 
--- Restore full backup
+-------------------- Restore with full backup file ------------------
 USE master 
 GO
 
@@ -22,6 +22,8 @@ SELECT * FROM Users
 GO
 
 -------------------- Restore with log backup file ------------------
+WAITFOR DELAY '00:00:02' -- Wait for two seconds before start a new operation
+
 USE master 
 GO
 
@@ -46,6 +48,8 @@ SELECT * FROM Users
 GO
 
 -------------------- Restore with differential backup file ------------------
+WAITFOR DELAY '00:00:02' -- Wait for two seconds before start a new operation
+
 USE master 
 GO
 
@@ -70,6 +74,8 @@ SELECT * FROM Users
 GO
 
 -------------------- Restore with multiple transaction log backup files ------------------
+WAITFOR DELAY '00:00:02' -- Wait for two seconds before start a new operation
+
 USE master 
 GO
 
@@ -101,6 +107,8 @@ SELECT * FROM Users
 GO
 
 -------------------- Restore with full, differential and log backup files ------------------
+WAITFOR DELAY '00:00:02' -- Wait for two seconds before start a new operation
+
 USE master 
 GO
 
@@ -130,3 +138,4 @@ GO
 
 SELECT * FROM Users
 GO
+
