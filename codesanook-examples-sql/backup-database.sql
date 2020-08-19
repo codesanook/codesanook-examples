@@ -1,8 +1,11 @@
 --- https://www.sqlshack.com/understanding-sql-server-backup-types/
 
-
 -- https://blog.sqlauthority.com/2018/03/07/sql-server-tail-log-backups/
 -- Should I use semicolon https://stackoverflow.com/a/710697/1872200
+
+-------------------- Truncate Users table, make a clean state ------------------
+TRUNCATE TABLE Users
+GO
 
 -------------------- Insert data and create full backup ------------------
 INSERT INTO Users 
@@ -37,7 +40,7 @@ GO
 INSERT INTO Users 
 (Email, FirstName, LastName, DateOfBirth)
 VALUES
-('phoung@realman.com', 'Phuong', 'Realman', '2020-01-20')
+('you@realman.com', 'You', 'Realman', '2020-01-20')
 GO
 
 BACKUP DATABASE Codesanook  
@@ -61,6 +64,3 @@ GO
 SELECT * FROM Users
 GO
 
--------------------- Truncate Users table ------------------
-TRUNCATE TABLE Users
-GO

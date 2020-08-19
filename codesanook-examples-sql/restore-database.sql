@@ -3,6 +3,9 @@
 -- https://www.sqlservercentral.com/blogs/difference-between-restore-with-recovery-restore-with-norecovery
 
 -- Restore full backup
+USE master 
+GO
+
 RESTORE DATABASE Codesanook
 FROM DISK = 'CodesanookFullBackup.bak'
 WITH 
@@ -12,60 +15,118 @@ WITH
     REPLACE
 GO
 
--------------------- Select all users ------------------
 USE Codesanook
 GO
 
 SELECT * FROM Users
 GO
 
-/*
--------------------- Insert data and create log backup 1 ------------------
-INSERT INTO Users 
-(Email, FirstName, LastName, DateOfBirth)
-VALUES
-('phoung@realman.com', 'Phuong', 'Realman', '2020-01-20')
+-------------------- Restore with log backup file ------------------
+USE master 
 GO
 
-BACKUP LOG Codesanook 
-TO DISK = 'CodesanookLogBackup1.trn'
-WITH FORMAT 
-GO
--- Restore transaction log
-
--------------------- Insert data and create differential backup base on the full backup ------------------
-INSERT INTO Users 
-(Email, FirstName, LastName, DateOfBirth)
-VALUES
-('phoung@realman.com', 'Phuong', 'Realman', '2020-01-20')
+RESTORE DATABASE Codesanook
+FROM DISK = 'CodesanookFullBackup.bak'
+WITH 
+    NORECOVERY,
+    REPLACE
 GO
 
-BACKUP DATABASE Codesanook  
-TO DISK = 'CodesanookDifferentialBackup.bak'
-WITH DIFFERENTIAL, FORMAT 
+RESTORE Log Codesanook
+FROM DISK = 'CodesanookLogBackup1.trn'
+WITH 
+    RECOVERY,
+    REPLACE
 GO
 
--- Restore differential backup
-
--------------------- Insert data and create log backup 2 ------------------
-INSERT INTO Users 
-(Email, FirstName, LastName, DateOfBirth)
-VALUES
-('pong@realman.com', 'Pong', 'Realman', '2020-01-20')
+USE Codesanook
 GO
 
-BACKUP LOG Codesanook 
-TO DISK = 'CodesanookLogBackup2.trn'
-WITH FORMAT 
-GO
-
--- Restore transaction log backup
-
--------------------- Select all users ------------------
 SELECT * FROM Users
 GO
 
--------------------- Truncate Users table ------------------
-TRUNCATE TABLE Users
+-------------------- Restore with differential backup file ------------------
+USE master 
 GO
-*/
+
+RESTORE DATABASE Codesanook
+FROM DISK = 'CodesanookFullBackup.bak'
+WITH 
+    NORECOVERY,
+    REPLACE
+GO
+
+RESTORE DATABASE Codesanook
+FROM DISK = 'CodesanookDifferentialBackup.bak'
+WITH 
+    RECOVERY,
+    REPLACE
+GO
+
+USE Codesanook
+GO
+
+SELECT * FROM Users
+GO
+
+-------------------- Restore with multiple transaction log backup files ------------------
+USE master 
+GO
+
+RESTORE DATABASE Codesanook
+FROM DISK = 'CodesanookFullBackup.bak'
+WITH 
+    NORECOVERY,
+    REPLACE
+GO
+
+RESTORE LOG Codesanook
+FROM DISK = 'CodesanookLogBackup1.trn'
+WITH 
+    NORECOVERY,
+    REPLACE
+GO
+
+RESTORE LOG Codesanook
+FROM DISK = 'CodesanookLogBackup2.trn'
+WITH 
+    RECOVERY,
+    REPLACE
+GO
+
+USE Codesanook
+GO
+
+SELECT * FROM Users
+GO
+
+-------------------- Restore with full, differential and log backup files ------------------
+USE master 
+GO
+
+RESTORE DATABASE Codesanook
+FROM DISK = 'CodesanookFullBackup.bak'
+WITH 
+    NORECOVERY,
+    REPLACE
+GO
+
+RESTORE DATABASE Codesanook
+FROM DISK = 'CodesanookDifferentialBackup.bak'
+WITH 
+    NORECOVERY,
+    REPLACE
+GO
+
+RESTORE LOG Codesanook
+FROM DISK = 'CodesanookLogBackup2.trn'
+WITH 
+    RECOVERY,
+    REPLACE
+GO
+
+USE Codesanook
+GO
+
+SELECT * FROM Users
+GO

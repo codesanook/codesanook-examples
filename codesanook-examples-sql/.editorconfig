@@ -1,5 +1,4 @@
 # EditorConfig is awesome: https://EditorConfig.org
-# Unix-style newlines with a newline ending every file
 [*]
 insert_final_newline = true
 charset = utf-8
@@ -11,3 +10,7 @@ insert_final_newline = false
 
 [*.yml]
 indent_size = 2
+
+# Unix-style ending newlines
+[*.sh]
+end_of_line = lf
