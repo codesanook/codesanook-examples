@@ -34,7 +34,7 @@ ON (AW2008FullTextDemoCatalog)
 WITH (CHANGE_TRACKING AUTO)
 GO
 
--- Optionally Add column to full text index
+-- Optionally how to add column to full text index
 -- ALTER FULLTEXT INDEX ON dbo.PersonPhoneNumbers ADD (PhoneNumber)
 
 -- Query full text

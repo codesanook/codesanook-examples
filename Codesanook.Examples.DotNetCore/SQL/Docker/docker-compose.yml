@@ -3,11 +3,11 @@ services:
   db:
     build:
       context: .
-      dockerfile: db.Dockerfile
+      dockerfile: ${DOCKER_FILE}
     image: codesanook-examples-sql:latest
     container_name: codesanook-examples-sql
     ports:
-      - 1433:1433 # Default SQL Server port
+      - 1455:1433 # Default SQL Server port
     # https://docs.docker.com/compose/compose-file/#volumes
     volumes:
       # Named volume, Docker managed volume
