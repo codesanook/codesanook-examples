@@ -1,0 +1,16 @@
+# EditorConfig is awesome: https://EditorConfig.org
+[*]
+insert_final_newline = true
+charset = utf-8
+indent_style = space
+indent_size = 4
+
+[*.secret]
+insert_final_newline = false
+
+[*.yml]
+indent_size = 2
+
+# Unix-style ending newlines
+[*.sh]
+end_of_line = lf

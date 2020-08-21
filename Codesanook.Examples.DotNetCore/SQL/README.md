@@ -1,8 +1,9 @@
-## To start docker
+## To start Docker
 ### Tested with Docker Windows Desktop and Linux Container   
-- Run the follwing commands.
+- Run the following commands.
+
+Start your PowerShell session then
 ```
-Start your PoerShell 
 docker-compose up
 ```
 
@@ -13,10 +14,12 @@ docker-compose up
 
 ## Optional to execute inside a Docker container
 - Start docker again with detach mode
+
 ```
 docker-compose up -d
-# wait for 30 seconds
+# Wait for 30 seconds
 docker exec -it sql-db bash
+
 ```
 - Then you will have interactive bash shell
 - To use Sqlcmd command prompt
