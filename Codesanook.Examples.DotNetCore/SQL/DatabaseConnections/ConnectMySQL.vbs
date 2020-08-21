@@ -6,8 +6,12 @@ set recordSet = CreateObject("ADODB.Recordset")
 ' To list all MySQL ODBC drivers installed on your machine,
 ' Use PowerShell Get-OdbcDriver -Name "MySQL*"
 ' Password is simple, just for DEMO, set to strong password for production environment
-connectionString = "Driver={MySQL ODBC 8.0 Unicode Driver};Server=localhost;" & _
-    "Database=thailand-administrative;User=root;Password=1234;"
+connectionString = 
+    "Driver={MySQL ODBC 8.0 Unicode Driver};" & _ 
+    "Server=localhost;" & _
+    "Database=thailand-administrative;" &_
+    "User=root;" &_
+    "Password=1234;"
 
 connection.Open connectionString
 recordSet.Open "SELECT * FROM provinces limit 0, 10", connection
