@@ -1,7 +1,7 @@
 try {
     # Bind the current directory to scripts folder in Docker container 
     $env:HOST_DIRECTORY = Resolve-Path .
-    $env:DOCKER_FILE = DockerFile
+    $env:DOCKER_FILE = "DockerfileFTS"
 
     # Save current working directory and change to shared Dock folder
     Push-Location -Path "../Docker"

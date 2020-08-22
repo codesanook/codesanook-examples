@@ -1,3 +1,5 @@
+USE AdventureWorks2012
+GO
 -- Full text search SQL example SQL Query
 
 -- Create view with SCHEMABINDING
@@ -46,4 +48,14 @@ GO
 SELECT * 
 FROM dbo.PersonPhoneNumbers
 WHERE freetext ((PhoneNumber, FirstName), '149')
+GO
+
+SELECT * 
+FROM dbo.PersonPhoneNumbers
+WHERE CONTAINS ((PhoneNumber, FirstName), '949 OR ken')
+GO
+
+SELECT * 
+FROM dbo.PersonPhoneNumbers
+WHERE FREETEXT ((PhoneNumber, FirstName), '949 ken')
 GO

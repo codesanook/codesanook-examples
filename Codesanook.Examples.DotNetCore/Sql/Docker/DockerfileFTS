@@ -37,7 +37,7 @@ RUN apt-get update
 RUN apt-get install -y powershell
 
 # Start PowerShell
-RUN pwsh
+RUN pwsh --version
 
 # Define the environment variable which can be accessed to all .sh files
 ENV MSSQL_SA_PASSWORD=
