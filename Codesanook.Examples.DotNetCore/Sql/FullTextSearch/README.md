@@ -1,43 +1,43 @@
-## To start Docker
-### Tested with Docker Windows Desktop and Linux Container   
-- Run the following commands.
+# SQL Server full text search example
 
-Start your PowerShell session then
-```
-docker-compose up
-```
+## How to run the project.
 
-- Connect with SSMS to localhost, 1433
-- username: sa
-- password: 12345Abc%
-- To learn full text search, you can execute content of `./full-text-search/create-full-text-search.sql`
+-   Create `sa_password.secret` file in `FullTextSearch` folder and put your preferred SQL Sever password in the file.
 
-## Optional to execute inside a Docker container
-- Start docker again with detach mode
+-   Launch a terminal with PowerShell session and start SQL Server Docker with a following command:
 
 ```
-docker-compose up -d
-# Wait for 30 seconds
-docker exec -it sql-db bash
+    .\Start-SqlServer.ps1
 
 ```
-- Then you will have interactive bash shell
-- To use Sqlcmd command prompt
-```
-/opt/mssql-tools/bin/sqlcmd -U sa -P $SA_PASSWORD 
-```
-- After that, you can test with SQL command 
-```
-SELECT @@VERSION
-GO
-```
-- You will get the result looks like
-```
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Microsoft SQL Server 2017 (RTM-CU18) (KB4527377) - 14.0.3257.3 (X64)
-        Nov 16 2019 01:14:50
-        Copyright (C) 2017 Microsoft Corporation
-        Developer Edition (64-bit) on Linux (Ubuntu 16.04.6 LTS)                                       
 
-(1 rows affected)
+-   Wait for a while, when it finish, you will see the following output:
+
+```
+    Is full text search enabled: 1
+
+```
+
+This will create SQL Server Linux Docker with full text search feature.
+
+-   To create full text search catelog, index and run example, launch a new PowerShell session.
+    Then use the following command:
+
+```
+    .\Invoke-CreateFullTextSearch.ps1
+```
+
+-   To stop a SQL Server Docker container, press CTRL+C and wait for a while it will remove container, images and volumes.
+
+-   Full text search SQL scripts are in `create-full-text-search.sql`.
+-   The connection string is in `Invoke-CreateFullTextSearch.ps1`
+
+## Other useful tips
+
+### If you have problems with CRLF in .sh, .secret file, use the following command to convert CRLF to LF (Unix line feed)
+
+```
+    $path = ".\sa_password.secret"
+    (Get-Content $path -Raw).Replace("`r`n", "`n") | Set-Content $Path -NoNewline -Force
+
 ```
