@@ -1,12 +1,12 @@
 USE AdventureWorks2012
 GO
 -- Full text search SQL example SQL Query
-
 -- Create view with SCHEMABINDING because we want to create an index to this view.
 -- What is SCHEMABINDING https://blog.sqlauthority.com/2019/10/06/what-is-schemabinding-in-sql-server-views-interview-question-of-the-week-245/
 
 IF OBJECT_ID('PersonPhoneNumbers', 'V') IS NULL
 BEGIN
+    -- Create a view that joins multiple table with SCHEMABINDING so that we can create index on it.
     EXEC ('
         CREATE view PersonPhoneNumbers 
         WITH SCHEMABINDING
@@ -27,7 +27,7 @@ GO
 
 IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE name = 'UX_PersonPhoneNumbers_BusinessEntityID')
 BEGIN
-    -- Create a unique index
+    -- Create a unique index, one column on a view object
     CREATE UNIQUE CLUSTERED INDEX UX_PersonPhoneNumbers_BusinessEntityID
     ON dbo.PersonPhoneNumbers (BusinessEntityID)
 END
@@ -43,7 +43,7 @@ GO
 
 IF NOT EXISTS (SELECT 1 FROM sys.fulltext_catalogs WHERE name = 'AW2008FullTextDemoCatalog')
 BEGIN
-    -- Create a full text catalogue
+    -- Create a full text catalog
     CREATE FULLTEXT CATALOG AW2008FullTextDemoCatalog
 END
 GO
@@ -59,8 +59,7 @@ BEGIN
         PhoneNumber,
         FirstName
     )
-    KEY INDEX UX_PersonPhoneNumbers_BusinessEntityID
-    ON (AW2008FullTextDemoCatalog)
+    KEY INDEX UX_PersonPhoneNumbers_BusinessEntityID ON (AW2008FullTextDemoCatalog) 
     WITH (CHANGE_TRACKING AUTO)
 END
 GO
@@ -88,7 +87,7 @@ FROM dbo.PersonPhoneNumbers
 WHERE FREETEXT ((PhoneNumber, FirstName), '949 ken')
 GO
 
-
+-- '"xx*"' acts the same as like xx%
 SELECT * 
 FROM dbo.PersonPhoneNumbers
 WHERE CONTAINS ( FirstName, '"ke*"')
