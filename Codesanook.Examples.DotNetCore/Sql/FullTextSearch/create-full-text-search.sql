@@ -104,3 +104,9 @@ SELECT *
 FROM dbo.PersonPhoneNumbers
 WHERE FirstName LIKE '%ke%'
 GO
+
+-- On a table and existing index
+SELECT LastName FROM Person.Person WHERE LastName LIKE 'ch%' 
+
+SELECT LastName FROM Person.Person WHERE LastName LIKE '%ch%'
+
