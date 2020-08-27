@@ -93,7 +93,14 @@ FROM dbo.PersonPhoneNumbers
 WHERE CONTAINS ( FirstName, '"ke*"')
 GO
 
+-- Like start with
 SELECT * 
 FROM dbo.PersonPhoneNumbers
 WHERE FirstName LIKE 'ke%'
+GO
+
+-- Like contains
+SELECT * 
+FROM dbo.PersonPhoneNumbers
+WHERE FirstName LIKE '%ke%'
 GO
