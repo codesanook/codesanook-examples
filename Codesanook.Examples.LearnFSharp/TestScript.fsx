@@ -1,6 +1,14 @@
 #load "BallModel.fs"
 open Codesanook.Examples.LearnFSharp
 
+type Result = 
+  | Success                // no string needed for success state
+  | ErrorMessage of string // error message needed
+
+let result = Success
+let erroResult= ErrorMessage
+
+
 let genericBallTest name x y shouldBounceX shouldBounceY = 
     let ball = Ball.New(x, y, 1., 1.)
 
