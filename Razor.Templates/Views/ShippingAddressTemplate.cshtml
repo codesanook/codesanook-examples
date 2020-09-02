@@ -51,7 +51,7 @@
                 <td>
                         <h4>ชื่อและที่อยู่ผู้ส่ง</h4>
                         <p>
-                            @Model.SenderAddress
+                            @Html.Raw(Model.SenderAddress)
                         </p>
                 </td>
                 <td>
@@ -59,7 +59,7 @@
                         <h4>ชื่อและที่อยู่ผู้รับ</h4>
                         <ul>
                             <li>
-                                @address.FullName (จำนวนสินค้า @address.NumberOfOrderedItems ชิ้น)
+                                @address.FullName (Reference Id: @address.ReferenceId)
                             </li>
                             <li>
                                 โทร @address.MobilePhoneNumber

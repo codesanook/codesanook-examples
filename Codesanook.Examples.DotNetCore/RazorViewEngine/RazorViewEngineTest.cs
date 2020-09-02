@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
@@ -41,10 +42,15 @@ namespace Codesanook.Examples.DotNetCore.RazorViewEngine
 
             var receiverAddresses = CreateShippingAddressItems(csvReader);
             const string senderAddressFilePath = "RazorViewEngine/SenderAddress.txt";
-            var senderAddress = File.ReadAllText(senderAddressFilePath);
+            var senderAddress = File.ReadAllLines(senderAddressFilePath)
+                .Aggregate(
+                    new StringBuilder(),// seed
+                    (accumulated, currentValue) => accumulated.Append($"{currentValue}<br />")
+                );
+
             var shippingAddress = new ShippingAdress()
             {
-                SenderAddress = senderAddress,
+                SenderAddress = senderAddress.ToString(),
                 RecieverAddresses = await receiverAddresses.ToArrayAsync()
             };
 
@@ -53,14 +59,14 @@ namespace Codesanook.Examples.DotNetCore.RazorViewEngine
                 shippingAddress
             );
 
-            // The output file is in Codesanook.Examples.DotNetCore/bin/Debug/netcoreapp3.1/ShippingAddresses.html
+            // The output file is in Codesanook.Examples.DotNetCore/bin/Debug/netcoreapp3.1/win-x64/ShippingAddresses.html
             File.WriteAllText("ShippingAddresses.html", html);
             Assert.NotEmpty(html);
         }
 
         private IAsyncEnumerable<ShippingAddressItem> CreateShippingAddressItems(CsvReader csvReader)
         {
-            return 
+            return
                 from a in csvReader.GetRecordsAsync<ShippingAddressItem>()
                 let zipCode = GetZipCode(a.Address)
                 select new ShippingAddressItem()
@@ -69,7 +75,7 @@ namespace Codesanook.Examples.DotNetCore.RazorViewEngine
                     MobilePhoneNumber = a.MobilePhoneNumber,
                     Address = a.Address.Replace(zipCode, string.Empty),
                     ZipCode = zipCode,
-                    NumberOfOrderedItems = a.NumberOfOrderedItems
+                    ReferenceId = a.ReferenceId
                 };
         }
 
