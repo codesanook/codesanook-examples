@@ -42,6 +42,7 @@ namespace Codesanook.Examples.DotNetCore.GoogleApi
             payload.priority = "high";
             const string soundName = "default";
 
+            // TODO this should be update to enumeration
             switch (pushNotification.Platform.ToUpperInvariant())
             {
                 case "IOS":
