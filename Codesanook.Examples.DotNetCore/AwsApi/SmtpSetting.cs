@@ -13,8 +13,7 @@ namespace Codesanook.Examples.DotNetCore.AwsApi
         // If you're using Amazon SES in a region other than US EAST 2 (Ohio), 
         // replace email-smtp.us-east-2.amazonaws.com with the Amazon SES SMTP  
         // endpoint in the appropriate AWS Region.
-        public string Host { get; } =
-            $"email-smtp.{RegionEndpoint.USEast2.SystemName}.amazonaws.com";
+        public string Host { get; } = $"email-smtp.{RegionEndpoint.USEast2.SystemName}.amazonaws.com";
 
         // The port you will connect to on the Amazon SES SMTP endpoint. 
         // We are choosing port 587 because we will use STARTTLS to encrypt the connection.

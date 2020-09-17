@@ -1,4 +1,3 @@
-using Amazon;
 using System;
 using System.IO;
 using System.Net;
@@ -19,17 +18,20 @@ namespace Codesanook.Examples.DotNetCore.AwsApi
                 .WithNamingConvention(UnderscoredNamingConvention.Instance)
                 .Build();
 
-            const string settingFile = "AwsApi/email-setting.yml";
+            // Don't forget to "Copy if newer"
+            const string settingFile = "AwsApi/smtp-setting.yml";
             if (!File.Exists(settingFile))
             {
-                throw new InvalidOperationException(string.Join("\n",
-                    $"Please create {settingFile} and add the following contents:",
-                    "smtp_username = \"IAM API key id\"",
-                    "smtp_password = \"IAM SMTP password derived from IAM API secret\"",
-                    "from_address = \"\"",
-                    "from_name = \"\"",
-                    "to_address = \"\""
-                ));
+                throw new InvalidOperationException(
+                    string.Join("\n",
+                        $"Please create {settingFile} set \"copy if newer\" and add the following contents:",
+                        "smtp_username: \"IAM access key id\"",
+                        "smtp_password: \"IAM SMTP password derived from IAM secret access key\"",
+                        "from_address: \"\"",
+                        "from_name: \"\"",
+                        "to_address: \"\""
+                    )
+                );
             }
 
             using var streamReader = new StreamReader(settingFile);

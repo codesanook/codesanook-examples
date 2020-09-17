@@ -20,7 +20,7 @@ VALUES
 GO
 
 -- Using WITH FORMAT to overwrite any existing backups and create a new media set.
--- Backtup to default database location /var/opt/mssql/backup/Codesanook.bak
+-- Backup to a default location /var/opt/mssql/backup/Codesanook.bak
 USE master
 GO
 
@@ -39,7 +39,7 @@ VALUES
 ('phuong@realman.com', 'Phuong', 'Realman', '2020-01-20')
 GO
 
--- Backtup to default log location /var/opt/mssql/log/Codesanook_log.ldf
+-- Backup to the default log location /var/opt/mssql/log/Codesanook_log.ldf
 USE master
 GO
 
