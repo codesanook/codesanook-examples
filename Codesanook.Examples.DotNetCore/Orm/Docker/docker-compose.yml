@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  db:
+    image: microsoft/mssql-server-linux:latest
+    container_name: codesanook-examples-sql
+    ports:
+      - 1433:1433 # Default SQL Server port
+    environment:
+      # https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-configure-environment-variables?view=sql-server-ver15#environment-variables
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Developer
+      - MSSQL_SA_PASSWORD_FILE=/run/secrets/sa_password
+    # Usage of secret file for 'db' service
+    secrets:
+      - sa_password
+
+# Define a secret file at top level
+# External secrets are not available to containers created by docker-compose.
+secrets:
+  sa_password:
+    file: ./sa_password.secret
+

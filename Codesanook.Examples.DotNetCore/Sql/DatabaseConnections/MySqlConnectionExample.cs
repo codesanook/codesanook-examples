@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -28,7 +28,7 @@ namespace Codesanook.Examples.Sql.DatabaseConnections
         [Fact]
         public void Connect()
         {
-            //Password is simple, just for demo, please use strong password when using in a production environment
+            // Password is simple, just for demo, please use strong password when using in a production environment
             const string connectionString = "Server=localhost;Database=codesanook;Uid=root;Pwd=1234;";
             using var connection = new MySqlConnection(connectionString);
             var command = connection.CreateCommand();
