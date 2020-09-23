@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: ${DOCKER_FILE}
     image: codesanook-examples-sql:latest
-    container_name: codesanook-examples-sql
+    container_name: codesanook-examples-mssql
     ports:
       - 1455:1433 # Default SQL Server port
     # https://docs.docker.com/compose/compose-file/#volumes
@@ -44,7 +44,7 @@ volumes:
 #   - ./secret.env
 
 # Define a secret file at top level
-# External secrets are not available to containers created by docker-compose.
+# External secrets are not available to a container created by docker-compose.
 secrets:
   sa_password:
     file: ./sa_password.secret

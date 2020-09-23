@@ -4,7 +4,7 @@ try {
     $env:DOCKER_FILE = "Dockerfile"
 
     # Save current working directory and change to shared Dock folder
-    Push-Location -Path "../Docker"
+    Push-Location -Path "../SqlServerDocker"
 
     # Launch Docker container
     docker-compose up --build 

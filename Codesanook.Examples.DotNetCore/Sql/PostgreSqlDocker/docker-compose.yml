@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:latest
+    restart: always # Always restart a container under all circumstances.
+    container_name: codesanook-examples-postgres
+    ports:
+      - 5432:5432  # Explicitly set a default port
+    environment:
+      POSTGRES_USER: postgres  # Explicitly use a default username
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      POSTGRES_DB: codesanook # If it is not specified, then the value of POSTGRES_USER will be used.
+    # Usage of secret file for 'db' service
+    secrets:
+      - postgres_password
+
+# Define a secret file at the top level
+# External secrets are not available to a container created by docker-compose
+secrets:
+  postgres_password:
+    file: ./postgres_password.secret
+
