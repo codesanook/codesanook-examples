@@ -28,16 +28,16 @@ namespace Codesanook.Examples.DotNetCore.AwsApi
 
             // The HTML body of the email.
             string htmlBody =
-@"<html>
-<head></head>
-<body>
-  <h1>Amazon SES Test (AWS SDK for .NET)</h1>
-  <p>This email was sent with
-    <a href='https://aws.amazon.com/ses/'>Amazon SES</a> using the
-    <a href='https://aws.amazon.com/sdk-for-net/'>
-      AWS SDK for .NET</a>.</p>
-</body>
-</html>";
+                @"<html>
+                <head></head>
+                <body>
+                  <h1>Amazon SES Test (AWS SDK for .NET)</h1>
+                  <p>This email was sent with
+                    <a href='https://aws.amazon.com/ses/'>Amazon SES</a> using the
+                    <a href='https://aws.amazon.com/sdk-for-net/'>
+                      AWS SDK for .NET</a>.</p>
+                </body>
+                </html>";
 
             using var client = new AmazonSimpleEmailServiceClient(
                 apiKey,

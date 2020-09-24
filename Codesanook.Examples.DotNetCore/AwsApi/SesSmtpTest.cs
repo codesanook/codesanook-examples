@@ -10,7 +10,7 @@ namespace Codesanook.Examples.DotNetCore.AwsApi
 {
     public class SesSmtpTest
     {
-        private readonly SmtpSetting setting;
+        private readonly SesSmtpSetting setting;
 
         public SesSmtpTest()
         {
@@ -35,7 +35,7 @@ namespace Codesanook.Examples.DotNetCore.AwsApi
             }
 
             using var streamReader = new StreamReader(settingFile);
-            setting = deserializer.Deserialize<SmtpSetting>(streamReader.ReadToEnd());
+            setting = deserializer.Deserialize<SesSmtpSetting>(streamReader.ReadToEnd());
         }
 
         [Fact]

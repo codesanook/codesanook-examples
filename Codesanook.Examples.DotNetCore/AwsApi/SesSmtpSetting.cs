@@ -2,7 +2,7 @@ using Amazon;
 
 namespace Codesanook.Examples.DotNetCore.AwsApi
 {
-    public class SmtpSetting
+    public class SesSmtpSetting
     {
         // Use IAM key Id
         public string SmtpUsername { get; set; }
