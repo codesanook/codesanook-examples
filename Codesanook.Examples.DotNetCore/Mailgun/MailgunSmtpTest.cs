@@ -68,13 +68,12 @@ namespace Codesanook.Examples.DotNetCore.Mailgun
             var message = new MailMessage
             {
                 IsBodyHtml = true,
-                // This address must be verified with Amazon SES.
                 From = new MailAddress(setting.FromAddress, setting.FromName),
                 Subject = subject,
                 Body = body
             };
 
-            // Hotmail only supports the mailto:link. When a user clicks on the 'unsubscribe'  option in Hotmail. 
+            // Hotmail only supports the mailto:link. When a user clicks on the 'unsubscribe' option in Hotmail. 
             // Hotmail tries to read the mailto:link in the List-Unsubscribe header. 
             // If the mailto:link is missing, it moves all the messages to the Junk folder.
             // The mailto:link is supported by Gmail, Hotmail, Yahoo, AOL, ATT, Time Warner and Comcast; 
@@ -82,7 +81,6 @@ namespace Codesanook.Examples.DotNetCore.Mailgun
             // and the Chinese domains qq.com, naver.com etc. So most ISPs support (and prefer) mailto:link.
             message.Headers.Add("List-Unsubscribe", "<%unsubscribe_email%>");
 
-            // This address must be verified with Amazon SES.
             message.To.Add(new MailAddress(setting.ToAddress));
 
             using var client = new SmtpClient(setting.Host, setting.Port)
