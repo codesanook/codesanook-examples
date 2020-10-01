@@ -1,7 +1,25 @@
 {
     "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "moduleResolution": "node",
+        "noUnusedLocals": true,
         "noImplicitAny": true,
-        "target": "es5",
-        "module": "commonjs"
-    }
+        "target": "es2015",
+        "module": "es2015",
+        "strict": true,
+        "jsx": "react",
+        "strictPropertyInitialization": false,
+        "strictNullChecks": false
+    },
+    "include": [
+        "src/**/*.ts",
+        "spec/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
 }
