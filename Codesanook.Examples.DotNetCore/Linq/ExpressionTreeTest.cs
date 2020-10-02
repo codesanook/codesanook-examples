@@ -6,7 +6,7 @@ using Xunit;
 
 namespace Codesanook.Examples.CSharp.Linq
 {
-    public class ExpressionTree
+    public class ExpressionTreeTest
     {
         [Fact]
         public void GetPropertyName_OneLevelNestedProperty_ReturnCorrectName()
