@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
 using System.Net;
@@ -12,12 +14,18 @@ namespace Codesanook.Examples.DotNetCore.GoogleApi
 {
     public class FirebaseCloudMessagingTest
     {
-        // Get serverKey from Cloud Messaging setting in Firebase console 
+        public FirebaseCloudMessagingTest() =>
+            ServicePointManager.ServerCertificateValidationCallback += new RemoteCertificateValidationCallback(ValidateServerCertificate);
+
+        // Get serverKey from "Cloud Messaging" setting in Firebase console 
         private const string serverKey = "";
 
-        // Get registrationId from a mobile client application 
+        // Get registrationId from a mobile client application.
         // Alternatively, you can also get its value from GCM Notifications Chrome extension and test it without a mobile client application.
+        // More information
         // https://github.com/GoogleChrome/chrome-app-samples/tree/master/samples/gcm-notifications
+        // Link to GCM Notifications https://chrome.google.com/webstore/detail/gcm-notifications/gpededflkpcoehfjpdecdkoiagajloin
+        // Use Sender ID from "Cloud Messaging" setting in Firebase console to get register ID with GCM Notifications. 
         private const string registrationId = "";
 
         [Fact]
@@ -28,7 +36,7 @@ namespace Codesanook.Examples.DotNetCore.GoogleApi
                 Title = "Push message",
                 Body = "FCM push message, credit admin Pong Codesanook",
                 RegistrationId = registrationId,
-                Platform = "Android"
+                Platform = PushNotificationPlatform.Android
             };
 
             var response = SendPushNotification(pushNotification);
@@ -37,45 +45,10 @@ namespace Codesanook.Examples.DotNetCore.GoogleApi
 
         private PushNotificationResponse SendPushNotification(PushNotificationRequest pushNotification)
         {
-            dynamic payload = new ExpandoObject();
-            payload.registration_ids = new[] { pushNotification.RegistrationId };
-            payload.priority = "high";
-            const string soundName = "default";
+            var message = CreateMessage(pushNotification);
+            var request = CreateRequest();
 
-            // TODO this should be update to enumeration
-            switch (pushNotification.Platform.ToUpperInvariant())
-            {
-                case "IOS":
-                    payload.notification = new
-                    {
-                        title = pushNotification.Title,
-                        body = pushNotification.Body,
-                        sound = soundName,
-                    };
-                    break;
-                case "ANDROID": // Work for start up and get push in background
-                    payload.data = new
-                    {
-                        title = pushNotification.Title,
-                        body = pushNotification.Body,
-                        soundname = soundName,
-                    };
-                    break;
-                default:
-                    throw new InvalidOperationException("Invalid registration platform");
-            }
-
-            ServicePointManager.ServerCertificateValidationCallback += new RemoteCertificateValidationCallback(ValidateServerCertificate);
-            var request = (HttpWebRequest)WebRequest.Create("https://fcm.googleapis.com/fcm/send");
-            request.Method = "POST";
-            request.KeepAlive = false;
-            request.ContentType = "application/json";
-
-            request.Headers.Add($"Authorization: key={serverKey}");
-            // We don't need a header of Sender: id=xxx but some examples on the Internet add it.
-
-            var payloadJson = JsonConvert.SerializeObject(payload);
-            var payloadData = Encoding.UTF8.GetBytes(payloadJson);
+            var payloadData = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
             request.ContentLength = payloadData.Length;
 
             WebResponse response;
@@ -98,8 +71,70 @@ namespace Codesanook.Examples.DotNetCore.GoogleApi
                 case HttpStatusCode.Forbidden:
                     throw new InvalidOperationException("Unauthorized - need a new token");
                 default:
-                    throw new InvalidOperationException("Response from web service isn't OK");
+                    // TODO need to log more exception information 
+                    throw new InvalidOperationException($"Response from web service with status code {responseCode}");
             }
+        }
+
+        private static HttpWebRequest CreateRequest()
+        {
+            var request = (HttpWebRequest)WebRequest.Create("https://fcm.googleapis.com/fcm/send");
+            request.Method = "POST";
+            request.KeepAlive = false;
+            request.ContentType = "application/json";
+
+            // We don't need a header of Sender: id=xxx but some examples on the Internet add it.
+            request.Headers.Add($"Authorization: key={serverKey}");
+            return request;
+        }
+
+        private static dynamic CreateMessage(PushNotificationRequest pushNotification)
+        {
+            dynamic message = new ExpandoObject();
+            message.registration_ids = new[] { pushNotification.RegistrationId };
+            message.priority = "high";
+            const string soundName = "default";
+
+            // REF Firebase Cloud Messaging (FCM)
+            // https://firebase.google.com/docs/cloud-messaging/concept-options
+
+            // Use notification messages when you want FCM to handle displaying a notification on your client app's behalf. 
+            // Use data messages when you want to process the messages on your client app.
+
+            // Common fields for iOS and Android 
+            // message.notification.title
+            // message.notification.body
+            // message.data
+
+            switch (pushNotification.Platform)
+            {
+                case PushNotificationPlatform.IOS:
+                    // Use notification message
+                    message.notification = new
+                    {
+                        title = pushNotification.Title,
+                        body = pushNotification.Body,
+                        sound = soundName,
+                    };
+                    break;
+                case PushNotificationPlatform.Android: // Work for start up code block and get push in background
+                    // Use data message
+                    message.data = new Dictionary<string,object>()
+                    {
+                        { "title", pushNotification.Title },
+                        { "body", pushNotification.Body },
+                        { "soundname", soundName },
+                        // Just dump property to show that we need to use snake case naming. 
+                        // If we use camel case, the data won't sent.
+                        { "trantion_id", 1 }, 
+                        { "additionalData", "other" } // This field won't sent
+                    };
+                    break;
+                default:
+                    throw new InvalidOperationException("Invalid registration platform");
+            }
+
+            return message;
         }
 
         private static bool ValidateServerCertificate(

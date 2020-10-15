@@ -5,7 +5,7 @@ namespace Codesanook.Examples.DotNetCore.GoogleApi
         public string RegistrationId { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
-        public string Platform {get;set;}
+        public PushNotificationPlatform Platform {get;set;}
     }
 }
 
