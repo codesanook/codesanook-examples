@@ -12,6 +12,8 @@ using Xunit;
 
 namespace Codesanook.Examples.DotNetCore.GoogleApi
 {
+    // Alternatively, you can use SDK to send a message https://www.nuget.org/packages/FirebaseAdmin/
+    // More info https://firebase.google.com/docs/reference/admin/dotnet/class/firebase-admin/messaging/firebase-messaging
     public class FirebaseCloudMessagingTest
     {
         public FirebaseCloudMessagingTest() =>
@@ -119,14 +121,14 @@ namespace Codesanook.Examples.DotNetCore.GoogleApi
                     break;
                 case PushNotificationPlatform.Android: // Work for start up code block and get push in background
                     // Use data message
-                    message.data = new Dictionary<string,object>()
+                    message.data = new Dictionary<string, object>()
                     {
                         { "title", pushNotification.Title },
                         { "body", pushNotification.Body },
                         { "soundname", soundName },
                         // Just dump property to show that we need to use snake case naming. 
                         // If we use camel case, the data won't sent.
-                        { "trantion_id", 1 }, 
+                        { "trantion_id", 1 },
                         { "additionalData", "other" } // This field won't sent
                     };
                     break;
