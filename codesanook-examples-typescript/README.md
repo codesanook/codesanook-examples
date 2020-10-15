@@ -32,3 +32,8 @@
 ## Example of pie chart output
 
 ![chart output](https://github.com/codesanook/CodeSanook.Examples/blob/master/codesanook-examples-chart.js/pie-chart-output.png)
+
+## To have .html in src and output to dist folder
+- Add .html to src folder
+- import .html in main.ts
+- yarn add html-loader file-loader --dev

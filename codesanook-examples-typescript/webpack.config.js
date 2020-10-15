@@ -1,15 +1,14 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const outputFileName = 'codesanook-examples-typescript';
 
 module.exports = {
     // https://webpack.js.org/configuration/entry-context/#entry
     entry: [
         './src/main',
     ],
+    mode: 'development', // check if we need it for hot relead 
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: `${outputFileName}.js`,
+        filename: '[name]-bundle.js',
     },
 
     resolve: {
@@ -17,55 +16,40 @@ module.exports = {
     },
 
     module: {
-        rules: [{
-            test: /\.(ts|js)x?$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/,
-        }, {
-            test: /\.scss$/,
-            use: [{
-                loader: MiniCssExtractPlugin.loader,
-            }, {
-                loader: 'css-loader', // Translates CSS to CommonJS modules
-            }, {
-                loader: 'postcss-loader', // Run post css actions
-                options: {
-                    plugins: function () { // post css plugins, can be exported to postcss.config.js
-                        return [
-                            require('precss'),
-                            require('autoprefixer'),
-                        ];
-                    }
-                }
-            }, {
-                loader: 'resolve-url-loader',
-            }, {
-                loader: 'sass-loader', // compiles Sass to CSS, using Node Sass by default
-                options: {
-                    sourceMap: true,
-                }
-            }],
-            exclude: /node_modules/
-        },
-        {
-            test: /\.(png|jpe?g|gif|svg|eot|ttf|woff2?)$/,
-            use: [{
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]',
-                    outputPath: './../styles',
-                }
-            }]
-        }]
+        rules: [
+            {
+                test: /\.(ts|js)x?$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    // Creates `style` nodes from JS strings
+                    'style-loader',
+                    // Translates CSS into CommonJS
+                    'css-loader',
+                    // Compiles Sass to CSS
+                    'sass-loader',
+                ],
+                exclude: /node_modules/
+            },
+        ]
     },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: `./../dist/${outputFileName}.css`,
-        })
-    ],
-    // externals: {
-    //     react: 'React',
-    // },
     // https://webpack.js.org/configuration/devtool/
     devtool: 'inline-source-map',
+    devServer: {
+        contentBase: path.join(__dirname, 'dist'),
+        compress: false,
+        port: 9999,
+        overlay: true,
+    }
 };
+
+
+/*
+Hot reload
+JS work, it link by included JS file and it will inject to the HTML that has that JS file.
+SCSS work, with sass-loader, css-loader, style-loader
+HTML not reload
+*/
