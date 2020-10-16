@@ -2,7 +2,7 @@ using Codesanook.Examples.Core.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
-namespace Codesanook.Examples.DotNetCore.Orm.EFExamples.EntityConfigurations
+namespace Codesanook.Examples.DotNetCore.Orm.EF6Examples.EntityConfigurations
 {
     public class CommentEntityConfiguration : EntityTypeConfiguration<Comment>
     {

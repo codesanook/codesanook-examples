@@ -5,20 +5,23 @@ using Xunit;
 using System.Linq;
 using System.Data.Entity;
 
-namespace Codesanook.Examples.DotNetCore.Orm.EFExamples
+namespace Codesanook.Examples.DotNetCore.Orm.EF6Examples
 {
-    public class EFSQLiteTest : IAsyncLifetime
+    public class EF6SQLiteTest : IAsyncLifetime
     {
         private BlogDbContext db;
 
+        // Run before all test cases one time like TestFixture setup
         public async Task InitializeAsync()
         {
-            // In memory SQLite which get deleted after close a connection
+            // In memory SQLite which get removed automatically after close a connection
             db = new BlogDbContext("Data Source=:memory:;Version=3;New=True;");
 
-            // SQLite EF not create a table for you 
+            // SQLite EF doest not create a table for you automatically
             // https://stackoverflow.com/a/23128288/1872200
-            await CreateTables(db);
+            await CreateTablesFromScript(db);
+
+            await Task.CompletedTask;
         }
 
         public Task DisposeAsync()
@@ -82,14 +85,17 @@ namespace Codesanook.Examples.DotNetCore.Orm.EFExamples
             Assert.Single(postWithLeftJoinComment);
         }
 
-        private static async Task CreateTables(BlogDbContext db)
+        // We can use System.Data.SQLite.EF6.Migrations package but it work only SQLite database file
+        // More info https://github.com/bubibubi/sqliteef6migrations
+        private static async Task CreateTablesFromScript(BlogDbContext db)
         {
-            var sqlCommand = await File.ReadAllTextAsync("Orm/create-blog-tables.sql");
+            var sqlCommand = await File.ReadAllTextAsync("Orm/scripts/create-sqlite-blog-tables.sql");
             await db.Database.ExecuteSqlCommandAsync(sqlCommand);
             var userTableNames = await db.Database.SqlQuery<string>(
                 @"SELECT name FROM sqlite_master WHERE type ='table' AND name NOT LIKE 'sqlite_%';"
             ).ToListAsync();
 
+            // Verify if we created 3 tables
             Assert.Equal(3, userTableNames.Count);
         }
     }

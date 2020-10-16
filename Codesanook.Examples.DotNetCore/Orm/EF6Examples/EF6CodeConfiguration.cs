@@ -5,11 +5,11 @@ using System.Data.Entity.Infrastructure;
 using System.Data.SQLite;
 using System.Data.SQLite.EF6;
 
-namespace Codesanook.Examples.DotNetCore.Orm.EFExamples
+namespace Codesanook.Examples.DotNetCore.Orm.EF6Examples
 {
-    public class EFCodeConfig : DbConfiguration
+    public class EF6CodeConfiguration : DbConfiguration
     {
-        public EFCodeConfig()
+        public EF6CodeConfiguration()
         {
             // The default connection factory is used when pass context string to db context.
             SetDefaultConnectionFactory(new SQLiteConnectionFactory());

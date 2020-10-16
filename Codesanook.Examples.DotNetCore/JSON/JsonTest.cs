@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -70,28 +70,25 @@ namespace Codesanook.Examples.CSharp.JSON
         [Fact]
         public void Deserialize_OrderDynamicObject_OrderedCorrectly()
         {
-
             var directory = AppDomain.CurrentDomain.BaseDirectory;
             var jsonPath = Path.Combine(directory, "JSON/app-service-runtime.json");
 
-            using (var fileStream = new FileStream(jsonPath, FileMode.Open, FileAccess.Read))
-            using (var streamReader = new StreamReader(fileStream))
-            {
+            using var fileStream = new FileStream(jsonPath, FileMode.Open, FileAccess.Read);
+            using var streamReader = new StreamReader(fileStream);
 
-                //   var runtime = JsonConvert.DeserializeObject<dynamic>(streamReader.ReadToEnd());
-                dynamic data = JObject.Parse(streamReader.ReadToEnd());
-                var sortedNodeVersion = ((IEnumerable<dynamic>)data.nodejs)
-                    .Select(n =>
-                    {
-                        var versionString = n.version.Value as string;
-                        var version = new Version(versionString);
-                        return new { Version = version, NPM = n.npm.Value };
-                    })
-                    .OrderByDescending(n => n.Version)
-                    .ToArray();
+            //   var runtime = JsonConvert.DeserializeObject<dynamic>(streamReader.ReadToEnd());
+            dynamic data = JObject.Parse(streamReader.ReadToEnd());
+            var sortedNodeVersion = ((IEnumerable<dynamic>)data.nodejs)
+                .Select(n =>
+                {
+                    var versionString = n.version.Value as string;
+                    var version = new Version(versionString);
+                    return new { Version = version, NPM = n.npm.Value };
+                })
+                .OrderByDescending(n => n.Version)
+                .ToArray();
 
-                var formattedNode = string.Join("\n", sortedNodeVersion.Select(x => $"Node.js: {x.Version}, npm: {x.NPM}"));
-            }
+            var formattedNode = string.Join("\n", sortedNodeVersion.Select(x => $"Node.js: {x.Version}, npm: {x.NPM}"));
         }
 
         [Fact]

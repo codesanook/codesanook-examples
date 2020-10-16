@@ -1,10 +1,10 @@
 using Codesanook.Examples.Core.Models;
-using Codesanook.Examples.DotNetCore.Orm.EFExamples.EntityConfigurations;
+using Codesanook.Examples.DotNetCore.Orm.EF6Examples.EntityConfigurations;
 using System.Data.Entity;
 
-namespace Codesanook.Examples.DotNetCore.Orm.EFExamples
+namespace Codesanook.Examples.DotNetCore.Orm.EF6Examples
 {
-    [DbConfigurationType(typeof(EFCodeConfig))]
+    [DbConfigurationType(typeof(EF6CodeConfiguration))]
     public class BlogDbContext : DbContext
     {
         public DbSet<Blog> Blogs { get; set; }
@@ -22,7 +22,6 @@ namespace Codesanook.Examples.DotNetCore.Orm.EFExamples
             modelBuilder.Configurations.Add(new BlogEntityConfiguration());
             modelBuilder.Configurations.Add(new PostEntityConfiguration());
             modelBuilder.Configurations.Add(new CommentEntityConfiguration());
-            // modelBuilder.Conventions.Add<MyModelBasedConvention>();  
         }
     }
 }

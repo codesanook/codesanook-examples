@@ -89,7 +89,7 @@
     <None Update="nlog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Orm\create-blog-tables.sql">
+    <None Update="Orm\scripts\create-sqlite-blog-tables.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="RazorViewEngine\ReceiverAddresses.csv">
