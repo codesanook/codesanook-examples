@@ -34,6 +34,26 @@ module.exports = {
                 ],
                 exclude: /node_modules/
             },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "[name].[ext]"
+                        }
+                    },
+                    {
+                        loader: "extract-loader",
+                        options: {
+                            publicPath: "../"
+                        }
+                    },
+                    {
+                        loader: "html-loader"
+                    }
+                ]
+            },
         ]
     },
     // https://webpack.js.org/configuration/devtool/
@@ -46,10 +66,9 @@ module.exports = {
     }
 };
 
-
 /*
 Hot reload
 JS work, it link by included JS file and it will inject to the HTML that has that JS file.
 SCSS work, with sass-loader, css-loader, style-loader
-HTML not reload
+HTML work only "html-loader": "0.5.5" and "extract-loader": "2.0.1"
 */
