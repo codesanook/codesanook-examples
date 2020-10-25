@@ -1,3 +1,11 @@
+// https://github.com/scniro/react-codemirror2#requiring-codemirror-resources
+
+@import './external';
+@import './custom';
+@import 'codemirror/lib/codemirror.css';
+@import 'codemirror/theme/material.css';
+
+
 .flexbox{
     display: flex;
     height: 250px;
