@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "moduleResolution": "node",
+        "noUnusedLocals": true,
+        "noImplicitAny": true,
+        "target": "es2015",
+        "module": "es2015",
+        "strict": true,
+        "jsx": "react",
+        "strictPropertyInitialization": false,
+        "strictNullChecks": false
+    },
+    "include": [
+        "src/**/*.ts", "src/HellloComponent.tsx",
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
