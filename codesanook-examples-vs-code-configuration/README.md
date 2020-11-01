@@ -1,16 +1,35 @@
 # VS Code configuration example
 
-Create Node.js project with a default configuration
+### Create Node.js project with a default configuration
 ```
-npm init -y
+yarn init -y
 ```
 
-Add React library
-yarn add react react-dom 
-yarn add typescript  @types/react @types/react-dom @types/node @babel/core @babel/plugin-proposal-class-properties @babel/plugin-proposal-object-rest-spread @babel/preset-env @babel/preset-react @babel/preset-typescript webpack webpack-cli webpack-dev-server --dev
+## Add a required React packages
+```
+yarn add with the follwing packages
+```
+- react 
+- react-dom 
 
 ```
-Add .babelrc and the following contents.
+yarn add -- dev with the follwing packages
+```
+
+- typescript @types/react 
+- @types/react-dom 
+- @types/node @babel/core 
+- @babel/plugin-proposal-class-properties 
+- @babel/plugin-proposal-object-rest-spread 
+- @babel/preset-env 
+- @babel/preset-react 
+- @babel/preset-typescript 
+- webpack 
+- webpack-cli x
+- webpack-dev-server
+
+### Add .babelrc and the following contents.
+
 ```
 {
     "presets": [
@@ -24,7 +43,9 @@ Add .babelrc and the following contents.
     ]
 }
 ```
-Add tsconfig.json with the following contents.
+
+### Add tsconfig.json with the following contents.
+
 ```
 {
     "compilerOptions": {
@@ -52,8 +73,7 @@ Add tsconfig.json with the following contents.
 }
 ```
 
-
-Add webpack.config.js with the following contents;
+### Add webpack.config.js with the following contents;
 ```
 const path = require('path');
 
@@ -83,86 +103,92 @@ module.exports = {
         port: 8080,
     }
 };
+```
+
+## Configure ESLint
+
+```
+yarn add --dev the following package
+```
+
+- @typescript-eslint/parser
+- @typescript-eslint/eslint-plugin
+- babel-loader
+- eslint
+- eslint-config-airbnb
+- eslint-plugin-import
+- eslint-plugin-jsx-a11y
+- eslint-plugin-react
+- eslint-plugin-react-hooks
+
+### Create .eslintrc.yml with the following content
+```
+env:
+  browser: true
+  es2021: true
+extends:
+  - airbnb
+  - airbnb/hooks
+  - 'plugin:@typescript-eslint/recommended'
+  - 'plugin:import/typescript'
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 12
+  sourceType: module
+plugins:
+  - react
+  - '@typescript-eslint'
+  - import
+rules:
+  no-console: 'off'
+  semi:
+    - error
+    - always
+  quotes:
+    - error
+    - single
+  react/jsx-filename-extension:
+    - error
+    - extensions:
+        - .jsx
+        - .tsx
+  no-use-before-define: 'off'
+  '@typescript-eslint/no-use-before-define':
+    - error
+  '@typescript-eslint/explicit-module-boundary-types': 'off'
+  import/extensions:
+    - error
+    - always
+    - tsx: never
 
 ```
 
-Install ESLint
-```
-yarn add eslint --dev
-```
-
-# Configure ESLint
-
-```
-    yarn add eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-import --dev
-```
-Create .eslintrc.json with the following content
-
+To have ESLint format your code
+- Install ESLint Visual Studio plugin https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+- Add settings .vscode/settings.json with the following contents.
 ```
 {
-    "env": {
-        "browser": true,
-        "es2021": true
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
     },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb",
-        "plugin:import/errors",
-        "plugin:import/warnings",
-        "plugin:import/typescript"
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+        "typescriptreact"
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint",
-        "import"
-    ],
-    "rules": {
-        "no-console": "off",
-        "semi": [
-            "error",
-            "always"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "react/jsx-filename-extension": [
-            "error",
-            {
-                "extensions": [
-                    ".jsx",
-                    ".tsx"
-                ]
-            }
-        ],
-        "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": [
-            "error"
-        ],
-        "import/extensions": [
-            "error",
-            "always",
-            {
-                "ts": "never",
-                "tsx": "never",
-                "js": "never"
-            }
-        ]
-    }
+    "editor.fontSize": 16
 }
-
-
 ```
-
-Install ESLint Visual Studio plugin https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+- Restart VS code
+- There are example code in src folder
+- Make some invalid code format and check if you have an error from ESLint.
+- Edit code. Then save and see if code auto format. 
 
 # Useful references
 - https://stackoverflow.com/a/64024916/1872200
+
+# Credit 
+- [Runyasak Chaengnaimuang](https://github.com/runyasak)
+- [Wittawat Karpkrikaew](https://github.com/ponggun)

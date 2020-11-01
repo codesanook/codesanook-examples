@@ -1,0 +1,39 @@
+env:
+  browser: true
+  es2021: true
+extends:
+  - airbnb
+  - airbnb/hooks
+  - 'plugin:@typescript-eslint/recommended'
+  - 'plugin:import/typescript'
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 12
+  sourceType: module
+plugins:
+  - react
+  - '@typescript-eslint'
+  - import
+rules:
+  no-console: 'off'
+  semi:
+    - error
+    - always
+  quotes:
+    - error
+    - single
+  react/jsx-filename-extension:
+    - error
+    - extensions:
+        - .jsx
+        - .tsx
+  no-use-before-define: 'off'
+  '@typescript-eslint/no-use-before-define':
+    - error
+  '@typescript-eslint/explicit-module-boundary-types': 'off'
+  import/extensions:
+    - error
+    - always
+    - tsx: never
