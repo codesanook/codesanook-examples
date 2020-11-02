@@ -2,7 +2,8 @@ import './scss/style.scss';
 import './index.html';
 import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
-import { Controlled as CodeMirror } from 'react-codemirror2'
+import { Controlled as CodeMirror } from 'react-codemirror2';
+import Svg from './components/D3Component';
 
 // https://github.com/scniro/react-codemirror2#requiring-codemirror-resources
 // Ad vim mode
@@ -33,7 +34,13 @@ const Editor = () => {
         />
     )
 }
+
+render(
+    <Svg/>,
+    document.getElementsByClassName('d3-component')[0]
+)
+
 render(
     <Editor />,
-    document.getElementById('root')
+    document.getElementsByClassName('text-editor')[0]
 );
