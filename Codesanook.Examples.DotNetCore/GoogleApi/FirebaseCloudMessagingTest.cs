@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -128,7 +127,7 @@ namespace Codesanook.Examples.DotNetCore.GoogleApi
                         { "soundname", soundName },
                         // Just dump property to show that we need to use snake case naming. 
                         // If we use camel case, the data won't sent.
-                        { "trantion_id", 1 },
+                        { "transaction_id", 1 },
                         { "additionalData", "other" } // This field won't sent
                     };
                     break;

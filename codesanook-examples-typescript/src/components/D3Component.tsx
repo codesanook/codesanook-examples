@@ -41,7 +41,7 @@ const Svg = () => {
         console.log('interval');
     }, 1000);
 
-    return <svg ref={ref} />;
+    return <svg viewBox="0 0 100 50" ref={ref} />;
 }
 
 export default Svg;
