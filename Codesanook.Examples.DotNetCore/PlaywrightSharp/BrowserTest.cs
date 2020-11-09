@@ -13,17 +13,11 @@ namespace Codesanook.Examples.DotNetCore.PlaywrightSharp
     // playwright-sharp install-browsers
 
     // Then Install-Package PlaywrightSharp
-    public class BrowserTest : IAsyncLifetime
+    public class BrowserTest
     {
         private const string filePath = "./screenshot.png"; // relative to bin/debug
 
-        public Task InitializeAsync()
-        {
-            File.Delete(filePath); // Delete an existing screenshot file if exist
-            return Task.CompletedTask;
-        }
-
-        public Task DisposeAsync() => Task.CompletedTask;
+        public BrowserTest() => File.Delete(filePath); // Delete an existing screenshot file if exist
 
         [Fact]
         public async Task NewPageAsync_ValidUrl_ScreenshotSaved()
