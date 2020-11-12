@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <!-- https://stackoverflow.com/a/55775370/1872200 -->
     <GenerateProgramFile>false</GenerateProgramFile>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
