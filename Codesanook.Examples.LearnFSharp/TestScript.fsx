@@ -41,3 +41,15 @@ testBounceX
 testBounceY
 testBounceBoth
 
+// pass
+let list = [
+    1; // optional for multiple lines list member 
+    2;
+    3;
+]
+
+for item in list do
+   printfn "%d" item
+
+// fail
+let a = 1; let b = 2;
