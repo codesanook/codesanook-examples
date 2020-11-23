@@ -2,18 +2,20 @@ const path = require('path');
 
 module.exports = {
     // https://webpack.js.org/configuration/entry-context/#entry
-    entry: [
-        './src/main',
-    ],
+    entry: {
+        main: './src/main',
+        snow: './src/snow',
+    },
     mode: 'development', // check if we need it for hot relead 
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name]-bundle.js',
+        library: '[name]',
+        libraryExport: 'default',
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', 'jsx']
     },
-
     module: {
         rules: [
             {
@@ -69,5 +71,5 @@ module.exports = {
 Hot reload
 JS work, it link by included JS file and it will inject to the HTML that has that JS file.
 SCSS work, with sass-loader, css-loader, style-loader
-HTML work only "html-loader": "0.5.5" and "extract-loader": "2.0.1"
+!!! HTML work only "html-loader": "0.5.5" and "extract-loader": "2.0.1"
 */

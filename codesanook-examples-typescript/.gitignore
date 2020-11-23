@@ -1,0 +1,5 @@
+# ignore all files in dist folder
+dist/*  
+
+# not ignore snowflake.png
+!dist/snowflake.png

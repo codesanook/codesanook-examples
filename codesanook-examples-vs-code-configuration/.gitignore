@@ -1,1 +1,2 @@
-dist/*.js
+# Ignore all files in dist folder
+dist/*
