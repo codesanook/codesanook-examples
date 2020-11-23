@@ -1,3 +1,10 @@
+# Snowing in JavaScript
+
+## Example result of snowing in JavaScript code
+
+![snowing-result](snowing-result.gif)
+
+
 ## Equation
 - We think snowing has falling pattern like sin graph.
 - Let's start by plotting f(x) = sin(x)
@@ -15,11 +22,13 @@ x = sin(y)
 
 ![x=sin(y)](x=sin(y).png)
 
+## The equation of our falling snow is **x = sin(y)**.
+
 ---
 
 ## Adjust our graph
 
-To make snow fall naturally we need to randomly adjust our amplitude (height) and period (width) of a graph.
+To make snow fall naturally, we need to randomly adjust our amplitude (height) and period (width) of a graph.
 
 ## Adjust amplitude 
 x = 4sin(y)
@@ -41,10 +50,6 @@ x = sin(π/2y)
 ![x = sin(π/2y)](x=sin(y)-period-2.png)
 
 ---
-## Example result of snowing in JavaScript code
-
-![snowing-result](snowing-result.gif)
-
 # REF
 
 - [Inverse function](https://www.youtube.com/watch?v=zVG6MBFkiOo)
