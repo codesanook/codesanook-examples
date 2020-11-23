@@ -89,4 +89,4 @@
 - yarn add --dev  @types/d3
 
 
-## [Snowing in JS](snow.md)
+## [Snowing in JS](src/snow/snow.md)

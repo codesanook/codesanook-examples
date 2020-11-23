@@ -4,7 +4,7 @@ module.exports = {
     // https://webpack.js.org/configuration/entry-context/#entry
     entry: {
         main: './src/main',
-        snow: './src/snow',
+        snow: './src/snow/snow',
     },
     mode: 'development', // check if we need it for hot relead 
     output: {
