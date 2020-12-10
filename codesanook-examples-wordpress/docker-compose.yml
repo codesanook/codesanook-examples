@@ -1,10 +1,10 @@
-version: "3.7"
+version: "3.8"
 services:
   wordpress:
     image: wordpress:latest
     ports:
       - 8080:80
-    links:
+    depends_on:
       - mysql
     environment:
       WORDPRESS_DB_HOST: mysql
