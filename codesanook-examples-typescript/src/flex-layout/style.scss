@@ -1,0 +1,75 @@
+.wrapper {
+    display: flex;
+    // flex-flow is a shorthand for flex-direction and flex-wrap.
+    // https://css-tricks.com/almanac/properties/f/flex-direction/#demo
+    // https://css-tricks.com/almanac/properties/f/flex-wrap/#demo
+    flex-flow: row wrap; 
+    text-align: center;
+}
+
+.wrapper>* {
+    padding: 10px;
+    margin: 10px;
+    // flex is the shorthand for flex-grow, flex-shrink and flex-basis
+    // https://css-tricks.com/almanac/properties/f/flex-grow/#demo
+    // https://css-tricks.com/almanac/properties/f/flex-shrink/
+    // https://css-tricks.com/almanac/properties/f/flex-basis/
+    // https://www.youtube.com/watch?v=63MbEXhnmpI
+    flex: 1 100%; // => 1 1 100% 
+    border-radius: 10px;
+}
+
+.header {
+    background-color: tomato;
+    height: 120px;
+}
+
+.footer {
+    background-color: lightgreen;
+    height: 80px;
+}
+
+.main {
+    text-align: left;
+    background: deepskyblue;
+    height: 300px;
+    font-size: 24px;
+}
+
+.aside1 {
+    background: gold;
+}
+
+.aside2 {
+    background: hotpink;
+}
+
+// >= 800px 
+@media all and (min-width: 800px) {
+    .main {
+        flex: 3;
+    }
+
+    .aside1 {
+        order: 1;
+    }
+
+     .main {
+         order: 2;
+     }
+
+     .aside2 {
+         order: 3;
+     }
+
+    .footer {
+        order: 4;
+    }
+}
+
+// >= 600px
+@media all and (min-width: 600px) {
+    .aside {
+        flex: 1
+    }
+}

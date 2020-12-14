@@ -1,4 +1,5 @@
 {
+    "workbench.settings.editor": "json",
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
@@ -8,5 +9,10 @@
         "typescriptreact"
     ],
     "editor.fontSize": 16,
-    "editor.autoIndent":"none"
+    "editor.autoIndent": "none",
+    "editor.detectIndentation": false,
+    "[sass]": {
+        "editor.tabSize": 2
+    },
+    "vim.useSystemClipboard": true
 }
