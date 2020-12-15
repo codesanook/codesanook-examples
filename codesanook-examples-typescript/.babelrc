@@ -2,7 +2,8 @@
     "presets": [
         "@babel/env",
         "@babel/typescript",
-        "@babel/react"
+        "@babel/react",
+        "@emotion/babel-preset-css-prop"
     ],
     "plugins": [
         "@babel/proposal-class-properties",

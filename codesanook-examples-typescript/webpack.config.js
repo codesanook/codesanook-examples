@@ -8,7 +8,7 @@ module.exports = {
     snow: './src/snow/snow',
     dnd: './src/drag-and-drop/drag-and-drop',
     flexLayout: './src/flex-layout/flex-layout',
-
+    nestedDragAndDrop: './src/nested-drag-and-drop/nested-drag-and-drop',
   },
   mode: 'development', // check if we need it for hot reload
   output: {

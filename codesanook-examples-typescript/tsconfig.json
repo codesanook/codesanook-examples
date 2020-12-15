@@ -7,16 +7,20 @@
         "noImplicitReturns": true,
         "moduleResolution": "node",
         "noUnusedLocals": true,
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "target": "es2015",
         "module": "es2015",
         "strict": true,
         "jsx": "react",
         "strictPropertyInitialization": false,
-        "strictNullChecks": false
+        "strictNullChecks": false,
+        "types": [
+            "@emotion/react/types/css-prop"
+        ]
     },
     "include": [
         "src/**/*.ts",
+        "src/**/*.tsx",
         "spec/**/*.ts"
     ],
     "exclude": [
