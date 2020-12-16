@@ -86,7 +86,7 @@ export default function App() {
   ]);
 
   return (
-    // eslint-disable-next-line react/jsx-no-comment-textnodes
+  // eslint-disable-next-line react/jsx-no-comment-textnodes
     <div>
       <ReactSortable list={blocks} setList={setBlocks} {...sortableOptions}>
         {blocks.map((block, blockIndex) => (
@@ -107,12 +107,13 @@ function Container({ block, blockIndex, setBlocks }) {
   return (
     <>
       <ReactSortable
-        // eslint-disable-next-line react/prop-types
+                // eslint-disable-next-line react/prop-types
         key={block.id}
         list={block.children}
         setList={(currentList) => {
           setBlocks((sourceList) => {
             const tempList = [...sourceList];
+            // eslint-disable-next-line no-underscore-dangle
             const _blockIndex = [...blockIndex];
             const lastIndex = _blockIndex.pop();
             const lastArr = _blockIndex.reduce(
@@ -124,17 +125,19 @@ function Container({ block, blockIndex, setBlocks }) {
             return tempList;
           });
         }}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...sortableOptions}
       >
         {block.children
-          && block.children.map((childBlock, index) => (
-            <BlockWrapper
-              key={childBlock.id}
-              block={childBlock}
-              blockIndex={[...blockIndex, index]}
-              setBlocks={setBlocks}
-            />
-          ))}
+                    && block.children.map((childBlock, index) => (
+                      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+                      <BlockWrapper
+                        key={childBlock.id}
+                        block={childBlock}
+                        blockIndex={[...blockIndex, index]}
+                        setBlocks={setBlocks}
+                      />
+                    ))}
       </ReactSortable>
     </>
   );
@@ -166,6 +169,6 @@ function BlockWrapper({ block, blockIndex, setBlocks }) {
 }
 
 render(
-  <App/>,
+  <App />,
   document.getElementById('root'),
-)
+);

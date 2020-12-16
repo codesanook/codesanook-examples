@@ -1,4 +1,6 @@
 // Credit https://dev.to/florantara/creating-a-drag-and-drop-list-with-react-hooks-4c0i
+// Support touch event by https://github.com/Bernardo-Castilho/dragdroptouch
+import 'drag-drop-touch';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './drag-and-drop.html';
@@ -24,6 +26,10 @@ const items = [
 // and display them.
 // For now, this is a static array.
 const DragToReorderList = () => {
+//   useEffect(() => {
+//     window.addEventListener('touchmove', () => { });
+//   }, []);
+
   // We'll use the initialDndState created above
   const [dragAndDrop, setDragAndDrop] = React.useState(initialDnDState);
 
