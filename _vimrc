@@ -6,8 +6,8 @@ call plug#begin()
 	Plug 'scrooloose/nerdtree'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-    "choco install fzf
-    "choco install ag
+    "choco install fzf -y
+    "choco install ag -y 
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
     Plug 'junegunn/fzf.vim'
 
@@ -43,6 +43,12 @@ call plug#begin()
 
     "Maximize vim when start
 call plug#end()
+
+" Theme
+syntax on
+colorscheme dracula
+highlight Comment guifg=#8692b7
+
 " standard vim options
 set guifont=Consolas:h14:cANSI
 set nocompatible
@@ -70,15 +76,19 @@ set number
 set relativenumber
 set ofu=syntaxcomplete#Complete
 set laststatus=2
+
+" Configuration for each plugin
+runtime! macros/matchit.vim
+
 filetype plugin indent on
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set formatoptions+=j " Delete comment character when joining commented lines
 
-runtime! macros/matchit.vim
-
+" Nerdtree
 " map NERDTree toggle
 map <C-n> :NERDTreeToggle<CR>
 
+" Super Tab
 "https://vim.fandom.com/wiki/Omni_completion_popup_menu
 let g:SuperTabDefaultCompletionType = "context"
 "https://github.com/ervandew/supertab/issues/142#issuecomment-68664745
@@ -138,10 +148,8 @@ let g:vim_markdown_folding_disabled = 1
 " by default it can only be used in Markdown files.
 let g:mkdp_command_for_global = 1
 
-
 " disable swap file
 set noswapfile
-
 
 "Make Vim start as full screen
 "https://vim.fandom.com/wiki/Maximize_or_set_initial_window_size
@@ -182,4 +190,3 @@ nmap <silent> <c-]> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
