@@ -9,10 +9,9 @@
         "typescriptreact"
     ],
     "editor.fontSize": 16,
-    "editor.autoIndent": "none",
     "editor.detectIndentation": false,
-    "[sass]": {
-        "editor.tabSize": 2
-    },
-    "vim.useSystemClipboard": true
+    "vim.useSystemClipboard": true,
+    "files.autoSave": "afterDelay",
+    "editor.codeLens": false,
+    "vim.smartRelativeLine": true,
 }

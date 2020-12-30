@@ -35,6 +35,11 @@ rules:
   '@typescript-eslint/explicit-module-boundary-types': 'off'
   'react/prop-types': 'off'
   import/extensions:
+    # https://github.com/benmosher/eslint-plugin-import/blob/v2.22.1/docs/rules/extensions.md#importextensions---ensure-consistent-use-of-file-extension-within-the-import-path
     - error
     - always
     - tsx: never
+    - ts: never
+  indent:
+    - error
+    - 2
