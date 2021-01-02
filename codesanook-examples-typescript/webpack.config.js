@@ -9,6 +9,7 @@ module.exports = {
     dnd: './src/drag-and-drop/drag-and-drop',
     flexLayout: './src/flex-layout/flex-layout',
     nestedDragAndDrop: './src/nested-drag-and-drop/nested-drag-and-drop',
+    beautifulDnd: './src/beautiful-dnd/beautiful-dnd',
   },
   mode: 'development', // check if we need it for hot reload
   output: {
@@ -26,6 +27,14 @@ module.exports = {
         test: /\.(ts|js)x?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/, // for @atlaskit/css-reset
+        loaders: [
+          'style-loader',
+          'css-loader'
+        ],
+        include: /node_modules/,
       },
       {
         test: /\.scss$/,

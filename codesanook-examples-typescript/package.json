@@ -37,6 +37,7 @@
         "chromedriver": "^86.0.0",
         "codemirror": "^5.58.2",
         "css-loader": "^4.3.0",
+        "editorconfig": "^0.15.3",
         "eslint": "^7.15.0",
         "eslint-config-airbnb": "^18.2.1",
         "eslint-plugin-import": "^2.22.1",
@@ -69,6 +70,7 @@
         "yamljs": "^0.3.0"
     },
     "dependencies": {
+        "@atlaskit/css-reset": "^6.0.5",
         "@emotion/react": "^11.1.2",
         "bootstrap": "^4.3.1",
         "d3": "^6.2.0",
@@ -78,6 +80,7 @@
         "ink": "^2.7.1",
         "moment": "^2.20.1",
         "react": "^16.8.6",
+        "react-beautiful-dnd": "^13.0.0",
         "react-dom": "^16.8.6",
         "react-sortablejs": "^6.0.0",
         "sortablejs": "^1.12.0",
