@@ -49,8 +49,7 @@ function New-JWT {
         [Parameter(Mandatory = $true)] [hashtable] $Header,
         [Parameter(Mandatory = $true)] [hashtable] $Payload,
         [Parameter(Mandatory = $true)] [ValidateSet("HS256", "HS384", "HS512")] [string] $Algorithm,
-        [Parameter(Mandatory = $true)] $SecretKey,
-        [Switch] $SecretBase64Encoded = $false
+        [Parameter(Mandatory = $true)] $SecretKey
     )
 
     $headerJson = $Header | ConvertTo-Json -Compress
