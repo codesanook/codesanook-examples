@@ -1,12 +1,11 @@
 {
-  "name": "codesanook-examples-office",
+  "name": "codesanook-examples-office-programming",
   "version": "1.0.0",
-  "description": "Code example for Google Sheet Doc",
+  "description": "Code example for Google AppScript",
   "scripts": {
-    "build": "./node_modules/.bin/webpack",
-    "clasp": "./node_modules/.bin/clasp"
+    "build": "webpack",
+    "clasp": "clasp"
   },
-  "keywords": [],
   "author": "Codesanook Team",
   "license": "MIT",
   "devDependencies": {
@@ -17,7 +16,6 @@
     "@babel/preset-typescript": "7.3.3",
     "@google/clasp": "^2.3.0",
     "babel-loader": "8.0.6",
-    "tslint": "^5.20.0",
     "typescript": "^3.6.4",
     "webpack": "4.31.0",
     "webpack-cli": "3.3.2"

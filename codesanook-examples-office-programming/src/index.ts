@@ -1,3 +1,5 @@
+// Mail merge script by Codesanook Team
+
 declare let Logger: any;
 declare let SpreadsheetApp: any;
 declare let MailApp: any;

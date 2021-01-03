@@ -1,23 +1,40 @@
-Turn on Google AppScript API
-https://script.google.com/home/usersettings
+# Google AppScript with clasp (Command Line Apps Script Projects)
 
-Log in with 
-npm run clasp login
+- To create new project, we need to turn on Google AppScript API
+- Go to https://script.google.com/home/usersettings and turn on the API
 
-npm run clasp create -- --type standalone --title "mail-merge" --rootDir "src" --parentId "xxx"
+# Intall packages
+- CD to the root folder of the current project then run
+``` 
+  yarn install 
+```
 
-### Push new changes
-npm run clasp push
+- Log in to Google App
+```
+  yarn run clasp login
+```
 
-### Push with watch
-npm run clasp push -- --watch
+- For creating a new project
+```
+  yarn run clasp create -- --type standalone --title "mail-merge" --rootDir "src" --parentId "xxx"
+```
 
+- Push new changes
+```
+  yarn run clasp push
+```
+
+- Push with watch
+```
+  yarn run clasp push -- --watch
+```
 
 ## Useful Google Sheet API tips
-
-## Credit
 - [มาเขียน Google Apps Script บน local กันเถอะ (ใช้ modern javascript ได้ด้วยนะ](https://peerasak.com/post/modern-javascript-on-google-apps-script/)
 
 - [Command Line Apps Script Projects (CLASP) - read me](https://github.com/google/clasp/blob/master/README.md)
 
 https://github.com/google/clasp#setting
+
+## Credit
+- Peerasak Unsakon
