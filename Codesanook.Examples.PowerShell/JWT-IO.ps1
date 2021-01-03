@@ -1,3 +1,7 @@
+# To test this script, just launch PowerShell session and run ./JWT-IO.ps1
+# It works both Linux and Windows, tested on Ubuntu 18.04
+# How to install PowerSehll on Linux https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-7.1#installation-via-package-repository---ubuntu-1804
+
 # Simulate jwt.io tool in PowerShell
 # Credit https://www.reddit.com/r/PowerShell/comments/8bc3rb/generate_jwt_json_web_token_in_powershell/
 # https://docs.microsoft.com/en-us/powershell/scripting/developer/cmdlet/approved-verbs-for-windows-powershell-commands?view=powershell-7.1#new-vs-set
@@ -46,17 +50,19 @@ function Get-Expiry(
 
 function New-JWT {
     param(
-        [Parameter(Mandatory = $true)] [hashtable] $Header,
-        [Parameter(Mandatory = $true)] [hashtable] $Payload,
+        [Parameter(Mandatory = $true)] [System.Collections.Specialized.OrderedDictionary] $Header,
+        [Parameter(Mandatory = $true)] [System.Collections.Specialized.OrderedDictionary] $Payload,
         [Parameter(Mandatory = $true)] [ValidateSet("HS256", "HS384", "HS512")] [string] $Algorithm,
         [Parameter(Mandatory = $true)] $SecretKey
     )
 
     $headerJson = $Header | ConvertTo-Json -Compress
     $payloadJson = $Payload | ConvertTo-Json -Compress
+    $payloadJson
 
-    $headerJsonBase64 = ConvertTo-Base64Url -InputData ([System.Text.Encoding]::UTF8.GetBytes($headerJson))
-    $payloadJsonBase64 = ConvertTo-Base64Url -InputData ([System.Text.Encoding]::UTF8.GetBytes($payloadJson))
+    $headerJsonBase64 = ConvertTo-Base64Url -InputData ([System.Text.Encoding]::ASCII.GetBytes($headerJson))
+    $payloadJsonBase64 = ConvertTo-Base64Url -InputData ([System.Text.Encoding]::ASCII.GetBytes($payloadJson))
+
     $ToBeSigned = "$headerJsonBase64.$payloadJsonBase64"
 
     $SigningAlgorithm = switch ($Algorithm) {
@@ -73,9 +79,11 @@ function New-JWT {
     "$headerJsonBase64.$payloadJsonBase64.$signatureBase64"
 }
 
-$header = @{ alg = 'HS256'; typ = 'JWT' }
-$payload = @{ sub = "1234567890"; name = 'John Doe'; iat = 1516239022 }
+# [Order] to preserve an order of hash table
+$header = [Ordered]@{ alg = "HS256"; typ = "JWT" }
+$payload = [Ordered]@{ sub = "1234567890"; name = "John Doe"; iat = 1516239022 }
 $secretKey = "your-256-bit-secret"
+
 New-JWT -Header $header -Payload $payload -Algorithm $header.alg -SecretKey $secretKey
 
 <#
