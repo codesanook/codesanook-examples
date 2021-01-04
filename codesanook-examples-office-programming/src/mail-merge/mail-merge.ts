@@ -1,9 +1,6 @@
 // Mail merge script by Codesanook Team
-
-declare let Logger: any;
-declare let SpreadsheetApp: any;
-declare let MailApp: any;
-
+// Credit Wittawat Karpkrikaew 1
+/// <reference path='../../node_modules/@types/google-apps-script/google-apps-script.script.d.ts' />
 const EMAIL_SENT = 'EMAIL_SENT';
 const sheetName = 'Sponsor Contacts Test'; // Change to your sheet name
 const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);

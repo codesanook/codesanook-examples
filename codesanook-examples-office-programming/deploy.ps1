@@ -4,6 +4,6 @@ yarn run clasp setting rootDir "./src/mail-merge"
 yarn run clasp push
 
 # revenue summary project
-yarn run clasp setting scriptId "1QIBg4QB5w_2QRgZ86v2dY-Q1CuRduttRZkCydIKntFI"
+yarn run clasp setting scriptId "1Ti4BKPWR4i8dJ6WGWpPEszrNYbzbIBJh-sIZYO1YuweKq1F-nJNGFC9x"
 yarn run clasp setting rootDir "./src/revenue-summary"
 yarn run clasp push

@@ -42,3 +42,18 @@ https://github.com/google/clasp#setting
 
 ## Access your all app script projects
 
+# Track and untrack change
+- To prevent monitoring a file by git
+```
+  git update-index --assume-unchanged [file-path]
+```
+- And to revert it back use
+```
+  git update-index --no-assume-unchanged [file-path]
+```
+
+
+# Not confuse with Node Google sheet API which is not app script
+Node Google sheet API requires this packages
+- google-spreadsheet
+- @types/google-spreadsheet
