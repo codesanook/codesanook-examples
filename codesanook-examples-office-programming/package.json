@@ -20,5 +20,7 @@
     "webpack": "4.31.0",
     "webpack-cli": "3.3.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "global": "^4.4.0"
+  }
 }
