@@ -8,7 +8,11 @@ root = true
 end_of_line = lf
 insert_final_newline = true
 charset = utf-8
-
-# 4 space indentation
 indent_style = space
 indent_size = 4
+
+[*.yml]
+indent_size = 2
+
+[*.secret]
+insert_final_newline = false
