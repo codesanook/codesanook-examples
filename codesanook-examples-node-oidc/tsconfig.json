@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "target": "es2015",
+    "module": "es2015",
+    "strict": true,
+    "jsx": "react",
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false,
+    "types": [
+      "@emotion/react/types/css-prop"
+    ],
+    "sourceMap": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

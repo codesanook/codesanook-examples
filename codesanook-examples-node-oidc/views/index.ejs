@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <h1>Snack</h1>
+    <ul>
+      <% products.forEach(product => { %>
+      <li>
+        <img src="<%=product.url%>" class="product-thumbnail" />
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>
