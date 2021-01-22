@@ -1,6 +1,11 @@
+## Interesting features
+- TypeScript
+- ES6 modules
+
 ### required packages
 - yarn init -y
 - yarn add express ejs
+- yarn add passport passport-local passport-jwt jsonwebtoken
 
 ### Required setup files
 - .babelrc
@@ -16,3 +21,6 @@
 
 ### Credit
 - https://medium.com/the-andela-way/how-to-set-up-an-express-api-using-webpack-and-typescript-69d18c8c4f52
+- JWT passport https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314
+- Express Route with TypeScript https://dev.to/aryclenio/configuring-routes-in-nodejs-with-typescript-2281
+- Passport Local https://github.com/jaredhanson/passport-local

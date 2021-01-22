@@ -1,4 +1,10 @@
+import './passport';
 import express from 'express';
+import passport from 'passport';
+
+import auth from './routes/auth';
+import user from './routes/user';
+
 const app = express();
 const port = 3000;
 
@@ -20,6 +26,9 @@ app.get('/', (_, res) => {
     }
   );
 });
+
+app.use('/auth', auth);
+app.use('/user', passport.authenticate('jwt', { session: false }), user);
 
 app.listen(port, () => {
   console.log(`The app listening at http://localhost:${port}`)

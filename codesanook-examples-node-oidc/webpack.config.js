@@ -7,7 +7,7 @@ module.exports = {
   mode: "development",
   devtool: "source-map",
   entry: {
-    main: "./src/main",
+    main: "./src/app",
   },
   output: {
     path: outputDir,
