@@ -1,13 +1,16 @@
-import './passport';
 import express from 'express';
 import passport from 'passport';
-
 import auth from './routes/auth';
 import user from './routes/user';
+import bodyParser from 'body-parser';
+
+import './passport';
 
 const app = express();
 const port = 3000;
 
+// To Extracting POST Data Content-Type: application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 // Set a static folder for images
 app.use(express.static('public'));
 

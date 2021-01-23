@@ -14,6 +14,7 @@ passport.use(new LocalStrategy({
   passwordField: 'password'
 },
   function (email, password, done) {
+    console.log(`logged in with email ${email}, password ${password}`);
     //this one is typically a DB call. Assume that the returned user object is pre-formatted and ready for storing in JWT
     // login call this;
     const user = {

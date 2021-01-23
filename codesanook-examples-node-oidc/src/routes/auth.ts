@@ -10,6 +10,9 @@ const router = Router();
 // http://www.passportjs.org/docs/authenticate/
 router.post('/login', function (req, res, next) {
   passport.authenticate('local', { session: false }, (err, user, info) => {
+    console.log(`error ${JSON.stringify(err, null, 2)}`);
+    console.log(`user ${JSON.stringify(user, null, 2)}`);
+
     // user is return from the storage
     if (err || !user) {
       return res.status(400).json({
@@ -24,7 +27,7 @@ router.post('/login', function (req, res, next) {
       }
       // generate a signed son web token with the contents of user object and return it in the response
       const token = jwt.sign(user, jwtSecret);
-      return res.json({ user, token });
+      return res.json({ token });
     });
   })(req, res);
 });
