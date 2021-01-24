@@ -29,5 +29,7 @@
 - Express Route with TypeScript https://dev.to/aryclenio/configuring-routes-in-nodejs-with-typescript-2281
 - Passport Local https://github.com/jaredhanson/passport-local
 - Get HTTP POST Body in Express.js https://stackabuse.com/get-http-post-body-in-express-js/ 
+- cookie JWT https://dev.to/mr_cea/remaining-stateless-jwt-cookies-in-node-js-3lle
+- custom authenticate function https://dmitryrogozhny.com/blog/easy-way-to-debug-passport-authentication-in-express
 
 

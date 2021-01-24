@@ -5,9 +5,8 @@ import passport from 'passport';
 const jwtSecret = 'your_jwt_secret';
 
 /* POST login. */
-
 const router = Router();
-router.post('/login', function (req, res, next) {
+router.post('/login', function (req, res) {
 
   //get username from request's body, eg. from login form
   const email = req.body.email;
@@ -26,58 +25,39 @@ router.post('/login', function (req, res, next) {
   // res.cookie('name', 'value', {signed: true})
 
   return res.json({ token });
-  // res.redirect('/');
-
 });
 
 
-// http://www.passportjs.org/docs/authenticate/
-router.get('/test-cookie', function (req, res, next) {
-  passport.authenticate('cookie', (err, user, info) => {
+// wrap passport.authenticate call in a middleware function
+const auth = function (req, res, next) {
+  passport.authenticate('cookie', function (error, user, info) {
+    // this will execute in any case, even if a passport strategy will find an error
+    // log everything to console
+    console.log(error);
+    console.log(user);
+    console.log(info);
 
-    // user is return from the storage
-    if (err || !user) {
-      return res.status(400).json({
-        message: 'Something is not right',
-        user: user
+    if (error) {
+      res.status(401).send(error);
+    } else if (!user) {
+      res.status(401).send(info);
+    } else {
+
+      req.login(user, { session: false }, (err) => {
+        if (err) {
+          res.status(401).send(error);
+        }
+        console.log('user already logged in, valid cookie token');
+        next();
       });
     }
-
-    req.login(user, { session: false }, (err) => {
-      if (err) {
-        res.send(err);
-      }
-      console.log('user already logged in, valid cookie token');
-      return res.json(user);
-    });
-
   })(req, res, next);
+};
+
+// http://www.passportjs.org/docs/authenticate/
+router.get('/test-cookie', auth, (req, res) => {
+  console.log('About to return JSON to client');
+  res.json(req.user);
 });
 
 export default router;
-
-
-
-/*
-  passport.authenticate('local', { session: false }, (err, user, info) => {
-    console.log(`error ${JSON.stringify(err, null, 2)}`);
-    console.log(`user ${JSON.stringify(user, null, 2)}`);
-
-    // user is return from the storage
-    if (err || !user) {
-      return res.status(400).json({
-        message: 'Something is not right',
-        user: user
-      });
-    }
-
-    req.login(user, { session: false }, (err) => {
-      if (err) {
-        res.send(err);
-      }
-      // generate a signed son web token with the contents of user object and return it in the response
-      const token = jwt.sign(user, jwtSecret);
-      return res.json({ token });
-    });
-  })(req, res);
-*/
