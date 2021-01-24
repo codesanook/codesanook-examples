@@ -23,7 +23,7 @@
 ### URL 
 - login http://localhost:3000/auth/login
 
-### Credit
+### Useful links
 - Express with TypeScript https://medium.com/the-andela-way/how-to-set-up-an-express-api-using-webpack-and-typescript-69d18c8c4f52
 - JWT passport https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314
 - Express Route with TypeScript https://dev.to/aryclenio/configuring-routes-in-nodejs-with-typescript-2281
@@ -31,5 +31,7 @@
 - Get HTTP POST Body in Express.js https://stackabuse.com/get-http-post-body-in-express-js/ 
 - cookie JWT https://dev.to/mr_cea/remaining-stateless-jwt-cookies-in-node-js-3lle
 - custom authenticate function https://dmitryrogozhny.com/blog/easy-way-to-debug-passport-authentication-in-express
+- oauth2orize_client_credentials_example https://github.com/reneweb/oauth2orize_client_credentials_example
+
 
 
