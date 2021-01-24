@@ -8,22 +8,27 @@
     "serve": "node dist/main-bundle.js"
   },
   "dependencies": {
+    "@types/passport-oauth2-client-password": "^0.1.2",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "oauth2orize": "^1.11.0",
     "oidc-provider": "^6.31.0",
     "passport": "^0.4.1",
     "passport-cookie": "^1.0.9",
+    "passport-http": "^0.3.0",
     "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "passport-oauth2-client-password": "^0.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
     "@babel/plugin-transform-modules-commonjs": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
@@ -33,7 +38,9 @@
     "@types/express": "^4.17.11",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/node": "^14.14.6",
+    "@types/oauth2orize": "^1.8.8",
     "@types/passport": "^1.0.5",
+    "@types/passport-http": "^0.3.8",
     "@types/passport-jwt": "^3.0.3",
     "@types/passport-local": "^1.0.33",
     "@types/react": "^16.9.55",

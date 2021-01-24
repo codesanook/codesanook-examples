@@ -1,9 +1,10 @@
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
+import { BasicStrategy } from 'passport-http';
+import { Strategy as ClientPasswordStrategy } from 'passport-oauth2-client-password'
 
-import { Strategy } from 'passport-cookie'
+import { Strategy as CookieStrategy } from 'passport-cookie'
 // import { Strategy } from 'passport-local';
-const CookieStrategy = Strategy;
 
 import passportJWT from "passport-jwt";
 const jwtSecret = 'your_jwt_secret';
@@ -52,3 +53,29 @@ passport.use(new JWTStrategy({
     return done(null, user);
   }
 ));
+
+
+/**
+ * These strategies are used to authenticate registered OAuth clients.
+ * The authentication data may be delivered using the basic authentication scheme (recommended)
+ * or the client strategy, which means that the authentication data is in the body of the request.
+ */
+// id:secret base64 encode
+passport.use("clientBasic", new BasicStrategy(
+  function (clientId, clientSecret, done) {
+    // register to database
+    console.log('client basic');
+    return done(null, { clientId: clientId });
+  }
+));
+
+// client_id
+// client_secret
+passport.use("clientPassword", new ClientPasswordStrategy(
+  function (clientId, clientSecret, done) {
+    console.log('client password');
+    return done(null, { clientId: clientId });
+  }
+));
+
+// https://github.com/reneweb/oauth2orize_client_credentials_example/blob/master/auth.js
