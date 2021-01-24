@@ -6,6 +6,7 @@
 - yarn init -y
 - yarn add express ejs
 - yarn add passport passport-local passport-jwt jsonwebtoken
+- yarn add oidc-provider
 
 ### Required setup files
 - .babelrc

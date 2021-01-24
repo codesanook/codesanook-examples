@@ -1,29 +1,45 @@
 import passport from 'passport';
-import { Strategy } from 'passport-local';
-const LocalStrategy = Strategy;
+import jwt from 'jsonwebtoken';
+
+import { Strategy } from 'passport-cookie'
+// import { Strategy } from 'passport-local';
+const CookieStrategy = Strategy;
 
 import passportJWT from "passport-jwt";
-const JWTStrategy = passportJWT.Strategy;
-const ExtractJWT = passportJWT.ExtractJwt;
-
 const jwtSecret = 'your_jwt_secret';
 
-// check user in storage
-passport.use(new LocalStrategy({
-  usernameField: 'email',
-  passwordField: 'password'
+// check user in cookie
+passport.use(new CookieStrategy({
+  cookieName: 'auth-cookie',
+  signed: false,
+  passReqToCallback: true
 },
-  function (email, password, done) {
-    console.log(`logged in with email ${email}, password ${password}`);
+  function (req, token, done) {
+    console.log(`verifying with cookie token ${token}`);
     //this one is typically a DB call. Assume that the returned user object is pre-formatted and ready for storing in JWT
     // login call this;
-    const user = {
-      email: 'admin@codesanook.com',
-      username: 'ponggun',
+    // invalid token - synchronous
+    try {
+      // use a defined interface
+      const decoded: any = jwt.verify(token, jwtSecret);
+      console.log(`decoded token ${JSON.stringify(decoded)}`);
+      const user = {
+        email: decoded.email,
+        username: decoded.username,
+      };
+      return done(null, user, { message: 'Logged In Successfully' });
+      // return done(null, false, {message: 'Incorrect email or password.'});
+
+    } catch (err) {
+      // err
+      console.error(err);
+      done(err);
     }
-    return done(null, user, { message: 'Logged In Successfully' });
   }
 ));
+
+const JWTStrategy = passportJWT.Strategy;
+const ExtractJWT = passportJWT.ExtractJwt;
 
 passport.use(new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
