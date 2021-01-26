@@ -35,3 +35,10 @@
 - oauth2orize_authorization_grant_example https://github.com/reneweb/oauth2orize_authorization_grant_example
 - mongojs https://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
 - Building a RESTful API With Node — OAuth2 Server https://medium.com/@henslejoseph/building-a-restful-api-with-node-oauth2-server-4236c134be4
+- check if cookie pass through HTTPS only https://security.stackexchange.com/a/101
+- PKCE example https://github.com/Vavassor/Glance-March-2019/blob/master/controllers/oauth2.js
+
+### TODO
+- logging system
+- indexing Mongo DB
+

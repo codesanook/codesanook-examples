@@ -8,6 +8,7 @@ module.exports = {
   devtool: "source-map",
   entry: {
     main: "./src/app",
+    pkce: "./src/create-code-challenge",
   },
   output: {
     path: outputDir,

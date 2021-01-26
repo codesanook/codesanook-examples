@@ -5,12 +5,15 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack",
-    "serve": "node dist/main-bundle.js"
+    "serve": "node dist/main-bundle.js",
+    "pkce": "node dist/pkce-bundle.js"
   },
   "dependencies": {
+    "@types/base64url": "^2.0.0",
     "@types/bcrypt": "^3.0.0",
     "@types/express-session": "^1.17.3",
     "@types/passport-oauth2-client-password": "^0.1.2",
+    "base64url": "^3.0.1",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",

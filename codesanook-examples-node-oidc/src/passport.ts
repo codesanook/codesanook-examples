@@ -62,13 +62,22 @@ passport.use(new JwtStrategy({
 passport.use(
   'clientBasic',
   new BasicStrategy(function (clientId, clientSecret, done) {
-    console.log('checking with client baslic')
+    console.log('checking with client basic')
     db.collection('clients').findOne({ clientId: clientId }, function (err, client) {
+      console.log('getting client');
       if (err) return done(err);
-      if (!client) return done(null, false);
+      if (!client) {
+        return done(null, false);
+      }
 
-      if (client.clientSecret == clientSecret) return done(null, client);
-      else return done(null, false);
+      if (client.clientSecret == clientSecret) {
+
+        console.log('Return client');
+        return done(null, client);
+      }
+      else {
+        return done(null, false);
+      }
     });
   })
 );
