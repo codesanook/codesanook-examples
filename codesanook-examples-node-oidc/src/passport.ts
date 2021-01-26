@@ -6,9 +6,8 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as CookieStrategy } from 'passport-cookie'
 import db from './db';
 import { compare } from 'bcrypt';
-// import { Strategy } from 'passport-local';
 
-import passportJWT from "passport-jwt";
+import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 const jwtSecret = 'your_jwt_secret';
 
 // check user in cookie
@@ -41,11 +40,8 @@ passport.use(new CookieStrategy({
   }
 ));
 
-const JWTStrategy = passportJWT.Strategy;
-const ExtractJWT = passportJWT.ExtractJwt;
-
-passport.use(new JWTStrategy({
-  jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+passport.use(new JwtStrategy({
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: jwtSecret,
 },
   function (jwtPayload, done) {
@@ -55,7 +51,6 @@ passport.use(new JWTStrategy({
     return done(null, user);
   }
 ));
-
 
 /**
  * These strategies are used to authenticate registered OAuth clients.
