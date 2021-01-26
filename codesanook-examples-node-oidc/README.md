@@ -32,6 +32,6 @@
 - cookie JWT https://dev.to/mr_cea/remaining-stateless-jwt-cookies-in-node-js-3lle
 - custom authenticate function https://dmitryrogozhny.com/blog/easy-way-to-debug-passport-authentication-in-express
 - oauth2orize_client_credentials_example https://github.com/reneweb/oauth2orize_client_credentials_example
-
-
-
+- oauth2orize_authorization_grant_example https://github.com/reneweb/oauth2orize_authorization_grant_example
+- mongojs https://howtonode.org/node-js-and-mongodb-getting-started-with-mongojs
+- Building a RESTful API With Node — OAuth2 Server https://medium.com/@henslejoseph/building-a-restful-api-with-node-oauth2-server-4236c134be4

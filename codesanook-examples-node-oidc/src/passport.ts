@@ -1,9 +1,11 @@
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import { BasicStrategy } from 'passport-http';
-import { Strategy as ClientPasswordStrategy } from 'passport-oauth2-client-password'
-
+import { Strategy as ClientPasswordStrategy } from 'passport-oauth2-client-password';
+import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as CookieStrategy } from 'passport-cookie'
+import db from './db';
+import { compare } from 'bcrypt';
 // import { Strategy } from 'passport-local';
 
 import passportJWT from "passport-jwt";
@@ -60,14 +62,22 @@ passport.use(new JWTStrategy({
  * The authentication data may be delivered using the basic authentication scheme (recommended)
  * or the client strategy, which means that the authentication data is in the body of the request.
  */
-// id:secret base64 encode
-passport.use("clientBasic", new BasicStrategy(
-  function (clientId, clientSecret, done) {
-    // register to database
-    console.log('client basic');
-    return done(null, { clientId: clientId });
-  }
-));
+// header base64 client_id:client_secret
+// 'Basic Ym9iOnNlY3JldA=='
+passport.use(
+  'clientBasic',
+  new BasicStrategy(function (clientId, clientSecret, done) {
+    console.log('checking with client baslic')
+    db.collection('clients').findOne({ clientId: clientId }, function (err, client) {
+      if (err) return done(err);
+      if (!client) return done(null, false);
+
+      if (client.clientSecret == clientSecret) return done(null, client);
+      else return done(null, false);
+    });
+  })
+);
+
 
 // client_id
 // client_secret
@@ -79,3 +89,30 @@ passport.use("clientPassword", new ClientPasswordStrategy(
 ));
 
 // https://github.com/reneweb/oauth2orize_client_credentials_example/blob/master/auth.js
+/**
+* LocalStrategy
+*/
+passport.use(new LocalStrategy(
+  {
+    usernameField: 'email',
+    passwordField: 'password',
+    session: false
+  },
+  function (email, password, done) {
+    db.collection('users').findOne({ email: email }, function (err, user) {
+      if (err) {
+        return done(err);
+      }
+
+      if (!user) {
+        return done(null, false);
+      }
+
+      compare(password, user.password, function (err, res) {
+        if (!res) return done(null, false)
+        return done(null, user);
+      });
+
+    });
+  }
+))

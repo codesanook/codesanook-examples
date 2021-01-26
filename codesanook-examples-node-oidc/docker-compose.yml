@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  db:
+    image: "mongo"
+    container_name: "mongo-container"
+    ports:
+      - "27017-27019:27017-27019" # https://docs.mongodb.com/manual/reference/default-mongodb-port/
+    volumes:
+      - mongo_volume:/data/db/
+
+# name volumes https://docs.docker.com/compose/compose-file/#external
+volumes:
+  mongo_volume:
