@@ -37,8 +37,41 @@
 - Building a RESTful API With Node — OAuth2 Server https://medium.com/@henslejoseph/building-a-restful-api-with-node-oauth2-server-4236c134be4
 - check if cookie pass through HTTPS only https://security.stackexchange.com/a/101
 - PKCE example https://github.com/Vavassor/Glance-March-2019/blob/master/controllers/oauth2.js
+- https://mermaid-js.github.io/mermaid/#/sequenceDiagram
 
 ### TODO
 - logging system
 - indexing Mongo DB
+
+## Authorization code grant type with PKCE to get access token
+
+### What is PKCE
+- Proof Key for Code Exchange
+- Usually pronounce 'Pixie'
+- A superset feature on top of OAuth2 Authorization Code grant type
+- OAuth 2.1 will force to use Authorization code grant type with PKCE.
+
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant user as user (resource owner)
+  participant client as client (our application)
+  participant verify as code verify
+  participant challenge as code challenge
+  participant server as authorization server
+
+  user ->> client: Log in
+  client ->> verify: Generate a random string (>=43 characters)
+  verify ->> challenge: Generate a base64URL of SHA256 hash
+  client ->> server: Redirect to an authorization server with code challenge 
+  server ->> client: Save code challenge temporary, redirect to a client with authorization code
+  client ->> server: HTTP POST with authorization code and code verify
+  server ->> client: Send access token, refresh token back after successfully compare base64URL hash of code verify and code challenge
+```
+## Main differences between Authorization code flow with and without PKCE
+- Generation of code verify and code challenge
+- Include code challenge when redirect a user to authorization server
+- Include code verify when exchange token
+
 
