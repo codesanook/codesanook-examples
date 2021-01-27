@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codesanook.Examples.WinForm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Razor.Templates", "Razor.Templates\Razor.Templates.csproj", "{C509A47E-8A6D-4353-A9FC-A5052C8658C7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codesanook.Example.DotNetAuthorizationServer", "Codesanook.Example.DotNetAuthorizationServer\Codesanook.Example.DotNetAuthorizationServer.csproj", "{B35055E9-956C-4EE5-9549-CEC344B7BA15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{C509A47E-8A6D-4353-A9FC-A5052C8658C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C509A47E-8A6D-4353-A9FC-A5052C8658C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C509A47E-8A6D-4353-A9FC-A5052C8658C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B35055E9-956C-4EE5-9549-CEC344B7BA15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B35055E9-956C-4EE5-9549-CEC344B7BA15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B35055E9-956C-4EE5-9549-CEC344B7BA15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B35055E9-956C-4EE5-9549-CEC344B7BA15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
