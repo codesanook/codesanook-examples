@@ -1,5 +1,52 @@
 # Node Authorization server example project
 
+### components 
+- Resource owner (user)
+- Client (application)
+- Authorization server
+- Resource server
+
+## Assumption
+- We have registered user and client on Authorization server database   
+- Our system is simple, authorization and resource are on the same machine.
+
+## Client credentials grant type 
+- client send client id and secret and get token in response body
+- No URL redirect, if someone can steal id and secret, one can get an access token 
+- It is okay for server to server
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant client as client (application)
+  participant server as authorization server
+
+  client ->> server: Send ID and secret
+  server ->> client: Send back a token  
+```
+
+
+## Authorization code grant type
+- This process requires a user to logged before getting an authorization code.
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant user as user (resource owner)
+  participant client as client (application)
+  participant server as authorization server
+
+  user ->> client: Log in (use cookie authentication)
+  client ->> server: Redirect to an authorization server
+  server ->> client: Check if user login, save a authorization code temporary and redirect to a client with authorization code (RedirectURL)   
+  client ->> server: HTTP POST with authorization code
+  server ->> client: Send access token, refresh token
+```
+
+- If someone can steal ID and secret, one can't get an authorization code because it requires a user to log in.  
+- However, a hacker can fake a redirect URL and an authorization code 
+
+
 ## Authorization code grant type with PKCE to get access token
 
 ### What is PKCE
@@ -7,6 +54,7 @@
 - Usually pronounce 'Pixie'
 - A superset feature on top of OAuth2 Authorization Code grant type
 - OAuth 2.1 will force to use Authorization code grant type with PKCE.
+- A hacker can get an authorization code, code challenge but cannot know a code a code verify. Then one cannot get an access token.  
 
 ```mermaid
 sequenceDiagram
@@ -21,7 +69,7 @@ sequenceDiagram
   client ->> verify: Generate a random string (>=43 characters)
   verify ->> challenge: Generate a base64URL of SHA256 hash
   client ->> server: Redirect to an authorization server with code challenge 
-  server ->> client: Save code challenge temporary, redirect to a client with authorization code
+  server ->> client: Check if a user log in, save authorization code and code challenge temporary, redirect to a client with authorization code
   client ->> server: HTTP POST with authorization code and code verify
   server ->> client: Send access token, refresh token back after successfully compare base64URL hash of code verify and code challenge
 ```
@@ -75,6 +123,7 @@ sequenceDiagram
 - PKCE example https://github.com/Vavassor/Glance-March-2019/blob/master/controllers/oauth2.js
 - https://mermaid-js.github.io/mermaid/#/sequenceDiagram
 -  OAuth 2.0 กับ Grant Types ทั้ง 6 https://iamgique.medium.com/oauth-2-0-%E0%B8%81%E0%B8%B1%E0%B8%9A-grant-types-%E0%B8%97%E0%B8%B1%E0%B9%89%E0%B8%87-6-e9c82ca978b
+- Should we add role in JWT https://stackoverflow.com/a/53527119/1872200
 
 ### TODO
 - logging system
