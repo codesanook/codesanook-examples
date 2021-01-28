@@ -127,9 +127,10 @@ sequenceDiagram
 - Should we add role in JWT https://stackoverflow.com/a/53527119/1872200
 
 ### TODO
+- [x] Mix JS and TS with "allowJs": true TypeScript option
+- Only return done(null, false); for handle exception
 - logging system
 - indexing Mongo DB
-- Only return done(null, false); for handle exception
 - Playwright testing
 - Code map for TypeScript 
 
