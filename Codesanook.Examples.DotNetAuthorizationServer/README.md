@@ -12,3 +12,7 @@
 
 - sha256 certificate https://devblogs.microsoft.com/aspnet/bearer-token-authentication-in-asp-net-core/
 - https://stackoverflow.com/a/40245880/1872200
+
+### ISSUE
+- No email in id_token
+- Cannnot send token with JSON body
