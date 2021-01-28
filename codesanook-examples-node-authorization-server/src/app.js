@@ -1,16 +1,19 @@
-import express from 'express';
-import passport from 'passport';
-import { AddressInfo } from 'net';
-import user from './routes/user';
-import client from './routes/client';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import 'regenerator-runtime/runtime';
-import oauth from './routes/oauth';
-import auth from './routes/auth';
-import './passport';
-import session from 'express-session';
-import expressValidator from 'express-validator';
+const express = require("express");
+const passport = require("passport");
+const AddressInfo = require("net").AddressInfo;
+
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+require("regenerator-runtime/runtime");
+require("./passport");
+const session = require("express-session");
+const expressValidator = require("express-validator");
+
+const user =  require("./routes/user").default;
+const client = require("./routes/client").default;
+const oauth = require("./routes/oauth").default;
+const auth = require("./routes/auth").default;
+
 const app = express();
 const jwtSecret = 'your_jwt_secret';
 
