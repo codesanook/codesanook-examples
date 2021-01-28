@@ -52,6 +52,7 @@ app.get('/', (_, res) => {
 
 // Register user
 app.use('/user', user);
+//app.post('/user-profile', port.autho('jwt'),  user);
 
 // Register client
 app.use('/client', client);

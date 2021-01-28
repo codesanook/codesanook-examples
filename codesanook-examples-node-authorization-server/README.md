@@ -27,6 +27,7 @@ sequenceDiagram
 
 
 ## Authorization code grant type
+- Unlike the Clients Credentials Flow, the Authorization Code Flow involves the end user for approval.
 - This process requires a user to logged before getting an authorization code.
 
 ```mermaid
@@ -128,3 +129,9 @@ sequenceDiagram
 ### TODO
 - logging system
 - indexing Mongo DB
+- Only return done(null, false); for handle exception
+- Playwright testing
+- Code map for TypeScript 
+
+## Common mistakes
+- URI encoded in authorization code 

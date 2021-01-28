@@ -66,7 +66,7 @@ server.grant(oauth2orize.grant.code(function (client, redirectURI, user, ares, r
 server.exchange(oauth2orize.exchange.code(function (client, code, redirectURI, res, done) {
   console.log(`code ${code}`);
   console.log(`redirectURI ${redirectURI}`);
-  console.log(`requestBody ${JSON.stringify(res,null, 2)}`);
+  console.log(`requestBody ${JSON.stringify(res, null, 2)}`);
 
   const codeVerifier = res.code_verifier;
   if (!codeVerifier) {
@@ -77,6 +77,10 @@ server.exchange(oauth2orize.exchange.code(function (client, code, redirectURI, r
   db.collection("authorizationCodes").findOne(
     { code: codeHash },
     function (err, authCode) {
+
+      if (!authCode) {
+        return done(null, false);
+      }
 
       console.log(`authCode ${JSON.stringify(authCode, null, 2)}`);
       const codeChallengeFromCodeVerify = hashCodeVerify(codeVerifier, authCode.codeChallengeMethod);
