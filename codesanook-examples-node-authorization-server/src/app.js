@@ -65,6 +65,6 @@ app.use('/oauth', oauth);
 
 const port = 3000;
 const listener = app.listen(port, () => {
-  const { port } = (listener.address() as AddressInfo)
+  const { port } = (listener.address())
   console.log(`Listening on port ${port}`);
 });
