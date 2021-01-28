@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Codesanook.Example.DotNetAuthorizationServer.Controllers
+namespace Codesanook.Examples.DotNetAuthorizationServer.Controllers
 {
     public class HomeController : Controller
     {

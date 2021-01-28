@@ -1,4 +1,4 @@
-using Codesanook.Example.DotNetAuthorizationServer.ViewModels;
+using Codesanook.Examples.DotNetAuthorizationServer.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Codesanook.Example.DotNetAuthorizationServer.Controllers
+namespace Codesanook.Examples.DotNetAuthorizationServer.Controllers
 {
     public class AccountController : Controller
     {

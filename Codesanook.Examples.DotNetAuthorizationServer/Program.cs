@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Codesanook.Example.DotNetAuthorizationServer
+namespace Codesanook.Examples.DotNetAuthorizationServer
 {
     public class Program
     {

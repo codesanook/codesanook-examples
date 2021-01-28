@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Codesanook.Example.DotNetAuthorizationServer.ViewModels
+namespace Codesanook.Examples.DotNetAuthorizationServer.ViewModels
 {
     public class LoginViewModel
     {
