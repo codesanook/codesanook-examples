@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
+using OpenIddict.Validation.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,12 +50,18 @@ namespace Codesanook.Examples.DotNetAuthorizationServer
                 // Register the OpenIddict server components.
                 .AddServer(options =>
                 {
+                    options
+                        .AllowClientCredentialsFlow()
+                        .AllowAuthorizationCodeFlow().RequireProofKeyForCodeExchange()
+                        // https://github.com/openiddict/openiddict-core/issues/437
+                        // Nope, it's not. The OAuth2 specification explicitly requires sending the token request parameters using the "formurl" encoding.
+                        // JSON is not allowed and thus not supported.
+                        .AllowRefreshTokenFlow();
 
                     options
-                        .AllowClientCredentialsFlow();
-
-                    options
-                        .SetTokenEndpointUris("/connect/token");
+                        .SetAuthorizationEndpointUris("/connect/authorize")
+                        .SetTokenEndpointUris("/connect/token")
+                        .SetUserinfoEndpointUris("/connect/userinfo");
 
                     // Encryption and signing of tokens
                     // One problem, the token is not only signed, but also encrypted. OpenIddict encrypts the access token by default. 
@@ -65,7 +72,7 @@ namespace Codesanook.Examples.DotNetAuthorizationServer
                     var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
 
                     options
-                        .AddSigningCredentials(credentials)
+                        //.AddSigningCredentials(credentials)
                         .AddEphemeralEncryptionKey()
                         .AddEphemeralSigningKey()
                         .DisableAccessTokenEncryption();
@@ -76,8 +83,9 @@ namespace Codesanook.Examples.DotNetAuthorizationServer
                     // Register the ASP.NET Core host and configure the ASP.NET Core-specific options.
                     options
                         .UseAspNetCore()
-                        .EnableTokenEndpointPassthrough();
-
+                        .EnableTokenEndpointPassthrough()
+                        .EnableAuthorizationEndpointPassthrough()
+                        .EnableUserinfoEndpointPassthrough();
                 });
 
             services.AddHostedService<TestData>();
@@ -95,6 +103,7 @@ namespace Codesanook.Examples.DotNetAuthorizationServer
             // so that route information is available for authentication decisions, but before UseEndpoints,
             // so that users are authenticated before accessing the endpoints.
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
