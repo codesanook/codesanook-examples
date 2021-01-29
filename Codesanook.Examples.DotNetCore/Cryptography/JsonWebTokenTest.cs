@@ -19,7 +19,6 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
         public void CreateToken_ValidInput_ReturnValidToken()
         {
             // Arange
-            // generate token that is valid for 7 days
             var tokenHandler = new JsonWebTokenHandler();
             var secretKey = Encoding.ASCII.GetBytes("MysecretMysecretMysecret");
             var securityKey = new SymmetricSecurityKey(secretKey);
@@ -49,17 +48,7 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
               "iat": 1611932414
             }
             */
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = securityKey,
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                ValidIssuer = null,
-                ValidAudience = null,
-            };
-
-            var validationResult = tokenHandler.ValidateToken(token, tokenValidationParameters);
+            var validationResult = ValidateToken(tokenHandler, securityKey, token);
             // var exception = Record.Exception(() => { });
             // Assert.IsNotType<SecurityTokenInvalidSignatureException>(exception);
 
@@ -72,12 +61,13 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
         public void CreateTokenWithKeyHashDirectly_ValidInput_ReturnValidToken()
         {
             // Arange
-            // generate token that is valid for 7 days
-            var secretKey = Encoding.ASCII.GetBytes("MysecretMysecretMysecret");
+            var secretKey = Encoding.UTF8.GetBytes("MysecretMysecretMysecret");
             var securityKey = new SymmetricSecurityKey(secretKey);
-            // var cryptoProviderFactory = securityKey.CryptoProviderFactory;
-            var cryptoProviderFactory = new CryptoProviderFactory();
+            var cryptoProviderFactory = securityKey.CryptoProviderFactory;
+            //var cryptoProviderFactory = new CryptoProviderFactory();
             var keyBytes = securityKey.Key;
+
+            // As you can see we can completely by pass SymmetricSecurityKey
             var keyedHash = cryptoProviderFactory.CreateKeyedHashAlgorithm(keyBytes, SecurityAlgorithms.HmacSha256);
 
             var header = new JObject()
@@ -91,6 +81,7 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
                 { "id", "1" }
             };
 
+            // Act
             var rawHeader = Base64UrlEncoder.Encode(Encoding.UTF8.GetBytes(header.ToString(Formatting.None)));
             var rawPayloader = Base64UrlEncoder.Encode(Encoding.UTF8.GetBytes(payload.ToString(Formatting.None)));
 
@@ -99,6 +90,7 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
 
             var token = $"{rawHeader}.{rawPayloader}.{signature}";
             output.WriteLine($"token: {token}");
+
             /*
             {
               "alg": "HS256",
@@ -108,6 +100,26 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
               "id": "1"
             }
             */
+
+            var tokenHandler = new JsonWebTokenHandler();
+            // Assert
+            var validationResult = ValidateToken(tokenHandler, securityKey, token);
+            Assert.True(validationResult.IsValid);
+        }
+
+        private static TokenValidationResult ValidateToken(JsonWebTokenHandler tokenHandler, SymmetricSecurityKey securityKey, string token)
+        {
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = securityKey,
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidIssuer = null,
+                ValidAudience = null,
+            };
+
+            return tokenHandler.ValidateToken(token, tokenValidationParameters);
         }
     }
 }

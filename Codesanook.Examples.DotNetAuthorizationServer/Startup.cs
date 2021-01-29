@@ -64,14 +64,19 @@ namespace Codesanook.Examples.DotNetAuthorizationServer
                         .SetTokenEndpointUris("/connect/token")
                         .SetUserinfoEndpointUris("/connect/userinfo");
 
-                    var RSA = new RSACryptoServiceProvider(2048);
-                    var KeyParam = RSA.ExportParameters(true);
-                    var key = new RsaSecurityKey(KeyParam);
-                    var credentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature);
+                    //var RSA = new RSACryptoServiceProvider(2048);
+                    //var KeyParam = RSA.ExportParameters(true);
+                    //var key = new RsaSecurityKey(KeyParam);
+                    //var credentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature);
+
+                    var secretKey = Encoding.UTF8.GetBytes("MysecretMysecretMysecret");
+                    var securityKey = new SymmetricSecurityKey(secretKey);
+                    var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
                     options
                         .AddEphemeralEncryptionKey()
-                        .AddSigningCredentials(credentials)
+                        //.AddSigningCredentials(signingCredentials) !!! Not work 
+                        .AddSigningKey(securityKey)
                         .DisableAccessTokenEncryption();
 
                     // Register scopes (permissions)
