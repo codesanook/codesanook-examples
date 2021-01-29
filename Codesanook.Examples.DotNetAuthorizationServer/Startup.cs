@@ -11,6 +11,7 @@ using OpenIddict.Validation.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -63,18 +64,14 @@ namespace Codesanook.Examples.DotNetAuthorizationServer
                         .SetTokenEndpointUris("/connect/token")
                         .SetUserinfoEndpointUris("/connect/userinfo");
 
-                    // Encryption and signing of tokens
-                    // One problem, the token is not only signed, but also encrypted. OpenIddict encrypts the access token by default. 
-                    // We can disable this encryption when configuring OpenIddict in Startup.cs:
-
-                    var theKey = Encoding.ASCII.GetBytes("MySuperSecretKeyMySuperSecretKey");
-                    var securityKey = new SymmetricSecurityKey(theKey);
-                    var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+                    var RSA = new RSACryptoServiceProvider(2048);
+                    var KeyParam = RSA.ExportParameters(true);
+                    var key = new RsaSecurityKey(KeyParam);
+                    var credentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature);
 
                     options
-                        //.AddSigningCredentials(credentials)
                         .AddEphemeralEncryptionKey()
-                        .AddEphemeralSigningKey()
+                        .AddSigningCredentials(credentials)
                         .DisableAccessTokenEncryption();
 
                     // Register scopes (permissions)
