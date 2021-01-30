@@ -116,6 +116,5 @@ namespace Codesanook.Examples.DotNetAuthorizationServer.Controllers
                 Age = 43
             });
         }
-
     }
 }

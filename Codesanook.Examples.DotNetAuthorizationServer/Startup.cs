@@ -1,19 +1,12 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using OpenIddict.Abstractions;
-using OpenIddict.Validation.AspNetCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Codesanook.Examples.DotNetAuthorizationServer
 {
@@ -28,6 +21,9 @@ namespace Codesanook.Examples.DotNetAuthorizationServer
                 {
                     options.LoginPath = "/account/login";
                 });
+            // https://docs.microsoft.com/en-us/aspnet/core/migration/1x-to-2x/identity-2x?view=aspnetcore-5.0#jwt-bearer-authentication
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
 
             services.AddDbContext<DbContext>(options =>
                 {
@@ -75,8 +71,8 @@ namespace Codesanook.Examples.DotNetAuthorizationServer
 
                     options
                         .AddEphemeralEncryptionKey()
-                        //.AddSigningCredentials(signingCredentials) !!! Not work 
-                        .AddSigningKey(securityKey)
+                        .AddEphemeralSigningKey()
+                        .AddSigningCredentials(signingCredentials)
                         .DisableAccessTokenEncryption();
 
                     // Register scopes (permissions)
