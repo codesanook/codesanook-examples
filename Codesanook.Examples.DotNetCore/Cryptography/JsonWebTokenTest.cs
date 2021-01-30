@@ -28,7 +28,8 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("id", "1") }),
                 Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = signingCredentials
+                SigningCredentials = signingCredentials,
+                EncryptingCredentials = null
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             output.WriteLine($"token: {token}");
@@ -63,11 +64,11 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
             // Arange
             var secretKey = Encoding.UTF8.GetBytes("MysecretMysecretMysecret");
             var securityKey = new SymmetricSecurityKey(secretKey);
-            var cryptoProviderFactory = securityKey.CryptoProviderFactory;
-            //var cryptoProviderFactory = new CryptoProviderFactory();
+            var cryptoProviderFactory = new CryptoProviderFactory();
+            // var cryptoProviderFactory = securityKey.CryptoProviderFactory;
             var keyBytes = securityKey.Key;
 
-            // As you can see we can completely by pass SymmetricSecurityKey
+            //*** As you can see, we can completely by pass SymmetricSecurityKey.
             var keyedHash = cryptoProviderFactory.CreateKeyedHashAlgorithm(keyBytes, SecurityAlgorithms.HmacSha256);
 
             var header = new JObject()
@@ -78,7 +79,8 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
 
             var payload = new JObject()
             {
-                { "id", "1" }
+                { "id", "1" },
+                { "exp", EpochTime.GetIntDate(DateTime.UtcNow.AddDays(7)) }
             };
 
             // Act
@@ -97,7 +99,8 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
               "typ": "JWT"
             }
             {
-              "id": "1"
+              "id": "1",
+              "exp": 1612587194
             }
             */
 

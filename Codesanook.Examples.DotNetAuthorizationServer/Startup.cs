@@ -69,6 +69,8 @@ namespace Codesanook.Examples.DotNetAuthorizationServer
                     var securityKey = new SymmetricSecurityKey(secretKey);
                     var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
+                    // You can register an asymmetric key and a symmetric key
+                    // that will be preferred for access tokens if one is registered.
                     options
                         .AddEphemeralEncryptionKey()
                         .AddEphemeralSigningKey()
