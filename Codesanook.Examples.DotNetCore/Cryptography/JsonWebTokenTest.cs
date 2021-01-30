@@ -23,6 +23,10 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
             var secretKey = Encoding.ASCII.GetBytes("MysecretMysecretMysecret");
             var securityKey = new SymmetricSecurityKey(secretKey);
             var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var cryptoProviderFactory =  signingCredentials.Key.CryptoProviderFactory;
+            var signatureProvider  = cryptoProviderFactory.CreateForSigning(signingCredentials.Key, signingCredentials.Algorithm);
+            // signatureProvider is SymmetricSignatureProvider which use KeyedHashAlgorithm
+            // https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/blob/dev/src/Microsoft.IdentityModel.Tokens/SymmetricSignatureProvider.cs#L188
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
@@ -31,6 +35,8 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
                 SigningCredentials = signingCredentials,
                 EncryptingCredentials = null
             };
+            // How sign token under the hood
+            // https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/blob/dev/src/Microsoft.IdentityModel.JsonWebTokens/JwtTokenUtilities.cs#L89
             var token = tokenHandler.CreateToken(tokenDescriptor);
             output.WriteLine($"token: {token}");
 
@@ -57,7 +63,6 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
             Assert.True(validationResult.IsValid);
         }
 
-        // https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/blob/dev/src/Microsoft.IdentityModel.Tokens/SymmetricSignatureProvider.cs#L188
         [Fact]
         public void CreateTokenWithKeyHashDirectly_ValidInput_ReturnValidToken()
         {
