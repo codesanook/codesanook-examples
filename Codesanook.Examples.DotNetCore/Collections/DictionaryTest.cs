@@ -1,9 +1,29 @@
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Codesanook.Examples.DotNetCore.Collections
 {
     public class Student { public string Name { set; get; } }
+
+    public class DataModel
+    {
+        public string Token { get; set; }
+        public string LifeTime { get; set; }
+    }
+
+    public static class ObjectExtensions
+    {
+        public static IDictionary<string, string> ToDictionary(this object obj) =>
+            JObject.FromObject(obj).ToObject<Dictionary<string, string>>();
+
+        public static IDictionary<string, string> ToDictionaryWithReflection(this object obj) =>
+            obj.GetType().GetProperties().ToDictionary(
+                property => property.Name,
+                property => property.GetValue(obj).ToString()
+            );
+    }
 
     public class DictionaryTest
     {
@@ -42,6 +62,52 @@ namespace Codesanook.Examples.DotNetCore.Collections
                 [1] = { Name = "a1" },
                 [2] = { Name = "a2" },
             };
+        }
+
+        [Fact]
+        public void ToDictionaryWithJsonDotNet_ValidObjectInput_ReturnCorrectDictionary()
+        {
+            // Arrange 
+            var data = new DataModel()
+            {
+                Token = "XXXX",
+                LifeTime = "300"
+            };
+
+            var expectedResult = new Dictionary<string, string>()
+            {
+                { nameof(data.LifeTime), data.LifeTime },
+                { nameof(data.Token), data.Token },
+            };
+
+            // Act
+            var actualResult = data.ToDictionary();
+
+            // Assert, order of dictionary does not matter
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        [Fact]
+        public void ToDictionaryWithReflection_ValidObjectInput_ReturnCorrectDictionary()
+        {
+            // Arrange 
+            var data = new DataModel()
+            {
+                Token = "XXXX",
+                LifeTime = "300"
+            };
+
+            var expectedResult = new Dictionary<string, string>()
+            {
+                { nameof(data.LifeTime), data.LifeTime },
+                { nameof(data.Token), data.Token },
+            };
+
+            // Act
+            var actualResult = data.ToDictionaryWithReflection();
+
+            // Assert, order of dictionary does not matter
+            Assert.Equal(expectedResult, actualResult);
         }
     }
 }
