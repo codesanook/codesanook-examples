@@ -181,4 +181,14 @@ sequenceDiagram
 - Code map for TypeScript 
 
 ## Common mistakes
-- URI encoded in authorization code 
+- Be careful for authorization code get URI encoded because it return as part of query string value
+### We don't store client secret on a public client application e.g. mobile app, single page app, desktop app.
+-  https://www.oauth.com/oauth2-servers/mobile-and-native-apps/
+- https://www.valentinog.com/blog/oauth2/
+
+We use token as value of Authorization header when making a request to a resource server
+```
+  Authorization: `Bearer ${tokens.access_token}`
+```
+
+
