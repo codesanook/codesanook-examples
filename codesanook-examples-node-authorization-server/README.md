@@ -6,6 +6,51 @@
 - Authorization server
 - Resource server
 
+
+## Client ID, Client Secret and Redirect URI
+- Before a client application can request an access to resources on a resource server, the client application must be registered on an authorization server associated with the resource server.
+- The registration is typically a one-time task. Once registered, the registration remains valid, unless the client app registration is revoked.
+- At registration, the client application is assigned a client ID and a client secret (password) by an authorization server. 
+- An authorization server will use client ID and secret for authentication a client application.
+
+```mermaid
+sequenceDiagram
+  autonumber
+  participant developer
+  participant server as authorization server
+
+  developer ->> server : Register a client application with a redirectURI value.
+  server ->> developer: Get assigned client ID and random secret (password).
+```
+
+- A client ID and secret are unique to a client application on that authorization server.
+- All web, mobile or single page applications for the same client application have the same client ID specific to that authorization server.
+
+```mermaid
+  graph LR
+      A[client application A, mobile app on user A's phone]---|has client ID 'ABC'|B[Authorization server X]
+      
+      C[client application A, single page app on user A's browser]---|has client ID 'ABC'|D[Authorization server X]
+
+      E[client application A, mobile app on user B's phone]---|has client ID 'ABC'|F[Authorization server X]
+```
+- If a client application registers with multiple authorization servers (e.g. both Facebook, Twitter and Google), each authorization server will issue its own unique client ID to the client application.
+
+```mermaid
+  graph LR
+      A[client application A, mobile app on user A's phone]---|has client ID 'ABC'|B[Authorization server X]
+
+      C[client application B, mobile app on user A's phone]---|has client ID 'DEF'|D[Authorization server X]
+      
+      E[client application A, mobile app on user A's phone]---|has client ID 'XYZ'|F[Authorization server Y]
+
+```
+
+- During the registration the client also registers a redirect URI. This redirect URI is used when a resource owner grants authorization to the client application. 
+- When a resource owner has successfully authorized the client application via the authorization server, the resource owner is redirected back to the client application, to the redirect URI.
+- Don't store a secret on mobile app and single page app.
+- Use redirect URI and Authorization code grant type PKCE for security.
+
 ## Assumption
 - We have registered user and client on Authorization server database   
 - Our system is simple, authorization and resource are on the same machine.
@@ -108,7 +153,7 @@ sequenceDiagram
 - webpack.config.js
 - tsconfig.json
 
-### Useful links
+### Credit and Useful links
 - Express with TypeScript https://medium.com/the-andela-way/how-to-set-up-an-express-api-using-webpack-and-typescript-69d18c8c4f52
 - JWT passport https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314
 - Express Route with TypeScript https://dev.to/aryclenio/configuring-routes-in-nodejs-with-typescript-2281
@@ -125,6 +170,7 @@ sequenceDiagram
 - https://mermaid-js.github.io/mermaid/#/sequenceDiagram
 -  OAuth 2.0 กับ Grant Types ทั้ง 6 https://iamgique.medium.com/oauth-2-0-%E0%B8%81%E0%B8%B1%E0%B8%9A-grant-types-%E0%B8%97%E0%B8%B1%E0%B9%89%E0%B8%87-6-e9c82ca978b
 - Should we add role in JWT https://stackoverflow.com/a/53527119/1872200
+- http://tutorials.jenkov.com/oauth2/authorization.html
 
 ### TODO
 - [x] Mix JS and TS with "allowJs": true TypeScript option
