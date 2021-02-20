@@ -2,15 +2,18 @@
 import db from '../db';
 import { Router } from 'express';
 import { hash } from 'bcrypt';
+import { permissionAuthenticate } from '../passport';
 
 /* GET users listing. */
 const router = Router();
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
+
+router.post('/', permissionAuthenticate('report-user'), (req, res) => {
+  console.log(req.user);
+  res.json(req.user);
 });
 
 /* GET user profile. */
-router.get('/profile', function (req, res, next) {
+router.get('/profile', (req, res) => {
   res.send(req.user);
 });
 
@@ -43,6 +46,5 @@ export function register(req, res) {
 }
 
 router.post('/register', register);
-
 
 export default router;

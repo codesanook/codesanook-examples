@@ -1,0 +1,11 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": [
+    "javascript",
+    "typescript"
+  ],
+  "editor.fontSize": 16,
+  "workbench.settings.editor": "json"
+}

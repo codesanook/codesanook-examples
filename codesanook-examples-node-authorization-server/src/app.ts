@@ -1,22 +1,18 @@
-const express = require("express");
-const passport = require("passport");
-const AddressInfo = require("net").AddressInfo;
-
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-require("regenerator-runtime/runtime");
-require("./passport");
-const session = require("express-session");
-const expressValidator = require("express-validator");
-
-const user =  require("./routes/user").default;
-const client = require("./routes/client").default;
-const oauth = require("./routes/oauth").default;
-const auth = require("./routes/auth").default;
+import express from 'express';
+import passport from 'passport';
+import { AddressInfo } from 'net';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import 'regenerator-runtime/runtime';
+import './passport';
+import session from 'express-session';
+import expressValidator from 'express-validator';
+import user from './routes/user';
+import client from './routes/client';
+import oauth from './routes/oauth';
+import auth from './routes/auth';
 
 const app = express();
-const jwtSecret = 'your_jwt_secret';
-
 // https://stackoverflow.com/a/56095662/1872200
 // You are not required to use passport.initialize() if you are not using sessions.
 
@@ -24,7 +20,7 @@ const jwtSecret = 'your_jwt_secret';
 app.use(bodyParser.urlencoded({ extended: true }));
 // support parsing of application/json type post data
 app.use(bodyParser.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 // session option https://stackoverflow.com/questions/28839532/node-js-session-error-express-session-deprecated
 app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
@@ -48,14 +44,13 @@ app.get('/', (_, res) => {
           { url: 'images/product-a.jpg' },
           { url: 'images/product-b.jpg' },
           { url: 'images/product-c.jpg' },
-        ]
-    }
-  );
+        ],
+    });
 });
 
 // Register user
 app.use('/user', user);
-//app.post('/user-profile', port.autho('jwt'),  user);
+// app.post('/user-profile', port.autho('jwt'),  user);
 
 // Register client
 app.use('/client', client);
@@ -68,6 +63,6 @@ app.use('/oauth', oauth);
 
 const port = 3000;
 const listener = app.listen(port, () => {
-  const { port } = (listener.address())
-  console.log(`Listening on port ${port}`);
+  const { port: addressPort } = (listener.address()) as AddressInfo;
+  console.log(`Listening on port ${addressPort}`);
 });

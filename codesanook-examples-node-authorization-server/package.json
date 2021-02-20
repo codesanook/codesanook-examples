@@ -1,12 +1,13 @@
 {
-  "name": "codesanook-examples-node-oidc",
+  "name": "codesanook-examples-node-authorization-server",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "build": "webpack",
     "serve": "node dist/main-bundle.js",
-    "pkce": "node dist/pkce-bundle.js"
+    "pkce": "node dist/pkce-bundle.js",
+    "jwt": "node dist/jwt-bundle.js"
   },
   "dependencies": {
     "@types/base64url": "^2.0.0",
@@ -29,10 +30,13 @@
     "oidc-provider": "^6.31.0",
     "passport": "^0.4.1",
     "passport-cookie": "^1.0.9",
+    "passport-custom": "^1.1.1",
     "passport-http": "^0.3.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "passport-oauth2-client-password": "^0.1.2"
+    "passport-oauth2-client-password": "^0.1.2",
+    "passport-strategy": "^1.0.0",
+    "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
@@ -56,17 +60,15 @@
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
     "@types/sortablejs": "^1.10.6",
-    "@typescript-eslint/eslint-plugin": "^4.6.0",
-    "@typescript-eslint/parser": "^4.6.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
     "autoprefixer": "^9.6.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^2.1.1",
-    "eslint": "^7.12.1",
-    "eslint-config-airbnb": "^18.2.0",
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0",
     "extract-loader": "2.0.1",
     "file-loader": "^4.0.0",
     "html-loader": "0.5.5",

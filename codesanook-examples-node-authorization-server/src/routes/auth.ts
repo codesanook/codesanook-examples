@@ -1,6 +1,7 @@
-import { Router } from 'express'
+import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
+
 const jwtSecret = 'your_jwt_secret';
 
 /* POST login. */

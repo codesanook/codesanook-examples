@@ -4,6 +4,7 @@ import { BasicStrategy } from 'passport-http';
 import { Strategy as ClientPasswordStrategy } from 'passport-oauth2-client-password';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as CookieStrategy } from 'passport-cookie'
+
 import db from './db';
 import { compare } from 'bcrypt';
 
@@ -37,18 +38,6 @@ passport.use(new CookieStrategy({
       console.error(err);
       done(err);
     }
-  }
-));
-
-passport.use(new JwtStrategy({
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: jwtSecret,
-},
-  function (jwtPayload, done) {
-
-    //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
-    const user = { email: jwtPayload.email, username: jwtPayload.username }
-    return done(null, user);
   }
 ));
 
@@ -119,4 +108,80 @@ passport.use(new LocalStrategy(
 
     });
   }
-))
+));
+
+passport.use(new JwtStrategy({
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: jwtSecret,
+},
+  (jwtPayload, done) => {
+    console.log(`jwtPayload ${JSON.stringify(jwtPayload)}`);
+
+    //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
+    const user = { id: jwtPayload.id, roles: jwtPayload.roles };
+    return done(null, user);
+  }
+));
+
+const permissionAuthenticate = (permission: string) => (req, res, next) => {
+  if (!permission) {
+    res.status(500).json({ errorMessage: 'You need to specify a permission when using permissionAuthenticate' });
+    return;
+  }
+
+  passport.authenticate('jwt', { session: false }, (error, user) => {
+    if (error || !user) {
+      res.status(401).json(error);
+      return;
+    }
+
+    console.log(`Checking if user has ${permission} permission`);
+    const rolePermission = [
+      {
+        name: 'admin',
+        permissions: [
+          'list-user',
+          'read-user',
+          'edit-user',
+          'delete-user',
+        ],
+      },
+      {
+        name: 'editor',
+        permissions: [
+          'list-user',
+          'read-user',
+          'report-user',
+        ],
+      },
+    ];
+
+    const requiredPermission = permission.toUpperCase();
+    const rolesHavRequiredPermission = rolePermission
+      .filter(rp => rp.permissions.some(p => p.toUpperCase() === requiredPermission))
+      .map(rp => rp.name.toUpperCase());
+
+    console.log(JSON.stringify(rolesHavRequiredPermission, null, 2));
+    const userRoles = user.roles.map(r => r.toUpperCase());
+
+    const isUserHasPermission = rolesHavRequiredPermission.some(r => userRoles.includes(r));
+    console.log(`isUserHasPermission ${isUserHasPermission}`);
+    if(!isUserHasPermission){
+      const errorMessage = `A user with role '${user.roles.join(', ')}' does not have '${permission}' permission.`;
+      res.status(401).json({errorMessage});
+      return;
+    }
+
+    // We need to login user manually when we handle authorize by ourselves
+    req.login(user, { session: false }, err => {
+      if (err) {
+        res.status(401).send(error);
+      }
+      console.log('user already logged in');
+      next();
+    });
+
+  })(req, res, next);
+};
+
+export { permissionAuthenticate };
