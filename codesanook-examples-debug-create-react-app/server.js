@@ -19,7 +19,7 @@ const buildPath = path.join(__dirname, 'build');
     app.use(express.static(buildPath, { index: false }));
     const { allConfigsHtmlContent, withoutSecretConfigsHtmlContent } = await getHtmlContent();
 
-    const regex = /(payment|orderSummary|paynow)/i;
+    const regex = /(test|hello|secret)/i;
     app.get('/*', function (req, res) {
       const isMatch = regex.test(req.originalUrl);
       console.log(isMatch);
@@ -49,11 +49,13 @@ async function getHtmlContentWithConfiguration(config) {
   const indexPath = path.join(buildPath, 'index.html');
   const dom = await JSDOM.fromFile(indexPath, { runScripts: 'outside-only' });
   const { document } = dom.window;
+
   const script = document.createElement("script");
   script.type = "text/javascript";
   script.innerHTML = `const config = ${JSON.stringify(config)};`;
   document.getElementsByTagName('head')[0].appendChild(script);
   const defaultHtmlContent = dom.serialize();
+
   return defaultHtmlContent;
 }
 

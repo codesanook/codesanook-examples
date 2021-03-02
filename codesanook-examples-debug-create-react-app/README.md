@@ -15,7 +15,7 @@ yarn create react-app . --template typescript
 ## custom configuration
 
 ```
-yarn add @craco/craco
+yarn add @craco/craco -D
 
 ```
 
@@ -50,4 +50,5 @@ touch craco.config.js
 ```
 
 ## Adding custom variable
-https://create-react-app.dev/docs/adding-custom-environment-variables/
+- yarn add express
+- https://create-react-app.dev/docs/adding-custom-environment-variables/
