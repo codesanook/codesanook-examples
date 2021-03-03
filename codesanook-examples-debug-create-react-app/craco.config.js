@@ -16,7 +16,7 @@ module.exports = {
     }
   },
   /*
-  alternatively
+  Alternative configuration
     webpack: {
       configure: {
         externals: {

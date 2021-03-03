@@ -37,8 +37,8 @@ touch craco.config.js
 
 
 ### Keep logging in terminal
-
-
+- https://github.com/facebook/create-react-app/issues/2495
+- https://github.com/mysticatea/npm-run-all/blob/HEAD/docs/npm-run-all.md#run-scripts-in-parallel
 ```
   "scripts": {
     "start": "craco start",
