@@ -4,10 +4,11 @@ dotenv.config();
 import express from 'express';
 import http from 'http';
 import { AddressInfo } from 'net'
-
 const app = express();
+
+const message = 'hello world';
 app.get('/', (_, res) => {
-  res.send('hello world');
+  res.send(message);
 });
 
 // Create a server
