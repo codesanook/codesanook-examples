@@ -1,0 +1,15 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current" // Work with version 12
+        }
+      }
+    ],
+    "@babel/preset-typescript"
+  ],
+  "plugins": [],
+  "sourceMaps": "inline" // Only inline work with TypeScript file
+}
