@@ -1,6 +1,5 @@
-import dotenv from 'dotenv';
-dotenv.config();
-
+// How do I use dotenv with import? https://www.npmjs.com/package/dotenv#how-do-i-use-dotenv-with-import-
+import 'dotenv/config';
 import express from 'express';
 import http from 'http';
 import { AddressInfo } from 'net'
