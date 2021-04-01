@@ -9,7 +9,7 @@
         "watch": "webpack --mode=development --watch",
         "build-node": "webpack --mode=development --target=node",
         "start-ink": "node ./dist/codesanook-examples-typescript.js",
-        "serve": "webpack-dev-server",
+        "serve": "webpack serve",
         "test": "jest --detectOpenHandles"
     },
     "author": "Codesanok Team",
