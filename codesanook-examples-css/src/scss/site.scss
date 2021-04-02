@@ -1,7 +1,40 @@
-body{
-  color:#F00;
-}
-
 .main-container {
   display: flex;
+  box-sizing: border-box;
+
+  > .left-sidebar,
+  > .main-content,
+  > .right-sidebar {
+    box-sizing: border-box;
+    border: 1px solid #f00;
+  }
+
+  > .left-sidebar,
+  > .right-sidebar {
+    flex: 0 0 250px;
+    text-align: center;
+  }
+
+  > .main-content {
+    flex: 1 1 auto;
+  }
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.main-content {
+  display: flex;
+  > .table-wrapper {
+    flex: 1 1 auto;
+  }
+}
+
+.comparison-table {
+  width: 100%;
+  th {
+    min-width: 120px;
+  }
 }
