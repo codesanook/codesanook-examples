@@ -18,7 +18,7 @@ yarn install
 
 - Run the project, a browser will launch automatically on http://localhost:9999
 ```
-yarn serve
+yarn start
 ```   
 - Edit `src/scss/site.scss` or `src/index.html` and you will find hot reload work. 
 - When you run serve, you won't find any HTML, CSS or JS files in dist folder because all files are serve from memory by Webpack dev server. 
@@ -47,4 +47,5 @@ yarn add --dev \
 - !!! HTML work only "html-loader": "0.5.5" and "extract-loader": "2.0.1"
 
 ## Credit
+- JayJay Natdanai
 - Runyasak Chaengnaimuang

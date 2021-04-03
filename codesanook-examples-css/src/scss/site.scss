@@ -1,11 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+th,
+tr {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
 .main-container {
   display: flex;
-  box-sizing: border-box;
 
   > .left-sidebar,
   > .main-content,
   > .right-sidebar {
-    box-sizing: border-box;
     border: 1px solid #f00;
   }
 
@@ -17,24 +27,36 @@
 
   > .main-content {
     flex: 1 1 auto;
+    // https://mastery.games/post/the-difference-between-width-and-flex-basis/
+    // https://gaurav5430.medium.com/css-flex-positioning-gotchas-child-expands-to-more-than-the-width-allowed-by-the-parent-799c37428dd6
+    //
+    // Only setting min-width or width constrain child content to not grow beyond available width of flex item.
+    // Setting flex-basis not force wrap child content.
+    min-width: 0; // The value can what ever value but must be small enough to not override flex-basis value
   }
 }
 
 .table-wrapper {
-  width: 100%;
   overflow-x: auto;
-}
-
-.main-content {
-  display: flex;
-  > .table-wrapper {
-    flex: 1 1 auto;
-  }
 }
 
 .comparison-table {
   width: 100%;
+  border-spacing: 0;
   th {
     min-width: 120px;
   }
 }
+
+// Start from screen size 1200px
+// Left and right sidebars take 500 px, then main content has available space more than minimum 600px of child content (table).
+// It grow to fit available space, main content ends up 700px. (1200 - (2* 250))
+
+// Next, on a small screen 1000px
+// We need at least for left sidebar 250px + table 600px + right side 250px = 1100px
+// No width or min-width of main-content flex item, table force main-content flex item to expand and get browser to have page scroll x
+// Main content width is set to 600px as a width of child content (table)
+
+// After, setting min-width 1% on 1000px screen size
+// Main content has width to available space 500px and not expand to 600px because we don't allow shrink of both sidebars (250px + 250px)
+// Table has width 600px as a minimum width (sum of 100 min width of 6 columns) and show scroll-x at wrapper div of it

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "webpack",
-    "serve": "webpack serve"
+    "start": "webpack serve",
+    "build": "webpack"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
