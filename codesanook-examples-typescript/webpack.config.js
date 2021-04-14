@@ -30,7 +30,7 @@ module.exports = {
       },
       {
         test: /\.css$/, // for @atlaskit/css-reset
-        loaders: [
+        use: [
           'style-loader',
           'css-loader'
         ],
