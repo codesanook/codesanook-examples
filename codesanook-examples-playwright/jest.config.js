@@ -1,4 +1,5 @@
 module.exports = {
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  // https://jestjs.io/docs/configuration#testenvironment-string
+  testEnvironment: 'jsdom',
 };

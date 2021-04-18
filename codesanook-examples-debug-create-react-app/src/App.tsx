@@ -14,9 +14,8 @@ function App() {
     <>
       <h1>{config.siteName}</h1>
       <div className="App">
-
         <p>
-          counter value  {counter}
+          counter value  <span>{counter}</span>
         </p>
         <button onClick={handleButtonClick}>Click Me</button>
       </div>

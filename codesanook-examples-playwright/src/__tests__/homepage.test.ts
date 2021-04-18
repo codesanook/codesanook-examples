@@ -1,37 +1,54 @@
-import { webkit } from 'playwright';
-jest.setTimeout(10000);
+import { chromium } from 'playwright';
 
-// Uppercase name
+declare global {
+  interface Window {
+    resq: {
+      resq$: (componentName: string, element: HTMLElement) => any;
+    }
+  }
+}
+
+
+// Uppercase name for a test suite
 describe('Homepage', () => {
 
-  // Lowercase name
-  test('should launch homepage with headless mode', async () => {
-    const browser = await webkit.launch();
+  // Lowercase name for a test case
+  test('should launch homepage with expected title', async () => {
+    const browser = await chromium.launch();
     const context = await browser.newContext();
+
     const page = await context.newPage();
+    await page.goto('https://todomvc.com');
 
-    // Log and continue all network requests
-    page.route('**', route => {
-      console.log(route.request().url());
-      route.continue();
-    });
-
-    await page.goto('http://todomvc.com');
+    const pageTitle = await page.title();
+    expect(pageTitle).toBe('TodoMVC');
     await browser.close();
   });
 
-  test('should launch homepage with headful mode', async () => {
-    const browser = await webkit.launch({ headless: false });
+  test('should get correct value after click button inside React component', async () => {
+    // Arrange
+    const browser = await chromium.launch();
     const context = await browser.newContext();
     const page = await context.newPage();
+    await page.goto('http://localhost:3000');
 
-    // Log and continue all network requests
-    page.route('**', route => {
-      console.log(route.request().url());
-      route.continue();
-    });
+    const reactComponentName = 'App';
+    const rootElementHandle = await page.waitForSelector('#root');
 
-    await page.goto('http://todomvc.com');
+    const result = await rootElementHandle.evaluateHandle((node: HTMLElement, componentName) => {
+      const component = window.resq.resq$(componentName, node);
+      return component.node[1];
+    }, reactComponentName);
+    const tag = result.asElement();
+    const button = await tag.$('button');
+
+    // Actual
+    await button.click();
+
+    // Assert 
+    const counter = await tag.$('span');
+    const value = await counter.evaluate(element => element.innerText);
+    expect(Number(value)).toBe(1);
     await browser.close();
   });
 });
