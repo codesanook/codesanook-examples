@@ -29,7 +29,7 @@ describe('Page with React component', () => {
 
     const result = await rootElementHandle.evaluateHandle((node: HTMLElement, componentName) => {
       const component = window.resq.resq$(componentName, node);
-      return component.node[1];
+      return component.node; // div with CSS prop node
     }, reactComponentName);
     const tag = result.asElement();
     const button = await tag.$('button');

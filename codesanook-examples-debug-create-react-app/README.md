@@ -52,3 +52,8 @@ touch craco.config.js
 ## Adding custom variable
 - yarn add express
 - https://create-react-app.dev/docs/adding-custom-environment-variables/
+
+
+## Adding emotion
+- yarn add @emotion/react
+- yarn add --dev @emotion/babel-preset-css-prop

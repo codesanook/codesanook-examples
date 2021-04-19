@@ -1,25 +1,25 @@
-import './App.css';
 import { useState } from 'react';
-import config from './config';
+import { css } from '@emotion/react'
 
 function App() {
   const [counter, setCounter] = useState(0);
 
   const handleButtonClick = () => {
-    let valueToAdd = 1;
+    const valueToAdd = 1;
     setCounter(previous => previous + valueToAdd);
   }
 
+  const style = css`
+    border: 1px solid #ccc;
+  `;
+
   return (
-    <>
-      <h1>{config.siteName}</h1>
-      <div className="App">
-        <p>
-          counter value  <span>{counter}</span>
-        </p>
-        <button onClick={handleButtonClick}>Click Me</button>
-      </div>
-    </>
+    <div css={style}>
+      <p>
+        counter value:  <span>{counter}</span>
+      </p>
+      <button onClick={handleButtonClick}>Click Me</button>
+    </div>
   );
 }
 
