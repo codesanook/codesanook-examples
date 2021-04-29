@@ -12,7 +12,7 @@ namespace Codesanook.Examples.RabbitMQApp
         {
             var factory = new ConnectionFactory()
             {
-                HostName = "mq-server",
+                HostName = "mq", // Match a Docker service
                 Port = 5672,
                 UserName = "guest",
                 Password = "guest"

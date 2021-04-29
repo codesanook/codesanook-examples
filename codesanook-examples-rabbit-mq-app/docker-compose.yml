@@ -3,13 +3,12 @@ services:
   app: # Application
     build: .
     depends_on:
-      - mq-server
+      - mq
     networks:
       - mq-network
 
-  mq-server: # RabbitMQ server
+  mq: # RabbitMQ server
     image: rabbitmq:3-management
-    hostname: mq-server 
     ports:
       - 5672:5672 # RabbitMQ default port
       - 15672:15672 # RabitMQ management port
