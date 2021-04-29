@@ -1,8 +1,8 @@
-version: "3.7"
+version: "3.8"
 
 services:
   jekyll:
-    image: jekyll/jekyll
+    image: jekyll/jekyll:latest # From https://github.com/envygeeks/jekyll-docker/blob/master/README.md
     container_name: static-site
     environment:
       - JEKYLL_VERSION=4.0.0
@@ -13,4 +13,4 @@ services:
       - 4000:4000
       - 35729:35729 # port for live reload
     volumes:
-      - ./:/srv/jekyll
+      - .:/srv/jekyll

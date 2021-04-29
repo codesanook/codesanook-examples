@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  app: # Application
+    build: .
+    depends_on:
+      - mq-server
+    networks:
+      - mq-network
+
+  mq-server: # RabbitMQ server
+    image: rabbitmq:3-management
+    hostname: mq-server 
+    ports:
+      - 5672:5672 # RabbitMQ default port
+      - 15672:15672 # RabitMQ management port
+    networks:
+      - mq-network
+
+networks:
+  mq-network:

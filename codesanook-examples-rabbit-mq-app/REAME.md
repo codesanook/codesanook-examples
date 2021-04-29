@@ -1,0 +1,1 @@
+# Codesanook.Examples.RabbitMQApp

@@ -1,0 +1,7 @@
+.vscode
+bin
+obj
+.dockerignore
+.editorconfig
+docker-compose.yml
+Dockerfile
