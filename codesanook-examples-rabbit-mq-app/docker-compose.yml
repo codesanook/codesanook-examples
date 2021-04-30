@@ -2,8 +2,6 @@ version: "3.8"
 services:
   app: # Application
     build: .
-    depends_on:
-      - mq
     networks:
       - mq-network
 
