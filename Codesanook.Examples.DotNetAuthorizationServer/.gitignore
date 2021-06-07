@@ -1,0 +1,4 @@
+wwwroot/*
+!wwwroot/styles
+wwwroot/styles/*
+!wwwroot/styles/site.css
