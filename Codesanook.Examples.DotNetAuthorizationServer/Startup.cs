@@ -1,11 +1,15 @@
+using JavaScriptEngineSwitcher.ChakraCore;
+using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using React.AspNet;
 using System.Text;
 
 namespace Codesanook.Examples.DotNetAuthorizationServer
@@ -14,6 +18,11 @@ namespace Codesanook.Examples.DotNetAuthorizationServer
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddReact();
+            // Make sure a JS engine is registered, or you will get an error!
+            services.AddJsEngineSwitcher(options => options.DefaultEngineName = ChakraCoreJsEngine.EngineName).AddChakraCore();
+
             services.AddControllersWithViews();
             services
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -64,7 +73,6 @@ namespace Codesanook.Examples.DotNetAuthorizationServer
                     //var KeyParam = RSA.ExportParameters(true);
                     //var key = new RsaSecurityKey(KeyParam);
                     //var credentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature);
-
                     var secretKey = Encoding.UTF8.GetBytes("MysecretMysecretMysecret");
                     var securityKey = new SymmetricSecurityKey(secretKey);
                     var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -98,6 +106,18 @@ namespace Codesanook.Examples.DotNetAuthorizationServer
                 app.UseDeveloperExceptionPage();
             }
 
+            // Initialize ReactJS.NET. Must be before static files.
+            app.UseReact(config =>
+            {
+                config
+                  .SetLoadBabel(false)
+                   .SetUseDebugReact(true)
+                  //.SetLoadReact(false)
+                  // The path is relative to the main wwwroot folder of the main project 
+                  .AddScriptWithoutTransform("scripts/main.js");
+            });
+
+            app.UseStaticFiles();
             app.UseRouting();
             // The call to UseAuthentication is made after the call to UseRouting,
             // so that route information is available for authentication decisions, but before UseEndpoints,

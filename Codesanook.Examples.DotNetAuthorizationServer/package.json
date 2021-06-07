@@ -1,0 +1,36 @@
+{
+  "name": "codesanook-examples-dotnet-authorizationserver",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "dev": "webpack --mode=development",
+    "watch": "webpack --watch",
+    "postinstall": "node ./postinstall_patch.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.14.4",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@emotion/babel-preset-css-prop": "^11.2.0",
+    "@types/react": "^17.0.8",
+    "@types/react-dom": "^17.0.5",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.5",
+    "mini-css-extract-plugin": "^1.6.0",
+    "node-sass": "^6.0.0",
+    "sass-loader": "^11.1.1",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-remove-empty-scripts": "^0.7.1"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.4.0",
+    "global": "^4.4.0",
+    "react": "^17.0.2"
+  }
+}
