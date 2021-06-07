@@ -1,7 +1,7 @@
-<h2>MVC is working</h2>
-
 @using Microsoft.AspNetCore.Authentication
+@model IndexViewModel
 
+<h2>MVC is working</h2>
 @if (User.Identity.IsAuthenticated)
 {
   var authenticationResult = await Context.AuthenticateAsync();
@@ -21,7 +21,6 @@
   <p><a class="btn btn-dark" asp-controller="Account" asp-action="Logout">Sign out</a></p>
 </div>
 }
-
 @if (!User.Identity.IsAuthenticated)
 {
   <div>
@@ -30,4 +29,4 @@
 </div>
 }
 
-@Html.React("components.Counter",new {initValue = 999})
+@Html.React("components.Counter",new {initValue = Model.InitialValue})

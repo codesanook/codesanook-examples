@@ -1,3 +1,4 @@
+using Codesanook.Examples.DotNetAuthorizationServer.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Codesanook.Examples.DotNetAuthorizationServer.Controllers
@@ -6,7 +7,8 @@ namespace Codesanook.Examples.DotNetAuthorizationServer.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var viewModel = new IndexViewModel() { InitialValue = 999 };
+            return View(viewModel);
         }
     }
 }
