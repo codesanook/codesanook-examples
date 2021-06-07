@@ -28,14 +28,4 @@ module.exports = {
   },
   // https://webpack.js.org/configuration/devtool/
   devtool: 'inline-source-map',
-  // plugins: [
-  //   new webpack.ProvidePlugin({
-  //     window: 'global/window'
-  //   }),
-  // ]
-  // plugins: [
-  //   new webpack.ProvidePlugin({
-  //     window: {},
-  //   }),
-  // ]
 };
