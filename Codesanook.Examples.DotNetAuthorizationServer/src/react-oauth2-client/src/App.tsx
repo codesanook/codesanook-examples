@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Layout } from "./components/Layout";
+import { Home } from "./components/Home";
+import { FetchData } from "./components/FetchData";
+import { Counter } from "./components/Counter";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {ApplicationPaths} from "./components/Authorization/constant";
+import AuthorizationRoutes from "./components/Authorization/AuthorizationRoutes";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "./custom.css";
+
+export default class App extends Component {
+  static displayName = App.name;
+
+  render() {
+    return (
+      // <Layout>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/counter" component={Counter} />
+            {/* <AuthorizeRoute path="/fetch-data" component={FetchData} /> */}
+            <Route
+              path={ApplicationPaths.ApiAuthorizationPrefix}
+              component={AuthorizationRoutes}
+            />
+           </Switch>
+        </Router>
+      // </Layout>
+    );
+  }
 }
-
-export default App;

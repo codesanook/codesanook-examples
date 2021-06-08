@@ -16,6 +16,7 @@ using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.EntityFrameworkCore;
+using DotNetAuthorizationServer.Middleware;
 
 namespace DotNetAuthorizationServer
 {
@@ -31,6 +32,7 @@ namespace DotNetAuthorizationServer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllersWithViews();
             services.AddControllers();
 
@@ -127,11 +129,22 @@ namespace DotNetAuthorizationServer
 
             app.UseRouting();
 
+            // For development only
+            app.UseCors(builder =>
+            {
+                builder.WithOrigins("http://localhost:3000");
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+            });
+
             // The call to UseAuthentication is made after the call to UseRouting,
             // so that route information is available for authentication decisions, but before UseEndpoints,
             // so that users are authenticated before accessing the endpoints.
             app.UseAuthentication();
             app.UseAuthorization();
+
+            //Add our new middleware to the pipeline
+            // app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
