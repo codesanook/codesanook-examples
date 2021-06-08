@@ -8,11 +8,11 @@ using OpenIddict.Abstractions;
 
 namespace DotNetAuthorizationServer
 {
-    public class TestData : IHostedService
+    public class WebClientWorker : IHostedService
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public TestData(IServiceProvider serviceProvider)
+        public WebClientWorker(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
