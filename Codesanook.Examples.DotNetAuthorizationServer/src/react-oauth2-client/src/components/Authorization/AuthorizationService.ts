@@ -1,4 +1,3 @@
-import { ApplicationPaths, ApplicationName } from './constant';
 import oauthService from './OauthService';
 import axios from 'axios';
 

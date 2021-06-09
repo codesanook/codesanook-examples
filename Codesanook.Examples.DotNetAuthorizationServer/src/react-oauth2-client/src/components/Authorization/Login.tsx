@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
-import { NavItem, NavLink } from "reactstrap";
-import { Link } from "react-router-dom";
-import authService, {
-  AuthenticationResultStatus,
-} from "./AuthorizationService";
+import authService from "./AuthorizationService";
 import { QueryParameterNames, LoginActions } from "./constant";
 
 interface PropType {
@@ -23,17 +19,6 @@ const Login = ({ action, ...props }: PropType) => {
       case LoginActions.LoginCallback:
         processLoginCallback();
         break;
-      // case LoginActions.LoginFailed:
-      //     const params = new URLSearchParams(window.location.search);
-      //     const error = params.get(QueryParameterNames.Message);
-      //     this.setState({ message: error });
-      //     break;
-      // case LoginActions.Profile:
-      //     this.redirectToProfile();
-      //     break;
-      // case LoginActions.Register:
-      //     this.redirectToRegister();
-      //     break;
       default:
         throw new Error(`Invalid action '${action}'`);
     }
@@ -43,38 +28,11 @@ const Login = ({ action, ...props }: PropType) => {
   const processLoginCallback = async () =>{
       const url = window.location.href;
       const result = await authService.completeSignIn(url);
-      // const result = await authService.completeSignIn(url);
-      // switch (result.status) {
-      //     case AuthenticationResultStatus.Redirect:
-      //         // There should not be any redirects as the only time completeSignIn finishes
-      //         // is when we are doing a redirect sign in flow.
-      //         throw new Error('Should not redirect.');
-      //     case AuthenticationResultStatus.Success:
-      //         await this.navigateToReturnUrl(this.getReturnUrl(result.state));
-      //         break;
-      //     case AuthenticationResultStatus.Fail:
-      //         this.setState({ message: result.message });
-      //         break;
-      //     default:
-      //         throw new Error(`Invalid authentication result status '${result.status}'.`);
-      // }
   }
 
   const login = async (returnUrl: string) => {
     const state = { returnUrl };
     const result = await authService.signIn(state);
-    // switch (result.status) {
-    //   case AuthenticationResultStatus.Redirect:
-    //     break;
-    //   case AuthenticationResultStatus.Success:
-    //     await navigateToReturnUrl(returnUrl);
-    //     break;
-    //   case AuthenticationResultStatus.Fail:
-    //     // setState({ message: result.message });
-    //     break;
-    //   default:
-    //     throw new Error(`Invalid status result ${result.status}.`);
-    // }
   };
 
   const getReturnUrl = () => {
@@ -86,9 +44,6 @@ const Login = ({ action, ...props }: PropType) => {
         "Invalid return url. The return url needs to have the same origin as the current page."
       );
     }
-    // return (
-    //   (state && state.returnUrl) || fromQuery || `${window.location.origin}/`
-    // );
     return fromQuery || `${window.location.origin}/`;
   };
 
@@ -98,7 +53,7 @@ const Login = ({ action, ...props }: PropType) => {
     window.location.replace(returnUrl);
   };
 
-  return <>Login Page</>;
+  return <><h1>Login Page</h1>See the token in the Console</>;
 };
 
 export default Login;
