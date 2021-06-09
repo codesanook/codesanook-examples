@@ -36,7 +36,7 @@ namespace DotNetAuthorizationServer
             services.AddControllers();
 
             services.ConfigureOidc(Configuration);
-            // services.ConfigureJWT(Configuration);
+            services.ConfigureJWT(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,9 +70,6 @@ namespace DotNetAuthorizationServer
             // so that users are authenticated before accessing the endpoints.
             app.UseAuthentication();
             app.UseAuthorization();
-
-            //Add our new middleware to the pipeline
-            // app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

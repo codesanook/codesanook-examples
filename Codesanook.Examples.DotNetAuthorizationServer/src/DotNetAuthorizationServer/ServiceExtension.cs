@@ -1,9 +1,4 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -12,10 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Extensions.Hosting;
 
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore.InMemory;
@@ -28,12 +19,14 @@ namespace DotNetAuthorizationServer
 
         public static void ConfigureOidc(this IServiceCollection services, IConfiguration Configuration)
         {
-           services
-                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-                {
-                    options.LoginPath = "/account/login";
-                });
+            // https://docs.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme?view=aspnetcore-5.0
+            services
+                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+                 {
+                     options.LoginPath = "/account/login";
+                 });
+
 
             services.AddDbContext<DbContext>(options =>
                 {
@@ -99,10 +92,30 @@ namespace DotNetAuthorizationServer
 
             services.AddHostedService<WebClientWorker>();
         }
-      
+
         public static void ConfigureJWT(this IServiceCollection services, IConfiguration Configuration)
         {
-           
+
+            services
+             .AddAuthentication()
+             .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+             {
+                options.RequireHttpsMetadata = true;
+                 options.Audience = "https://localhost:5001/";
+                 options.Authority = "https://localhost:5001/";
+                 options.TokenValidationParameters = new TokenValidationParameters
+                 {
+                     ValidateIssuer = false,
+                     ValidIssuer = "https://localhost:5001",
+                     ValidateIssuerSigningKey = true,
+                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("MysecretMysecretMysecret")),
+                     ValidAudience = "https://localhost:5001",
+                     ValidateAudience = false,
+                     ValidateLifetime = false,
+                     ClockSkew = TimeSpan.FromMinutes(5)
+                 };
+             });
+
         }
 
     }

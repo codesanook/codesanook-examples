@@ -26,3 +26,4 @@ $ dotnet watch run
 # Good Ref
 - [Call Your API Using the Authorization Code Flow with PKCE - auth0 ](https://auth0.com/docs/flows/call-your-api-using-the-authorization-code-flow-with-pkce#create-code-challenge)
 - [OAuth 2.0 and OpenID Connect (in plain English)](https://www.youtube.com/watch?v=996OiexHze0)
+- [JWT Auth in ASP.NET Core](https://codeburst.io/jwt-auth-in-asp-net-core-148fb72bed03) - [Code](https://github.com/dotnet-labs/JwtAuthDemo)
