@@ -24,10 +24,10 @@ const Login = ({ action, ...props }: PropType) => {
     }
   };
 
-  
-  const processLoginCallback = async () =>{
-      const url = window.location.href;
-      const result = await authService.completeSignIn(url);
+
+  const processLoginCallback = async () => {
+    const url = window.location.href;
+    const result = await authService.completeSignIn(url);
   }
 
   const login = async (returnUrl: string) => {

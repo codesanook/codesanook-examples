@@ -17,12 +17,12 @@ using System.Text;
 
 namespace DotNetAuthorizationServer.Controllers
 {
-    
+
     public class AuthorizationController : Controller
     {
         private readonly ILogger<AuthorizationController> _logger;
 
-         public AuthorizationController(ILogger<AuthorizationController> logger)
+        public AuthorizationController(ILogger<AuthorizationController> logger)
         {
             _logger = logger;
         }
@@ -37,7 +37,7 @@ namespace DotNetAuthorizationServer.Controllers
             var request = HttpContext.GetOpenIddictServerRequest() ??
                 throw new InvalidOperationException("The OpenID Connect request cannot be retrieved.");
 
-            
+
 
             // Retrieve the user principal stored in the authentication cookie.
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -77,7 +77,7 @@ namespace DotNetAuthorizationServer.Controllers
         public async Task<IActionResult> Exchange()
         {
             _logger.LogInformation("efefefefffffffffffffffffff");
-            
+
             var request = HttpContext.GetOpenIddictServerRequest()
                 ?? throw new InvalidOperationException("The OpenID Connect request cannot be retrieved.");
             _logger.LogInformation(request.GetParameters().ToString());
@@ -106,6 +106,11 @@ namespace DotNetAuthorizationServer.Controllers
             {
                 // Retrieve the claims principal stored in the authorization code
                 claimsPrincipal = (await HttpContext.AuthenticateAsync(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme)).Principal;
+                // https://stackoverflow.com/a/42449080/1872200
+                claimsPrincipal.SetAccessTokenLifetime(TimeSpan.FromMinutes(30));
+                //claimsPrincipal.SetAuthorizationCodeLifetime(TimeSpan.FromMinutes(1));
+                //claimsPrincipal.SetIdentityTokenLifetime(TimeSpan.FromMinutes(30));
+                //claimsPrincipal.SetRefreshTokenLifetime(TimeSpan.FromDays(2));
             }
             else if (request.IsRefreshTokenGrantType())
             {

@@ -2,14 +2,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNetAuthorizationServer
@@ -26,7 +20,6 @@ namespace DotNetAuthorizationServer
                  {
                      options.LoginPath = "/account/login";
                  });
-
 
             services.AddDbContext<DbContext>(options =>
                 {
@@ -63,13 +56,13 @@ namespace DotNetAuthorizationServer
                         .SetTokenEndpointUris("/connect/token")
                         .SetUserinfoEndpointUris("/connect/userinfo");
 
-                    //var RSA = new RSACryptoServiceProvider(2048);
-                    //var KeyParam = RSA.ExportParameters(true);
-                    //var key = new RsaSecurityKey(KeyParam);
-                    //var credentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature);
-                    var secretKey = Encoding.UTF8.GetBytes("MysecretMysecretMysecret");
-                    var securityKey = new SymmetricSecurityKey(secretKey);
-                    var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+                    // var RSA = new RSACryptoServiceProvider(2048);
+                    // var KeyParam = RSA.ExportParameters(true);
+                    // var key = new RsaSecurityKey(KeyParam);
+                    // var credentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature);
+                    // var secretKey = Encoding.UTF8.GetBytes("MysecretMysecretMysecret");
+                    // var securityKey = new SymmetricSecurityKey(secretKey);
+                    var signingCredentials = new SigningCredentials(GetIssuerSigningKey(), SecurityAlgorithms.HmacSha256);
 
                     // You can register an asymmetric key and a symmetric key
                     // that will be preferred for access tokens if one is registered.
@@ -95,28 +88,28 @@ namespace DotNetAuthorizationServer
 
         public static void ConfigureJWT(this IServiceCollection services, IConfiguration Configuration)
         {
-
             services
-             .AddAuthentication()
-             .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
-             {
-                options.RequireHttpsMetadata = true;
-                 options.Audience = "https://localhost:5001/";
-                 options.Authority = "https://localhost:5001/";
-                 options.TokenValidationParameters = new TokenValidationParameters
-                 {
-                     ValidateIssuer = false,
-                     ValidIssuer = "https://localhost:5001",
-                     ValidateIssuerSigningKey = true,
-                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("MysecretMysecretMysecret")),
-                     ValidAudience = "https://localhost:5001",
-                     ValidateAudience = false,
-                     ValidateLifetime = false,
-                     ClockSkew = TimeSpan.FromMinutes(5)
-                 };
-             });
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = GetIssuerSigningKey(),
+                        ValidateLifetime = true,
 
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidIssuer = null,
+                        ValidAudience = null,
+                    };
+                });
         }
 
+        private static SymmetricSecurityKey GetIssuerSigningKey()
+        {
+            var secretKey = Encoding.ASCII.GetBytes("MysecretMysecretMysecret");
+            return new SymmetricSecurityKey(secretKey);
+        }
     }
 }
