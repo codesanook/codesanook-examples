@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using Xunit;
 
-namespace Codesanook.Examples.CSharp.JSON
+namespace Codesanook.Examples.DotNetCore.JSON
 {
     public class Person
     {

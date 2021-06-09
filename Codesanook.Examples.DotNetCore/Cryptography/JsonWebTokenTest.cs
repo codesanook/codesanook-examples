@@ -13,12 +13,13 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
     public class JsonWebTokenTest
     {
         private readonly ITestOutputHelper output;
+
         public JsonWebTokenTest(ITestOutputHelper output) => this.output = output;
 
         [Fact]
         public void CreateToken_ValidInput_ReturnValidToken()
         {
-            // Arange
+            // Arrange
             var tokenHandler = new JsonWebTokenHandler();
             var secretKey = Encoding.ASCII.GetBytes("MysecretMysecretMysecret");
             var securityKey = new SymmetricSecurityKey(secretKey);
@@ -66,7 +67,7 @@ namespace Codesanook.Examples.DotNetCore.Cryptography
         [Fact]
         public void CreateTokenWithKeyHashDirectly_ValidInput_ReturnValidToken()
         {
-            // Arange
+            // Arrange
             var secretKey = Encoding.UTF8.GetBytes("MysecretMysecretMysecret");
             var securityKey = new SymmetricSecurityKey(secretKey);
             var cryptoProviderFactory = new CryptoProviderFactory();

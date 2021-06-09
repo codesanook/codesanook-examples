@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Codesanook.Examples.CSharp.Models
+namespace Codesanook.Examples.DotNetCore.Models
 {
-    public class Product
+    public class Product : Entity
     {
         public string Name { get; set; }
         public decimal Price { get; set; }

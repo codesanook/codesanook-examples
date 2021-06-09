@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 using Xunit;
 
-namespace Codesanook.Examples.CSharp.Tests.Nullable
+namespace Codesanook.Examples.DotNetCore.Tests.Nullable
 {
 
     public class NullableUnderlyingType

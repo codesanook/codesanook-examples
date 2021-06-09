@@ -1,11 +1,10 @@
 ﻿using Xunit;
 
-namespace Codesanook.Examples.CSharp.Logging
+namespace Codesanook.Examples.DotNetCore.Logging
 {
     public class Log4NetProgrammaticallySetup
     {
 
-        [Fact]
         public void LogTest()
         {
         }

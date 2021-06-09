@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Codesanook.Examples.DotNetCore.Models;
 using Xunit;
 
 namespace Codesanook.Examples.DotNetCore.Linq
@@ -42,20 +43,4 @@ namespace Codesanook.Examples.DotNetCore.Linq
             entity.CreatedDateUtc < createdBefore && entity.IsDeleted == isDelete;
     }
 
-    public class Entity
-    {
-        public int Id { get; set; }
-        public DateTime CreatedDateUtc { get; set; }
-        public bool IsDeleted { get; set; }
-    }
-
-    public class User : Entity
-    {
-        public string FirstName { get; set; }
-    }
-
-    public class Product : Entity
-    {
-        public string Name { get; set; }
-    }
 }

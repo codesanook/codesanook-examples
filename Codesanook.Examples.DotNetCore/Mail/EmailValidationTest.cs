@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Net.Mail;
 using System.Net.Sockets;
-using System.Reflection;
 using System.Text;
 using Xunit;
 using YamlDotNet.Serialization;
@@ -19,7 +18,7 @@ namespace Codesanook.Examples.DotNetCore.Mail
         {
             var a = Directory.GetCurrentDirectory();
 
-            var executedPath = new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath;
+            var executedPath = new Uri(System.AppContext.BaseDirectory).LocalPath;
             var executedDirectory = Path.GetDirectoryName(executedPath);
             var directoryInfo = new DirectoryInfo(executedDirectory);
             var projectRootPath = directoryInfo.Parent.Parent.Parent.FullName;

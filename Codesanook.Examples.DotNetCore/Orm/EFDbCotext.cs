@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CodeSanook.Examples.CSharp.Orm
+namespace CodeSanook.Examples.DotNetCore.Orm
 {
     public class EFDbCotext:DbContext
     {

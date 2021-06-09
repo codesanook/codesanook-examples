@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeSanook.Examples.CSharp.Orm 
+namespace CodeSanook.Examples.Dot   .Orm 
 {
     public abstract class Disposable : IDisposable
     {

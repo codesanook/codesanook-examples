@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Web;
 
 
-namespace CodeSanook.Examples.CSharp.Orm 
+namespace CodeSanook.Examples.DotNetCore.Orm 
 {
     public class EFDbFactory : Disposable, IDbFactory
     {

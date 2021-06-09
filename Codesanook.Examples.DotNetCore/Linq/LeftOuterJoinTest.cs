@@ -1,12 +1,12 @@
-using Codesanook.Examples.CSharp.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using Codesanook.Examples.DotNetCore.Models;
 using Xunit;
 
-namespace Codesanook.Examples.CSharp.Linq
+namespace Codesanook.Examples.DotNetCore.Linq
 {
     public class LeftOuterJoinTest
     {

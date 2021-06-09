@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Codesanook.Examples.CSharp.Models
+namespace Codesanook.Examples.DotNetCore.Models
 {
     [Serializable]
     public class Profile

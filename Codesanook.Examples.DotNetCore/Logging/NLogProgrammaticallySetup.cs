@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NLog;
 using NLog.Extensions.Logging;
-using NLog.Fluent;
-using System.Reflection.Metadata;
 
-namespace Codesanook.Examples.CSharp.Tests.Logging
+namespace Codesanook.Examples.DotNetCore.Tests.Logging
 {
     class NLogProgrammaticallySetup
     {
-
         public void Test()
         {
             var services = new ServiceCollection();

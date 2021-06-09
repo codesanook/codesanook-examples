@@ -1,10 +1,10 @@
-using Codesanook.Examples.CSharp.Models;
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
+using Codesanook.Examples.DotNetCore.Models;
 using Xunit;
 
-namespace Codesanook.Examples.CSharp.Linq
+namespace Codesanook.Examples.DotNetCore.Linq
 {
     public class ExpressionTreeTest
     {

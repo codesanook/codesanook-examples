@@ -16,7 +16,7 @@ namespace Codesanook.Examples.DotNetCore.GoogleApi
     public class GmailServiceApiTest
     {
         [Fact]
-        public async Task SendMailTest()
+        public void SendMailTest()
         {
             var certificate = new X509Certificate2(
                 @"C:\projects\topf\gmail-service-account-key.p12", "notasecret", X509KeyStorageFlags.Exportable

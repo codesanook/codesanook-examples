@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Codesanook.Examples.Sql.DatabaseConnections
+namespace Codesanook.Examples.DotNetCore.Sql.DatabaseConnections
 {
     // EF Core database provider for PostgreSQL uses Npgsql 
     // https://docs.microsoft.com/en-us/ef/core/providers/?tabs=dotnet-core-cli#current-providers

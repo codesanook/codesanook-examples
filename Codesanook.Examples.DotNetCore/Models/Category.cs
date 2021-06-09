@@ -1,4 +1,4 @@
-﻿namespace Codesanook.Examples.CSharp.Models
+﻿namespace Codesanook.Examples.DotNetCore.Models
 {
     public class Category
     {

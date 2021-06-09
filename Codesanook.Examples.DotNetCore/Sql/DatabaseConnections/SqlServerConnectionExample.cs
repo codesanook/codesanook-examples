@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Codesanook.Examples.Sql.DatabaseConnections
+namespace Codesanook.Examples.DotNetCore.Sql.DatabaseConnections
 {
     public class SqlServerConnectionExample
     {

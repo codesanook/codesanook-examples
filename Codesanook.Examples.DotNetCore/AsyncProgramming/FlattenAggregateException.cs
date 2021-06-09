@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Codesanook.Examples.CSharp.AsyncProgramming
+namespace Codesanook.Examples.DotNetCore.AsyncProgramming
 {
     public class FlattenAggregateException
     {

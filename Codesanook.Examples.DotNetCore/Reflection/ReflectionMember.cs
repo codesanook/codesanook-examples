@@ -1,7 +1,7 @@
-﻿using Codesanook.Examples.CSharp.Models;
+﻿using Codesanook.Examples.DotNetCore.Models;
 using Xunit;
 
-namespace Codesanook.Examples.CSharp.Reflection
+namespace Codesanook.Examples.DotNetCore.Reflection
 {
     public class ReflectionMember
     {
