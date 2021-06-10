@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import authService from "./AuthorizationService";
 import { QueryParameterNames, LoginActions } from "./constant";
 
-interface PropType {
+interface PropsType {
   action: string;
 }
 
-const Login = ({ action, ...props }: PropType) => {
+const Login = ({ action, ...props }: PropsType) => {
   useEffect(() => {
     init();
   }, []);
@@ -28,6 +28,7 @@ const Login = ({ action, ...props }: PropType) => {
   const processLoginCallback = async () => {
     const url = window.location.href;
     const result = await authService.completeSignIn(url);
+    window.location.href = '/fetch-data';
   }
 
   const login = async (returnUrl: string) => {

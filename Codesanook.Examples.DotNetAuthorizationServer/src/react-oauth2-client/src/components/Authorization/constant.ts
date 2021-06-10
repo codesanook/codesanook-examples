@@ -37,3 +37,16 @@ export const ApplicationPaths = {
   // IdentityRegisterPath: 'Identity/Account/Register',
   // IdentityManagePath: 'Identity/Account/Manage'
 };
+
+export const LocalStorageConfigs = {
+  Oauth: {
+    CodeVerifierKey: "code_verifier",
+    CodeVerifierTimeoutKey: "code_verifier_timeout",
+    // If it's timeout, it'll regenerate a code verifier.
+    CodeVerifierTimeout: 3, // seconds
+  },
+  Token: {
+    AccessTokenKey: "access_token",
+    RefreshTokenKey: "refresh_token",
+  }
+};

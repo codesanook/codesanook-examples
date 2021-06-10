@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace DotNetAuthorizationServer.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+
     [ApiController]
-    [Route("api/weather-forcast")]
+    [Route("api/weather-forecast")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]

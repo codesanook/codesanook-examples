@@ -1,10 +1,8 @@
 // Ref: https://gist.github.com/tonyxu-io/21eb57ab2a4aeb2a3ee10f77542abe64
 import CryptoJS from "crypto-js";
 import { differenceInSeconds } from 'date-fns';
-
-const CodeVerifierKey = "code_verifier";
-const CodeVerifierTimeoutKey = "code_verifier_timeout";
-const CodeVerifierTimeout = 3; // seconds
+import { LocalStorageConfigs } from "./constant";
+const {CodeVerifierKey, CodeVerifierTimeoutKey, CodeVerifierTimeout} = LocalStorageConfigs.Oauth;
 
 class OauthService {
 
