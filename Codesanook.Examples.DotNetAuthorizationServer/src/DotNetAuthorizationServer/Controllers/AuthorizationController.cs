@@ -26,7 +26,7 @@ namespace DotNetAuthorizationServer.Controllers
         {
             _logger = logger;
         }
-
+        
         [HttpGet("~/connect/authorize")]
         [HttpPost("~/connect/authorize")]
         [IgnoreAntiforgeryToken]
@@ -36,8 +36,6 @@ namespace DotNetAuthorizationServer.Controllers
             _logger.LogInformation(HttpContext.Request.PathBase);
             var request = HttpContext.GetOpenIddictServerRequest() ??
                 throw new InvalidOperationException("The OpenID Connect request cannot be retrieved.");
-
-
 
             // Retrieve the user principal stored in the authentication cookie.
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -73,10 +71,10 @@ namespace DotNetAuthorizationServer.Controllers
             return SignIn(claimsPrincipal, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
         }
 
+        
         [HttpPost("~/connect/token")]
         public async Task<IActionResult> Exchange()
         {
-            _logger.LogInformation("efefefefffffffffffffffffff");
 
             var request = HttpContext.GetOpenIddictServerRequest()
                 ?? throw new InvalidOperationException("The OpenID Connect request cannot be retrieved.");

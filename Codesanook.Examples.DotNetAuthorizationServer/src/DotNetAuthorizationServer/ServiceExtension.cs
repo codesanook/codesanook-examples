@@ -89,7 +89,9 @@ namespace DotNetAuthorizationServer
         public static void ConfigureJWT(this IServiceCollection services, IConfiguration Configuration)
         {
             services
-                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                // Remove `JwtBearerDefaults.AuthenticationScheme` from `.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)`
+                // Because it'll be set default scheme to JwtBearer. The cookie-based login not work!
+                .AddAuthentication()
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
