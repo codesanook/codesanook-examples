@@ -4,9 +4,8 @@ import axios from 'axios';
 const loginInfo = {
   "auth_url": "https://localhost:5001/connect/authorize",
   "access_token_url": "https://localhost:5001/connect/token",
-  "client_id": "postman",
+  "client_id": "react-spa",
   "state": "",
-  "client_secret": "postman-secret",
   "redirect_uri": "http://localhost:3000/authentication/login-callback",
   // "post_logout_redirect_uri": "https://localhost:5001/authentication/logout-callback",
   "scope": "api openid offline_access"
@@ -49,14 +48,13 @@ class AuthorizationService {
     console.log(response.data);
   }
 
-  createAccessTokenParams({ redirect_uri, client_id, client_secret, scope }: any, code: string) {
+  createAccessTokenParams({ redirect_uri, client_id, scope }: any, code: string) {
     console.log(`Call: ${oauthService.getCodeVerifier()}`);
     const params = {
       grant_type: 'authorization_code',
       code,
       redirect_uri,
       client_id,
-      client_secret,
       code_verifier: oauthService.getCodeVerifier(),
       scope
     }

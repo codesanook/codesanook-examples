@@ -83,7 +83,7 @@ namespace DotNetAuthorizationServer
                         .EnableUserinfoEndpointPassthrough();
                 });
 
-            services.AddHostedService<WebClientWorker>();
+            services.AddHostedService<Worker>();
         }
 
         public static void ConfigureJWT(this IServiceCollection services, IConfiguration Configuration)
