@@ -7,30 +7,9 @@ using System.IO;
 using System.Linq;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.JSON
+namespace Codesanook.Examples.DotNetCore.Json
 {
-    public class Person
-    {
-        public virtual int Id { get; set; }
-        public virtual string FirstName { get; set; }
-        public virtual string LastName { get; set; }
-    }
-
-    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
-    public class Student : Person
-    {
-        [JsonProperty]
-        public new virtual int Id
-        {
-            get { return base.Id; }
-            set { base.Id = value; ; }
-        }
-
-        [JsonProperty]
-        public virtual string School { get; set; }
-    }
-
-    public class JsonTest
+    public class JsonSerializeTest
     {
         [Fact]
         public void Serialize_OptInOption_ReturnOnlyJsonPropertyAttribute()
@@ -71,7 +50,7 @@ namespace Codesanook.Examples.DotNetCore.JSON
         public void Deserialize_OrderDynamicObject_OrderedCorrectly()
         {
             var directory = AppDomain.CurrentDomain.BaseDirectory;
-            var jsonPath = Path.Combine(directory, "JSON/app-service-runtime.json");
+            var jsonPath = Path.Combine(directory, "Json/app-service-runtime.json");
 
             using var fileStream = new FileStream(jsonPath, FileMode.Open, FileAccess.Read);
             using var streamReader = new StreamReader(fileStream);
@@ -101,5 +80,26 @@ namespace Codesanook.Examples.DotNetCore.JSON
             Assert.Equal("test1", foo + 1);
         }
 
+    }
+
+    public class Person
+    {
+        public virtual int Id { get; set; }
+        public virtual string FirstName { get; set; }
+        public virtual string LastName { get; set; }
+    }
+
+    [JsonObject(MemberSerialization = MemberSerialization.OptIn)]
+    public class Student : Person
+    {
+        [JsonProperty]
+        public new virtual int Id
+        {
+            get { return base.Id; }
+            set { base.Id = value; ; }
+        }
+
+        [JsonProperty]
+        public virtual string School { get; set; }
     }
 }

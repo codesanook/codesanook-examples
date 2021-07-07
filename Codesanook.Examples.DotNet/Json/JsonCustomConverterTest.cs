@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.JSON
+namespace Codesanook.Examples.DotNetCore.Json
 {
     public class JsonCustomConverterTest
     {

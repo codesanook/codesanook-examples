@@ -42,5 +42,4 @@ namespace Codesanook.Examples.DotNetCore.Linq
         private static bool FilterByCreatedDateUtcAndIsDeleted<T>(T entity, DateTime createdBefore, bool isDelete = false) where T : Entity =>
             entity.CreatedDateUtc < createdBefore && entity.IsDeleted == isDelete;
     }
-
 }

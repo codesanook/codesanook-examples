@@ -29,7 +29,7 @@ namespace Codesanook.Examples.DotNetCore.Linq
             Assert.Equal("Id", referenceKey);
         }
 
-        public static string GetPropertyName<P, T>(Expression<Func<P, T>> expression)
+        private static string GetPropertyName<P, T>(Expression<Func<P, T>> expression)
         {
             string path = "";
             var memberExpression = (MemberExpression)expression.Body;

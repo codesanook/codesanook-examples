@@ -11,7 +11,7 @@ namespace Codesanook.Examples.DotNetCore.Linq
     public class LeftOuterJoinTest
     {
         [Fact]
-        public void Test()
+        public void LeftOuterJoin_ValidInput_ReturnCorrectLeftOuterJoinResult()
         {
             // Specify the first data source.
             var categories = new List<Category>() {
