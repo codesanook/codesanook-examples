@@ -10,7 +10,7 @@
 $command = {
     try {
         # Change these variables to match your environment
-        $freeDnsDomainId = 'QkllTEZaSm8yQ1pnWXNQS1lPVE91dERtOjE4ODcwNDky'
+        $freeDnsDomainId = ''
         $logDirectory = 'c:/logs'
 
         New-Item -Path $logDirectory -ItemType Directory -Force # Create a new folder if not exist
@@ -36,9 +36,9 @@ $command = {
         # Startup updating DNS
         try {
             $uri = 'https://freedns.afraid.org/dynamic/update.php?{0}' -f $freeDnsDomainId
-            $response = Invoke-WebRequest -URI $uri
-            $response
-            $logMessage = 'request to {0} successfully with status code: {1}' -f $uri, $response.StatusCode
+            # https://stackoverflow.com/a/38054505
+            $response = Invoke-WebRequest -URI $uri -UseBasicParsing
+            $logMessage = 'request to {0} successfully with status code: {1}, content: {2}' -f $uri, $response.StatusCode, $response.Content.Trim()
         }
         catch {
             $statusCode = $_.Exception.Response.StatusCode.value__
@@ -54,23 +54,21 @@ $command = {
     }
 }
 
+# Uncomment for running without set a schedule 
 # & $command; return;
 
-$action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-Command & { $command }" 
-
 # Start a task and then repeat every 30 minutes
-$repetitionIntervalMinutes = 1 
+$action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-Command & { $command }" 
+$repetitionIntervalMinutes = 30 
 $trigger = New-ScheduledTaskTrigger `
     -Once `
     -At (Get-Date) `
     -RepetitionInterval (New-TimeSpan -Minutes $repetitionIntervalMinutes) `
     -RepetitionDuration (New-TimeSpan -Days (365 * 20))
 
-#$trigger = New-ScheduledTaskTrigger -At $timeToShutdownUtc -Daily | Disable-SynchronizeTimeZone 
 $trigger # Output value for debugging purpose
 
 $user = "NT AUTHORITY\SYSTEM" # Specify the account to run the script
-
 Register-ScheduledTask `
     -TaskName "UpdateDynamicDNS" `
     -Trigger $trigger `
