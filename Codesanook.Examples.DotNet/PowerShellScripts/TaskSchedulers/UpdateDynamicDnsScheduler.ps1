@@ -34,20 +34,14 @@ $command = {
         } | Remove-Item -Force 
 
         # Startup updating DNS
-        try {
-            $uri = 'https://freedns.afraid.org/dynamic/update.php?{0}' -f $freeDnsDomainId
-            # https://stackoverflow.com/a/38054505
-            $response = Invoke-WebRequest -URI $uri -UseBasicParsing
-            $logMessage = 'request to {0} successfully with status code: {1}, content: {2}' -f $uri, $response.StatusCode, $response.Content.Trim()
-        }
-        catch {
-            $statusCode = $_.Exception.Response.StatusCode.value__
-            $logMessage = 'request to {0} failed with status code: {1}, message: {2}' -f $uri, $statusCode, $_.Exception.Message
-        }
+        $uri = 'https://freedns.afraid.org/dynamic/update.php?{0}' -f $freeDnsDomainId
+        # https://stackoverflow.com/a/38054505
+        $response = Invoke-WebRequest -URI $uri -UseBasicParsing
+        $logMessage = 'request to {0} successfully with status code: {1}, content: {2}' -f $uri, $response.StatusCode, $response.Content.Trim()
 
         $logFileName = '{0}-{1}.txt' -f $logFilePrefix, $utcNow.ToString($dateFormat)
         'Dynamic DNS updated at: {0}, {1}' -f $utcNow.ToString('yyyy-MM-ddTHH:mm:ss.fffZ'), $logMessage `
-        | Out-File (Join-Path -Path $logDirectory -ChildPath $logFileName) -Append
+            | Out-File (Join-Path -Path $logDirectory -ChildPath $logFileName) -Append
     }
     catch {
         $_.Exception | Out-File (Join-Path -Path $logDirectory -ChildPath 'internal-log.txt')
