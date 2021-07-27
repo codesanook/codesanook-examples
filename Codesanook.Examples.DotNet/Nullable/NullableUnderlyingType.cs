@@ -2,7 +2,7 @@
 using System.Data;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.Tests.Nullable
+namespace Codesanook.Examples.DotNet.Tests.Nullable
 {
 
     public class NullableUnderlyingType

@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.AsyncProgramming
+namespace Codesanook.Examples.DotNet.AsyncProgramming
 {
     public class ThreadPoolTest
     {

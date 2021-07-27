@@ -1,9 +1,9 @@
 ﻿using Xunit;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using Codesanook.Examples.DotNetCore.Models;
+using Codesanook.Examples.DotNet.Models;
 
-namespace Codesanook.Examples.DotNetCore.JSON
+namespace Codesanook.Examples.DotNet.JSON
 {
     public class SerializableTest
     {

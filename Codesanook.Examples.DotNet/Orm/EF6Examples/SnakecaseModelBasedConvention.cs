@@ -1,7 +1,7 @@
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Text.RegularExpressions;
 
-namespace Codesanook.Examples.DotNetCore.Orm.EF6Examples
+namespace Codesanook.Examples.DotNet.Orm.EF6Examples
 {
     public class SnakecaseModelBasedConvention : Convention
     {

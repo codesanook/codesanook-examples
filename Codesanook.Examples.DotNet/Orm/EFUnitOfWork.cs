@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace CodeSanook.Examples.DotNetCore.Orm 
+namespace Codesanook.Examples.DotNet.Orm 
 {
     public class EFUnitOfWork : IUnitOfWork, IDisposable
     {

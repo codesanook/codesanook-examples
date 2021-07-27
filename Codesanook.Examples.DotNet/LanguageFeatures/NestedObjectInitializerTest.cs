@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.LanguageFeatures
+namespace Codesanook.Examples.DotNet.LanguageFeatures
 {
     public class Person
     {

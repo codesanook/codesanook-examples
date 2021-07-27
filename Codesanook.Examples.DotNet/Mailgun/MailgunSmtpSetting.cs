@@ -1,4 +1,4 @@
-namespace Codesanook.Examples.DotNetCore.Mailgun
+namespace Codesanook.Examples.DotNet.Mailgun
 {
     public class MailgunSmtpSetting
     {

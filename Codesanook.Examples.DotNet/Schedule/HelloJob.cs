@@ -1,7 +1,7 @@
 ﻿using Quartz;
 using System.Threading.Tasks;
 
-namespace Codesanook.Examples.DotNetCore.Schedule
+namespace Codesanook.Examples.DotNet.Schedule
 {
     public class HelloJob : IJob
     {

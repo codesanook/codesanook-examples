@@ -8,7 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.GoogleApi
+namespace Codesanook.Examples.DotNet.GoogleApi
 {
     /// <summary>
     /// This example uses the discovery API to list all APIs in the discovery repository.

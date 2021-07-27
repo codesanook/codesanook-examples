@@ -2,7 +2,7 @@ using System;
 using Xunit;
 using UrlHelper = Flurl.Url;
 
-namespace Codesanook.Examples.DotNetCore.Url
+namespace Codesanook.Examples.DotNet.Url
 {
     public class UrlTest
     {

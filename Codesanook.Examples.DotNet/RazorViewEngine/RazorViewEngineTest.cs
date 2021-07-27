@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.RazorViewEngine
+namespace Codesanook.Examples.DotNet.RazorViewEngine
 {
     // This test requires Razor.Templates and set as Microsoft.NET.Sdk.Razor
     // https://medium.com/@soundaranbu/render-razor-view-cshtml-to-string-in-net-core-7d125f32c79
@@ -59,7 +59,7 @@ namespace Codesanook.Examples.DotNetCore.RazorViewEngine
                 shippingAddress
             );
 
-            // The output file is in Codesanook.Examples.DotNetCore/bin/Debug/netcoreapp3.1/win-x64/ShippingAddresses.html
+            // The output file is in Codesanook.Examples.DotNet/bin/Debug/netcoreapp3.1/win-x64/ShippingAddresses.html
             File.WriteAllText("ShippingAddresses.html", html);
             Assert.NotEmpty(html);
         }

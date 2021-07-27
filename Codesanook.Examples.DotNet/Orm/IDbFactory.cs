@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using System;
 
-namespace CodeSanook.Examples.DotNetCore.Orm 
+namespace Codesanook.Examples.DotNet.Orm 
 {
     public interface IDbFactory : IDisposable
     {

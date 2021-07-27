@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.PlaywrightSharp
+namespace Codesanook.Examples.DotNet.PlaywrightSharp
 {
     // Before running test cases
 

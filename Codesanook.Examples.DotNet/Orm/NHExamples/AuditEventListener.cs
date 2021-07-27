@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Codesanook.Examples.DotNetCore.Orm.NHExamples
+namespace Codesanook.Examples.DotNet.Orm.NHExamples
 {
     // https://ayende.com/blog/3987/nhibernate-ipreupdateeventlistener-ipreinserteventlistener
     // http://fgheysels.blogspot.com/2008/07/nhibernate-iinterceptor.html

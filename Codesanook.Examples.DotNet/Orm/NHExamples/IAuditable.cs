@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Codesanook.Examples.DotNetCore.Orm.NHExamples
+namespace Codesanook.Examples.DotNet.Orm.NHExamples
 {
     public interface IAuditable
     {

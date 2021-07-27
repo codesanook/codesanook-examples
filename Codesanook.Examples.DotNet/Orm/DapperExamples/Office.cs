@@ -1,6 +1,6 @@
 using System;
 
-namespace Codesanook.Examples.DotNetCore.Orm.DapperExamples
+namespace Codesanook.Examples.DotNet.Orm.DapperExamples
 {
     public class Office
     {

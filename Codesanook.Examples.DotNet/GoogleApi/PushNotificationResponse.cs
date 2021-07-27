@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using System;
 
-namespace Codesanook.Examples.DotNetCore.GoogleApi
+namespace Codesanook.Examples.DotNet.GoogleApi
 {
     public class PushNotificationResponse
     {

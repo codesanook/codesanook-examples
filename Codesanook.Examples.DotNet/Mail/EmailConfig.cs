@@ -1,4 +1,4 @@
-namespace Codesanook.Examples.DotNetCore.Mail
+namespace Codesanook.Examples.DotNet.Mail
 {
     public class EmailConfig
     {

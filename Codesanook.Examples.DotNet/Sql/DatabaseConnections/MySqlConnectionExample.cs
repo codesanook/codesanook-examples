@@ -2,7 +2,7 @@ using MySql.Data.MySqlClient;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Codesanook.Examples.DotNetCore.Sql.DatabaseConnections
+namespace Codesanook.Examples.DotNet.Sql.DatabaseConnections
 {
     public class MySqlConnectionExample
     {

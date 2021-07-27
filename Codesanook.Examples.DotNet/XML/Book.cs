@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace Codesanook.Examples.DotNetCore.XML
+namespace Codesanook.Examples.DotNet.XML
 {
     public class Book
     {

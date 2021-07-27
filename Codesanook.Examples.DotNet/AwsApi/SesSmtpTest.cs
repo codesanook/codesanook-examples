@@ -6,7 +6,7 @@ using Xunit;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace Codesanook.Examples.DotNetCore.AwsApi
+namespace Codesanook.Examples.DotNet.AwsApi
 {
     public class SesSmtpTest
     {

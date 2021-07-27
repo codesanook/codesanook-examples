@@ -1,4 +1,4 @@
-namespace Codesanook.Examples.DotNetCore.GoogleApi
+namespace Codesanook.Examples.DotNet.GoogleApi
 {
     public enum PushNotificationPlatform
     {

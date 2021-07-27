@@ -1,6 +1,6 @@
 using Amazon;
 
-namespace Codesanook.Examples.DotNetCore.AwsApi
+namespace Codesanook.Examples.DotNet.AwsApi
 {
     public class SesSmtpSetting
     {

@@ -1,7 +1,7 @@
 using Codesanook.Examples.Core.Models;
 using CsvHelper.Configuration;
 
-namespace Codesanook.Examples.DotNetCore.RazorViewEngine
+namespace Codesanook.Examples.DotNet.RazorViewEngine
 {
     public class ShippingAddressItemMap : ClassMap<ShippingAddressItem>
     {

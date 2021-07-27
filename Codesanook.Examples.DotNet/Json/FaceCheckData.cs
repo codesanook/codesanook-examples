@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Codesanook.Examples.DotNetCore.Json
+namespace Codesanook.Examples.DotNet.Json
 {
     public class FaceCheckData
     {

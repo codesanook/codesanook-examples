@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.AwsApi
+namespace Codesanook.Examples.DotNet.AwsApi
 {
     public class SesClientTest
     {

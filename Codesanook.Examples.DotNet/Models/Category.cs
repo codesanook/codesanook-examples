@@ -1,4 +1,4 @@
-﻿namespace Codesanook.Examples.DotNetCore.Models
+﻿namespace Codesanook.Examples.DotNet.Models
 {
     public class Category
     {

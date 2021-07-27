@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.Office
+namespace Codesanook.Examples.DotNet.Office
 {
     public class WordDocumentTest
     {

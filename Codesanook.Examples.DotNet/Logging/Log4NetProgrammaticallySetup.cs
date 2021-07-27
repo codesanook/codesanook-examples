@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.Logging
+namespace Codesanook.Examples.DotNet.Logging
 {
     public class Log4NetProgrammaticallySetup
     {

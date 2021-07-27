@@ -8,7 +8,7 @@ using Xunit;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace Codesanook.Examples.DotNetCore.Mailgun
+namespace Codesanook.Examples.DotNet.Mailgun
 {
     // Useful links: 
     // https://documentation.mailgun.com/en/latest/user_manual.html#mailing-lists

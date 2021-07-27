@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.Orm.DapperExamples
+namespace Codesanook.Examples.DotNet.Orm.DapperExamples
 {
     public class DapperQueryTest
     {

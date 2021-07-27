@@ -11,7 +11,7 @@ using Google.Apis.Gmail.v1;
 using Google.Apis.Services;
 using Google.Apis.Gmail.v1.Data;
 
-namespace Codesanook.Examples.DotNetCore.GoogleApi
+namespace Codesanook.Examples.DotNet.GoogleApi
 {
     public class GmailServiceApiTest
     {

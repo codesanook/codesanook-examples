@@ -2,7 +2,7 @@ using NodaTime;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Codesanook.Examples.DotNetCore.Datetime
+namespace Codesanook.Examples.DotNet.Datetime
 {
     public class DatePeriodDiffTest
     {

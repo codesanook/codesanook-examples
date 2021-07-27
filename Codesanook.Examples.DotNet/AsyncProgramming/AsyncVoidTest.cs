@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Codesanook.Examples.DotNetCore.AsyncProgramming
+namespace Codesanook.Examples.DotNet.AsyncProgramming
 {
     public class AsyncVoidTest
     {

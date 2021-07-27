@@ -5,7 +5,7 @@ using System.Linq;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
-namespace Codesanook.Examples.DotNetCore.Json
+namespace Codesanook.Examples.DotNet.Json
 {
 
     public class ErrorResponse

@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.Json
+namespace Codesanook.Examples.DotNet.Json
 {
     public class JsonSerializeTest
     {

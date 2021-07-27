@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.Schedule
+namespace Codesanook.Examples.DotNet.Schedule
 {
     public class QuartzSchedulerTest : IAsyncLifetime
     {

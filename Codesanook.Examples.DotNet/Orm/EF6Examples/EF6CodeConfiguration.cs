@@ -5,7 +5,7 @@ using System.Data.Entity.Infrastructure;
 using System.Data.SQLite;
 using System.Data.SQLite.EF6;
 
-namespace Codesanook.Examples.DotNetCore.Orm.EF6Examples
+namespace Codesanook.Examples.DotNet.Orm.EF6Examples
 {
     public class EF6CodeConfiguration : DbConfiguration
     {

@@ -5,7 +5,7 @@ using Xunit;
 using System.Linq;
 using System.Data.Entity;
 
-namespace Codesanook.Examples.DotNetCore.Orm.EF6Examples
+namespace Codesanook.Examples.DotNet.Orm.EF6Examples
 {
     public class EF6SQLiteTest : IAsyncLifetime
     {

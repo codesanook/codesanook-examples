@@ -1,6 +1,6 @@
 using System;
 
-namespace Codesanook.Examples.DotNetCore
+namespace Codesanook.Examples.DotNet
 {
     public class Program
     {

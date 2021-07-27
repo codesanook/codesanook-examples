@@ -8,7 +8,7 @@ using Xunit.Abstractions;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
-namespace Codesanook.Examples.DotNetCore.Cryptography
+namespace Codesanook.Examples.DotNet.Cryptography
 {
     public class JsonWebTokenTest
     {

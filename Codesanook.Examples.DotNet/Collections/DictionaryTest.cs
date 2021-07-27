@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.Collections
+namespace Codesanook.Examples.DotNet.Collections
 {
     public class Student { public string Name { set; get; } }
 

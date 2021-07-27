@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Codesanook.Examples.DotNetCore.SQL.DatabaseConnections
+namespace Codesanook.Examples.DotNet.SQL.DatabaseConnections
 {
     public class SqliteConnectionExample
     {

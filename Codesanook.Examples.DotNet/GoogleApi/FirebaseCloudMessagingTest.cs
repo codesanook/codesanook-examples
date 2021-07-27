@@ -9,7 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.GoogleApi
+namespace Codesanook.Examples.DotNet.GoogleApi
 {
     // Alternatively, you can use SDK to send a message https://www.nuget.org/packages/FirebaseAdmin/
     // More info https://firebase.google.com/docs/reference/admin/dotnet/class/firebase-admin/messaging/firebase-messaging

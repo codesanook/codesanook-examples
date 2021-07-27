@@ -1,7 +1,7 @@
-﻿using Codesanook.Examples.DotNetCore.Models;
+﻿using Codesanook.Examples.DotNet.Models;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.Reflection
+namespace Codesanook.Examples.DotNet.Reflection
 {
     public class ReflectionMember
     {

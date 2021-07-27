@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.TestingTips
+namespace Codesanook.Examples.DotNet.TestingTips
 {
     public class XunitAssertionTips
     {

@@ -1,8 +1,8 @@
 ﻿using System;
-using Codesanook.Examples.DotNetCore.Models;
+using Codesanook.Examples.DotNet.Models;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.StringInterpolation
+namespace Codesanook.Examples.DotNet.StringInterpolation
 {
     public class StringInterpolation
     {

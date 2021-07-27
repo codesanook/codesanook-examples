@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Codesanook.Examples.DotNetCore.Models;
+using Codesanook.Examples.DotNet.Models;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.Linq
+namespace Codesanook.Examples.DotNet.Linq
 {
     public class ReusableExpressionTest
     {

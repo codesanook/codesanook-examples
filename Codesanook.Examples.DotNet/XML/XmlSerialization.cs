@@ -1,4 +1,4 @@
-﻿using Codesanook.Examples.DotNetCore.XML;
+﻿using Codesanook.Examples.DotNet.XML;
 using System;
 using System.Collections;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Xunit;
 
-namespace Codesanook.Examples.DotNetCore.XML
+namespace Codesanook.Examples.DotNet.XML
 {
 
     //Use DataContractSerizalizer

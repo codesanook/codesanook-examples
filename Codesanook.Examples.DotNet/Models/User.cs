@@ -1,7 +1,7 @@
-using Codesanook.Examples.DotNetCore.Orm.NHExamples;
+using Codesanook.Examples.DotNet.Orm.NHExamples;
 using System;
 
-namespace Codesanook.Examples.DotNetCore.Models
+namespace Codesanook.Examples.DotNet.Models
 {
     [Serializable]
     public class User : Entity, IAuditable

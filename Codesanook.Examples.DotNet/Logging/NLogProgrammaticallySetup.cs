@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 
-namespace Codesanook.Examples.DotNetCore.Tests.Logging
+namespace Codesanook.Examples.DotNet.Tests.Logging
 {
     class NLogProgrammaticallySetup
     {

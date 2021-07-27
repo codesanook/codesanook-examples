@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Codesanook.Examples.DotNetCore.Json
+namespace Codesanook.Examples.DotNet.Json
 {
     // https://www.codeproject.com/Articles/1079324/Reflection-deserialization-and-custom-attributes
     // https://stackoverflow.com/a/45284854/1872200

@@ -1,8 +1,8 @@
 using Codesanook.Examples.Core.Models;
-using Codesanook.Examples.DotNetCore.Orm.EF6Examples.EntityConfigurations;
+using Codesanook.Examples.DotNet.Orm.EF6Examples.EntityConfigurations;
 using System.Data.Entity;
 
-namespace Codesanook.Examples.DotNetCore.Orm.EF6Examples
+namespace Codesanook.Examples.DotNet.Orm.EF6Examples
 {
     [DbConfigurationType(typeof(EF6CodeConfiguration))]
     public class BlogDbContext : DbContext
