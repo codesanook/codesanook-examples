@@ -14,7 +14,7 @@ namespace Codesanook.Examples.DotNet.Localization
         [Theory]
         [InlineData("en-US", -1)]
         [InlineData("th-TH", 0)]
-        public void IndexOfToSearchNonExistingString_UseCurrentCulture_ReturnStringAtIndex(string CurrentCulture, int expectedFoundStringAtIndex)
+        public void IndexOfToSearchNonExistingString_UseCurrentCulture_ReturnStringAtExpectedIndex(string CurrentCulture, int expectedFoundStringAtIndex)
         {
             // Arranage 
             Thread.CurrentThread.CurrentCulture = new CultureInfo(CurrentCulture);
@@ -26,5 +26,22 @@ namespace Codesanook.Examples.DotNet.Localization
             // Assert
             Assert.Equal(expectedFoundStringAtIndex, actualFoundStringAtIndex);
         }
+
+        [Theory]
+        [InlineData("en-US", -1)]
+        [InlineData("th-TH", -1)]
+        public void IndexOfToSearchNonExistingString_UseOrdinal_ReturnStringAtExpectedIndex(string CurrentCulture, int expectedFoundStringAtIndex)
+        {
+            // Arranage 
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(CurrentCulture);
+            const string inputValue = "about-us";
+
+            // Act
+            var actualFoundStringAtIndex = inputValue.IndexOf("//", StringComparison.Ordinal);
+
+            // Assert
+            Assert.Equal(expectedFoundStringAtIndex, actualFoundStringAtIndex);
+        }
+
     }
 }
