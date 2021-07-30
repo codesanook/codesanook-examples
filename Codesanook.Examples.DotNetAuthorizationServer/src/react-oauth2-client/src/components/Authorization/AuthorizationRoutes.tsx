@@ -1,15 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import {ApplicationPaths, LoginActions} from "./constant";
+import { ApplicationPaths, LoginActions } from "./constant";
 import Login from './Login';
 
-interface PropType {}
+interface PropType { }
 
 const AuthorizationRoutes = ({ ...props }: PropType) => {
 
-  function loginAction(name: string){
+  function loginAction(name: string) {
     return (<Login action={name}></Login>);
-}
+  }
 
   return (
     <>

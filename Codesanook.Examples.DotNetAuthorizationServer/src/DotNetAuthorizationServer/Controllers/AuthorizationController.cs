@@ -12,16 +12,18 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-
 using System.Text;
 
 namespace DotNetAuthorizationServer.Controllers
 {
-
     public class AuthorizationController : Controller
     {
         private readonly ILogger<AuthorizationController> _logger;
 
+        public ActionResult Index(){
+            return Content("hello");
+        }
+         
         public AuthorizationController(ILogger<AuthorizationController> logger)
         {
             _logger = logger;
@@ -32,11 +34,9 @@ namespace DotNetAuthorizationServer.Controllers
         [IgnoreAntiforgeryToken]
         public async Task<IActionResult> Authorize()
         {
-
             _logger.LogInformation(HttpContext.Request.PathBase);
-            var request = HttpContext.GetOpenIddictServerRequest() ??
-                throw new InvalidOperationException("The OpenID Connect request cannot be retrieved.");
 
+            var request = HttpContext.GetOpenIddictServerRequest() ??  throw new InvalidOperationException("The OpenID Connect request cannot be retrieved.");
             // Retrieve the user principal stored in the authentication cookie.
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 

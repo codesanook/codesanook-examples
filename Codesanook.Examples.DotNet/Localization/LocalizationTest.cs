@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using System.Threading;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace Codesanook.Examples.DotNet.Localization

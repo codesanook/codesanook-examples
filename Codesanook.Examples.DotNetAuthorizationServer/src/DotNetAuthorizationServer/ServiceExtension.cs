@@ -10,17 +10,8 @@ namespace DotNetAuthorizationServer
 {
     public static class ServiceExtensions
     {
-
         public static void ConfigureOidc(this IServiceCollection services, IConfiguration Configuration)
         {
-            // https://docs.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme?view=aspnetcore-5.0
-            services
-                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-                 {
-                     options.LoginPath = "/account/login";
-                 });
-
             services.AddDbContext<DbContext>(options =>
                 {
                     // Configure the context to use an in-memory store.
@@ -29,6 +20,16 @@ namespace DotNetAuthorizationServer
                     // Register the entity sets needed by OpenIddict.
                     options.UseOpenIddict();
                 });
+
+
+            // https://docs.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme?view=aspnetcore-5.0
+            services
+                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+                 {
+                     options.LoginPath = "/account/login";
+                 });
+
 
             services.AddOpenIddict()
                 // Register the OpenIddict core components.
@@ -44,11 +45,13 @@ namespace DotNetAuthorizationServer
                 .AddServer(options =>
                 {
                     options
-                        .AllowClientCredentialsFlow()
-                        .AllowAuthorizationCodeFlow().RequireProofKeyForCodeExchange()
-                        // https://github.com/openiddict/openiddict-core/issues/437
+                        .AllowClientCredentialsFlow() // Alow code flow
+                        // Can we use HTP POST to get a token? 
                         // Nope, it's not. The OAuth2 specification explicitly requires sending the token request parameters using the "formurl" encoding.
                         // JSON is not allowed and thus not supported.
+                        // READMORE https://github.com/openiddict/openiddict-core/issues/437
+                        .AllowAuthorizationCodeFlow()
+                        .RequireProofKeyForCodeExchange() // Use PKCE
                         .AllowRefreshTokenFlow();
 
                     options
@@ -83,6 +86,8 @@ namespace DotNetAuthorizationServer
                         .EnableUserinfoEndpointPassthrough();
                 });
 
+            // The test data implements the IHostedService interface, 
+            // which enables us to execute the generation of test data in Startup.cs when the application starts. 
             services.AddHostedService<Worker>();
         }
 
@@ -94,6 +99,7 @@ namespace DotNetAuthorizationServer
                 .AddAuthentication()
                 .AddJwtBearer(options =>
                 {
+                    // JWT validation https://devblogs.microsoft.com/aspnet/jwt-validation-and-authorization-in-asp-net-core/
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
