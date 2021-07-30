@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { generateCodeChallenge } from './pkce';
+import { generateCodeChallenge } from './PKCE';
 
 const AuthorizationCodeGrantType = () => {
   const [actionUrl, setActionUrl] = useState('');

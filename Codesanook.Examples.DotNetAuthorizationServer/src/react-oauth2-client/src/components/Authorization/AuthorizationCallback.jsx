@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { getCodeVerifier } from './pkce';
+import { useEffect, useState } from 'react';
+import { getCodeVerifier } from './PKCE';
 import queryString from 'query-string';
 import axios from 'axios';
+import { useHistory, useLocation } from "react-router-dom";
 
-export default function AuthorizationCallback({ location }) {
+export default function AuthorizationCallback() {
 
   const [code, setCode] = useState('');
+  const history = useHistory();
+  const location  = useLocation()
 
   useEffect(() => {
     const getToken = async () => {
@@ -14,19 +17,11 @@ export default function AuthorizationCallback({ location }) {
       // const params = new URLSearchParams(location.search);
       // getting access token, refresh token
       const params = queryString.parse(location.search);
+
       // Set AuthorizationCode
       setCode(params.code);
 
-      // http://localhost:3000/oauth/token
-      // .SetAuthorizationEndpointUris("/connect/authorize")
-      // .SetTokenEndpointUris("/connect/token")
-      // .SetUserinfoEndpointUris("/connect/userinfo");
-
-
       // Axios is able to accept a URLSearchParams instance which also set the appropriate Content-type header to application/x-www-form-urlencoded
-
-
-      console.log("about to get token");
       const codeVerify = getCodeVerifier();
       const parameters = {
         grant_type: 'authorization_code',
@@ -53,10 +48,10 @@ export default function AuthorizationCallback({ location }) {
 
       alert('Got token');
 
-      // set local state
+      // Set token to local storage
       localStorage.setItem('access_token', response.data.access_token);
       localStorage.setItem('refresh_token', response.data.refresh_token);
-      window.location.href = '/oauth2-testing';
+      history.push('/');
     };
 
     getToken();

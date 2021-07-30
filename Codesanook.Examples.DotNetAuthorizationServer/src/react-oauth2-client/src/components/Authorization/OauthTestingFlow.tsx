@@ -1,11 +1,9 @@
-import React from "react";
 import ClientRegister from "./ClientRegistration";
 import AuthorizationCodeGrantType from "./AuthorizationCodeGrantType";
 import UserProfile from "./UserProfile";
 import { Layout } from "../Layout";
-const apiRoot = "";
 
-export default function Oauth2Testing() {
+export default function OauthTestingFlow() {
   return (
     <Layout>
       <h2>1</h2>
