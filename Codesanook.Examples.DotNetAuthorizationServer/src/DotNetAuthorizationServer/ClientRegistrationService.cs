@@ -8,14 +8,11 @@ using OpenIddict.Abstractions;
 
 namespace DotNetAuthorizationServer
 {
-    public class Worker : IHostedService
+    public class ClientRegistrationService : IHostedService
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public Worker(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-        }
+        public ClientRegistrationService(IServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
@@ -36,7 +33,7 @@ namespace DotNetAuthorizationServer
             // * Scope: api openid offline_access
             // * Grant type: authorization code
             // * Request access token locally: yes
-            
+
             if (await manager.FindByClientIdAsync("react-spa", cancellationToken) is null)
             {
                 await manager.CreateAsync(new OpenIddictApplicationDescriptor
@@ -47,28 +44,30 @@ namespace DotNetAuthorizationServer
 
                     Permissions =
                     {
-                        OpenIddictConstants.Permissions.GrantTypes.ClientCredentials,
-                        OpenIddictConstants.Permissions.Endpoints.Token,
-                        OpenIddictConstants.Permissions.Prefixes.Scope + "api",
 
+                        // Allowed grant type 
+                        OpenIddictConstants.Permissions.GrantTypes.ClientCredentials,
                         OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
+                        OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
+
                         OpenIddictConstants.Permissions.Endpoints.Authorization,
+                        OpenIddictConstants.Permissions.Endpoints.Token,
+
+                        OpenIddictConstants.Permissions.Prefixes.Scope + "api",
                         OpenIddictConstants.Permissions.ResponseTypes.Code,
 
-
-                        OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
                     }
                 }, cancellationToken);
             }
 
-                // To test this sample with Postman, use the following settings:
-                //
-                // * Authorization URL: https://localhost:5001/connect/authorize
-                // * Access token URL: https://localhost:5001/connect/token
-                // * Client ID: postman
-                // * Client secret: postman-secret
-                // * Scope: api openid offline_access
-                // * Grant type: authorization code
+            // To test this sample with Postman, use the following settings:
+            //
+            // * Authorization URL: https://localhost:5001/connect/authorize
+            // * Access token URL: https://localhost:5001/connect/token
+            // * Client ID: postman
+            // * Client secret: postman-secret
+            // * Scope: api openid offline_access
+            // * Grant type: authorization code
 
             if (await manager.FindByClientIdAsync("postman", cancellationToken) is null)
             {

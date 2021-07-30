@@ -9,11 +9,9 @@ namespace DotNetAuthorizationServer.Controllers
         [HttpGet]
         [Route("api/users")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public IActionResult GetUsers(int userId)
-        {
-            return Json(new[] {
+        public IActionResult GetUsers(int userId) =>
+            Json(new[] {
                 new { FirstName = "Jose", LastName = "Realman" }
             });
-        }
     }
 }

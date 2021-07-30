@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -10,7 +9,35 @@ namespace DotNetAuthorizationServer
 {
     public static class ServiceExtensions
     {
-        public static void ConfigureOidc(this IServiceCollection services, IConfiguration Configuration)
+        public static void ConfigureAuthentication(this IServiceCollection services, IConfiguration Configuration)
+        {
+            // https://docs.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme?view=aspnetcore-5.0
+            // Remove `JwtBearerDefaults.AuthenticationScheme` from `.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)`
+            // Because it'll be set default scheme to JwtBearer. The cookie-based login not work!
+            services
+                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+                 {
+                     options.LoginPath = "/account/login";
+                 })
+                .AddJwtBearer(options =>
+                {
+                    // JWT validation https://devblogs.microsoft.com/aspnet/jwt-validation-and-authorization-in-asp-net-core/
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = GetIssuerSigningKey(),
+                        ValidateLifetime = true,
+
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidIssuer = null,
+                        ValidAudience = null,
+                    };
+                });
+        }
+
+        public static void ConfigureOpenIddict(this IServiceCollection services, IConfiguration Configuration)
         {
             services.AddDbContext<DbContext>(options =>
                 {
@@ -20,16 +47,6 @@ namespace DotNetAuthorizationServer
                     // Register the entity sets needed by OpenIddict.
                     options.UseOpenIddict();
                 });
-
-
-            // https://docs.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme?view=aspnetcore-5.0
-            services
-                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
-                 {
-                     options.LoginPath = "/account/login";
-                 });
-
 
             services.AddOpenIddict()
                 // Register the OpenIddict core components.
@@ -46,25 +63,15 @@ namespace DotNetAuthorizationServer
                 {
                     options
                         .AllowClientCredentialsFlow() // Alow code flow
-                        // Can we use HTP POST to get a token? 
-                        // Nope, it's not. The OAuth2 specification explicitly requires sending the token request parameters using the "formurl" encoding.
-                        // JSON is not allowed and thus not supported.
-                        // READMORE https://github.com/openiddict/openiddict-core/issues/437
                         .AllowAuthorizationCodeFlow()
                         .RequireProofKeyForCodeExchange() // Use PKCE
-                        .AllowRefreshTokenFlow();
+                        .AllowRefreshTokenFlow(); // Enable refresh token
 
                     options
                         .SetAuthorizationEndpointUris("/connect/authorize")
                         .SetTokenEndpointUris("/connect/token")
                         .SetUserinfoEndpointUris("/connect/userinfo");
 
-                    // var RSA = new RSACryptoServiceProvider(2048);
-                    // var KeyParam = RSA.ExportParameters(true);
-                    // var key = new RsaSecurityKey(KeyParam);
-                    // var credentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature);
-                    // var secretKey = Encoding.UTF8.GetBytes("MysecretMysecretMysecret");
-                    // var securityKey = new SymmetricSecurityKey(secretKey);
                     var signingCredentials = new SigningCredentials(GetIssuerSigningKey(), SecurityAlgorithms.HmacSha256);
 
                     // You can register an asymmetric key and a symmetric key
@@ -88,35 +95,12 @@ namespace DotNetAuthorizationServer
 
             // The test data implements the IHostedService interface, 
             // which enables us to execute the generation of test data in Startup.cs when the application starts. 
-            services.AddHostedService<Worker>();
-        }
-
-        public static void ConfigureJWT(this IServiceCollection services, IConfiguration Configuration)
-        {
-            services
-                // Remove `JwtBearerDefaults.AuthenticationScheme` from `.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)`
-                // Because it'll be set default scheme to JwtBearer. The cookie-based login not work!
-                .AddAuthentication()
-                .AddJwtBearer(options =>
-                {
-                    // JWT validation https://devblogs.microsoft.com/aspnet/jwt-validation-and-authorization-in-asp-net-core/
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = GetIssuerSigningKey(),
-                        ValidateLifetime = true,
-
-                        ValidateIssuer = false,
-                        ValidateAudience = false,
-                        ValidIssuer = null,
-                        ValidAudience = null,
-                    };
-                });
+            services.AddHostedService<ClientRegistrationService>();
         }
 
         private static SymmetricSecurityKey GetIssuerSigningKey()
         {
-            var secretKey = Encoding.ASCII.GetBytes("MysecretMysecretMysecret");
+            var secretKey = Encoding.ASCII.GetBytes("your-256-bit-secret");
             return new SymmetricSecurityKey(secretKey);
         }
     }

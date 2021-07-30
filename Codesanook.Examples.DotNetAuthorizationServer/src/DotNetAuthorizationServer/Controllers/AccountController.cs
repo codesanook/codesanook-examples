@@ -13,45 +13,41 @@ namespace DotNetAuthorizationServer.Controllers
     {
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Login(string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            return View();
-        }
+        public IActionResult LogIn(string returnUrl = null) =>
+            View(new LoginViewModel() { ReturnUrl = returnUrl });
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> LogIn(LoginViewModel model)
         {
-            ViewData["ReturnUrl"] = model.ReturnUrl;
-
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, model.Username)
-                };
-
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                await HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
-
-                if (Url.IsLocalUrl(model.ReturnUrl))
-                {
-                    return Redirect(model.ReturnUrl);
-                }
-
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return View(model);
             }
 
-            return View(model);
+            // Create a claim and sign in a user with a cookie authentication
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, model.Username)
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
+
+            // It is possible to redirect to https://localhost:5001/connect/authorize and able to get authorization code
+            if (Url.IsLocalUrl(model.ReturnUrl))
+            {
+                return Redirect(model.ReturnUrl);
+            }
+
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
+
 
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }

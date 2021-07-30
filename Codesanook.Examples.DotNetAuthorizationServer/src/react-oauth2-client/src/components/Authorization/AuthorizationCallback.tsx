@@ -1,33 +1,31 @@
 import { useEffect, useState } from 'react';
-import { getCodeVerifier } from './PKCE';
-import queryString from 'query-string';
 import axios from 'axios';
 import { useHistory, useLocation } from "react-router-dom";
+import { getCodeVerifier } from './PKCE';
 
 export default function AuthorizationCallback() {
-
   const [code, setCode] = useState('');
   const history = useHistory();
-  const location  = useLocation()
+  const location = useLocation()
 
   useEffect(() => {
     const getToken = async () => {
       console.log(JSON.stringify(location, null, 2));
 
-      // const params = new URLSearchParams(location.search);
-      // getting access token, refresh token
-      const params = queryString.parse(location.search);
+      const searchParams = new URLSearchParams(location.search.substring(1)); // substring(1) to remove ? character
+      const authorizationCode = searchParams.get('code') as string;
+      //const params = queryString.parse(location.search);
 
       // Set AuthorizationCode
-      setCode(params.code);
+      setCode(authorizationCode);
 
       // Axios is able to accept a URLSearchParams instance which also set the appropriate Content-type header to application/x-www-form-urlencoded
       const codeVerify = getCodeVerifier();
-      const parameters = {
+      const parameters: Record<string, string> = {
         grant_type: 'authorization_code',
-        client_id: process.env.REACT_APP_CLIENT_ID,
-        redirect_uri: process.env.REACT_APP_REDIRECT_URI,
-        code: params.code,
+        client_id: process.env.REACT_APP_CLIENT_ID as string,
+        redirect_uri: process.env.REACT_APP_REDIRECT_URI as string,
+        code: authorizationCode,
         code_verifier: codeVerify,
       };
 
@@ -41,22 +39,24 @@ export default function AuthorizationCallback() {
 
       // Request token
       const response = await axios.post(
-        process.env.REACT_APP_TOKEN_ENDPOINT,
+        process.env.REACT_APP_TOKEN_ENDPOINT as string,
         new URLSearchParams(parameters),
         config,
       );
 
       alert('Got token');
-
       // Set token to local storage
       localStorage.setItem('access_token', response.data.access_token);
       localStorage.setItem('refresh_token', response.data.refresh_token);
+
+      // Back to home page root
       history.push('/');
     };
 
     getToken();
-    // To do you can make call back to home page
-  }, [location]); // run one time on load
+    // https://stackoverflow.com/a/55854902/1872200
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // run one time on load
 
   return <div>Getting token from authorization code: {code}</div>;
 };

@@ -1,5 +1,7 @@
 @model DotNetAuthorizationServer.ViewModels.LoginViewModel
+
 <form autocomplete="off" asp-route="Login">
+    <div asp-validation-summary="All"></div>
     <input type="hidden" asp-for="ReturnUrl"/>
     <div class="card">
         <input type="text" class="form-control form-control-lg" placeholder="Username" asp-for="Username" autofocus>

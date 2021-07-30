@@ -1,33 +1,47 @@
-.App {
-  text-align: center;
+body {
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* https://stackoverflow.com/a/1368286/1872200 */
+.link-button {
+  background: none !important;
+  padding: 0 !important;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* unvisited link */
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: unset;
 }
 
-.App-link {
-  color: #61dafb;
+.block-list {
+  list-style: none;
+  padding: 0;
+  max-width: 760px;
+  margin: 0 auto;
+  /* Set a counter named 'section', and its initial value is 0. */
+  counter-reset: myIndex;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.block-list-item {
+  border: 1px #ccc solid;
+  border-radius: 5px;
+  padding: 10px;
+  counter-increment: myIndex;
+}
+
+.block-list-item::before {
+  content: counter(myIndex);
+  border: 1px solid #ccc;
+  padding: 0 5px;
+  margin: 0 5px;
+  display: inline-block;
+}
+
+.block-list .block-list-item {
+  margin: 20px 0;
 }

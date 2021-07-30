@@ -8,19 +8,16 @@ namespace DotNetAuthorizationServer
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration) => Configuration = configuration;
-
-        public IConfiguration Configuration { get; }
+        private readonly IConfiguration _configuration;
+        public Startup(IConfiguration configuration) => _configuration = configuration;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
             services.AddControllersWithViews();
-            services.AddControllers();
-
-            services.ConfigureOidc(Configuration);
-            services.ConfigureJWT(Configuration);
+            services.AddCors();
+            services.ConfigureAuthentication(_configuration);
+            services.ConfigureOpenIddict(_configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,15 +27,8 @@ namespace DotNetAuthorizationServer
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
+            app.UseStaticFiles();
             app.UseRouting();
 
             // For development only
@@ -51,7 +41,10 @@ namespace DotNetAuthorizationServer
 
             // The call to UseAuthentication is made after the call to UseRouting,
             // so that route information is available for authentication decisions, but before UseEndpoints,
-            // so that users are authenticated before accessing the endpoints.
+            // users are authenticated before accessing the endpoints.
+
+            // Why do we need to set UseAuthentication if our application does not need authentication?
+            // https://taithienbo.medium.com/why-you-need-to-register-authentication-middleware-even-if-your-asp-net-57b2cfe58147
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -59,7 +52,8 @@ namespace DotNetAuthorizationServer
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                );
             });
         }
     }

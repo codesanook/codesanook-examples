@@ -19,16 +19,8 @@ namespace DotNetAuthorizationServer.Controllers
     public class AuthorizationController : Controller
     {
         private readonly ILogger<AuthorizationController> _logger;
+        public AuthorizationController(ILogger<AuthorizationController> logger) => _logger = logger;
 
-        public ActionResult Index(){
-            return Content("hello");
-        }
-         
-        public AuthorizationController(ILogger<AuthorizationController> logger)
-        {
-            _logger = logger;
-        }
-        
         [HttpGet("~/connect/authorize")]
         [HttpPost("~/connect/authorize")]
         [IgnoreAntiforgeryToken]
@@ -71,7 +63,6 @@ namespace DotNetAuthorizationServer.Controllers
             return SignIn(claimsPrincipal, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
         }
 
-        
         [HttpPost("~/connect/token")]
         public async Task<IActionResult> Exchange()
         {

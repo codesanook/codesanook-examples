@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import axios from 'axios';
 
 export default function ClientRegistration() {
