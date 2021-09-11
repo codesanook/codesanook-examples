@@ -3,6 +3,8 @@
 import { createHash, randomBytes } from 'crypto';
 import base64Url from 'base64url';
 
+const params = new URLSearchParams()
+
 const codeVerifyKey = 'code_verifier';
 
 export const generateCodeChallenge = (codeChallengeMethod: string) => {

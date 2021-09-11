@@ -19,16 +19,6 @@ export default function AuthorizationCallback() {
       // Set AuthorizationCode
       setCode(authorizationCode);
 
-      // Axios is able to accept a URLSearchParams instance which also set the appropriate Content-type header to application/x-www-form-urlencoded
-      const codeVerify = getCodeVerifier();
-      const parameters: Record<string, string> = {
-        grant_type: 'authorization_code',
-        client_id: process.env.REACT_APP_CLIENT_ID as string,
-        redirect_uri: process.env.REACT_APP_REDIRECT_URI as string,
-        code: authorizationCode,
-        code_verifier: codeVerify,
-      };
-
       const config = {
         headers: {
           // We need to use form-url encode https://github.com/openiddict/openiddict-core/issues/437
@@ -37,6 +27,15 @@ export default function AuthorizationCallback() {
         }
       }
 
+      // Axios is able to accept a URLSearchParams instance which also set the appropriate Content-type header to application/x-www-form-urlencoded
+      const parameters: Record<string, string> = {
+        grant_type: 'authorization_code',
+        client_id: process.env.REACT_APP_CLIENT_ID as string,
+        redirect_uri: process.env.REACT_APP_REDIRECT_URI as string,
+        code: authorizationCode,
+        code_verifier: getCodeVerifier(),
+      };
+
       // Request token
       const response = await axios.post(
         process.env.REACT_APP_TOKEN_ENDPOINT as string,
@@ -44,7 +43,7 @@ export default function AuthorizationCallback() {
         config,
       );
 
-      alert('Got token');
+      alert('Got token and set to ');
       // Set token to local storage
       localStorage.setItem('access_token', response.data.access_token);
       localStorage.setItem('refresh_token', response.data.refresh_token);
