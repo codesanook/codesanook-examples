@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useHistory, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getCodeVerifier } from './PKCE';
 
 export default function AuthorizationCallback() {
   const [code, setCode] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation()
 
   useEffect(() => {
@@ -43,13 +43,13 @@ export default function AuthorizationCallback() {
         config,
       );
 
-      alert('Got token and set to ');
+      alert('Got access + refresh token and set to a local storage');
       // Set token to local storage
       localStorage.setItem('access_token', response.data.access_token);
       localStorage.setItem('refresh_token', response.data.refresh_token);
 
       // Back to home page root
-      history.push('/');
+      navigate('/');
     };
 
     getToken();

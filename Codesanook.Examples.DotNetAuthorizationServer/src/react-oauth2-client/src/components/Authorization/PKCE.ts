@@ -3,12 +3,10 @@
 import { createHash, randomBytes } from 'crypto';
 import base64Url from 'base64url';
 
-const params = new URLSearchParams()
-
 const codeVerifyKey = 'code_verifier';
 
 export const generateCodeChallenge = (codeChallengeMethod: string) => {
-  // generate a code verifier for PKCE extension of Auth Code Flow
+  // Generate a code verifier for PKCE extension of Auth Code Flow
   // see https://auth0.com/docs/api-auth/tutorials/authorization-code-grant-pkce
   // https://tools.ietf.org/html/rfc7636#section-4
 
@@ -19,7 +17,6 @@ export const generateCodeChallenge = (codeChallengeMethod: string) => {
   console.log(`Save code verify ${codeVerifier} with length ${codeVerifier.length} to a local storage.`);
   localStorage.setItem(codeVerifyKey, codeVerifier);
   // Generate code challenge to be sent with authorization request
-
   // Code challenge is from base64URLEncode(sha256(verifier));
   // Code challenge reference https://datatracker.ietf.org/doc/html/rfc7636#section-4.2
 

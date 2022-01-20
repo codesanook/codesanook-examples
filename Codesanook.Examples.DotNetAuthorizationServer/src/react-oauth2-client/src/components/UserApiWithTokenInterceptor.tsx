@@ -1,19 +1,26 @@
+// https://thedutchlab.com/blog/using-axios-interceptors-for-refreshing-your-api-token
 import { useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 const client = createClient();
 const endpoint = new URL('users', process.env.REACT_APP_API_ENDPOINT).toString();
 
-export default function UserApi() {
+export default function UserApiWithTokenInterceptor() {
   const [userProfile, setUserProfile] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
+    setIsLoading(true);
+    // Clear existing userProfile
+    setUserProfile('');
     try {
       const response = await client.get(endpoint);
+      await delay(1000);
       setUserProfile(JSON.stringify(response.data, null, 2));
     } catch (error) {
       console.error(error);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -21,6 +28,9 @@ export default function UserApi() {
       <div className='block-list-item'>
         <button className='link-button' onClick={handleClick}>Get users API ({endpoint})</button>
       </div>
+      {
+        isLoading && (<h4>Loading...</h4>)
+      }
       {
         userProfile &&
         <pre>
@@ -56,7 +66,7 @@ function createClient() {
       if (error.response.status === 401 && !originalRequest._retry) {
         // Get new access token and retry again
         originalRequest._retry = true;
-        const accessToken = await refreshToken();
+        const accessToken = await getNewAccessToken();
         axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
         return client(originalRequest);
       }
@@ -66,7 +76,8 @@ function createClient() {
   return client;
 }
 
-async function refreshToken() {
+// Get new access and refresh token
+async function getNewAccessToken() {
   // Axios is able to accept a URLSearchParams instance which also set the appropriate Content-type header to application/x-www-form-urlencoded
   const refreshToken = localStorage.getItem('refresh_token') as string;
   const parameters: Record<string, string> = {
@@ -83,16 +94,27 @@ async function refreshToken() {
     }
   }
 
-  // Request token
-  const response = await axios.post(
-    process.env.REACT_APP_TOKEN_ENDPOINT as string,
-    new URLSearchParams(parameters),
-    config,
-  );
+  // Request a new token
+  try {
+    const response = await axios.post(
+      process.env.REACT_APP_TOKEN_ENDPOINT as string,
+      new URLSearchParams(parameters),
+      config,
+    );
 
-  // Set token to local storage
-  localStorage.setItem('access_token', response.data.access_token);
-  localStorage.setItem('refresh_token', response.data.refresh_token);
-  alert('Got token and set to local storage');
+    // Set token to local storage
+    localStorage.setItem('access_token', response.data.access_token);
+    localStorage.setItem('refresh_token', response.data.refresh_token);
+    alert('Got new access + refresh token and set to a local storage');
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      const axiosError = err as AxiosError;
+      alert(`Cannot get a new access + refresh token, statusCode: ${axiosError.response?.status}, message: ${axiosError.message}`);
+    }
+    console.error(err);
+  }
 };
 
+function delay(millisecond: number) {
+  return new Promise(resolve => setTimeout(resolve, millisecond));
+}

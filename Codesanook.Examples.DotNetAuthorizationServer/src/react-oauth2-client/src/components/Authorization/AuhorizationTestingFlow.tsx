@@ -1,5 +1,5 @@
 import AuthorizationCodeGrantType from './AuthorizationCodeGrantType';
-import UserProfile from '../UserApi';
+import UserApiWithTokenInterceptor from '../UserApiWithTokenInterceptor';
 import Layout from '../Layout';
 import RefreshToken from './RefreshToken';
 
@@ -11,7 +11,7 @@ export default function AuthorizationTestingFlow() {
           <AuthorizationCodeGrantType />
         </li>
         <li>
-          <UserProfile />
+          <UserApiWithTokenInterceptor />
         </li>
         <li>
           <RefreshToken />
