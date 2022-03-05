@@ -1,19 +1,35 @@
 // https://github.com/scniro/react-codemirror2#requiring-codemirror-resources
+@import "./external";
+@import "./custom";
+@import "codemirror/lib/codemirror.css";
+@import "codemirror/theme/material.css";
 
-@import './external';
-@import './custom';
-@import 'codemirror/lib/codemirror.css';
-@import 'codemirror/theme/material.css';
+html,
+body {
+  height: 100%;
+}
 
-.flexbox{
-    display: flex;
-    height: 250px;
-    border:1px solid #00F;
-    flex-flow: column-reverse wrap;
+.flexbox {
+  display: flex;
+  height: 250px;
+  border: 1px solid #00f;
+  flex-flow: column-reverse wrap;
 
-    li{
-        border: solid 1px #F00;
-        width:40%;
-        height: 40%;
-    }
+  li {
+    border: solid 1px #f00;
+    width: 40%;
+    height: 40%;
+  }
+}
+
+.d3-component {
+  width: 100%;
+  height: 40%;
+}
+
+g.hidden {
+  line,
+  path {
+    display: none;
+  }
 }

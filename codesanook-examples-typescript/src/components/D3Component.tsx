@@ -1,57 +1,50 @@
-import React, { useEffect, useRef, useState } from 'react';
-import useInterval from 'use-interval';
-import * as d3 from 'd3';
-
 // Credit https://wattenberger.com/blog/react-and-d3
-export default function Svg() {
-  const generateDataset = () => (
-    Array(10).fill(0).map(() => ([
-      Math.random() * 80 + 10,
-      Math.random() * 35 + 10,
-    ]))
-  );
+import React, { useEffect, useRef } from 'react';
+import * as d3 from 'd3';
+const margin = { left: 50, right: 50, top: 40, bottom: 0 };
+const width = 200;
+const height = 200;
 
-  const [dataset, setDataset] = useState(generateDataset());
+const dataYears = ['2001', '2002', '2003'];
+const dataset = [5, 11, 18];
+
+const y = d3.scaleLinear()
+  .domain([0, d3.max(dataset)])
+  .range([height, 0]) // invert for y value
+const yAxis = d3.axisLeft(y);
+
+const x = d3.scaleBand()
+  .domain(dataYears)
+  .range([0, width])
+  .paddingInner(0.3);
+
+const xAxis = d3.axisBottom(x);
+
+export default function Svg() {
   const ref = useRef();
 
   useEffect(() => {
     // https://www.d3indepth.com/v4/enterexit/
-    renderCircles(ref, dataset);
-  }, [dataset]);// Render  when component loaded and dataset changes
+    const svg = d3.select(ref.current);
+    var chartGroup = svg.append('g').attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-  // https://overreacted.io/making-setinterval-declarative-with-react-hooks/
-  useInterval(() => {
-    const newDataset = generateDataset();
-    setDataset(newDataset);
-  }, 5000);
+    chartGroup.selectAll('rect')
+      .data(dataset)
+      .enter().append('rect')
+      .attr('x', (d, i) => x(dataYears[i]))
+      .attr('y', (d, i) => y(d)) // change y position to get a chart looks rendering as bottom to top
+      .attr('height', (d, i) => height - y(d))
+      .attr('width', (d, i) => x.bandwidth())
+      .attr('fill', 'pink');
 
-  return <svg viewBox="0 0 100 50" ref={ref} />;
+    chartGroup.append('g').attr('class', 'axis y').call(yAxis);
+    chartGroup.append('g')
+      .attr('class', 'axis x hidden')
+      .attr('transform', `translate(0, ${height})`)
+      .call(xAxis);
+
+  }, []);// Render  when component loaded and dataset changes
+
+  return <svg width='100%' height='100%' ref={ref} />;
 };
 
-function renderCircles(ref: React.MutableRefObject<undefined>, dataset: number[][]) {
-  const joining = d3.select(ref.current)
-    .selectAll<SVGCircleElement, number[]>('circle')
-    .data(dataset);
-  console.log('joing', joining);
-  console.log('joing before remove', joining.nodes.length);
-
-  // Remove data point which does not exist in a new set
-  const exitSelection = joining.exit();
-  exitSelection.remove();
-  console.log('exit', exitSelection);
-  console.log('joing after remove', joining.nodes.length);
-
-  const enterSelection = joining.enter();
-  console.log('enter', enterSelection);
-
-  const mergedSelection = enterSelection
-    .append('circle')
-    .merge(joining)
-    // update attribute to new and existing data points
-    .attr('cx', (d) => d[0])
-    .attr('cy', (d) => d[1])
-    .attr('r', 3);
-
-  console.log('merged', mergedSelection);
-
-}
