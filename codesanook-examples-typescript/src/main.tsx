@@ -3,7 +3,7 @@ import './index.html';
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import Svg from './components/D3Component';
+import Svg from './components/ConnectedScatterPlotD3Component';
 
 // https://github.com/scniro/react-codemirror2#requiring-codemirror-resources
 // Ad vim mode

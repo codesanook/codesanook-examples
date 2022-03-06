@@ -4,12 +4,12 @@
   "description": "code examples for codesanook.com blog",
   "main": "index.js",
   "scripts": {
+    "start": "webpack serve",
     "dev": "webpack --mode=development",
     "build": "webpack --mode=production",
     "watch": "webpack --mode=development --watch",
     "build-node": "webpack --mode=development --target=node",
     "start-ink": "node ./dist/codesanook-examples-typescript.js",
-    "serve": "webpack serve",
     "test": "jest --detectOpenHandles"
   },
   "author": "Codesanok Team",

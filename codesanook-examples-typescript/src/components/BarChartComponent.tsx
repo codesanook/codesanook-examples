@@ -20,7 +20,7 @@ const x = d3.scaleBand()
 
 const xAxis = d3.axisBottom(x);
 
-export default function Svg() {
+export default function BarChart() {
   const ref = useRef();
 
   useEffect(() => {
