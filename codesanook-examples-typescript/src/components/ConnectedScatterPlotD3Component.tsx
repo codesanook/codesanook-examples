@@ -1,4 +1,12 @@
 // Credit https://wattenberger.com/blog/react-and-d3
+/*
+  Useful links:
+  Most basic connected scatter plot https://www.d3-graph-gallery.com/graph/connectedscatter_basic.html
+  https://embed.plnkr.co/wJDcZmkEzXaLVhuLZmcQ/
+  scalePoint https://www.d3indepth.com/scales/#scalepoint
+  Building shapes in d3.js https://www.d3-graph-gallery.com/graph/shape.html
+*/
+
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 const margin = { left: 50, right: 50, top: 40, bottom: 0 };
