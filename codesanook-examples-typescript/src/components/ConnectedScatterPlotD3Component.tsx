@@ -5,6 +5,7 @@
   https://embed.plnkr.co/wJDcZmkEzXaLVhuLZmcQ/
   scalePoint https://www.d3indepth.com/scales/#scalepoint
   Building shapes in d3.js https://www.d3-graph-gallery.com/graph/shape.html
+  Making a Scatter Plot with D3.js video https://www.youtube.com/watch?v=M2s2jowLkUo
 */
 
 import React, { useEffect, useRef } from 'react';
@@ -12,19 +13,22 @@ import * as d3 from 'd3';
 const margin = { left: 50, right: 50, top: 40, bottom: 0 };
 const width = 1400;
 const height = 300;
-
 const { data, years } = getData();
+
 const y = d3.scaleLinear()
   .domain([0, d3.max(data)])
   .range([height, 0]) // invert for y value
-const yAxis = d3.axisLeft(y);
+
+const yAxis = d3.axisLeft(y)
+  .tickSize(-width)
 
 const x = d3.scalePoint()
   .domain(years)
   .range([0, width])
 
 const xAxis = d3.axisBottom(x)
-  .tickFormat((d, i) => d.substring(2));
+  .tickSize(-height);
+//.tickFormat((d, i) => d.substring(2));
 
 export default function ConnectedScatterPlotD3Component() {
   const ref = useRef();
@@ -55,11 +59,61 @@ export default function ConnectedScatterPlotD3Component() {
       .attr('r', 3)
       .attr('fill', '#69b3a2')
 
-    chartGroup.append('g').attr('class', 'axis y').call(yAxis);
-    chartGroup.append('g')
-      .attr('class', 'axis x hidden')
+    // label for y axis
+    const yAxisGroup = chartGroup
+      .append('g')
+      .attr('class', 'y-axis')
+      .call(yAxis);
+
+    yAxisGroup.selectAll('line')
+      .attr('class', 'line-y')
+
+    // https://stackoverflow.com/a/45287709/1872200
+    // yAxisGroup.selectAll('.tick:first-of-type line').remove();
+
+    // .style('stroke', '#ccc')
+    // .style('fill', 'none')
+    // .style('stroke-width', '1')
+    // .style('stroke-dasharray', '2')
+    //.style('display', 'none')
+    // format line, path of axis
+    // https://stackoverflow.com/a/41537652/1872200
+
+    yAxisGroup
+      .select('path')
+      .style('stroke', '#ccc')
+      .style('fill', 'none')
+      .style('stroke-width', '1')
+      .style('stroke-dasharray', '2')
+
+    // label for x axis
+    const xAxisGroup = chartGroup.append('g')
+      .attr('class', 'axis x')// hidden class is for hidden tick
       .attr('transform', `translate(0, ${height})`)
       .call(xAxis);
+
+    xAxisGroup
+      .selectAll("text")
+      .attr("transform", "rotate(315) translate(-10, 5)");
+
+    xAxisGroup.selectAll('line')
+      .style('stroke', '#ccc')
+      .style('fill', 'none')
+      .style('stroke-width', '1')
+      .style('stroke-dasharray', '2')
+      //.style('display', 'none');
+
+    xAxisGroup
+      .select('path')
+      .style('display', 'none');
+
+
+    // transform text with SVG attribute
+    // http://www.d3noob.org/2014/02/attributes-in-d3js.html
+
+    // text anchor https://www.geeksforgeeks.org/svg-text-anchor-attribute/
+    // https://vanseodesign.com/web-design/svg-text-baseline-alignment/
+    // group https://www.youtube.com/watch?v=K2w6KKHsExY
 
   }, []);// Render  when component loaded and dataset changes
 

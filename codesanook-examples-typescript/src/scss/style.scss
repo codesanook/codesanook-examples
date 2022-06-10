@@ -27,9 +27,21 @@ body {
   height: 60%;
 }
 
-g.hidden {
-  line,
-  path {
-    display: none;
-  }
+// g.hidden {
+//   line,
+//   path {
+//     display: none;
+//   }
+// }
+
+// nth-of-child not work
+.y-axis .tick:first-of-type .line-y {
+  display: none;
+}
+
+.y-axis .line-y {
+  stroke-width: 1px;
+  stroke-dasharray: 2;
+  fill: none;
+  stroke: #ccc;
 }
