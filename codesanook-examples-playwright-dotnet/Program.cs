@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Microsoft.Playwright;
 
@@ -10,7 +9,7 @@ public class Program
         var stopWatch = new Stopwatch();
         stopWatch.Start();
 
-        await SearchAsync(
+        var searchResult = await SearchProductsAsync(
             "Sony MZ-N920",
             "Sony MZ-N910",
             "Sony MZ-NE810",
@@ -20,11 +19,20 @@ public class Program
             "Sony MZ-R37"
         );
 
+        foreach (var result in searchResult)
+        {
+            Console.WriteLine(result.Keyword);
+            foreach (var product in result.Products)
+            {
+                Console.WriteLine(product);
+            }
+        }
+
         stopWatch.Stop();
         Console.WriteLine($"Operation took {stopWatch.Elapsed.TotalSeconds} seconds");
     }
 
-    private static async Task SearchAsync(params string[] keywords)
+    private static async Task<IReadOnlyCollection<(string Keyword, IReadOnlyCollection<Product> Products)>> SearchProductsAsync(params string[] keywords)
     {
         var htmlContents = await GetHtmlContentAsync(keywords);
         var products = htmlContents.Where(r => !string.IsNullOrEmpty(r.HtmlContent)).AsParallel().Select(r =>
@@ -32,26 +40,29 @@ public class Program
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(r.HtmlContent);
             var links = htmlDoc.DocumentNode.SelectNodes("//mer-item-thumbnail/parent::a");
+            var products = ParseProductList(r, links);
+            return (r.Keyword, products);
 
-            return links.Select(l =>
-            {
-                var item = l.SelectSingleNode("./mer-item-thumbnail");
-                return new Product
-                {
-                    Name = r.Keyword,
-                    DetailsUrl = l.Attributes["href"].Value,
-                    ShortDescription = item.Attributes["alt"].Value,
-                    ImageUrl = item.Attributes["src"].Value,
-                    Price = Convert.ToDecimal(item.Attributes["price"].Value)
-                };
-            });
+        }).ToList();
 
-        }).SelectMany(p => p).ToList();
+        return products;
+    }
 
-        foreach (var product in products)
+    private static IReadOnlyCollection<Product> ParseProductList((string Keyword, string HtmlContent) r, HtmlNodeCollection links)
+    {
+        return links.Select(l =>
         {
-            Console.WriteLine(product);
-        }
+            var item = l.SelectSingleNode("./mer-item-thumbnail");
+            return new Product
+            {
+                Name = r.Keyword,
+                DetailsUrl = l.Attributes["href"].Value,
+                ShortDescription = item.Attributes["alt"].Value,
+                ImageUrl = item.Attributes["src"].Value,
+                Price = Convert.ToDecimal(item.Attributes["price"].Value)
+            };
+
+        }).ToList();
     }
 
     private static async Task<IReadOnlyCollection<(string Keyword, string HtmlContent)>> GetHtmlContentAsync(string[] keywords)
