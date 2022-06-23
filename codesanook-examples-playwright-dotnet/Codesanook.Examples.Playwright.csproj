@@ -8,8 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Flurl" Version="3.0.6" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.43" />
     <PackageReference Include="Microsoft.Playwright" Version="1.21.0" />
+    <PackageReference Include="Tmds.ExecFunction" Version="0.5.0" />
   </ItemGroup>
 
 </Project>
