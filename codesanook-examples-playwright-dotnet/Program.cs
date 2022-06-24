@@ -12,28 +12,6 @@ namespace Codesanook.Examples.Playwright
                 return ExecFunction.Program.Main(args);
             }
 
-
-            // else
-            // {
-            //     //await ExecFunction.RunAsync(() => Console.WriteLine("Hello world!"));
-            //     var task = Task.Run(() =>
-            //     {
-            //         ExecFunction.Run(() =>
-            //         {
-            //             Console.WriteLine("Hello world!");
-            //         });
-
-            //     });
-
-            //     await Task.WhenAll(task);
-
-            //     return 0;
-            // }
-
-            // ExecFunction.IsExecFunctionCommand(args);
-            // ExecFunction.Run(() => Console.WriteLine("Hello world!"));
-            // return 0;
-
             var stopWatch = new Stopwatch();
             stopWatch.Start();
 
