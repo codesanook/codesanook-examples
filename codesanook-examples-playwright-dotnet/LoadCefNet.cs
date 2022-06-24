@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using CefNet;
 using Tmds.Utils;
 
+// Allow native code https://stackoverflow.com/a/50636762/1872200
 namespace Codesanook.Examples.Playwright
 {
     public class LoadCefNet
